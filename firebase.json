@@ -12,7 +12,7 @@
     "source": "packages/functions"
   },
   "hosting": {
-    "public": "public",
+    "public": "packages/game-app/build",
     "ignore": [
       "firebase.json",
       "**/.*",
