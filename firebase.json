@@ -1,0 +1,49 @@
+{
+  "rulesFile": "packages/database/database.rules.json",
+  "firestore": {
+    "rules": "packages/firestore/firestore.rules",
+    "indexes": "packages/firestore/firestore.indexes.json"
+  },
+  "functions": {
+    "predeploy": [
+      "npm --prefix packages/functions run lint",
+      "npm --prefix packages/functions run build"
+    ],
+    "source": "packages/functions"
+  },
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "functions": {
+      "port": 5001
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "database": {
+      "port": 9000
+    },
+    "hosting": {
+      "port": 5000
+    },
+    "ui": {
+      "enabled": true,
+      "port": 5555
+    }
+  }
+}
