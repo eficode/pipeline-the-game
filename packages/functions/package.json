@@ -7,7 +7,27 @@
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "deploy-function-dev": "func() { shx cp -rf ./accounts/service-account-dev ./src/service-account.ts && firebase use pipeline-game-dev && npm run _clean && npm --prefix ./ run lint && npm --prefix ./ run build && firebase deploy --only functions:\"$1\" && npm run _restore-fake-account; }; func",
+    "deploy-functions-dev": "shx cp -rf ../accounts/service-account-dev ./src/service-account.ts && firebase use pipeline-game-dev && npm run _clean && npm run _deploy-functions && npm run _restore-fake-account",
+    "delete-functions-dev": "shx cp -rf ../accounts/service-account-dev ./src/service-account.ts && firebase use pipeline-game-dev && npm run delete-functions",
+    "deploy-function-test": "func() { cp -rf ../accounts/service-account-test ./src/service-account.ts && firebase use pipeline-game-test && npm run _clean && npm --prefix ./ run lint && npm --prefix ./ run build && firebase deploy --only functions:\"$1\" && npm run _restore-fake-account; }; func",
+    "deploy-functions-test": "cp -rf ../accounts/service-account-test ./src/service-account.ts && firebase use pipeline-game-test && npm run _clean && npm run _deploy-functions && npm run _restore-fake-account",
+    "delete-functions-test": "cp -rf ../accounts/service-account-test ./src/service-account.ts && firebase use pipeline-game-test && npm run delete-functions",
+    "deploy-function-prod": "func() { cp -rf ../accounts/service-account-prod ./src/service-account.ts && firebase use pipeline-game && npm run _clean && npm --prefix ./ run lint && npm --prefix ./ run build && firebase deploy --only functions:\"$1\" && npm run _restore-fake-account; }; func",
+    "deploy-functions-prod": "cp -rf ../accounts/service-account-prod ./src/service-account.ts && firebase use pipeline-game && npm run _clean && npm run _deploy-functions && npm run _restore-fake-account",
+    "delete-functions-prod": "cp -rf ../accounts/service-account-prod ./src/service-account.ts && firebase use pipeline-game && npm run delete-functions",
+    "deploy-rules-dev": "firebase use pipeline-game-dev && firebase deploy --only firestore:rules",
+    "deploy-rules-test": "firebase use pipeline-game-test && firebase deploy --only firestore:rules",
+    "deploy-rules-prod": "firebase use pipeline-game && firebase deploy --only firestore:rules",
+    "deploy-indexes-dev": "firebase use pipeline-game-dev && firebase deploy --only firestore:indexes",
+    "deploy-indexes-test": "firebase use pipeline-game-test && firebase deploy --only firestore:indexes",
+    "deploy-indexes-prod": "firebase use pipeline-game && firebase deploy --only firestore:indexes",
+    "_clean": "shx rm -rf ./lib/",
+    "_restore-fake-account": "shx cp -rf ../accounts/service-account ./src/service-account.ts",
+    "_deploy-functions": "firebase deploy --only functions",
+    "_deploy-functions-force": "firebase deploy --only functions --force",
+    "_delete-functions": "shx cp -rf ./src/index.ts ./src/indexBackup.ts && shx cp -rf ./src/indexEmpty.ts ./src/index.ts && npm run _deploy-functions-force && shx cp -rf ./src/indexBackup.ts ./src/index.ts && shx cp -rf ./src/indexEmpty.ts ./src/indexBackup.ts"
   },
   "engines": {
     "node": "12"
