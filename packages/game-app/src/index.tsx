@@ -11,7 +11,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/database';
 
-import CONFIG from '@pipeline/app-config'
+import CONFIG from '../config'
 
 firebase.initializeApp({
   apiKey: CONFIG.REACT_APP_FIREBASE_CONFIG_API_KEY,

@@ -6,7 +6,6 @@ jobs:
     environment: dev
     steps:
       - uses: actions/checkout@v2
-      - run: npm run bootstrap
       - uses: cypress-io/github-action@v2
         with:
           start: npm start
