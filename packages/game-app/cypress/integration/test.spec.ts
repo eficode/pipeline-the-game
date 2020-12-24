@@ -6,6 +6,6 @@ context('Index page', () => {
   })
 
   it('should contain the title', () => {
-   cy.contains('Pipeline - The Game that Delivers!')
+   cy.contains('Pipeline - The fsef Game that Delivers!')
   })
 })
