@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@pipeline/app-config": ["src/_shared/config"]
+    }
+  }
+}
