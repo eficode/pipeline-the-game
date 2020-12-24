@@ -11,7 +11,7 @@ import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/database';
 
-import CONFIG from './config'
+import CONFIG from '@pipeline/app-config'
 
 firebase.initializeApp({
   apiKey: CONFIG.REACT_APP_FIREBASE_CONFIG_API_KEY,
@@ -20,7 +20,7 @@ firebase.initializeApp({
   projectId: CONFIG.REACT_APP_FIREBASE_CONFIG_PROJECT_ID,
   storageBucket: CONFIG.REACT_APP_FIREBASE_CONFIG_STORAGE_BUCKET,
   messagingSenderId: CONFIG.REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
-  appId: CONFIG.REACT_APP_FIREBASE_CONFIG_APP_ID
+  appId: CONFIG.REACT_APP_FIREBASE_CONFIG_APP_ID,
 });
 
 firebase.analytics();
