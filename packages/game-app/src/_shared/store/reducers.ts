@@ -1,11 +1,7 @@
-import {Action, ReducersMapObject} from "@reduxjs/toolkit";
+import {name as i18nName, reducer as i18nReducer} from '@pipeline/i18n';
 
-function testReducer(state = {}, action: Action) {
-  return state;
-}
-
-const reducers: ReducersMapObject = {
-  test: testReducer
+const reducers = {
+  [i18nName]: i18nReducer
 };
 
 export default reducers;
