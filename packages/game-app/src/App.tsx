@@ -1,30 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { useTranslate } from '@pipeline/i18n';
+import {Redirect, Route, Switch} from 'react-router-dom';
+import {RoutingPath} from "@pipeline/routing";
 
 function App() {
 
-  const t = useTranslate();
-
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-        {t("home.title")}
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route path={RoutingPath.Login} render={() => <div>Login</div>}/>
+      <Route path={RoutingPath.Signup} render={() => <div>Signup</div>}/>
+      <Route path={RoutingPath.Dashboard} render={() => <div>Dashboard</div>}/>
+      <Route path="*">
+        <Redirect to={RoutingPath.Signup}/>
+      </Route>
+    </Switch>
   );
 }
 
