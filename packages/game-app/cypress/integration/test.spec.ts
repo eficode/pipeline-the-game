@@ -1,11 +1,12 @@
+/* eslint-disable jest/valid-expect-in-promise */
 /// <reference types="cypress" />
 
-context('Index page', () => {
+context("Index page", () => {
   beforeEach(() => {
-    cy.visit(Cypress.config().baseUrl)
-  })
+    cy.visit(Cypress.config().baseUrl);
+  });
 
-  it('should contain the title', () => {
-   cy.contains('Pipeline - The Game that Delivers!')
-  })
-})
+  it("should contain the title", () => {
+    cy.containsTranslation("home.title");
+  });
+});

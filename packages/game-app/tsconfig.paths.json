@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
-      "@pipeline/app-config": ["src/_shared/config"]
+      "@assets/*": ["src/assets/*"],
+      "@pipeline/app-config": ["src/_shared/config"],      
+      "@pipeline/i18n": ["src/_shared/i18n"]
     }
   }
 }

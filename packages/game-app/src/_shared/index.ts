@@ -5,8 +5,11 @@ import 'firebase/analytics';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/database';
+import { initializeI18n } from './i18n/index';
 
 export function bootstrap() {
+
+  initializeI18n();
 
   firebase.initializeApp({
     apiKey: CONFIG.REACT_APP_FIREBASE_CONFIG_API_KEY,
