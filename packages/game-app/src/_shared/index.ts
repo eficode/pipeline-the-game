@@ -1,10 +1,10 @@
-import { buildStore } from "./store";
-import CONFIG from "@pipeline/app-config";
-import firebase from "firebase/app";
-import "firebase/analytics";
-import { initializeI18n } from "./i18n";
-import { actions as authActions, selectors as authSelectors } from "./auth";
-import { useSelector } from "react-redux";
+import { buildStore } from './store';
+import CONFIG from '@pipeline/app-config';
+import firebase from 'firebase/app';
+import 'firebase/analytics';
+import { initializeI18n } from './i18n';
+import { actions as authActions, selectors as authSelectors } from './auth';
+import { useSelector } from 'react-redux';
 
 export function bootstrap() {
   initializeI18n();

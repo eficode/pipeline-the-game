@@ -1,4 +1,4 @@
-import { RoutingPath } from "./routingPath";
-import PrivateRoute from "./PrivateRoute";
+import { RoutingPath } from './routingPath';
+import PrivateRoute from './PrivateRoute';
 
 export { RoutingPath, PrivateRoute };
