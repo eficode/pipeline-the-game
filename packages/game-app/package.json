@@ -24,7 +24,7 @@
     "e2e:open": "npx cypress open",
     "e2e:run": "npx cypress run",
     "generate:doc": "npx typedoc",
-    "prettify-staged": "npx pretty-quick --pattern packages/game-app/src/**"
+    "prettify-staged": "npx pretty-quick --staged --pattern packages/game-app/src/**"
   },
   "eslintConfig": {
     "extends": [
