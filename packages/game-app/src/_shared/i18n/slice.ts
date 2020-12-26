@@ -5,21 +5,21 @@ export interface State {
 }
 
 const initialState = {
-  currentLocale: "en-EN"
+  currentLocale: "en-EN",
 } as State;
 
 const slice = createSlice({
   name: "i18n",
   initialState: initialState,
   reducers: {
-   changeLanguage(state, action: PayloadAction<string>){
-     state.currentLocale = action.payload;
-   }
-  }
+    changeLanguage(state, action: PayloadAction<string>) {
+      state.currentLocale = action.payload;
+    },
+  },
 });
 
 export const getCurrentLanguage = createSelector(
-  (state: {[name]: State}) => state[name],
+  (state: { [name]: State }) => state[name],
   (i18nState) => i18nState.currentLocale
 );
 
