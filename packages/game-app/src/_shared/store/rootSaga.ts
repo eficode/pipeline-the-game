@@ -1,21 +1,11 @@
-import {Saga} from 'redux-saga';
-import {all, call, put, spawn, takeEvery} from 'redux-saga/effects'
-
-function* testSaga() {
-  yield put({type: 'pong'});
-}
-
-function * testSagaRunner(){
-  yield takeEvery('ping', testSaga);
-}
+import { Saga } from "redux-saga";
+import { all, call, spawn } from "redux-saga/effects";
+import { saga as authSaga } from "@pipeline/auth";
 
 export default function* rootSaga() {
-  const sagas: Saga[] = [
-    testSagaRunner
-  ];
-
+  const sagas: Saga[] = [authSaga];
   yield all(
-    sagas.map(saga =>
+    sagas.map((saga) =>
       spawn(function* () {
         while (true) {
           try {
@@ -25,7 +15,7 @@ export default function* rootSaga() {
             console.log(e);
           }
         }
-      }),
-    ),
+      })
+    )
   );
 }

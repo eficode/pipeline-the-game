@@ -5,7 +5,8 @@
       "@assets/*": ["src/assets/*"],
       "@pipeline/app-config": ["src/_shared/config"],      
       "@pipeline/i18n": ["src/_shared/i18n"],
-      "@pipeline/routing": ["src/_shared/routing"]
+      "@pipeline/routing": ["src/_shared/routing"],
+      "@pipeline/auth": ["src/_shared/auth"]
     }
   }
 }

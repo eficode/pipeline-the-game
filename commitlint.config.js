@@ -1,6 +1,7 @@
 const apps = ["all", "app", "functions", "firestore", "database"]
 const scopes = [
     "config",
+    "auth",
     "login",
     "signup",
     "dashboard",

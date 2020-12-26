@@ -1,14 +1,11 @@
-import {buildStore} from "./store";
-import firebase from "firebase";
+import { buildStore } from "./store";
 import CONFIG from "@pipeline/app-config";
-import 'firebase/analytics';
-import 'firebase/auth';
-import 'firebase/firestore';
-import 'firebase/database';
-import { initializeI18n } from './i18n/index';
+import firebase from "firebase/app";
+import "firebase/analytics";
+import { initializeI18n } from "./i18n";
+import { actions as authActions } from "./auth";
 
 export function bootstrap() {
-
   initializeI18n();
 
   firebase.initializeApp({
@@ -25,10 +22,7 @@ export function bootstrap() {
 
   const store = buildStore();
 
-  store.dispatch({type: 'test'});
-  // For sage test
-  store.dispatch({type: 'ping'});
+  store.dispatch(authActions.initialize());
 
   return store;
-
 }
