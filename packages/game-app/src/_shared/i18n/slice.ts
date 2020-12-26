@@ -1,15 +1,15 @@
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface State {
   currentLocale: string;
 }
 
 const initialState = {
-  currentLocale: "en-EN",
+  currentLocale: 'en-EN',
 } as State;
 
 const slice = createSlice({
-  name: "i18n",
+  name: 'i18n',
   initialState: initialState,
   reducers: {
     changeLanguage(state, action: PayloadAction<string>) {
@@ -20,7 +20,7 @@ const slice = createSlice({
 
 export const getCurrentLanguage = createSelector(
   (state: { [name]: State }) => state[name],
-  (i18nState) => i18nState.currentLocale
+  i18nState => i18nState.currentLocale,
 );
 
 export const reducer = slice.reducer;

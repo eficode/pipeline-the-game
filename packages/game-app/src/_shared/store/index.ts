@@ -1,7 +1,3 @@
+import buildStore from './buildStore';
 
-
-import buildStore from "./buildStore";
-
-export {
-  buildStore
-}
+export { buildStore };

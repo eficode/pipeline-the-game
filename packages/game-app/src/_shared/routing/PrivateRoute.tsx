@@ -11,13 +11,11 @@ type Props = React.ComponentProps<typeof Route>;
  * If the user is not authenticated, it redirects to the SignUp Route.
  * If the user is authenticated, it behaves like a standard Route component.
  */
-const PrivateRoute: React.FC<Props> = (props) => {
-  
+const PrivateRoute: React.FC<Props> = props => {
   const currentUser = useSelector(authSelectors.getCurrentUser);
 
-  return currentUser ? <Route {...props}/> : <Redirect to={RoutingPath.Signup}/>
-}
-
+  return currentUser ? <Route {...props} /> : <Redirect to={RoutingPath.Signup} />;
+};
 
 PrivateRoute.displayName = 'PrivateRoute';
 

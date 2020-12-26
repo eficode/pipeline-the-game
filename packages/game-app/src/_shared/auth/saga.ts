@@ -1,11 +1,11 @@
-import { call, put, takeEvery } from "redux-saga/effects";
-import { actions, User } from "./slice";
-import firebase from "firebase/app";
-import "firebase/auth";
+import { call, put, takeEvery } from 'redux-saga/effects';
+import { actions, User } from './slice';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 function getCurrentUser(): Promise<User | null> {
-  return new Promise<User | null>((resolve) => {
-    firebase.auth().onAuthStateChanged((user) => {
+  return new Promise<User | null>(resolve => {
+    firebase.auth().onAuthStateChanged(user => {
       if (user) {
         resolve({
           id: user.uid,

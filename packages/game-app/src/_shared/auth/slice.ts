@@ -1,4 +1,4 @@
-import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface User {
   id: string;
@@ -16,7 +16,7 @@ const initialState = {
 } as State;
 
 const slice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: initialState,
   reducers: {
     setLoggedUser(state, action: PayloadAction<User | null>) {
@@ -32,12 +32,12 @@ const slice = createSlice({
 
 const getCurrentUser = createSelector(
   (state: { [name]: State }) => state[name],
-  (authState) => authState.loggedUser
+  authState => authState.loggedUser,
 );
 
 const isInitialized = createSelector(
   (state: { [name]: State }) => state[name],
-  (authState) => authState.isInitialized
+  authState => authState.isInitialized,
 );
 
 export const reducer = slice.reducer;

@@ -1,8 +1,8 @@
-import { getCurrentLanguage } from "./slice";
-import { useSelector } from "react-redux";
-import { Path } from "./utils";
-import enTranslations from "@assets/i18n/en";
-import I18n from "i18n-js";
+import { getCurrentLanguage } from './slice';
+import { useSelector } from 'react-redux';
+import { Path } from './utils';
+import enTranslations from '@assets/i18n/en';
+import I18n from 'i18n-js';
 
 export function useTranslate() {
   const currentLanguage = useSelector(getCurrentLanguage);

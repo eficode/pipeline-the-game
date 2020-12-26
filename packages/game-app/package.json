@@ -23,7 +23,8 @@
     "eject": "react-scripts eject",
     "e2e:open": "npx cypress open",
     "e2e:run": "npx cypress run",
-    "generate:doc": "npx typedoc"
+    "generate:doc": "npx typedoc",
+    "prettify-staged": "npx pretty-quick --staged --pattern packages/game-app/src/**"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +60,8 @@
     "@types/redux-saga": "^0.10.5",
     "cypress": "^6.2.0",
     "env-cmd": "^10.1.0",
+    "prettier": "^2.2.1",
+    "pretty-quick": "^3.1.0",
     "react-app-rewire-alias": "^0.1.9",
     "react-app-rewired": "^2.1.8",
     "react-scripts": "4.0.1",

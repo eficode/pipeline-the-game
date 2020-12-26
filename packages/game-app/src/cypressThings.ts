@@ -1,6 +1,6 @@
-import { Store } from "@reduxjs/toolkit";
-import I18n from "i18n-js";
-import firebase from "firebase/app";
+import { Store } from '@reduxjs/toolkit';
+import I18n from 'i18n-js';
+import firebase from 'firebase/app';
 
 /**
  * Makes I18n and the store available for Cypress in order
