@@ -1,5 +1,4 @@
 import { RoutingPath } from "./routingPath";
+import PrivateRoute from "./PrivateRoute";
 
-export {
-  RoutingPath
-}
+export { RoutingPath, PrivateRoute };
