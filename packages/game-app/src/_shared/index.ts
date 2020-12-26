@@ -3,7 +3,8 @@ import CONFIG from "@pipeline/app-config";
 import firebase from "firebase/app";
 import "firebase/analytics";
 import { initializeI18n } from "./i18n";
-import { actions as authActions } from "./auth";
+import { actions as authActions, selectors as authSelectors } from "./auth";
+import { useSelector } from "react-redux";
 
 export function bootstrap() {
   initializeI18n();
@@ -25,4 +26,13 @@ export function bootstrap() {
   store.dispatch(authActions.initialize());
 
   return store;
+}
+
+/**
+ * A hook that can be used to ensure that the asynchronous tasks of the initialization
+ * process are concluded.
+ */
+export function useBootstrapIsFinished() {
+  const isAuthInitialized = useSelector(authSelectors.isInitialized);
+  return isAuthInitialized;
 }
