@@ -9,6 +9,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
+    "react-router-dom": "^5.2.0",
     "redux-saga": "^1.1.3",
     "web-vitals": "^0.2.4"
   },
@@ -54,6 +55,7 @@
     "@types/react": "^16.14.2",
     "@types/react-dom": "^16.9.10",
     "@types/react-redux": "^7.1.14",
+    "@types/react-router-dom": "^5.1.6",
     "@types/redux-saga": "^0.10.5",
     "cypress": "^6.2.0",
     "env-cmd": "^10.1.0",

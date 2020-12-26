@@ -6,13 +6,17 @@ import reportWebVitals from './reportWebVitals';
 
 import {bootstrap} from "./_shared";
 import {Provider} from "react-redux";
-
+import {
+  BrowserRouter as Router
+} from "react-router-dom";
 const store = bootstrap();
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App/>
+      <Router>
+        <App/>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

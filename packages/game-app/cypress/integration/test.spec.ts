@@ -1,4 +1,3 @@
-/* eslint-disable jest/valid-expect-in-promise */
 /// <reference types="cypress" />
 
 context("Index page", () => {
@@ -7,6 +6,6 @@ context("Index page", () => {
   });
 
   it("should contain the title", () => {
-    cy.containsTranslation("home.title");
+    cy.contains("Signup");
   });
 });
