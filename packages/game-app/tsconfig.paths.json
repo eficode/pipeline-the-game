@@ -7,7 +7,9 @@
       "@pipeline/i18n": ["src/_shared/i18n"],
       "@pipeline/routing": ["src/_shared/routing"],
       "@pipeline/auth": ["src/_shared/auth"],
-      "@pipeline/requests-status": ["src/_shared/requests-status"]
+      "@pipeline/requests-status": ["src/_shared/requests-status"],
+      "@pipeline/form": ["src/_shared/form"],
+      "@pipeline/components": ["src/_shared/components"]
     }
   }
 }

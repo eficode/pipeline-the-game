@@ -5,6 +5,7 @@ import 'firebase/analytics';
 import { initializeI18n } from './i18n';
 import { actions as authActions, selectors as authSelectors } from './auth';
 import { useSelector } from 'react-redux';
+import config from '@pipeline/app-config';
 
 export function bootstrap() {
   initializeI18n();
@@ -18,6 +19,12 @@ export function bootstrap() {
     messagingSenderId: CONFIG.REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
     appId: CONFIG.REACT_APP_FIREBASE_CONFIG_APP_ID,
   });
+  if (config.REACT_APP_FIREBASE_USE_EMULATORS === 'true') {
+    firebase.auth().useEmulator('http://localhost:9099/');
+    firebase.functions().useEmulator('localhost', 5001);
+    firebase.firestore().useEmulator('localhost', 8080);
+    firebase.database().useEmulator('localhost', 9000);
+  }
 
   firebase.analytics();
 
