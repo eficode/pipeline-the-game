@@ -10,7 +10,15 @@ export function useTranslate() {
 }
 
 export function translateFactory(language: string) {
-  return function translate(key: Path<typeof enTranslations>) {
-    return I18n.t(key, { locale: language });
+  return function translate(
+    key: Path<typeof enTranslations>,
+    options?: {
+      default?: string;
+    },
+  ) {
+    return I18n.t(key, {
+      locale: language,
+      defaultValue: options?.default,
+    });
   };
 }

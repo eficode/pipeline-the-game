@@ -2,6 +2,7 @@ import I18n from 'i18n-js';
 import enTranslations from '@assets/i18n/en';
 import { reducer, actions, name } from './slice';
 import { useTranslate } from './useTranslate';
+import translateError from './translateError';
 
 export function initializeI18n() {
   const defaultLocale = 'en-EN';
@@ -12,4 +13,4 @@ export function initializeI18n() {
   I18n.translations[defaultLocale] = enTranslations;
 }
 
-export { reducer, actions, name, useTranslate };
+export { reducer, actions, name, useTranslate, translateError };
