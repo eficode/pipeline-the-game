@@ -16,7 +16,7 @@ export function createRequestHook<T extends Array<any>>(
   triggerAction: (...args: T) => Action,
   options?: HookOptions,
 ): () => GeneralHookResponse<T> {
-  return function (): GeneralHookResponse<T> {
+  const hook = function useRequest(): GeneralHookResponse<T> {
     const t = useTranslate();
     const dispatch = useDispatch();
     const keySelector = useMemo(() => selectRequestStatus(requestKey), []);
@@ -53,4 +53,11 @@ export function createRequestHook<T extends Array<any>>(
 
     return { loading, success, error, translatedError, call, reset };
   };
+
+  Object.defineProperty(hook, 'name', {
+    value: `use${requestKey}Request`,
+    configurable: true,
+  });
+
+  return hook;
 }

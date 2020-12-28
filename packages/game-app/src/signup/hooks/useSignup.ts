@@ -1,16 +1,8 @@
-import { useCallback } from 'react';
-import { SignupInfo } from '../types/signupInfo';
-import { useDispatch } from 'react-redux';
 import * as actions from '../actions';
+import { createRequestHook } from '@pipeline/requests-status';
 
-export default function useSignup() {
-  const dispatch = useDispatch();
+const useSignup = createRequestHook('signup', actions.signup, {
+  errorMessagesScope: 'signup',
+});
 
-  const execute = useCallback((info: SignupInfo) => {
-    dispatch(actions.signup(info));
-  }, []);
-
-  return {
-    execute,
-  };
-}
+export default useSignup;

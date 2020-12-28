@@ -50,14 +50,14 @@ const Signup: React.FC<Props> = ({}) => {
 
   const { handleSubmit } = methods;
 
-  const { execute } = useSignup();
+  const { call: signup, loading, translatedError, success } = useSignup();
 
   const submit = useMemo(
     () =>
       handleSubmit((info: SignupInfo) => {
-        execute(info);
+        signup(info);
       }),
-    [handleSubmit],
+    [signup, handleSubmit],
   );
 
   return (
@@ -73,6 +73,9 @@ const Signup: React.FC<Props> = ({}) => {
           <button id="signup-button" onClick={submit}>
             Signup
           </button>
+          {loading ? <span>Loading</span> : null}
+          {translatedError ? <span className="error-message">{translatedError}</span> : null}
+          {loading ? <span>Success</span> : null}
         </FormProvider>
       </div>
     </div>
