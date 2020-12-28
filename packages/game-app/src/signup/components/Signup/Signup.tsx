@@ -45,7 +45,7 @@ const schema = yup.object().shape({
   devopsMaturity: yup.string().required('signup.required'),
 });
 
-const Signup: React.FC<Props> = ({}) => {
+const Signup: React.FC<Props> = () => {
   const methods = useForm<SignupInfo>({
     defaultValues: {},
     mode: 'onBlur',

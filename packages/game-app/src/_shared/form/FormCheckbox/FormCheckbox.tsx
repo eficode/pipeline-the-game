@@ -24,7 +24,7 @@ const FormCheckbox: React.FC<Props> = ({ name, label }) => {
         </>
       );
     },
-    [data.errors[name], label],
+    [label],
   );
 
   return <Controller name={name} control={data.control} render={renderInput} />;

@@ -23,16 +23,21 @@ export function createRequestHook<T extends Array<any>>(
 
     const { loading, success, error } = useSelector(keySelector);
 
-    const getErrorMessage = (error: any) => {
-      return error ? translateError(t, error, options?.errorMessagesScope) : undefined;
-    };
+    const errorMessagesScope = options?.errorMessagesScope;
+
+    const getErrorMessage = useCallback(
+      (error: any) => {
+        return error ? translateError(t, error, errorMessagesScope) : undefined;
+      },
+      [t, errorMessagesScope],
+    );
 
     const [translatedError, setTranslatedError] = useState(getErrorMessage(error));
 
     useEffect(() => {
       const errorText = error ? getErrorMessage(error) : undefined;
       setTranslatedError(errorText);
-    }, [error]);
+    }, [error, getErrorMessage]);
 
     const call = useCallback(
       (...args: T) => {
@@ -49,6 +54,7 @@ export function createRequestHook<T extends Array<any>>(
       return () => {
         dispatch(requestsActions.resetStatus(requestKey));
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return { loading, success, error, translatedError, call, reset };
