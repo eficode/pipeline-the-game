@@ -30,15 +30,19 @@ const devopsMaturity = [
   { label: "I don't know", value: 'dont-know' },
   { label: 'Varies by function or team', value: 'varies' },
 ];
+
 const schema = yup.object().shape({
-  email: yup.string().required().email(),
-  password: yup.string().required().min(8).max(50),
+  email: yup.string().required('signup.required').email('signup.invalidEmail'),
+  password: yup
+    .string()
+    .required('signup.required')
+    .matches(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'), 'signup.passwordRequirements'),
   repeatPassword: yup
     .string()
-    .required()
-    .oneOf([yup.ref('password')], 'passwordMatch'),
-  role: yup.string().required(),
-  devopsMaturity: yup.string().required(),
+    .required('signup.required')
+    .oneOf([yup.ref('password')], 'signup.passwordMatch'),
+  role: yup.string().required('signup.required'),
+  devopsMaturity: yup.string().required('signup.required'),
 });
 
 const Signup: React.FC<Props> = ({}) => {
@@ -67,15 +71,15 @@ const Signup: React.FC<Props> = ({}) => {
           <FormTextField name="email" label="email" />
           <FormTextField name="password" label="password" />
           <FormTextField name="repeatPassword" label="repeatPassword" />
-          <FormSelect name="role" label="" options={roles} />
-          <FormSelect name="devopsMaturity" label="devopsMaturity" options={devopsMaturity} />
+          <FormSelect name="role" label="Role" options={roles} />
+          <FormSelect name="devopsMaturity" label="Devops maturity" options={devopsMaturity} />
 
           <button id="signup-button" onClick={submit}>
             Signup
           </button>
           {loading ? <span>Loading</span> : null}
           {translatedError ? <span className="error-message">{translatedError}</span> : null}
-          {loading ? <span>Success</span> : null}
+          {success ? <span>Success</span> : null}
         </FormProvider>
       </div>
     </div>
