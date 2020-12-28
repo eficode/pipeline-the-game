@@ -23,6 +23,7 @@ jobs:
         with:
           start: firebase emulators:start
           working-directory: packages/game-app
+          install: false
           wait-on: 'http://localhost:5000'
         env:
           CYPRESS_BASE_URL: http://localhost:5000
