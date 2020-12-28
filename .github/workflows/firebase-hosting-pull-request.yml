@@ -19,9 +19,12 @@ jobs:
           REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID }}
           REACT_APP_FIREBASE_CONFIG_APP_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_APP_ID }}
           REACT_APP_FIREBASE_USE_EMULATORS: true
+      - name: Start emulators
+        run: npx firebase emulators:start &
+        env:
+          FIREBASE_TOKEN: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PIPELINE_GAME_DEV }}'
       - uses: cypress-io/github-action@v2
         with:
-          start: firebase emulators:start
           working-directory: packages/game-app
           install: false
           wait-on: 'http://localhost:5000'
