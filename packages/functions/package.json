@@ -8,15 +8,15 @@
     "start": "npm run shell",
     "deploy": "firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "deploy-function-dev": "func() { shx cp -rf ./accounts/service-account-dev ./src/service-account.ts && firebase use pipeline-game-dev && npm run _clean && npm --prefix ./ run lint && npm --prefix ./ run build && firebase deploy --only functions:\"$1\" && npm run _restore-fake-account; }; func",
+    "deploy-function-dev": "func() { shx cp -rf ../accounts/service-account-dev ./src/service-account.ts && firebase use pipeline-game-dev && npm run _clean && npm --prefix ./ run lint && npm --prefix ./ run build && firebase deploy --only functions:\"$1\" && npm run _restore-fake-account; }; func",
     "deploy-functions-dev": "shx cp -rf ../accounts/service-account-dev ./src/service-account.ts && firebase use pipeline-game-dev && npm run _clean && npm run _deploy-functions && npm run _restore-fake-account",
-    "delete-functions-dev": "shx cp -rf ../accounts/service-account-dev ./src/service-account.ts && firebase use pipeline-game-dev && npm run delete-functions",
+    "delete-functions-dev": "shx cp -rf ../accounts/service-account-dev ./src/service-account.ts && firebase use pipeline-game-dev && npm run _delete-functions",
     "deploy-function-test": "func() { cp -rf ../accounts/service-account-test ./src/service-account.ts && firebase use pipeline-game-test && npm run _clean && npm --prefix ./ run lint && npm --prefix ./ run build && firebase deploy --only functions:\"$1\" && npm run _restore-fake-account; }; func",
     "deploy-functions-test": "cp -rf ../accounts/service-account-test ./src/service-account.ts && firebase use pipeline-game-test && npm run _clean && npm run _deploy-functions && npm run _restore-fake-account",
-    "delete-functions-test": "cp -rf ../accounts/service-account-test ./src/service-account.ts && firebase use pipeline-game-test && npm run delete-functions",
+    "delete-functions-test": "cp -rf ../accounts/service-account-test ./src/service-account.ts && firebase use pipeline-game-test && npm run _delete-functions",
     "deploy-function-prod": "func() { cp -rf ../accounts/service-account-prod ./src/service-account.ts && firebase use pipeline-game && npm run _clean && npm --prefix ./ run lint && npm --prefix ./ run build && firebase deploy --only functions:\"$1\" && npm run _restore-fake-account; }; func",
     "deploy-functions-prod": "cp -rf ../accounts/service-account-prod ./src/service-account.ts && firebase use pipeline-game && npm run _clean && npm run _deploy-functions && npm run _restore-fake-account",
-    "delete-functions-prod": "cp -rf ../accounts/service-account-prod ./src/service-account.ts && firebase use pipeline-game && npm run delete-functions",
+    "delete-functions-prod": "cp -rf ../accounts/service-account-prod ./src/service-account.ts && firebase use pipeline-game && npm run _delete-functions",
     "deploy-rules-dev": "firebase use pipeline-game-dev && firebase deploy --only firestore:rules",
     "deploy-rules-test": "firebase use pipeline-game-test && firebase deploy --only firestore:rules",
     "deploy-rules-prod": "firebase use pipeline-game && firebase deploy --only firestore:rules",
@@ -43,7 +43,8 @@
     "eslint": "^7.6.0",
     "eslint-plugin-import": "^2.22.0",
     "typescript": "^3.8.0",
-    "firebase-functions-test": "^0.2.0"
+    "firebase-functions-test": "^0.2.0",
+    "shx": "^0.3.3"
   },
   "private": true
 }
