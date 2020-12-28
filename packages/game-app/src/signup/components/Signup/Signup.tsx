@@ -1,18 +1,12 @@
 import React, { useMemo } from 'react';
-import { useForm, FormProvider } from 'react-hook-form';
+import { FormProvider, useForm } from 'react-hook-form';
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { SignupInfo } from '../../types/signupInfo';
+import useSignup from '../../hooks/useSignup';
 
 type Props = {};
-
-interface SignupInfo {
-  email: string;
-  password: string;
-  repeatPassword: string;
-  role: string;
-  devopsMaturity: string;
-}
 
 //TODO make roles and devops maturity dynamics
 
@@ -56,10 +50,12 @@ const Signup: React.FC<Props> = ({}) => {
 
   const { handleSubmit } = methods;
 
+  const { execute } = useSignup();
+
   const submit = useMemo(
     () =>
       handleSubmit((info: SignupInfo) => {
-        console.log('info', info);
+        execute(info);
       }),
     [handleSubmit],
   );
