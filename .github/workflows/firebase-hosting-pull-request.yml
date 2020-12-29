@@ -1,7 +1,7 @@
-name: Run e2e test on PR
+name: Build and run tests on PR
 'on': pull_request
 jobs:
-  run-e2e-test:
+  build-and-run-tests:
     runs-on: ubuntu-latest
     environment: dev
     steps:
