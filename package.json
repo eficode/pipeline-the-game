@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "bootstrap": "npm ci && npx lerna bootstrap",
-    "build": "npx lerna run build"
+    "build": "npx lerna run build",
+    "test:firestore": "npm run test --prefix packages/firestore"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
