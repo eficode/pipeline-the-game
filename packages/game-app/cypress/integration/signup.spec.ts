@@ -23,7 +23,7 @@ context("Signup", () => {
     cy.get('body').should('contain', 'signup.passwordRequirements')
   });
 
-  it("should show not contains invalid password error", () => {
+  it("should not show invalid password error for correct password", () => {
     cy.getInputByName('password').type('Aa1%sfesfsf');
     cy.get('button').click();
     cy.get('body').should('not.contain', 'signup.passwordRequirements')
