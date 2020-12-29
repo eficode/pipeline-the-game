@@ -1,6 +1,7 @@
 /// <reference types="Cypress" />
 /// <reference types="../support" />
 
+// @ts-ignore
 context("Signup", () => {
 
   const usedEmails: string[] = [];
