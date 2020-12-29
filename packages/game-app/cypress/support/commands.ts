@@ -23,9 +23,14 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+/// <reference types="Cypress" />
 
 Cypress.Commands.add("containsTranslation", (key: string) => {
   return cy.window().then((win) => {
     return cy.contains((win as any).i18n.t(key));
   });
+});
+
+Cypress.Commands.add('getInputByName', (name: string, options: Parameters<typeof cy.get>[1]) => {
+  cy.get(`input[name="${name}"],select[name="${name}"]`, options);
 });

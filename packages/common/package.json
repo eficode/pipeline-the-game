@@ -1,0 +1,14 @@
+{
+  "name": "@pipeline/common",
+  "version": "0.0.0",
+  "types": "build/index.d.ts",
+  "typings": "build/index.d.ts",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc --outDir build",
+    "build:watch": "tsc --watch  --declaration --outDir build "
+  },
+  "devDependencies": {
+    "typescript": "4.1.3"
+  }
+}

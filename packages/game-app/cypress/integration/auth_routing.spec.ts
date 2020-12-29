@@ -5,7 +5,7 @@ import firebase from "firebase/app";
 
 context("Routing", () => {
   beforeEach(() => {
-    cy.visit(Cypress.config().baseUrl);
+    cy.visit(Cypress.config().baseUrl!);
   });
 
   it("should be redirected from Dashboard if not authenticated", () => {

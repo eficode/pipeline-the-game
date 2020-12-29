@@ -9,3 +9,23 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+/**
+Temporary css waiting for the ui components
+ */
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup .content {
+  max-width: 40%;
+  margin: auto;
+  margin-top: 200px;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+}

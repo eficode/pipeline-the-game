@@ -16,23 +16,28 @@ export function createRequestHook<T extends Array<any>>(
   triggerAction: (...args: T) => Action,
   options?: HookOptions,
 ): () => GeneralHookResponse<T> {
-  return function (): GeneralHookResponse<T> {
+  const hook = function useRequest(): GeneralHookResponse<T> {
     const t = useTranslate();
     const dispatch = useDispatch();
     const keySelector = useMemo(() => selectRequestStatus(requestKey), []);
 
     const { loading, success, error } = useSelector(keySelector);
 
-    const getErrorMessage = (error: any) => {
-      return error ? translateError(t, error, options?.errorMessagesScope) : undefined;
-    };
+    const errorMessagesScope = options?.errorMessagesScope;
+
+    const getErrorMessage = useCallback(
+      (error: any) => {
+        return error ? translateError(t, error, errorMessagesScope) : undefined;
+      },
+      [t, errorMessagesScope],
+    );
 
     const [translatedError, setTranslatedError] = useState(getErrorMessage(error));
 
     useEffect(() => {
       const errorText = error ? getErrorMessage(error) : undefined;
       setTranslatedError(errorText);
-    }, [error]);
+    }, [error, getErrorMessage]);
 
     const call = useCallback(
       (...args: T) => {
@@ -49,8 +54,16 @@ export function createRequestHook<T extends Array<any>>(
       return () => {
         dispatch(requestsActions.resetStatus(requestKey));
       };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return { loading, success, error, translatedError, call, reset };
   };
+
+  Object.defineProperty(hook, 'name', {
+    value: `use${requestKey}Request`,
+    configurable: true,
+  });
+
+  return hook;
 }
