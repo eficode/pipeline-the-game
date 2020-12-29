@@ -5,7 +5,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout merged code
+        uses: actions/checkout@v2
       - name: Bootstrap
         run: npm run bootstrap
       - name: Build project
@@ -22,13 +23,17 @@ jobs:
       - name: Start emulators
         run: npx firebase emulators:start &
         env:
-          FIREBASE_TOKEN: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_PIPELINE_GAME_DEV }}'
-      - uses: cypress-io/github-action@v2
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PIPELINE_GAME_DEV }}
+      - name: Run e2e test
+        uses: cypress-io/github-action@v2
         with:
           working-directory: packages/game-app
           install: false
           wait-on: 'http://localhost:5000'
         env:
           CYPRESS_BASE_URL: http://localhost:5000
+          FIREBASE_AUTH_EMULATOR_HOST: localhost:9099
+          FIRESTORE_EMULATOR_HOST: localhost:8080
+          REACT_APP_FIREBASE_CONFIG_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
 
 
