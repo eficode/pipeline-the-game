@@ -42,7 +42,7 @@ const schema = yup.object().shape({
     .required('signup.required')
     .oneOf([yup.ref('password')], 'signup.passwordMatch'),
   role: yup.string().required('signup.required'),
-  devopsMaturity: yup.string().required('signup.required'),
+  devOpsMaturity: yup.string().required('signup.required'),
 });
 
 const Signup: React.FC<Props> = () => {
@@ -72,7 +72,7 @@ const Signup: React.FC<Props> = () => {
           <FormTextField name="password" label="password" />
           <FormTextField name="repeatPassword" label="repeatPassword" />
           <FormSelect name="role" label="Role" options={roles} />
-          <FormSelect name="devopsMaturity" label="Devops maturity" options={devopsMaturity} />
+          <FormSelect name="devOpsMaturity" label="Devops maturity" options={devopsMaturity} />
 
           <button id="signup-button" onClick={submit}>
             Signup

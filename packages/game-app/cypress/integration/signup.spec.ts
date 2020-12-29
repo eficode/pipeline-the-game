@@ -42,7 +42,7 @@ context("Signup", () => {
     cy.getInputByName('password').type('Aa1%sfesfsf');
     cy.getInputByName('repeatPassword').type('Aa1%sfesfsf');
     cy.getInputByName('role').select('end-user');
-    cy.getInputByName('devopsMaturity').select('very-immature');
+    cy.getInputByName('devOpsMaturity').select('very-immature');
     cy.get('button').click();
     cy.get('body').should('contain', 'Loading');
     cy.get('body').should('contain', 'Success');
@@ -55,7 +55,7 @@ context("Signup", () => {
 
       // check firestore data
       cy.getFirestoreDocument(`users/${user.uid}`).should((data) => {
-        expect(data.devopsMaturity).eq('very-immature')
+        expect(data.devOpsMaturity).eq('very-immature')
         expect(data.role).eq('end-user')
         expect(data.email).eq(randomEmail)
       });
@@ -68,7 +68,7 @@ context("Signup", () => {
     cy.getInputByName('password').type('Aa1%sfesfsf');
     cy.getInputByName('repeatPassword').type('Aa1%sfesfsf');
     cy.getInputByName('role').select('end-user');
-    cy.getInputByName('devopsMaturity').select('very-immature');
+    cy.getInputByName('devOpsMaturity').select('very-immature');
     cy.get('button').click();
     cy.get('body').should('contain', 'The email address is already in use by another account.');
   });
