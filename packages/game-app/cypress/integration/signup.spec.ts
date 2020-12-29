@@ -1,6 +1,5 @@
 /// <reference types="Cypress" />
 /// <reference types="../support" />
-import "firebase/auth";
 
 context("Signup", () => {
 
@@ -37,7 +36,7 @@ context("Signup", () => {
   });
 
   it("should signup correctly", () => {
-    const randomEmail = `testEmail${Math.floor(Math.random() * 1000)}@email.com`;
+    const randomEmail = `testEmail${Math.floor(Math.random() * 1000)}@email.com`.toLocaleLowerCase();
     usedEmails.push(randomEmail);
     cy.getInputByName('email').type(randomEmail);
     cy.getInputByName('password').type('Aa1%sfesfsf');
@@ -47,6 +46,20 @@ context("Signup", () => {
     cy.get('button').click();
     cy.get('body').should('contain', 'Loading');
     cy.get('body').should('contain', 'Success');
+
+    // check auth presence
+    cy.getFirebaseUserByEmail(randomEmail).should((user) => {
+      expect(user.email).eq(randomEmail)
+      expect(user.emailVerified).eq(false)
+      expect(user.disabled).eq(false);
+
+      // check firestore data
+      cy.getFirestoreDocument(`users/${user.uid}`).should((data) => {
+        expect(data.devopsMaturity).eq('very-immature')
+        expect(data.role).eq('end-user')
+        expect(data.email).eq(randomEmail)
+      });
+    });
   });
 
   it("should show email already used error", () => {

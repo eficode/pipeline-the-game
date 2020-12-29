@@ -34,3 +34,13 @@ Cypress.Commands.add("containsTranslation", (key: string) => {
 Cypress.Commands.add('getInputByName', (name: string, options: Parameters<typeof cy.get>[1]) => {
   cy.get(`input[name="${name}"],select[name="${name}"]`, options);
 });
+
+Cypress.Commands.add('getFirebaseUserByEmail', (email: string) => {
+  return cy.task('getFirebaseUserByEmail', {email});
+});
+
+
+Cypress.Commands.add('getFirestoreDocument', (path: string) => {
+  return cy.task('getFirestoreDocument', {path});
+});
+

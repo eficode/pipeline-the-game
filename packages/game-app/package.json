@@ -25,8 +25,8 @@
     "build:prod": "npx cross-env REACT_APP_VERSION=$npm_package_version env-cmd -f .env.production react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "e2e:open": "npx cypress open",
-    "e2e:run": "npx cypress run",
+    "e2e:open": "npx env-cmd -f .env cypress open",
+    "e2e:run": "npx env-cmd -f .env cypress run",
     "generate:doc": "npx typedoc",
     "prettify-staged": "npx pretty-quick --staged --pattern packages/game-app/src/**"
   },
@@ -65,6 +65,7 @@
     "@types/redux-saga": "^0.10.5",
     "cypress": "^6.2.0",
     "env-cmd": "^10.1.0",
+    "firebase-admin": "^9.4.2",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "react-app-rewire-alias": "^0.1.9",
