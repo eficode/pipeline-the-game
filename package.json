@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "npm ci && npx lerna bootstrap",
-    "build": "npx lerna run build",
+    "build": "npx lerna run build --stream",
     "test:firestore": "npm run test --prefix packages/firestore"
   },
   "devDependencies": {

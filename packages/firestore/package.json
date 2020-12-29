@@ -2,7 +2,8 @@
   "name": "@pipeline/firestore",
   "private": true,
   "scripts": {
-    "test": "npx env-cmd -f .env mocha -r ts-node/register test/*.spec.ts"
+    "test": "mocha -r ts-node/register test/*.spec.ts",
+    "test:local": "npx env-cmd -f .env mocha -r ts-node/register test/*.spec.ts"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^1.1.6",
