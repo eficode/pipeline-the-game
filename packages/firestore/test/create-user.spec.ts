@@ -92,10 +92,14 @@ describe("User create", () => {
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
     const profile = db.collection("users").doc(userUID);
+    const rolesDoc = await db.doc('dynamicData/gameRoles').get();
+    const maturitiesDoc = await db.doc('dynamicData/devOpsMaturities').get();
+    const realRole = rolesDoc.data().roles[0];
+    const realMaturity = maturitiesDoc.data().maturities[0];
     await firebase.assertFails(profile.set({
       email: 'test1@email.com',
-      role: 'end-user',
-      devOpsMaturity: 'very-immature'
+      role: realRole,
+      devOpsMaturity: realMaturity
     }));
   });
 
@@ -104,10 +108,14 @@ describe("User create", () => {
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
     const profile = db.collection("users").doc(userUID);
+    const rolesDoc = await db.doc('dynamicData/gameRoles').get();
+    const maturitiesDoc = await db.doc('dynamicData/devOpsMaturities').get();
+    const realRole = rolesDoc.data().roles[0];
+    const realMaturity = maturitiesDoc.data().maturities[0];
     await firebase.assertFails(profile.set({
       email,
-      role: 'end-user',
-      devOpsMaturity: 'very-immature',
+      role: realRole,
+      devOpsMaturity: realMaturity,
       unexpected: 'unexpected'
     }));
   });
