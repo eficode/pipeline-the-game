@@ -15,7 +15,7 @@ const roles = [
   { label: 'Define requirements and propose solutions', value: 'define-requirements' },
   { label: 'Influence decisions', value: 'influence-decisions' },
   { label: 'Give recommendations', value: 'give-recommendations' },
-  { label: 'End user', value: 'end-user' },
+  { label: 'End user', value: 'endUser' },
   { label: 'Student or potential employee', value: 'student-employee' },
   { label: 'Consultant', value: 'consultant' },
   { label: 'Other', value: 'other' },
@@ -26,7 +26,7 @@ const devopsMaturity = [
   { label: 'Somewhat mature', value: 'somewhat-mature' },
   { label: 'Pretty average, really', value: 'pretty-average' },
   { label: 'Somewhat immature', value: 'somewhat-immature' },
-  { label: 'Very immature', value: 'very-immature' },
+  { label: 'Very immature', value: 'veryImmature' },
   { label: "I don't know", value: 'dont-know' },
   { label: 'Varies by function or team', value: 'varies' },
 ];
