@@ -1,5 +1,13 @@
-import {FirebaseCollection} from "./firebaseCollection";
+import {FirebaseCollections} from "./firebaseCollections";
+import {DevOpsMaturitiesDoc} from "./devOpsMaturitiesDoc";
+import {GameRolesDoc} from "./gameRolesDoc";
 
 export {
-  FirebaseCollection
-}
+  FirebaseCollections
+};
+
+export type {
+    DevOpsMaturitiesDoc,
+    GameRolesDoc
+};
+
