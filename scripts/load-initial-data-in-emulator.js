@@ -5,7 +5,7 @@ const files = fs.readdirSync("./fixtures/firestore-data");
 
 const app = admin.initializeApp({projectId: process.env.REACT_APP_FIREBASE_CONFIG_PROJECT_ID});
 
-async function laodData() {
+async function loadData() {
     const batch = app.firestore().batch();
     for (const dir of files) {
         const collectionName = dir.replace('.json', '');
@@ -19,4 +19,4 @@ async function laodData() {
     await batch.commit();
 }
 
-laodData().then(()=>console.info("Initial data loaded successfully"));
+loadData().then(()=>console.info("Initial data loaded successfully"));
