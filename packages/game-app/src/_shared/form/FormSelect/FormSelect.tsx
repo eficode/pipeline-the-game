@@ -4,7 +4,7 @@ import { SelectInput } from '@pipeline/components';
 
 type Props = {} & Omit<React.ComponentProps<typeof SelectInput>, 'errorMessage' | 'onChange' | 'value'>;
 
-const FormSelect: React.FC<Props> = ({ name, label, options }) => {
+const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
   const data = useFormContext();
 
   const error = data.errors[name];
@@ -18,11 +18,12 @@ const FormSelect: React.FC<Props> = ({ name, label, options }) => {
           value={props.value}
           options={options}
           onChange={props.onChange}
+          disabled={disabled}
           errorMessage={error ? error.message : null}
         />
       );
     },
-    [error, label, options],
+    [error, label, options, disabled],
   );
 
   return (

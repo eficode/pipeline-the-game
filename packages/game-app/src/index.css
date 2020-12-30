@@ -19,6 +19,11 @@ Temporary css waiting for the ui components
   flex-direction: column;
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 .signup .content {
   max-width: 40%;
   margin: auto;
