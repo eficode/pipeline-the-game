@@ -2,21 +2,35 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    match /dynamicData/gameRoles {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /dynamicData/devOpsMaturities {
+      allow read: if true;
+      allow write: if false;
+    }    
+
     match /users/{userId} {
       allow read: if userId == authUserUid();
       allow create: if userId == authUserUid() && isValidUserCreate();
     }
 
     function isValidUserCreate() {
-      return newData().keys().hasOnly(['role', 'devOpsMaturity', 'email'])
-        && newData().role is string
-        && newData().devOpsMaturity is string
-        && newData().email == request.auth.token.email;
+      let userData = getDataToWrite();
+      let allowedRoles = get(/databases/$(database)/documents/dynamicData/gameRoles).data.roles;
+      let allowedMaturities = get(/databases/$(database)/documents/dynamicData/devOpsMaturities).data.maturities;
+
+      return userData.keys().hasOnly(['role', 'devOpsMaturity', 'email'])
+        && userData.email == request.auth.token.email
+        && allowedRoles.hasAny([userData.role])
+        && allowedMaturities.hasAny([userData.devOpsMaturity]);
     }
   }
 
 
-  function newData() {
+  function getDataToWrite() {
     return request.resource.data;
   }
 
