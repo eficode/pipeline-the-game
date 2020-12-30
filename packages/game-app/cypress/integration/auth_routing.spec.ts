@@ -31,7 +31,7 @@ context("Routing", () => {
         .then((_) => {
           ((win as any).firebase as typeof firebase)
             .auth()
-            .signInWithEmailAndPassword("test@test.test", "t3st-u53r-111!")
+            .createUserWithEmailAndPassword("test@test.test", "t3st-u53r-111!")
             .then(() => {
               cy.visit("/dashboard");
               cy.location("pathname").should("equal", "/dashboard");

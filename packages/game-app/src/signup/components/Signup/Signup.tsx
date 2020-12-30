@@ -15,7 +15,7 @@ const roles = [
   { label: 'Define requirements and propose solutions', value: 'define-requirements' },
   { label: 'Influence decisions', value: 'influence-decisions' },
   { label: 'Give recommendations', value: 'give-recommendations' },
-  { label: 'End user', value: 'end-user' },
+  { label: 'End user', value: 'endUser' },
   { label: 'Student or potential employee', value: 'student-employee' },
   { label: 'Consultant', value: 'consultant' },
   { label: 'Other', value: 'other' },
@@ -26,7 +26,7 @@ const devopsMaturity = [
   { label: 'Somewhat mature', value: 'somewhat-mature' },
   { label: 'Pretty average, really', value: 'pretty-average' },
   { label: 'Somewhat immature', value: 'somewhat-immature' },
-  { label: 'Very immature', value: 'very-immature' },
+  { label: 'Very immature', value: 'veryImmature' },
   { label: "I don't know", value: 'dont-know' },
   { label: 'Varies by function or team', value: 'varies' },
 ];
@@ -42,7 +42,7 @@ const schema = yup.object().shape({
     .required('signup.required')
     .oneOf([yup.ref('password')], 'signup.passwordMatch'),
   role: yup.string().required('signup.required'),
-  devopsMaturity: yup.string().required('signup.required'),
+  devOpsMaturity: yup.string().required('signup.required'),
 });
 
 const Signup: React.FC<Props> = () => {
@@ -72,7 +72,7 @@ const Signup: React.FC<Props> = () => {
           <FormTextField name="password" label="password" />
           <FormTextField name="repeatPassword" label="repeatPassword" />
           <FormSelect name="role" label="Role" options={roles} />
-          <FormSelect name="devopsMaturity" label="Devops maturity" options={devopsMaturity} />
+          <FormSelect name="devOpsMaturity" label="Devops maturity" options={devopsMaturity} />
 
           <button id="signup-button" onClick={submit}>
             Signup

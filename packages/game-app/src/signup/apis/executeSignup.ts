@@ -13,7 +13,7 @@ export async function executeSignup(signupInfo: SignupInfo): Promise<User> {
       await firebase.firestore().doc(`${FirebaseCollection.Users}/${user?.uid}`).set({
         email: signupInfo.email,
         role: signupInfo.role,
-        devopsMaturity: signupInfo.devopsMaturity,
+        devOpsMaturity: signupInfo.devOpsMaturity,
       });
       return {
         id: user.uid,
