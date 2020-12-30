@@ -28,6 +28,12 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PIPELINE_GAME_DEV }}
 
+      - name: Load initial data
+        run: npm run scripts:initialize-firestore-emulator
+        env:
+          FIRESTORE_EMULATOR_HOST: localhost:8080
+          REACT_APP_FIREBASE_CONFIG_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
+
       - name: Firestore rules test
         run: npm run test:firestore
         env:

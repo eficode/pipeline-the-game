@@ -4,13 +4,16 @@
   "scripts": {
     "bootstrap": "npm ci && npx lerna bootstrap",
     "build": "npx lerna run build --stream",
-    "test:firestore": "npm run test --prefix packages/firestore"
+    "test:firestore": "npm run test --prefix packages/firestore",
+    "scripts:initialize-firestore-emulator": "node scripts/load-initial-data-in-emulator.js",
+    "scripts:initialize-firestore-emulator:local": "npx env-cmd -f .env node scripts/load-initial-data-in-emulator.js"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "husky": "^4.3.6",
+    "firebase-admin": "^9.4.2",
     "firebase-tools": "9.0.1",
+    "husky": "^4.3.6",
     "lerna": "^3.22.1"
   },
   "husky": {

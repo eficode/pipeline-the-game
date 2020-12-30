@@ -1,0 +1,74 @@
+{
+  "gameRoles": {
+    "labels": {
+      "other": {
+        "en": "Other"
+      },
+      "requirementsDecisionMaker": {
+        "en": "Define requirements and propose solutions"
+      },
+      "studentOrPotentialEmployee": {
+        "en": "Student or potential employee"
+      },
+      "influenceDecisionMaker": {
+        "en": "Influence decision"
+      },
+      "budgetOwner": {
+        "en": "Have budget and make final decisions"
+      },
+      "consultant": {
+        "en": "Consultant"
+      },
+      "recommender": {
+        "en": "Give recommendations"
+      },
+      "endUser": {
+        "en": "End user"
+      }
+    },
+    "roles": [
+      "budgetOwner",
+      "requirementsDecisionMaker",
+      "influenceDecisionMaker",
+      "recommender",
+      "endUser",
+      "studentOrPotentialEmployee",
+      "consultant",
+      "other"
+    ]
+  },
+  "devOpsMaturities": {
+    "labels": {
+      "notKnown": {
+        "en": "I don't know"
+      },
+      "veryMature": {
+        "en": "Very mature"
+      },
+      "somewhatMature": {
+        "en": "Somewhat mature"
+      },
+      "variesByFunctionOrTeam": {
+        "en": "Varies by function or team"
+      },
+      "prettyAverage": {
+        "en": "Pretty average, really"
+      },
+      "veryImmature": {
+        "en": "Very immature"
+      },
+      "somewhatImmature": {
+        "en": "Somewhat immature"
+      }
+    },
+    "maturities": [
+      "veryMature",
+      "somewhatMature",
+      "prettyAverage",
+      "somewhatImmature",
+      "veryImmature",
+      "notKnown",
+      "variesByFunctionOrTeam"
+    ]
+  }
+}
