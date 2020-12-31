@@ -10,7 +10,7 @@ service cloud.firestore {
     match /dynamicData/devOpsMaturities {
       allow read: if true;
       allow write: if false;
-    }    
+    }
 
     match /users/{userId} {
       allow read: if userId == authUserUid();
