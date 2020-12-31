@@ -6,10 +6,14 @@ import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
 import { signupValidationSchema } from '../../utils/validation';
+import { useTranslate } from '@pipeline/i18n';
+import { PasswordInput } from '@pipeline/components';
 
 type Props = {};
 
 const Signup: React.FC<Props> = () => {
+  const t = useTranslate();
+
   const methods = useForm<SignupInfo>({
     defaultValues: {
       role: '',
@@ -46,13 +50,17 @@ const Signup: React.FC<Props> = () => {
     <div className="signup">
       <div className="content">
         <FormProvider {...methods}>
-          <FormTextField name="email" label="email" />
-          <FormTextField name="password" label="password" />
-          <FormTextField name="repeatPassword" label="repeatPassword" />
-          <FormSelect name="role" label="Role" options={gameRoles} />
-          <FormSelect name="devOpsMaturity" label="Devops maturity" options={devOpsMaturities} />
+          <FormTextField type="email" name="email" label={t('signup.form.emailLabel')} />
+          <FormTextField CustomInput={PasswordInput} name="password" label={t('signup.form.passwordLabel')} />
+          <FormTextField
+            CustomInput={PasswordInput}
+            name="repeatPassword"
+            label={t('signup.form.repeatPasswordLabel')}
+          />
+          <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
+          <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
           <button id="signup-button" onClick={submit}>
-            Signup
+            {t('signup.form.buttonText')}
           </button>
           {signupLoading ? <span>Loading</span> : null}
           {signupTranslateError ? <span className="error-message">{signupTranslateError}</span> : null}

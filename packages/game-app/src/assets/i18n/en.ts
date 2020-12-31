@@ -8,6 +8,14 @@ const translations = {
     test2: 'Random stuff',
   },
   signup: {
+    form: {
+      emailLabel: 'Email',
+      passwordLabel: 'Password',
+      repeatPasswordLabel: 'Repeat password',
+      roleLabel: 'Role',
+      maturityLabel: 'DevOps maturity',
+      buttonText: 'Signup',
+    },
     errors: {
       invalidEmail: 'Invalid email',
       passwordRequirements:

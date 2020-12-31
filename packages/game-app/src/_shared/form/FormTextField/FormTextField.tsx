@@ -6,9 +6,11 @@ import { useTranslate } from '@pipeline/i18n';
 type Props = {
   name: string;
   label: string;
+  type?: string;
+  CustomInput?: React.ComponentType<React.ComponentProps<typeof TextInput>>;
 };
 
-const FormTextField: React.FC<Props> = ({ name, label }) => {
+const FormTextField: React.FC<Props> = ({ name, label, type, CustomInput }) => {
   const data = useFormContext();
 
   const error = data.errors[name];
@@ -25,17 +27,19 @@ const FormTextField: React.FC<Props> = ({ name, label }) => {
 
   const renderInput = useCallback(
     (props: ControllerRenderProps) => {
+      const Input = CustomInput || TextInput;
       return (
-        <TextInput
+        <Input
           name={props.name}
           label={label}
           value={props.value}
           onChange={props.onChange}
           errorMessage={translatedError}
+          type={type}
         />
       );
     },
-    [translatedError, label],
+    [translatedError, label, type, CustomInput],
   );
 
   return (
