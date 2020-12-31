@@ -2,32 +2,18 @@ import React, { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
+import { signupValidationSchema } from '../../utils/validation';
 
 type Props = {};
-
-const schema = yup.object().shape({
-  email: yup.string().required('signup.required').email('signup.invalidEmail'),
-  password: yup
-    .string()
-    .required('signup.required')
-    .matches(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'), 'signup.passwordRequirements'),
-  repeatPassword: yup
-    .string()
-    .required('signup.required')
-    .oneOf([yup.ref('password')], 'signup.passwordMatch'),
-  role: yup.string().required('signup.required'),
-  devOpsMaturity: yup.string().required('signup.required'),
-});
 
 const Signup: React.FC<Props> = () => {
   const methods = useForm<SignupInfo>({
     defaultValues: {},
     mode: 'onBlur',
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signupValidationSchema),
   });
 
   const { handleSubmit } = methods;

@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Controller, ControllerRenderProps, useFormContext } from 'react-hook-form';
 import { TextInput } from '@pipeline/components';
+import { useTranslate } from '@pipeline/i18n';
 
 type Props = {
   name: string;
@@ -12,6 +13,16 @@ const FormTextField: React.FC<Props> = ({ name, label }) => {
 
   const error = data.errors[name];
 
+  const t = useTranslate();
+
+  const translatedError = useMemo(() => {
+    if (!error) {
+      return undefined;
+    } else {
+      return t(error.message);
+    }
+  }, [error, t]);
+
   const renderInput = useCallback(
     (props: ControllerRenderProps) => {
       return (
@@ -20,11 +31,11 @@ const FormTextField: React.FC<Props> = ({ name, label }) => {
           label={label}
           value={props.value}
           onChange={props.onChange}
-          errorMessage={error?.message}
+          errorMessage={translatedError}
         />
       );
     },
-    [error, label],
+    [translatedError, label],
   );
 
   return (
