@@ -11,7 +11,13 @@ type Props = {};
 
 const Signup: React.FC<Props> = () => {
   const methods = useForm<SignupInfo>({
-    defaultValues: {},
+    defaultValues: {
+      role: '',
+      email: '',
+      password: '',
+      devOpsMaturity: '',
+      repeatPassword: '',
+    },
     mode: 'onBlur',
     resolver: yupResolver(signupValidationSchema),
   });

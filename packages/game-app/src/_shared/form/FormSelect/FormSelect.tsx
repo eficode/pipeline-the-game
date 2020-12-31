@@ -20,6 +20,8 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
     }
   }, [error, t]);
 
+  const emptyOptionLabel = t('general.emptyOptionLabel');
+
   const renderInput = useCallback(
     (props: ControllerRenderProps) => {
       return (
@@ -31,10 +33,12 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
           onChange={props.onChange}
           disabled={disabled}
           errorMessage={translatedError}
+          emptyOption
+          emptyOptionLabel={emptyOptionLabel}
         />
       );
     },
-    [translatedError, label, options, disabled],
+    [translatedError, label, options, disabled, emptyOptionLabel],
   );
 
   return (

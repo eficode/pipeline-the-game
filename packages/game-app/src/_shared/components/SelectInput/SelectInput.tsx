@@ -9,13 +9,30 @@ type Props = {
   onChange: React.ChangeEventHandler<HTMLSelectElement>;
   disabled?: boolean;
   errorMessage?: string | null;
+  emptyOption?: boolean;
+  emptyOptionLabel?: string;
 };
 
-const SelectInput: React.FC<Props> = ({ value, name, label, onChange, options, errorMessage, disabled }) => {
+const SelectInput: React.FC<Props> = ({
+  value,
+  name,
+  label,
+  onChange,
+  options,
+  errorMessage,
+  disabled,
+  emptyOption,
+  emptyOptionLabel,
+}) => {
   return (
     <div className="column">
       <label htmlFor={name}>{label}</label>
       <div className="row">
+        {emptyOption && emptyOptionLabel ? (
+          <option key="" value="">
+            {emptyOptionLabel}
+          </option>
+        ) : null}
         <select disabled={disabled || options.length === 0} name={name} id={name} value={value} onChange={onChange}>
           {options.map(o => {
             const value = typeof o === 'string' ? o : o.value;

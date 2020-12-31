@@ -20,6 +20,7 @@ const translations = {
     errors: {
       required: 'This field is required',
     },
+    emptyOptionLabel: 'Select an option',
   },
 };
 
