@@ -1,16 +1,11 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
-import {
-  useRetrieveDevOpsMaturities,
-  useRetrieveGameRoles,
-} from '../../../_shared/dynamicData/hooks/useRetrieveDynamicData';
-import { useSelector } from 'react-redux';
-import { selectors as dynamicDataSelectors } from '@pipeline/dynamicData';
+import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
 
 type Props = {};
 
@@ -29,9 +24,6 @@ const schema = yup.object().shape({
 });
 
 const Signup: React.FC<Props> = () => {
-  const gameRoles = useSelector(dynamicDataSelectors.getGameRoles);
-  const devOpsMaturities = useSelector(dynamicDataSelectors.getDevOpsMaturities);
-
   const methods = useForm<SignupInfo>({
     defaultValues: {},
     mode: 'onBlur',
@@ -47,8 +39,8 @@ const Signup: React.FC<Props> = () => {
     success: signupSuccess,
   } = useSignup();
 
-  const { call: retrieveDevOpsMaturities } = useRetrieveDevOpsMaturities();
-  const { call: retrieveGameRoles } = useRetrieveGameRoles();
+  const devOpsMaturities = useDevOpsMaturities();
+  const gameRoles = useGameRoles();
 
   const submit = useMemo(
     () =>
@@ -57,11 +49,6 @@ const Signup: React.FC<Props> = () => {
       }),
     [signup, handleSubmit],
   );
-
-  useEffect(() => {
-    retrieveGameRoles();
-    retrieveDevOpsMaturities();
-  }, [retrieveGameRoles, retrieveDevOpsMaturities]);
 
   return (
     <div className="signup">
@@ -72,7 +59,6 @@ const Signup: React.FC<Props> = () => {
           <FormTextField name="repeatPassword" label="repeatPassword" />
           <FormSelect name="role" label="Role" options={gameRoles} />
           <FormSelect name="devOpsMaturity" label="Devops maturity" options={devOpsMaturities} />
-
           <button id="signup-button" onClick={submit}>
             Signup
           </button>

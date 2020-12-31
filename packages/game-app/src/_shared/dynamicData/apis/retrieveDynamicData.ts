@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import { DevOpsMaturitiesDoc, FirebaseCollections, GameRolesDoc } from '@pipeline/common';
+import { DevOpsMaturitiesDoc, FirebaseCollections, FirebaseDocs, GameRolesDoc } from '@pipeline/common';
 import { SelectOption } from '@pipeline/models';
 
 import 'firebase/firestore';
@@ -16,7 +16,7 @@ const retrieveSelectOptions = (source: { [key: string]: { [key: string]: string 
 export async function executeRetrieveGameRoles(lang = 'en'): Promise<SelectOption[]> {
   const gameRolesDoc = await firebase
     .firestore()
-    .doc(`${FirebaseCollections.DynamicData}/${FirebaseCollections.GameRoles}`)
+    .doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`)
     .get();
   if (!gameRolesDoc.exists) {
     //TODO handle this
@@ -28,7 +28,7 @@ export async function executeRetrieveGameRoles(lang = 'en'): Promise<SelectOptio
 export async function executeRetrieveDevOpsMaturities(lang = 'en'): Promise<SelectOption[]> {
   const devOpsMaturitiesDoc = await firebase
     .firestore()
-    .doc(`${FirebaseCollections.DynamicData}/${FirebaseCollections.DevOpsMaturities}`)
+    .doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.DevOpsMaturities}`)
     .get();
   if (!devOpsMaturitiesDoc.exists) {
     //TODO handle this
