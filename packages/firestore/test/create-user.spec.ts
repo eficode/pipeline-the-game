@@ -1,5 +1,6 @@
 import * as firebase from "@firebase/rules-unit-testing";
 import {reinitializeFirestore} from "./utils";
+import {FirebaseCollection} from '@pipeline/common/build/cjs'
 
 const PROJECT_ID = "firestore-emulator-example-" + Math.floor(Math.random() * 1000);
 
@@ -31,7 +32,7 @@ describe("User create", () => {
 
   it("should not allow user creation if not authenticated", async () => {
     const db = getAuthedFirestore(undefined);
-    const profile = db.collection("users").doc("alice");
+    const profile = db.collection(FirebaseCollection.Users).doc("alice");
     const rolesDoc = await db.doc('dynamicData/gameRoles').get();
     const maturitiesDoc = await db.doc('dynamicData/devOpsMaturities').get();
     const realRole = rolesDoc.data().roles[0];
@@ -47,7 +48,7 @@ describe("User create", () => {
     const userUID = 'test';
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
-    const profile = db.collection("users").doc(userUID);
+    const profile = db.collection(FirebaseCollection.Users).doc(userUID);
     const rolesDoc = await db.doc('dynamicData/gameRoles').get();
     const maturitiesDoc = await db.doc('dynamicData/devOpsMaturities').get();
     const realRole = rolesDoc.data().roles[0];
@@ -63,7 +64,7 @@ describe("User create", () => {
     const userUID = 'test';
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
-    const profile = db.collection("users").doc(userUID);
+    const profile = db.collection(FirebaseCollection.Users).doc(userUID);
     const maturitiesDoc = await db.doc('dynamicData/devOpsMaturities').get();
     const realMaturity = maturitiesDoc.data().maturities[0];
     await firebase.assertFails(profile.set({
@@ -77,7 +78,7 @@ describe("User create", () => {
     const userUID = 'test';
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
-    const profile = db.collection("users").doc(userUID);
+    const profile = db.collection(FirebaseCollection.Users).doc(userUID);
     const rolesDoc = await db.doc('dynamicData/gameRoles').get();
     const realRole = rolesDoc.data().roles[0];
     await firebase.assertFails(profile.set({
@@ -91,7 +92,7 @@ describe("User create", () => {
     const userUID = 'test';
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
-    const profile = db.collection("users").doc(userUID);
+    const profile = db.collection(FirebaseCollection.Users).doc(userUID);
     const rolesDoc = await db.doc('dynamicData/gameRoles').get();
     const maturitiesDoc = await db.doc('dynamicData/devOpsMaturities').get();
     const realRole = rolesDoc.data().roles[0];
@@ -107,7 +108,7 @@ describe("User create", () => {
     const userUID = 'test';
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
-    const profile = db.collection("users").doc(userUID);
+    const profile = db.collection(FirebaseCollection.Users).doc(userUID);
     const rolesDoc = await db.doc('dynamicData/gameRoles').get();
     const maturitiesDoc = await db.doc('dynamicData/devOpsMaturities').get();
     const realRole = rolesDoc.data().roles[0];
@@ -124,7 +125,7 @@ describe("User create", () => {
     const userUID = 'test';
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
-    const profile = db.collection("users").doc(userUID);
+    const profile = db.collection(FirebaseCollection.Users).doc(userUID);
     await firebase.assertFails(profile.set({
       email,
       role: 'end-user',
