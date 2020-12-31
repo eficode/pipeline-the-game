@@ -26,7 +26,7 @@
 /// <reference types="Cypress" />
 
 // @ts-ignore
-Cypress.Commands.add("containTranslationOf", {prevSubject: true}, (subject, key: string) => {
+Cypress.Commands.add("containsTranslationOf", {prevSubject: true}, (subject, key: string) => {
   cy.window({log: false}).then((win) => {
     cy.wrap(subject, {log: false}).contains((win as any).i18n.t(key));
   });
@@ -67,37 +67,41 @@ Cypress.Commands.add('getFirestoreDocument', (path: string) => {
 });
 
 Cypress.Commands.add('fill', {prevSubject: 'element'}, (subject, value) => {
-    const element = subject[0]
+    return cy.wait(1).then(() => {
+      const element = subject[0]
 
-    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLInputElement.prototype,
-      'value'
-    )?.set
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value'
+      )?.set
 
-    const nativeTextAreaValueSetter = Object.getOwnPropertyDescriptor(
-      window.HTMLTextAreaElement.prototype,
-      'value'
-    )?.set
+      const nativeTextAreaValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLTextAreaElement.prototype,
+        'value'
+      )?.set
 
-    if (element.tagName.toLowerCase() === 'input') {
-      nativeInputValueSetter?.call(element, value)
-    } else {
-      nativeTextAreaValueSetter?.call(element, value)
-    }
-
-    const inputEvent = new Event('input', {bubbles: true})
-
-    element.dispatchEvent(inputEvent)
-
-    Cypress.log({
-      name: 'fill',
-      message: value,
-      $el: subject,
-      consoleProps: () => {
-        return {
-          value
-        }
+      if (element.tagName.toLowerCase() === 'input') {
+        nativeInputValueSetter?.call(element, value)
+      } else {
+        nativeTextAreaValueSetter?.call(element, value)
       }
+
+      const inputEvent = new Event('input', {bubbles: true})
+
+      element.dispatchEvent(inputEvent)
+
+      Cypress.log({
+        name: 'fill',
+        message: value,
+        $el: subject,
+        consoleProps: () => {
+          return {
+            value
+          }
+        }
+      })
+      return cy.wait(1);
     })
+
   }
 )

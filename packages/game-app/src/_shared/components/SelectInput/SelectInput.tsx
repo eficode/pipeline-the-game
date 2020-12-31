@@ -28,12 +28,12 @@ const SelectInput: React.FC<Props> = ({
     <div className="column">
       <label htmlFor={name}>{label}</label>
       <div className="row">
-        {emptyOption && emptyOptionLabel ? (
-          <option key="" value="">
-            {emptyOptionLabel}
-          </option>
-        ) : null}
         <select disabled={disabled || options.length === 0} name={name} id={name} value={value} onChange={onChange}>
+          {emptyOption && emptyOptionLabel ? (
+            <option key="" value="">
+              {emptyOptionLabel}
+            </option>
+          ) : null}
           {options.map(o => {
             const value = typeof o === 'string' ? o : o.value;
             const label = typeof o === 'string' ? o : o.label;
