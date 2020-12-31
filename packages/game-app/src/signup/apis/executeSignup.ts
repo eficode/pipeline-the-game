@@ -27,6 +27,7 @@ export async function executeSignup(signupInfo: SignupInfo): Promise<User> {
       throw e;
     }
   } else {
+    // eslint-disable-next-line no-throw-literal
     throw { code: 'user-not-created' };
   }
 }
