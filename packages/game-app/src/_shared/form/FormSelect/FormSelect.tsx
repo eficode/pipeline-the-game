@@ -1,6 +1,7 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { Controller, ControllerRenderProps, useFormContext } from 'react-hook-form';
 import { SelectInput } from '@pipeline/components';
+import { useTranslate } from '@pipeline/i18n';
 
 type Props = {} & Omit<React.ComponentProps<typeof SelectInput>, 'errorMessage' | 'onChange' | 'value'>;
 
@@ -8,6 +9,18 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
   const data = useFormContext();
 
   const error = data.errors[name];
+
+  const t = useTranslate();
+
+  const translatedError = useMemo(() => {
+    if (!error) {
+      return undefined;
+    } else {
+      return t(error.message);
+    }
+  }, [error, t]);
+
+  const emptyOptionLabel = t('general.emptyOptionLabel');
 
   const renderInput = useCallback(
     (props: ControllerRenderProps) => {
@@ -19,11 +32,13 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
           options={options}
           onChange={props.onChange}
           disabled={disabled}
-          errorMessage={error ? error.message : null}
+          errorMessage={translatedError}
+          emptyOption
+          emptyOptionLabel={emptyOptionLabel}
         />
       );
     },
-    [error, label, options, disabled],
+    [translatedError, label, options, disabled, emptyOptionLabel],
   );
 
   return (

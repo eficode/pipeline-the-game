@@ -2,32 +2,28 @@ import React, { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
+import { signupValidationSchema } from '../../utils/validation';
+import { useTranslate } from '@pipeline/i18n';
+import { PasswordInput } from '@pipeline/components';
 
 type Props = {};
 
-const schema = yup.object().shape({
-  email: yup.string().required('signup.required').email('signup.invalidEmail'),
-  password: yup
-    .string()
-    .required('signup.required')
-    .matches(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'), 'signup.passwordRequirements'),
-  repeatPassword: yup
-    .string()
-    .required('signup.required')
-    .oneOf([yup.ref('password')], 'signup.passwordMatch'),
-  role: yup.string().required('signup.required'),
-  devOpsMaturity: yup.string().required('signup.required'),
-});
-
 const Signup: React.FC<Props> = () => {
+  const t = useTranslate();
+
   const methods = useForm<SignupInfo>({
-    defaultValues: {},
+    defaultValues: {
+      role: '',
+      email: '',
+      password: '',
+      devOpsMaturity: '',
+      repeatPassword: '',
+    },
     mode: 'onBlur',
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signupValidationSchema),
   });
 
   const { handleSubmit } = methods;
@@ -54,13 +50,17 @@ const Signup: React.FC<Props> = () => {
     <div className="signup">
       <div className="content">
         <FormProvider {...methods}>
-          <FormTextField name="email" label="email" />
-          <FormTextField name="password" label="password" />
-          <FormTextField name="repeatPassword" label="repeatPassword" />
-          <FormSelect name="role" label="Role" options={gameRoles} />
-          <FormSelect name="devOpsMaturity" label="Devops maturity" options={devOpsMaturities} />
+          <FormTextField type="email" name="email" label={t('signup.form.emailLabel')} />
+          <FormTextField CustomInput={PasswordInput} name="password" label={t('signup.form.passwordLabel')} />
+          <FormTextField
+            CustomInput={PasswordInput}
+            name="repeatPassword"
+            label={t('signup.form.repeatPasswordLabel')}
+          />
+          <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
+          <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
           <button id="signup-button" onClick={submit}>
-            Signup
+            {t('signup.form.buttonText')}
           </button>
           {signupLoading ? <span>Loading</span> : null}
           {signupTranslateError ? <span className="error-message">{signupTranslateError}</span> : null}

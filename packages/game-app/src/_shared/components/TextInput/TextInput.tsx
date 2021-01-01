@@ -6,13 +6,14 @@ type Props = {
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   errorMessage?: string | null;
+  type?: string;
 };
 
-const TextInput: React.FC<Props> = ({ name, value, errorMessage, label, onChange }) => {
+const TextInput: React.FC<Props> = ({ name, value, errorMessage, label, onChange, type = 'text' }) => {
   return (
     <div className="column">
       <label htmlFor={name}>{label}</label>
-      <input type="text" value={value} name={name} id={name} onChange={onChange} />
+      <input type={type} value={value} name={name} id={name} onChange={onChange} />
       {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
     </div>
   );
