@@ -126,9 +126,11 @@ describe("User create", () => {
     const email = 'test@email.com';
     const db = getAuthedFirestore({uid: 'test', email});
     const profile = db.collection(FirebaseCollections.Users).doc(userUID);
+    const rolesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`).get();
+    const realRole = rolesDoc.data().roles[0];
     await firebase.assertFails(profile.set({
       email,
-      role: 'end-user',
+      role: realRole,
     }));
   });
 
