@@ -4,6 +4,12 @@ import { Path } from './utils';
 import enTranslations from '@assets/i18n/en';
 import I18n from 'i18n-js';
 
+/**
+ *
+ * Return a translation function,
+ * it changes dynamically according to the selected language
+ *
+ */
 export function useTranslate() {
   const currentLanguage = useSelector(getCurrentLanguage);
   return translateFactory(currentLanguage);
