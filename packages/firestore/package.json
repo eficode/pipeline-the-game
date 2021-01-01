@@ -3,10 +3,11 @@
   "private": true,
   "scripts": {
     "test": "mocha -r ts-node/register test/*.spec.ts",
-    "test:local": "npx env-cmd -f .env mocha -r ts-node/register test/*.spec.ts"
+    "test:local": "npx env-cmd -f .env mocha -r ts-node/register -r tsconfig-paths/register test/*.spec.ts"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^1.1.6",
+    "@pipeline/common": "0.0.0",
     "@types/mocha": "^8.2.0",
     "env-cmd": "^10.1.0",
     "mocha": "^8.2.1",

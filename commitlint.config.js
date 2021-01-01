@@ -1,4 +1,4 @@
-const apps = ["all", "app", "functions", "firestore", "database"]
+const apps = ["all", "app", "functions", "firestore", "database", "common"]
 const scopes = [
     "config",
     "auth",

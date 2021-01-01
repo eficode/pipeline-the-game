@@ -4,9 +4,12 @@
   "types": "build/index.d.ts",
   "typings": "build/index.d.ts",
   "main": "build/index.js",
+  "module": "",
   "scripts": {
-    "build": "tsc --outDir build",
-    "build:watch": "tsc --watch  --declaration --outDir build "
+    "build": "npm run build:es5 && npm run build:cjs",
+    "build:es5": "tsc --outDir build",
+    "build:cjs": "tsc --outDir build/cjs --module CommonJS",
+    "build:watch": "tsc --watch  --declaration --outDir build"
   },
   "devDependencies": {
     "typescript": "4.1.3"
