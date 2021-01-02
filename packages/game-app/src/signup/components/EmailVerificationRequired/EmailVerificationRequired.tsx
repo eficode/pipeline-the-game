@@ -13,8 +13,11 @@ const EmailVerificationRequired: React.FC<Props> = () => {
     <div>
       {t('signup.verificationRequired.message')}
 
-      <button onClick={resendEmail}>{t('signup.verificationRequired.resend')}</button>
+      <button disabled={loading} onClick={resendEmail}>
+        {t('signup.verificationRequired.resend')}
+      </button>
       {success ? t('signup.verificationRequired.resendSuccess') : null}
+      {translatedError ? <span className="error-message">{translatedError}</span> : null}
     </div>
   );
 };
