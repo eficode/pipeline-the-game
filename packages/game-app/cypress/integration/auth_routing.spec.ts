@@ -5,6 +5,8 @@ import firebase from "firebase/app";
 
 context("Routing", () => {
   beforeEach(() => {
+    cy.clearLocalStorage()
+    cy.clearIndexedDB();
     cy.visit(Cypress.config().baseUrl!);
   });
 
@@ -23,20 +25,4 @@ context("Routing", () => {
     cy.location("pathname").should("equal", "/signup");
   });
 
-  it("should show Dashboard to authenticated user", () => {
-    cy.window().then((win) => {
-      ((win as any).firebase as typeof firebase)
-        .auth()
-        .setPersistence(firebase.auth.Auth.Persistence.NONE)
-        .then((_) => {
-          ((win as any).firebase as typeof firebase)
-            .auth()
-            .createUserWithEmailAndPassword("test@test.test", "t3st-u53r-111!")
-            .then(() => {
-              cy.visit("/dashboard");
-              cy.location("pathname").should("equal", "/dashboard");
-            });
-        });
-    });
-  });
 });

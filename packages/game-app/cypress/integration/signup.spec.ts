@@ -7,6 +7,8 @@ context("Signup", () => {
   const usedEmails: string[] = [];
 
   beforeEach(() => {
+    cy.clearLocalStorage()
+    cy.clearIndexedDB();
     cy.visit(Cypress.config().baseUrl!);
   });
 
@@ -36,7 +38,7 @@ context("Signup", () => {
     cy.get('body').should('contain.translationOf', 'signup.errors.passwordMatch')
   });
 
-  it("should signup correctly", () => {
+  it("should signup correctly and go to email verification required", () => {
     const randomEmail = `testEmail${Math.floor(Math.random() * 1000)}@email.com`.toLocaleLowerCase();
     usedEmails.push(randomEmail);
     cy.getInputByName('email').fill(randomEmail);
@@ -45,8 +47,7 @@ context("Signup", () => {
     cy.getInputByName('role').select('endUser');
     cy.getInputByName('devOpsMaturity').select('veryImmature');
     cy.get('button').containsTranslationOf('signup.form.buttonText').click();
-    cy.get('body').should('contain', 'Loading');
-    cy.get('body').should('contain', 'Success');
+    cy.location("pathname").should("equal", "/email-verification-required");
 
     // check auth presence
     cy.getFirebaseUserByEmail(randomEmail).should('deep.include', {

@@ -26,9 +26,13 @@
 /// <reference types="Cypress" />
 
 // @ts-ignore
-Cypress.Commands.add("containsTranslationOf", {prevSubject: true}, (subject, key: string) => {
+Cypress.Commands.add("containsTranslationOf", {prevSubject: 'optional'}, (subject, key: string) => {
   cy.window({log: false}).then((win) => {
-    cy.wrap(subject, {log: false}).contains((win as any).i18n.t(key));
+    if (subject) {
+      cy.wrap(subject, {log: false}).contains((win as any).i18n.t(key));
+    } else {
+      cy.get('body', {log: false}).contains((win as any).i18n.t(key));
+    }
   });
 });
 
@@ -37,14 +41,12 @@ Cypress.Commands.overwrite("should", (originalFn, url, condition, param) => {
   if (condition === 'contain.translationOf') {
     return originalFn(url, (el$: any) => {
       cy.window({log: false}).then((win) => {
-        console.debug((win as any).i18n.t(param));
         expect(el$).contain((win as any).i18n.t(param))
       });
     });
   } else if (condition === 'not.contain.translationOf') {
     return originalFn(url, (el$: any) => {
       cy.window({log: false}).then((win) => {
-        console.debug((win as any).i18n.t(param));
         expect(el$).not.contain((win as any).i18n.t(param))
       });
     });
@@ -105,3 +107,21 @@ Cypress.Commands.add('fill', {prevSubject: 'element'}, (subject, value) => {
 
   }
 )
+
+Cypress.Commands.add('clearIndexedDB', async () => {
+  const databases = await (window.indexedDB as any).databases();
+
+  await Promise.all(
+    databases.map(({name}: any) =>
+      new Promise((resolve, reject) => {
+        const request = window.indexedDB.deleteDatabase(name);
+
+        request.addEventListener('success', resolve);
+        // Note: we need to also listen to the "blocked" event
+        // (and resolve the promise) due to https://stackoverflow.com/a/35141818
+        request.addEventListener('blocked', resolve);
+        request.addEventListener('error', reject);
+      }),
+    ),
+  );
+});
