@@ -21,7 +21,7 @@ context("Email verification", () => {
         devOpsMaturity:'veryImmature',
       }
     });
-    cy.containsTranslationOf('signup.verificationRequired.message').should('exist')
+    cy.get('body').should('contain.translationOf', 'signup.verificationRequired.message');
   });
 
   it("should resend verification email correctly", () => {
@@ -35,7 +35,6 @@ context("Email verification", () => {
         devOpsMaturity:'veryImmature',
       }
     });
-    cy.location("pathname").should("equal", "/email-verification-required");
     cy.containsTranslationOf('signup.verificationRequired.resend').click();
     cy.get('body').should('contain.translationOf', 'signup.verificationRequired.resendSuccess');
   });

@@ -31,29 +31,11 @@ Cypress.Commands.add("containsTranslationOf", {prevSubject: 'optional'}, (subjec
     if (subject) {
       cy.wrap(subject, {log: false}).contains((win as any).i18n.t(key));
     } else {
-      cy.get('body', {log: false}).contains((win as any).i18n.t(key));
+      cy.contains((win as any).i18n.t(key));
     }
   });
 });
 
-
-Cypress.Commands.overwrite("should", (originalFn, url, condition, param) => {
-  if (condition === 'contain.translationOf') {
-    return originalFn(url, (el$: any) => {
-      cy.window({log: false}).then((win) => {
-        expect(el$).contain((win as any).i18n.t(param))
-      });
-    });
-  } else if (condition === 'not.contain.translationOf') {
-    return originalFn(url, (el$: any) => {
-      cy.window({log: false}).then((win) => {
-        expect(el$).not.contain((win as any).i18n.t(param))
-      });
-    });
-  } else {
-    return originalFn(url, condition, param);
-  }
-})
 
 Cypress.Commands.add('getInputByName', (name: string, options: Parameters<typeof cy.get>[1]) => {
   cy.get(`input[name="${name}"],select[name="${name}"]`, options);
