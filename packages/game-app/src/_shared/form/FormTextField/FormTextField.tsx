@@ -5,9 +5,12 @@ import { useTranslate } from '@pipeline/i18n';
 
 type Props = {
   /**
-   *
+   * key of the form values object in which the value will be stored
    */
   name: string;
+  /**
+   * Label to show over the input
+   */
   label: string;
   type?: string;
   CustomInput?: React.ComponentType<React.ComponentProps<typeof TextInput>>;
