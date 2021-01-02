@@ -1,4 +1,4 @@
-name: Build and deploy on test
+name: Build and deploy
 on:
   release:
     types: [ created ]
