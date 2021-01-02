@@ -8,6 +8,11 @@ const translations = {
     test2: 'Random stuff',
   },
   signup: {
+    verificationRequired: {
+      message: "You need to verify your email to start playing! If you don't find it, try in your spam",
+      resend: 'Resend email',
+      resendSuccess: 'Resend success',
+    },
     form: {
       emailLabel: 'Email',
       passwordLabel: 'Password',

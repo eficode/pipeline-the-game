@@ -8,6 +8,7 @@ import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
 import { signupValidationSchema } from '../../utils/validation';
 import { useTranslate } from '@pipeline/i18n';
 import { PasswordInput } from '@pipeline/components';
+import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
 
 type Props = {};
 
@@ -45,6 +46,8 @@ const Signup: React.FC<Props> = () => {
       }),
     [signup, handleSubmit],
   );
+
+  useNavigateOnCondition(signupSuccess, RoutingPath.EmailVerificationRequired);
 
   return (
     <div className="signup">

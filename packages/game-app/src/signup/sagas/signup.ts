@@ -1,14 +1,12 @@
 import * as actions from '../actions';
 import { executeSignup } from '../apis/executeSignup';
-import { call, takeLeading } from 'redux-saga/effects';
+import { call, put, takeLeading } from 'redux-saga/effects';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
+import { actions as authActions, AuthUser } from '@pipeline/auth';
 
 function* signupSaga(action: ReturnType<typeof actions.signup>) {
-  try {
-    yield call(executeSignup, action.payload);
-  } catch (e) {
-    throw e;
-  }
+  const user: AuthUser = yield call(executeSignup, action.payload);
+  yield put(authActions.setLoggedUser(user));
 }
 
 export default function* runSignup() {
