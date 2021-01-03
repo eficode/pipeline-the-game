@@ -3,9 +3,9 @@ import firebase from 'firebase/app';
 import { FirebaseCollections } from '@pipeline/common';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { User } from '../../_shared/auth/slice';
+import { AuthUser } from '../../_shared/auth/slice';
 
-export async function executeSignup(signupInfo: SignupInfo): Promise<User> {
+export async function executeSignup(signupInfo: SignupInfo): Promise<AuthUser> {
   const credentials = await firebase.auth().createUserWithEmailAndPassword(signupInfo.email, signupInfo.password);
   if (credentials.user) {
     const user = credentials.user;
@@ -15,9 +15,14 @@ export async function executeSignup(signupInfo: SignupInfo): Promise<User> {
         role: signupInfo.role,
         devOpsMaturity: signupInfo.devOpsMaturity,
       });
+      const emailVerified = user.emailVerified;
+      if (!emailVerified) {
+        await user.sendEmailVerification();
+      }
       return {
         id: user.uid,
         email: user.email!,
+        emailVerified,
       };
     } catch (e) {
       const currentUser = firebase.auth().currentUser;

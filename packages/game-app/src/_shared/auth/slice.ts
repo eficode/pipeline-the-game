@@ -1,13 +1,14 @@
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createAction, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface User {
+export interface AuthUser {
   id: string;
   email: string;
+  emailVerified: boolean;
 }
 
 export interface State {
   isInitialized: boolean;
-  loggedUser: User | null;
+  loggedUser: AuthUser | null;
 }
 
 const initialState = {
@@ -19,7 +20,7 @@ const slice = createSlice({
   name: 'auth',
   initialState: initialState,
   reducers: {
-    setLoggedUser(state, action: PayloadAction<User | null>) {
+    setLoggedUser(state, action: PayloadAction<AuthUser | null>) {
       state.isInitialized = true;
       state.loggedUser = action.payload;
     },
@@ -41,8 +42,12 @@ const isInitialized = createSelector(
 );
 
 export const reducer = slice.reducer;
-export const actions = slice.actions;
 export const name = slice.name;
+
+export const actions = {
+  ...slice.actions,
+  resendEmailVerification: createAction(`${name}/resendEmailVerification`),
+};
 export const selectors = {
   getCurrentUser,
   isInitialized,
