@@ -7,6 +7,11 @@ const translations = {
     test1: 'Pipeline - The Game that Delivers!',
     test2: 'Random stuff',
   },
+  auth: {
+    errors: {
+      'auth/invalid-action-code': 'Verification link invalid or already used',
+    },
+  },
   signup: {
     verificationRequired: {
       message: "You need to verify your email to start playing! If you don't find it, try in your spam",

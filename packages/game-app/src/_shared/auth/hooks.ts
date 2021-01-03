@@ -5,3 +5,7 @@ export const useResendVerificationEmail = createRequestHook(
   'auth.resendVerificationEmail',
   actions.resendEmailVerification,
 );
+
+export const useEmailVerification = createRequestHook('auth.emailVerification', actions.verifyEmail, {
+  errorMessagesScope: 'auth.errors',
+});

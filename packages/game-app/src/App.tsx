@@ -6,6 +6,7 @@ import { useLoggedUser } from '@pipeline/auth';
 
 const Signup = React.lazy(() => import('./signup/components/Signup'));
 const EmailVerificationRequired = React.lazy(() => import('./signup/components/EmailVerificationRequired'));
+const VerifyEmail = React.lazy(() => import('./signup/components/VerifyEmail'));
 
 function App() {
   const bootstrapIsFinished = useBootstrapIsFinished();
@@ -17,7 +18,10 @@ function App() {
   return bootstrapIsFinished ? (
     <Suspense fallback={null}>
       <Switch>
-        {user && !user.emailVerified && pathname !== RoutingPath.EmailVerificationRequired ? (
+        {user &&
+        !user.emailVerified &&
+        pathname !== RoutingPath.EmailVerificationRequired &&
+        pathname !== RoutingPath.VerifyEmail ? (
           <Route path="*">
             <Redirect to={RoutingPath.EmailVerificationRequired} />
           </Route>
@@ -25,7 +29,7 @@ function App() {
         <Route path={RoutingPath.Login} render={() => <div>Login</div>} />
         <Route path={RoutingPath.Signup} component={Signup} />
         <Route path={RoutingPath.EmailVerificationRequired} component={EmailVerificationRequired} />
-        <Route path={RoutingPath.VerifyEmail} component={() => <div>VerifyEmail</div>} />
+        <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />
         <PrivateRoute path={RoutingPath.Dashboard} render={() => <div>Dashboard</div>} />
         <Route path="*">
           <Redirect to={RoutingPath.Signup} />

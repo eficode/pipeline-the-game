@@ -4,4 +4,5 @@ export interface RequestsKeys {
   gameRoles: null;
   devOpsMaturities: null;
   'auth.resendVerificationEmail': null;
+  'auth.emailVerification': null;
 }

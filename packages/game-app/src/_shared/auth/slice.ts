@@ -47,6 +47,7 @@ export const name = slice.name;
 export const actions = {
   ...slice.actions,
   resendEmailVerification: createAction(`${name}/resendEmailVerification`),
+  verifyEmail: createAction<{ code: string }>(`${name}/verifyEmail`),
 };
 export const selectors = {
   getCurrentUser,
