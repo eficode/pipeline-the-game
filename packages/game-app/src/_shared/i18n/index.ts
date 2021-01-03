@@ -1,3 +1,9 @@
+/**
+ *
+ * I18n package that exposes api to get translated messages using React hook
+ *
+ * @packageDocumentation
+ */
 import I18n from 'i18n-js';
 import enTranslations from '@assets/i18n/en';
 import { reducer, actions, name } from './slice';

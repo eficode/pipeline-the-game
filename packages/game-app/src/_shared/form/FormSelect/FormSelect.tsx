@@ -5,6 +5,10 @@ import { useTranslate } from '@pipeline/i18n';
 
 type Props = {} & Omit<React.ComponentProps<typeof SelectInput>, 'errorMessage' | 'onChange' | 'value'>;
 
+/**
+ * Select directly connected to the parent form that includes error message
+ * visualization. Its value can be found under the {name} key in the form
+ */
 const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
   const data = useFormContext();
 

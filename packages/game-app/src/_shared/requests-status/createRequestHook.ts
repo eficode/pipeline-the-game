@@ -11,6 +11,34 @@ type HookOptions = {
   errorMessagesScope?: string;
 };
 
+/**
+ * Hook factory that handles all the request management and error translation for you.
+ *
+ * @example
+ * ```typescript
+ * // generate the hook
+ * const useSignup = createGeneralHook('signup', actions.executeSignup, {errorMessagesScope:'signup.errors'})
+ *
+ * // use it in your component
+ *
+ * const {call, loading, success, translatedError} = useSignup();
+ *
+ *
+ * return (
+ *    <button onClick={()=>call()}>signup</button>
+ *  );
+ *
+ * ```
+ *
+ * Executing the call function will dispatch the action passed to the factory using the data
+ * provided and start the flow. Remember to wrap your saga with {@link addRequestStatusManagement}.
+ *
+ * The error is translated using the {@link translateError}
+ *
+ * @param requestKey
+ * @param triggerAction
+ * @param options
+ */
 export function createRequestHook<T extends Array<any>>(
   requestKey: keyof RequestsKeys,
   triggerAction: (...args: T) => Action,

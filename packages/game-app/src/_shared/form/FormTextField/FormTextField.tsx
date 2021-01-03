@@ -4,12 +4,22 @@ import { TextInput } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 
 type Props = {
+  /**
+   * key of the form values object in which the value will be stored
+   */
   name: string;
+  /**
+   * Label to show over the input
+   */
   label: string;
   type?: string;
   CustomInput?: React.ComponentType<React.ComponentProps<typeof TextInput>>;
 };
 
+/**
+ * Input directly connected to the parent form that includes error message
+ * visualization. Its value can be found under the {name} key in the form
+ */
 const FormTextField: React.FC<Props> = ({ name, label, type, CustomInput }) => {
   const data = useFormContext();
 

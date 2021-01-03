@@ -10,6 +10,10 @@ import { actions as authActions, selectors as authSelectors } from './auth';
 import { useSelector } from 'react-redux';
 import config from '@pipeline/app-config';
 
+/**
+ * Initialization function to call at the startup.
+ * Returns the configured store to Provide at the root of your app
+ */
 export function bootstrap() {
   initializeI18n();
 
@@ -22,6 +26,7 @@ export function bootstrap() {
     messagingSenderId: CONFIG.REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID,
     appId: CONFIG.REACT_APP_FIREBASE_CONFIG_APP_ID,
   });
+  // TODO find a way to not import all firestore module at startup
   if (config.REACT_APP_FIREBASE_USE_EMULATORS === 'true') {
     firebase.firestore().settings({ experimentalForceLongPolling: true });
     firebase.auth().useEmulator('http://localhost:9099/');

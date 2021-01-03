@@ -1,7 +1,4 @@
-/**
- * @packageDocumentation
- */
-
+// TODO find a way to configure type augmentation
 export interface RequestsKeys {
   signup: null;
   gameRoles: null;
