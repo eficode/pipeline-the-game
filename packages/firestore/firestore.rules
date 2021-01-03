@@ -19,26 +19,27 @@ service cloud.firestore {
 
     function isValidUserCreate() {
       let userData = getDataToWrite();
-      let allowedRoles = get(/databases/$(database)/documents/dynamicData/gameRoles).data.roles;
-      let allowedMaturities = get(/databases/$(database)/documents/dynamicData/devOpsMaturities).data.maturities;
+      let allowedRoles = getDocumentData(/dynamicData/gameRoles).roles;
+      let allowedMaturities = getDocumentData(/dynamicData/devOpsMaturities).maturities;
 
       return userData.keys().hasOnly(['role', 'devOpsMaturity', 'email'])
         && userData.email == request.auth.token.email
         && allowedRoles.hasAny([userData.role])
         && allowedMaturities.hasAny([userData.devOpsMaturity]);
     }
-  }
 
 
-  function getDataToWrite() {
-    return request.resource.data;
-  }
+    function getDocumentData(documentPath) {
+      return get(/databases/$(database)/documents/$(documentPath)).data;
+    }
 
-  function authUserUid() {
-    return request.auth.uid;
-  }
+    function getDataToWrite() {
+      return request.resource.data;
+    }
 
-  function isAuthenticated() {
-    return request.auth != null;
+    function authUserUid() {
+      return request.auth.uid;
+    }
+
   }
 }
