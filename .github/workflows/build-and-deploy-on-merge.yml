@@ -27,7 +27,7 @@ jobs:
           REACT_APP_FIREBASE_CONFIG_APP_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_APP_ID }}
 
       - name: Deploy
-        run: npx firebase deploy --project $FIREBASE_PROJECT_ID
+        run: npx firebase deploy --project $FIREBASE_PROJECT_ID --token "$FIREBASE_TOKEN"
         env:
           FIRESTORE_EMULATOR_HOST: localhost:8080
           FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
