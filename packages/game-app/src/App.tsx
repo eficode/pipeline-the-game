@@ -7,6 +7,7 @@ import { useLoggedUser } from '@pipeline/auth';
 const Signup = React.lazy(() => import('./signup/components/Signup'));
 const EmailVerificationRequired = React.lazy(() => import('./signup/components/EmailVerificationRequired'));
 const VerifyEmail = React.lazy(() => import('./signup/components/VerifyEmail'));
+const Dashboard = React.lazy(() => import('./dashboard/components/Dashboard'));
 
 function App() {
   const bootstrapIsFinished = useBootstrapIsFinished();
@@ -30,7 +31,7 @@ function App() {
         <Route path={RoutingPath.Signup} component={Signup} />
         <Route path={RoutingPath.EmailVerificationRequired} component={EmailVerificationRequired} />
         <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />
-        <PrivateRoute path={RoutingPath.Dashboard} render={() => <div>Dashboard</div>} />
+        <PrivateRoute path={RoutingPath.Dashboard} component={Dashboard} />
         <Route path="*">
           <Redirect to={RoutingPath.Signup} />
         </Route>

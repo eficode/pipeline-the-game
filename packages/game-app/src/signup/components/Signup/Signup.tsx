@@ -51,7 +51,8 @@ const Signup: React.FC<Props> = () => {
 
   return (
     <div className="signup">
-      <div className="content">
+      <div className="content card">
+        <h2>{t('signup.title')}</h2>
         <FormProvider {...methods}>
           <FormTextField type="email" name="email" label={t('signup.form.emailLabel')} />
           <FormTextField CustomInput={PasswordInput} name="password" label={t('signup.form.passwordLabel')} />
@@ -62,9 +63,12 @@ const Signup: React.FC<Props> = () => {
           />
           <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
           <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
-          <button id="signup-button" onClick={submit}>
-            {t('signup.form.buttonText')}
-          </button>
+          <div className="text-center ">
+            <button className="primary" id="signup-button" onClick={submit}>
+              {t('signup.form.buttonText')}
+            </button>
+          </div>
+
           {signupLoading ? <span>Loading</span> : null}
           {signupTranslateError ? <span className="error-message">{signupTranslateError}</span> : null}
           {signupSuccess ? <span>Success</span> : null}

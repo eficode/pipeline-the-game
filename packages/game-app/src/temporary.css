@@ -1,0 +1,193 @@
+/**
+Temporary css waiting for the ui components
+ */
+/* reset*/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.p-relative {
+  position: relative;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #d7d2cb;
+  font-size: 14px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  padding: 10px 25px;
+  background-color: white;
+}
+
+.card h2 {
+  text-align: center;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #9a9a9a;
+}
+
+label + input,
+label + div > select,
+label + div > input {
+  margin-bottom: 10px;
+}
+
+label {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+button {
+  cursor: pointer;
+}
+
+button.primary {
+  background-color: #101820; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 35px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 25px;
+  font-weight: 600;
+  margin: 15px 0;
+}
+
+button.icon-button {
+  background-color: transparent;
+  border: none;
+  padding: 8px;
+}
+
+input + button.icon-button {
+  position: absolute;
+  right: 10px;
+}
+
+/** eye icon */
+.gg-eye {
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 18px;
+  height: 12px;
+  border-bottom-right-radius: 100px;
+  border-bottom-left-radius: 100px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.gg-eye::after,
+.gg-eye::before {
+  content: '';
+  display: block;
+  border-radius: 100px;
+  position: absolute;
+  box-sizing: border-box;
+}
+.gg-eye::after {
+  top: 2px;
+  box-shadow: inset 0 -8px 0 2px, inset 0 0 0 2px;
+  width: 18px;
+  height: 18px;
+}
+.gg-eye::before {
+  width: 6px;
+  height: 6px;
+  border: 2px solid;
+  bottom: 2px;
+  left: 6px;
+}
+
+/* signup */
+
+.content {
+  max-width: 350px;
+  margin: auto;
+  margin-top: 120px;
+}
+
+/* dashboard */
+
+.dashboard {
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  padding: 50px;
+}
+
+.dashboard h1 {
+  font-size: 70px;
+}
+
+.dashboard h2 {
+  font-size: 35px;
+}
+.dashboard h2 + p {
+  margin-top: 50px;
+  max-width: 450px;
+}

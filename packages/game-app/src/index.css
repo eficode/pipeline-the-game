@@ -1,3 +1,4 @@
+@import 'temporary.css';
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
@@ -8,29 +9,4 @@ body {
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-/**
-Temporary css waiting for the ui components
- */
-
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.signup .content {
-  max-width: 40%;
-  margin: auto;
-  margin-top: 200px;
-}
-
-.error-message {
-  color: red;
-  font-size: 0.8em;
 }
