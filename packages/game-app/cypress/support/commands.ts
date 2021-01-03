@@ -50,6 +50,10 @@ Cypress.Commands.add('getFirestoreDocument', (path: string) => {
   return cy.task('getFirestoreDocument', {path});
 });
 
+Cypress.Commands.add('getEmailVerificationLink', (email: string) => {
+  return cy.task('getEmailVerificationLink', {email});
+});
+
 Cypress.Commands.add('fill', {prevSubject: 'element'}, (subject, value) => {
     return cy.wait(1).then(() => {
       const element = subject[0]

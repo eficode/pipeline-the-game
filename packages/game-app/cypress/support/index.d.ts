@@ -16,6 +16,7 @@ declare namespace Cypress {
     getFirebaseUserByEmail(email: string): Chainable<any>;
 
     getFirestoreDocument(path: string): Chainable<any>;
+    getEmailVerificationLink(email: string): Chainable<any>;
     /**
      * Delete all data in the indexedDB, useful for example to delete all
      * firebase authentication persisted data
