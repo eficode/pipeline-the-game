@@ -7,10 +7,7 @@ export const signupValidationSchema = yup.object().shape({
   password: yup
     .string()
     .required(requiredError)
-    .matches(
-      new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'),
-      'signup.errors.passwordRequirements',
-    ),
+    .matches(new RegExp('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})'), 'signup.errors.passwordRequirements'),
   repeatPassword: yup
     .string()
     .required(requiredError)
