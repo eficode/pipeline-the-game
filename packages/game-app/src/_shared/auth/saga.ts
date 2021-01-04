@@ -29,10 +29,15 @@ function* resendVerificationEmail() {
   yield call(() => firebase.auth().currentUser?.sendEmailVerification());
 }
 
+function* executeEmailVerification(action: ReturnType<typeof actions.verifyEmail>) {
+  yield call(() => firebase.auth().applyActionCode(action.payload.code));
+}
+
 export default function* authSaga() {
   yield takeEvery(actions.initialize, initializeAuthSaga);
   yield takeEvery(
     actions.resendEmailVerification,
     addRequestStatusManagement(resendVerificationEmail, 'auth.resendVerificationEmail'),
   );
+  yield takeEvery(actions.verifyEmail, addRequestStatusManagement(executeEmailVerification, 'auth.emailVerification'));
 }
