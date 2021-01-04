@@ -47,6 +47,21 @@ function* executeEmailVerification(action: ReturnType<typeof actions.verifyEmail
   }
 }
 
+function* executeLogin({ payload: { email, password } }: ReturnType<typeof actions.login>) {
+  const { user }: firebase.auth.UserCredential = yield call(() =>
+    firebase.auth().signInWithEmailAndPassword(email, password),
+  );
+  if (user) {
+    yield put(
+      actions.setLoggedUser({
+        emailVerified: user.emailVerified,
+        id: user.uid,
+        email: user.email!,
+      }),
+    );
+  }
+}
+
 export default function* authSaga() {
   yield takeEvery(actions.initialize, initializeAuthSaga);
   yield takeEvery(
@@ -54,4 +69,5 @@ export default function* authSaga() {
     addRequestStatusManagement(resendVerificationEmail, 'auth.resendVerificationEmail'),
   );
   yield takeEvery(actions.verifyEmail, addRequestStatusManagement(executeEmailVerification, 'auth.emailVerification'));
+  yield takeEvery(actions.login, addRequestStatusManagement(executeLogin, 'auth.login'));
 }

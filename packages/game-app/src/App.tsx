@@ -8,6 +8,7 @@ const Signup = React.lazy(() => import('./signup/components/Signup'));
 const EmailVerificationRequired = React.lazy(() => import('./signup/components/EmailVerificationRequired'));
 const VerifyEmail = React.lazy(() => import('./signup/components/VerifyEmail'));
 const Dashboard = React.lazy(() => import('./dashboard/components/Dashboard'));
+const Login = React.lazy(() => import('./login/components/Login'));
 
 /**
  * Returns route and default redirect according to auth condition:
@@ -19,7 +20,7 @@ const Dashboard = React.lazy(() => import('./dashboard/components/Dashboard'));
 function renderAuthRoutes(user: AuthUser | null) {
   if (!user) {
     return [
-      <Route path={RoutingPath.Login} render={() => <div>Login</div>} />,
+      <Route path={RoutingPath.Login} component={Login} />,
       <Route path={RoutingPath.Signup} component={Signup} />,
       <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
       <Route path="*">
