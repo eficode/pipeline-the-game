@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import { PrivateRoute, RoutingPath } from '@pipeline/routing';
 import { useBootstrapIsFinished } from './_shared';
 import { AuthUser, useLoggedUser } from '@pipeline/auth';
@@ -12,9 +12,9 @@ const Dashboard = React.lazy(() => import('./dashboard/components/Dashboard'));
 /**
  * Returns route and default redirect according to auth condition:
  *
- * not user : Signup, Login, VerifyEmail (default to Signup)
- * email not verified: EmailVerificationRequired, VerifyEmail (default to EmailVerificationRequired)
- * user ok: (default to Dashboard)
+ * User is not found (unauthenticated) : Signup, Login, VerifyEmail (default to Signup)
+ * User authenticated but email not verified: EmailVerificationRequired, VerifyEmail (default to EmailVerificationRequired)
+ * User authenticated and email is verified: (default to Dashboard)
  */
 function renderAuthRoutes(user: AuthUser | null) {
   if (!user) {
