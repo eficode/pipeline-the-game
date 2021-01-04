@@ -10,7 +10,7 @@ const useRetrieveGameRolesInternal = createRequestHook('gameRoles', actions.retr
 function useGameRoles() {
   const { call: retrieveGameRoles } = useRetrieveGameRolesInternal();
 
-  const gameRoles = useSelector(selectors.getGameRoles);
+  const gameRoles = useSelector(selectors.getGameRolesOptions);
 
   useEffect(() => {
     if (!gameRoles || gameRoles.length === 0) {
@@ -28,7 +28,7 @@ const useRetrieveDevOpsMaturitiesInternal = createRequestHook('devOpsMaturities'
 function useDevOpsMaturities() {
   const { call: retrieveDevOpsMaturities } = useRetrieveDevOpsMaturitiesInternal();
 
-  const devOpsMaturities = useSelector(selectors.getDevOpsMaturities);
+  const devOpsMaturities = useSelector(selectors.getDevOpsMaturitiesOptions);
 
   useEffect(() => {
     if (!devOpsMaturities || devOpsMaturities.length === 0) {

@@ -1,19 +1,9 @@
 import firebase from 'firebase/app';
 import { DevOpsMaturitiesDoc, FirebaseCollections, FirebaseDocs, GameRolesDoc } from '@pipeline/common';
-import { SelectOption } from '@pipeline/models';
 
 import 'firebase/firestore';
 
-const retrieveSelectOptions = (source: { [key: string]: { [key: string]: string } }, lang: string): SelectOption[] => {
-  return Object.keys(source).map(k => {
-    return {
-      value: k,
-      label: source[k][lang],
-    } as SelectOption;
-  });
-};
-
-export async function executeRetrieveGameRoles(lang = 'en'): Promise<SelectOption[]> {
+export async function executeRetrieveGameRoles(): Promise<GameRolesDoc> {
   const gameRolesDoc = await firebase
     .firestore()
     .doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`)
@@ -21,11 +11,10 @@ export async function executeRetrieveGameRoles(lang = 'en'): Promise<SelectOptio
   if (!gameRolesDoc.exists) {
     //TODO handle this
   }
-  const gameRoles = gameRolesDoc.data() as GameRolesDoc;
-  return retrieveSelectOptions(gameRoles.labels, lang);
+  return gameRolesDoc.data() as GameRolesDoc;
 }
 
-export async function executeRetrieveDevOpsMaturities(lang = 'en'): Promise<SelectOption[]> {
+export async function executeRetrieveDevOpsMaturities(): Promise<DevOpsMaturitiesDoc> {
   const devOpsMaturitiesDoc = await firebase
     .firestore()
     .doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.DevOpsMaturities}`)
@@ -33,6 +22,5 @@ export async function executeRetrieveDevOpsMaturities(lang = 'en'): Promise<Sele
   if (!devOpsMaturitiesDoc.exists) {
     //TODO handle this
   }
-  const devOpsMaturities = devOpsMaturitiesDoc.data() as DevOpsMaturitiesDoc;
-  return retrieveSelectOptions(devOpsMaturities.labels, lang);
+  return devOpsMaturitiesDoc.data() as DevOpsMaturitiesDoc;
 }
