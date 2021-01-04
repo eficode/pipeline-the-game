@@ -16,9 +16,11 @@ const PasswordInput: React.FC<Props> = ({ name, value, errorMessage, label, onCh
   return (
     <div className="column">
       <label htmlFor={name}>{label}</label>
-      <div>
+      <div className="p-relative">
         <input type={type} value={value} name={name} id={name} onChange={onChange} />
-        <button onClick={toggleType}>s</button>
+        <button className="icon-button" onClick={toggleType}>
+          <i className="gg-eye"></i>
+        </button>
       </div>
       {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
     </div>

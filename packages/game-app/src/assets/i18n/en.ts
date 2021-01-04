@@ -13,6 +13,7 @@ const translations = {
     },
   },
   signup: {
+    title: 'Signup to play',
     verificationRequired: {
       message: "You need to verify your email to start playing! If you don't find it, try in your spam",
       resend: 'Resend email',
@@ -29,10 +30,16 @@ const translations = {
     errors: {
       invalidEmail: 'Invalid email',
       passwordRequirements:
-        'The password must be 8 chars long and should contain at least a lowercase letter, an uppercase letter and a spectial character',
+        'The password must be 8 chars long and should contain at least a lowercase letter, an uppercase letter and a number',
       passwordMatch: 'The two password must match',
       'auth/email-already-in-use': 'Ops, it seams that this email is not allowed',
     },
+  },
+  dashboard: {
+    title: 'Pipeline',
+    subtitle: 'The Game that Delivers',
+    message:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   },
   general: {
     errors: {
