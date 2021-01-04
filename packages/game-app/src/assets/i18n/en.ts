@@ -30,7 +30,7 @@ const translations = {
     errors: {
       invalidEmail: 'Invalid email',
       passwordRequirements:
-        'The password must be 8 chars long and should contain at least a lowercase letter, an uppercase letter and a spectial character',
+        'The password must be 8 chars long and should contain at least a lowercase letter, an uppercase letter and a number',
       passwordMatch: 'The two password must match',
       'auth/email-already-in-use': 'Ops, it seams that this email is not allowed',
     },
