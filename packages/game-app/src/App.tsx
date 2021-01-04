@@ -2,39 +2,59 @@ import React, { Suspense } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router-dom';
 import { PrivateRoute, RoutingPath } from '@pipeline/routing';
 import { useBootstrapIsFinished } from './_shared';
-import { useLoggedUser } from '@pipeline/auth';
+import { AuthUser, useLoggedUser } from '@pipeline/auth';
 
 const Signup = React.lazy(() => import('./signup/components/Signup'));
 const EmailVerificationRequired = React.lazy(() => import('./signup/components/EmailVerificationRequired'));
 const VerifyEmail = React.lazy(() => import('./signup/components/VerifyEmail'));
 const Dashboard = React.lazy(() => import('./dashboard/components/Dashboard'));
 
+/**
+ * Returns route and default redirect according to auth condition:
+ *
+ * not user : Signup, Login, VerifyEmail (default to Signup)
+ * email not verified: EmailVerificationRequired, VerifyEmail (default to EmailVerificationRequired)
+ * user ok: (default to Dashboard)
+ */
+function renderAuthRoutes(user: AuthUser | null) {
+  if (!user) {
+    return [
+      <Route path={RoutingPath.Login} render={() => <div>Login</div>} />,
+      <Route path={RoutingPath.Signup} component={Signup} />,
+      <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
+      <Route path="*">
+        <Redirect to={RoutingPath.Signup} />
+      </Route>,
+    ];
+  }
+  if (user && !user.emailVerified) {
+    return [
+      <Route path={RoutingPath.EmailVerificationRequired} component={EmailVerificationRequired} />,
+      <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
+      <Route path="*">
+        <Redirect to={RoutingPath.EmailVerificationRequired} />
+      </Route>,
+    ];
+  }
+  if (user && user.emailVerified) {
+    return (
+      <Route path="*">
+        <Redirect to={RoutingPath.Dashboard} />
+      </Route>
+    );
+  }
+}
+
 function App() {
   const bootstrapIsFinished = useBootstrapIsFinished();
 
   const user = useLoggedUser();
 
-  const { pathname } = useLocation();
-
   return bootstrapIsFinished ? (
     <Suspense fallback={null}>
       <Switch>
-        {user &&
-        !user.emailVerified &&
-        pathname !== RoutingPath.EmailVerificationRequired &&
-        pathname !== RoutingPath.VerifyEmail ? (
-          <Route path="*">
-            <Redirect to={RoutingPath.EmailVerificationRequired} />
-          </Route>
-        ) : null}
-        <Route path={RoutingPath.Login} render={() => <div>Login</div>} />
-        <Route path={RoutingPath.Signup} component={Signup} />
-        <Route path={RoutingPath.EmailVerificationRequired} component={EmailVerificationRequired} />
-        <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />
         <PrivateRoute path={RoutingPath.Dashboard} component={Dashboard} />
-        <Route path="*">
-          <Redirect to={RoutingPath.Signup} />
-        </Route>
+        {renderAuthRoutes(user)}
       </Switch>
     </Suspense>
   ) : (

@@ -14,7 +14,7 @@ type Props = React.ComponentProps<typeof Route>;
 const PrivateRoute: React.FC<Props> = props => {
   const currentUser = useSelector(authSelectors.getCurrentUser);
 
-  return currentUser ? <Route {...props} /> : <Redirect to={RoutingPath.Signup} />;
+  return currentUser && currentUser.emailVerified ? <Route {...props} /> : <Redirect to={RoutingPath.Signup} />;
 };
 
 PrivateRoute.displayName = 'PrivateRoute';
