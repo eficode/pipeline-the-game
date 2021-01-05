@@ -124,6 +124,14 @@ button.icon-button {
   padding: 8px;
 }
 
+button.link {
+  background-color: transparent;
+  border: 0;
+  text-decoration: underline;
+  font-size: 15px;
+  color: #9f998f;
+}
+
 input + button.icon-button {
   position: absolute;
   right: 10px;

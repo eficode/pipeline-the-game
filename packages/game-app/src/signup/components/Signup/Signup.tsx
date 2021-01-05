@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -9,6 +9,7 @@ import { signupValidationSchema } from '../../utils/validation';
 import { useTranslate } from '@pipeline/i18n';
 import { PasswordInput } from '@pipeline/components';
 import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
+import { useHistory } from 'react-router-dom';
 
 type Props = {};
 
@@ -47,6 +48,12 @@ const Signup: React.FC<Props> = () => {
     [signup, handleSubmit],
   );
 
+  const history = useHistory();
+
+  const goToSignIn = useCallback(() => {
+    history.push(RoutingPath.Login);
+  }, [history]);
+
   useNavigateOnCondition(signupSuccess, RoutingPath.EmailVerificationRequired);
 
   return (
@@ -73,6 +80,12 @@ const Signup: React.FC<Props> = () => {
             {signupLoading ? <span>Loading</span> : null}
             {signupTranslateError ? <span className="error-message">{signupTranslateError}</span> : null}
             {signupSuccess ? <span>Success</span> : null}
+            <div className="text-center">
+              <span>{t('signup.alreadyAccount')}</span>&nbsp;
+              <button className="link" onClick={goToSignIn}>
+                {t('signup.goToSignIn')}
+              </button>
+            </div>
           </form>
         </FormProvider>
       </div>

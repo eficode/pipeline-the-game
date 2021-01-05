@@ -5,6 +5,7 @@
     "bootstrap": "npm ci && npx lerna bootstrap",
     "build": "npx lerna run build --stream",
     "start:emulators": "npx firebase emulators:start",
+    "start:app": "npm run start --prefix packages/game-app",
     "test:firestore": "npm run test --prefix packages/firestore",
     "scripts:initialize-firestore-emulator": "node scripts/load-initial-data-in-emulator.js",
     "scripts:initialize-firestore-emulator:local": "npx env-cmd -f .env node scripts/load-initial-data-in-emulator.js"
