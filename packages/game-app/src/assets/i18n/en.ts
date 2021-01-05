@@ -12,6 +12,8 @@ const translations = {
   },
   login: {
     title: 'Sign in to play',
+    notYetAccount: "Haven't played yet?",
+    goToSignup: 'Create account',
     form: {
       emailLabel: 'Email',
       passwordLabel: 'Password',
