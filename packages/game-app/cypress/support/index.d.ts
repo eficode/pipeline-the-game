@@ -16,6 +16,12 @@ declare namespace Cypress {
     getFirebaseUserByEmail(email: string): Chainable<any>;
 
     getFirestoreDocument(path: string): Chainable<any>;
+
+    /**
+     * Set un a new user with the provided info (both in auth and firestore)
+     * Optional values are generated randomly.
+     */
+    initializeUser(options: { email?: string; password?: string; emailVerified?: boolean; }): Chainable<any>;
     getEmailVerificationLink(email: string): Chainable<any>;
     /**
      * Delete all data in the indexedDB, useful for example to delete all

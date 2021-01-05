@@ -54,6 +54,10 @@ Cypress.Commands.add('getEmailVerificationLink', (email: string) => {
   return cy.task('getEmailVerificationLink', {email});
 });
 
+Cypress.Commands.add('initializeUser', (options:{ email?: string; password?: string; emailVerified?: boolean; }) => {
+  return cy.task('initializeUser', options);
+});
+
 Cypress.Commands.add('fill', {prevSubject: 'element'}, (subject, value) => {
     return cy.wait(1).then(() => {
       const element = subject[0]

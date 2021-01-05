@@ -42,3 +42,28 @@ export async function getEmailVerificationLink(adminInstance: admin.app.App, {em
   }
 
 }
+
+/**
+ * Create a user both in auth and firestore and return the user object
+ */
+export async function initializeUser(adminInstance: admin.app.App, {
+  email,
+  password,
+  emailVerified
+}: { email?: string; password?: string; emailVerified?: boolean; }) {
+  const randomEmail = `testEmail${Math.floor(Math.random() * 10000)}@email.com`.toLocaleLowerCase();
+
+  const user = await adminInstance.auth().createUser({
+    email: email || randomEmail,
+    emailVerified: !!emailVerified,
+    password: password || 'Aa1sfesfsf'
+  });
+
+  await adminInstance.firestore().doc(`users/${user.uid}`).set({
+    email: email || randomEmail,
+    role: 'endUser',
+    devOpsMaturity: 'veryImmature'
+  })
+
+  return user;
+}

@@ -5,4 +5,5 @@ export interface RequestsKeys {
   devOpsMaturities: null;
   'auth.resendVerificationEmail': null;
   'auth.emailVerification': null;
+  'auth.login': null;
 }

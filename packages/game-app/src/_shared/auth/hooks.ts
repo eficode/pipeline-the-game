@@ -9,3 +9,7 @@ export const useResendVerificationEmail = createRequestHook(
 export const useEmailVerification = createRequestHook('auth.emailVerification', actions.verifyEmail, {
   errorMessagesScope: 'auth.errors',
 });
+
+export const useLogin = createRequestHook('auth.login', actions.login, {
+  errorMessagesScope: 'login.errors',
+});

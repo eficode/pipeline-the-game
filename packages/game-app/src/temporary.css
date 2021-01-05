@@ -164,6 +164,12 @@ input + button.icon-button {
 }
 
 /* signup */
+.signup,
+.login,
+.dashboard {
+  display: inline-block;
+  width: 100%;
+}
 
 .content {
   max-width: 350px;
@@ -177,17 +183,20 @@ input + button.icon-button {
   height: 100vh;
   width: 100vw;
   background-color: white;
-  padding: 50px;
 }
 
 .dashboard h1 {
   font-size: 70px;
+  margin-top: 50px;
+  margin-left: 50px;
 }
 
 .dashboard h2 {
   font-size: 35px;
+  margin-left: 50px;
 }
 .dashboard h2 + p {
   margin-top: 50px;
   max-width: 450px;
+  margin-left: 50px;
 }

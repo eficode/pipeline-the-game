@@ -1,15 +1,27 @@
 const translations = {
-  home: {
-    title: 'Pipeline - The Game that Delivers!',
-    subtitle: 'Random stuff',
-  },
-  page2: {
-    test1: 'Pipeline - The Game that Delivers!',
-    test2: 'Random stuff',
-  },
   auth: {
     errors: {
       'auth/invalid-action-code': 'Verification link invalid or already used',
+    },
+  },
+  dashboard: {
+    title: 'Pipeline',
+    subtitle: 'The Game that Delivers',
+    message:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+  },
+  login: {
+    title: 'Sign in to play',
+    form: {
+      emailLabel: 'Email',
+      passwordLabel: 'Password',
+      buttonText: 'Sign in',
+    },
+    errors: {
+      'auth/invalid-email': 'Email not valid',
+      'auth/user-disabled': 'User disabled',
+      'auth/user-not-found': 'Email or password invalid',
+      'auth/wrong-password': 'Email or password invalid',
     },
   },
   signup: {
@@ -34,12 +46,6 @@ const translations = {
       passwordMatch: 'The two password must match',
       'auth/email-already-in-use': 'Ops, it seams that this email is not allowed',
     },
-  },
-  dashboard: {
-    title: 'Pipeline',
-    subtitle: 'The Game that Delivers',
-    message:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   },
   general: {
     errors: {
