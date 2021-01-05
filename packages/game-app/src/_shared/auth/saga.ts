@@ -1,5 +1,5 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
-import { actions, AuthUser } from './slice';
+import { call, put, takeEvery, select } from 'redux-saga/effects';
+import { actions, AuthUser, selectors } from './slice';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
@@ -31,6 +31,20 @@ function* resendVerificationEmail() {
 
 function* executeEmailVerification(action: ReturnType<typeof actions.verifyEmail>) {
   yield call(() => firebase.auth().applyActionCode(action.payload.code));
+  const currentUser: AuthUser = yield select(selectors.getCurrentUser);
+  const firebaseUser = firebase.auth().currentUser;
+  // need to refresh user to get token with email verified set to true
+  if (currentUser && firebaseUser) {
+    yield call(() => firebaseUser.reload());
+    const newUser = firebase.auth().currentUser!;
+    yield put(
+      actions.setLoggedUser({
+        emailVerified: true,
+        email: newUser.email!,
+        id: newUser.uid,
+      }),
+    );
+  }
 }
 
 export default function* authSaga() {
