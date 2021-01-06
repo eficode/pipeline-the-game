@@ -1,5 +1,6 @@
 /// <reference types="Cypress" />
 /// <reference types="../support" />
+import {generateRandomCredentials, generateRandomEmail} from "./utils/generators";
 
 // @ts-ignore
 context("Login", () => {
@@ -11,17 +12,18 @@ context("Login", () => {
   });
 
   it("should show error on user not present", () => {
-    const randomEmail = `testEmail${Math.floor(Math.random() * 1000)}@email.com`.toLocaleLowerCase();
+    const randomEmail = generateRandomEmail();
     cy.getInputByName('email').fill(randomEmail);
-    cy.getInputByName('password').fill('anypassword');
+    cy.getInputByName('password').fill('anyPassword');
     cy.get('button').containsTranslationOf('login.form.buttonText').click();
     cy.get('body').should('contain.translationOf', 'login.errors.auth/user-not-found');
   });
 
   it("should show error on invalid password", () => {
-    cy.initializeUser({password: 'aA1uuuuuuu'}).then(user => {
-      cy.getInputByName('email').fill(user.email);
-      cy.getInputByName('password').fill('anypassword');
+    const {email, password} = generateRandomCredentials()
+    cy.initializeUser({email: email, password: password}).then(user => {
+      cy.getInputByName('email').fill(email);
+      cy.getInputByName('password').fill('invalidPassword');
       cy.get('button').containsTranslationOf('login.form.buttonText').click();
       cy.get('body').should('contain.translationOf', 'login.errors.auth/wrong-password');
     });
@@ -29,18 +31,20 @@ context("Login", () => {
 
 
   it("should login correctly and go to dashboard", () => {
-    cy.initializeUser({password: 'aA1aaaaaaa', emailVerified: true}).then(user => {
-      cy.getInputByName('email').fill(user.email);
-      cy.getInputByName('password').fill('aA1aaaaaaa');
+    const {email, password} = generateRandomCredentials()
+    cy.initializeUser({email, password, emailVerified: true}).then(user => {
+      cy.getInputByName('email').fill(email);
+      cy.getInputByName('password').fill(password);
       cy.get('button').containsTranslationOf('login.form.buttonText').click();
       cy.location('pathname').should('equal', '/dashboard');
     });
   });
 
   it("should login correctly and go to email verification required", () => {
-    cy.initializeUser({password: 'aA1aaaaaaa', emailVerified: false}).then(user => {
-      cy.getInputByName('email').fill(user.email);
-      cy.getInputByName('password').fill('aA1aaaaaaa');
+    const {email, password} = generateRandomCredentials()
+    cy.initializeUser({email, password, emailVerified: false}).then(user => {
+      cy.getInputByName('email').fill(email);
+      cy.getInputByName('password').fill(password);
       cy.get('button').containsTranslationOf('login.form.buttonText').click();
       cy.location('pathname').should('equal', '/email-verification-required');
     });

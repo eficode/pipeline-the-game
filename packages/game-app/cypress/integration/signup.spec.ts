@@ -2,6 +2,8 @@
 /// <reference types="../support" />
 
 // @ts-ignore
+import {generateRandomCredentials} from "./utils/generators";
+
 context("Signup", () => {
 
   const usedEmails: string[] = [];
@@ -39,19 +41,19 @@ context("Signup", () => {
   });
 
   it("should signup correctly and go to email verification required", () => {
-    const randomEmail = `testEmail${Math.floor(Math.random() * 1000)}@email.com`.toLocaleLowerCase();
-    usedEmails.push(randomEmail);
-    cy.getInputByName('email').fill(randomEmail);
-    cy.getInputByName('password').fill('Aa1sfesfsf');
-    cy.getInputByName('repeatPassword').fill('Aa1sfesfsf');
+    const {email, password} = generateRandomCredentials()
+    usedEmails.push(email);
+    cy.getInputByName('email').fill(email);
+    cy.getInputByName('password').fill(password);
+    cy.getInputByName('repeatPassword').fill(password);
     cy.getInputByName('role').select('endUser');
     cy.getInputByName('devOpsMaturity').select('veryImmature');
     cy.get('button').containsTranslationOf('signup.form.buttonText').click();
     cy.location("pathname").should("equal", "/email-verification-required");
 
     // check auth presence
-    cy.getFirebaseUserByEmail(randomEmail).should('deep.include', {
-      email: randomEmail,
+    cy.getFirebaseUserByEmail(email).should('deep.include', {
+      email: email,
       emailVerified: false,
       disabled: false
     }).its('uid').then(uid => {
@@ -59,16 +61,18 @@ context("Signup", () => {
       cy.getFirestoreDocument(`users/${uid}`).should('deep.eq', {
         devOpsMaturity: 'veryImmature',
         role: 'endUser',
-        email: randomEmail
+        email: email
       });
     });
   });
 
   it("should show email already used error", () => {
-    const alreadyUsedEmail = usedEmails[0];
+    const {email, password} = generateRandomCredentials()
+    cy.initializeUser({email})
+    const alreadyUsedEmail = email;
     cy.getInputByName('email').fill(alreadyUsedEmail);
-    cy.getInputByName('password').fill('Aa1sfesfsf');
-    cy.getInputByName('repeatPassword').fill('Aa1sfesfsf');
+    cy.getInputByName('password').fill(password);
+    cy.getInputByName('repeatPassword').fill(password);
     cy.getInputByName('role').select('endUser');
     cy.getInputByName('devOpsMaturity').select('veryImmature');
     cy.get('button').containsTranslationOf('signup.form.buttonText').click();
