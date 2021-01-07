@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const files = fs.readdirSync("./fixtures/firestore-data");
 
-const app = admin.initializeApp({projectId: process.env.REACT_APP_FIREBASE_CONFIG_PROJECT_ID});
+const app = admin.initializeApp();
 
 async function loadData() {
     const batch = app.firestore().batch();
