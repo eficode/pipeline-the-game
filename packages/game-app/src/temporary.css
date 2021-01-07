@@ -191,6 +191,7 @@ input + button.icon-button {
   height: 100vh;
   width: 100vw;
   background-color: white;
+  position: relative;
 }
 
 .dashboard h1 {
@@ -207,4 +208,10 @@ input + button.icon-button {
   margin-top: 50px;
   max-width: 450px;
   margin-left: 50px;
+}
+
+.dashboard .sign-out-button {
+  position: absolute;
+  top: 15px;
+  right: 60px;
 }

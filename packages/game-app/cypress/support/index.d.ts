@@ -20,6 +20,10 @@ declare namespace Cypress {
      */
     fastSignup(email:string,password:string): Chainable<Subject>;
     /**
+     * Login to the web application without filling the form
+     */
+    fastLogin(email:string,password:string): Chainable<Subject>;
+    /**
      * Insert value in input without typing effect and delay.
      * Much faster than type
      */

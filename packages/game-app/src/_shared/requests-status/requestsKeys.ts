@@ -6,4 +6,5 @@ export interface RequestsKeys {
   'auth.resendVerificationEmail': null;
   'auth.emailVerification': null;
   'auth.login': null;
+  'auth.logout': null;
 }

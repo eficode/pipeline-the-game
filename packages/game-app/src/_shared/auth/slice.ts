@@ -49,6 +49,7 @@ export const actions = {
   resendEmailVerification: createAction(`${name}/resendEmailVerification`),
   verifyEmail: createAction<{ code: string }>(`${name}/verifyEmail`),
   login: createAction<{ email: string; password: string }>(`${name}/login`),
+  logout: createAction(`${name}/logout`),
 };
 export const selectors = {
   getCurrentUser,

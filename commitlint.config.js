@@ -7,7 +7,8 @@ const scopes = [
     "dashboard",
     "board",
     "general",
-    "rules"
+    "rules",
+    "release"
 ];
 const _prefixed = scopes.map((s) => apps.map((p) => `${p}-${s}`));
 const scopeEnum = [].concat.apply([], _prefixed);
