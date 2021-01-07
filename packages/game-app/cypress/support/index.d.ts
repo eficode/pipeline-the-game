@@ -20,7 +20,7 @@ declare namespace Cypress {
      */
     fastSignup(email:string,password:string): Chainable<Subject>;
     /**
-     * Signup to the web application without filling the form
+     * Login to the web application without filling the form
      */
     fastLogin(email:string,password:string): Chainable<Subject>;
     /**
