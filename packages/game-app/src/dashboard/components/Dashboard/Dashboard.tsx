@@ -11,7 +11,7 @@ const Dashboard: React.FC<Props> = () => {
   return (
     <div className="dashboard">
       <div className="sign-out-button">
-        <button className="link" onClick={executeLogout}>
+        <button type="button" className="link" onClick={executeLogout}>
           {t('auth.logout')}
         </button>
       </div>
