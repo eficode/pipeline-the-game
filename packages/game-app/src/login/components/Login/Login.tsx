@@ -40,7 +40,7 @@ const Login: React.FC<Props> = () => {
           <FormTextField name="email" label={t('login.form.emailLabel')} />
           <FormTextField CustomInput={PasswordInput} name="password" label={t('login.form.passwordLabel')} />
           <div className="text-center">
-            <button className="primary" onClick={submit}>
+            <button type="button" className="primary" onClick={submit}>
               {t('login.form.buttonText')}
             </button>
           </div>
@@ -48,7 +48,7 @@ const Login: React.FC<Props> = () => {
           {loading ? <span>Loading</span> : null}
           <div className="text-center">
             <span>{t('login.notYetAccount')}</span>&nbsp;
-            <button className="link" onClick={goToSignUp}>
+            <button type="button" className="link" onClick={goToSignUp}>
               {t('login.goToSignup')}
             </button>
           </div>

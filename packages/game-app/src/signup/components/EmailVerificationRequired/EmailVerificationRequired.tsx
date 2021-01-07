@@ -14,11 +14,11 @@ const EmailVerificationRequired: React.FC<Props> = () => {
     <div className="content">
       <div className="card text-center">
         <h2>{t('signup.verificationRequired.message')}</h2>
-        <button className="primary" disabled={loading} onClick={resendEmail}>
+        <button type="button" className="primary" disabled={loading} onClick={resendEmail}>
           {t('signup.verificationRequired.resend')}
         </button>
         &nbsp;
-        <button className="link" onClick={executeLogout}>
+        <button type="button" className="link" onClick={executeLogout}>
           {t('auth.logout')}
         </button>
         {success ? t('signup.verificationRequired.resendSuccess') : null}

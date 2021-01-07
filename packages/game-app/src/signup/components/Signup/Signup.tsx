@@ -72,7 +72,7 @@ const Signup: React.FC<Props> = () => {
             <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
             <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
             <div className="text-center ">
-              <button className="primary" id="signup-button" onClick={submit}>
+              <button type="button" className="primary" id="signup-button" onClick={submit}>
                 {t('signup.form.buttonText')}
               </button>
             </div>
@@ -82,7 +82,7 @@ const Signup: React.FC<Props> = () => {
             {signupSuccess ? <span>Success</span> : null}
             <div className="text-center">
               <span>{t('signup.alreadyAccount')}</span>&nbsp;
-              <button className="link" onClick={goToSignIn}>
+              <button type="button" className="link" onClick={goToSignIn}>
                 {t('signup.goToSignIn')}
               </button>
             </div>
