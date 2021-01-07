@@ -13,7 +13,7 @@ Cypress.Commands.add("containsTranslationOf", {prevSubject: 'optional'}, (subjec
 
 
 Cypress.Commands.add('fastSignup', (email: string, password: string) => {
-  cy.window().its('store').invoke('dispatch', {
+  cy.window({log: false}).its('store').invoke('dispatch', {
     type: 'signup/start', payload: {
       email: email,
       password: password,
@@ -23,3 +23,22 @@ Cypress.Commands.add('fastSignup', (email: string, password: string) => {
     }
   });
 });
+
+Cypress.Commands.add('fastLogin', (email: string, password: string) => {
+  Cypress.log({
+    name: 'fastLogin',
+    consoleProps: () => {
+      return {
+        email, password
+      }
+    }
+  })
+  cy.intercept('**/getAccountInfo?**').as('getUser');
+  cy.window({log: false}).its('store', {log: false}).invoke('dispatch', {
+    type: 'auth/login', payload: {
+      email: email,
+      password: password
+    }
+  }, {log: false});
+});
+
