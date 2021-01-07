@@ -25,13 +25,13 @@ Playing the game should help you to build a real pipeline for the real software 
 Well, this repository is just the **digital version** of this card game!
 
 ## :memo: System Requirements
-You need to have Node 12. This is because, at the time of writing, the highest stable Node version [supported by Cloud Functions](https://firebase.google.com/docs/functions/manage-functions) is Node 12. Please check your node version using <code>node -v</code>. If you have a different version of Node, we recommend using [nvm](https://github.com/nvm-sh/nvm) to manage your Node versions.
+You need to have Node 12. This is because, at the time of writing, the highest stable Node version [supported by Cloud Functions](https://firebase.google.com/docs/functions/manage-functions) is Node 12. Please check your node version using <code>node -v</code>. If you have a different version of Node, we recommend using [nvm](https://github.com/nvm-sh/nvm) (or the corresponding [windows implementation](https://github.com/coreybutler/nvm-windows)) to manage your Node versions.
 
 
 ## :scroll: How to run
 
 After cloning this repository, move into the **root** folder and execute the following two scripts, which have been defined in the *[package.json](./package.json)*:
-```
+```shell
 npm run bootstrap
 npm run build
 ```
@@ -47,12 +47,12 @@ First of all, make sure you have followed the instructions for the [setup of Fir
 We use [Firebase Emulators](https://firebase.google.com/docs/emulator-suite) to use the Firebase services locally.
 #### Firebase Emulators
 To start the emulators, move into the **root** folder and run
-```
+```shell
 npm run start:emulators
 ```
 Again, this script is defined in the root [package.json](./package.json).   
 Make sure you have port 5000, 5001, 5555, 8080, 9000 and 9090 available. Then, go to the *.env* file created in the previous step (the one in the [game-app](./packages/game-app) folder) and fill in the following variables as follows:
-```
+```dotenv
 REACT_APP_FIREBASE_USE_EMULATORS=true
 FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
 FIRESTORE_EMULATOR_HOST=localhost:8080
@@ -62,19 +62,19 @@ Note: If you need these ports and cannot make them available, you can always con
 
 #### Root Environment variables
 Before running the project, you will need to create a *.env* file also in the **root** folder containing the following **environment variables**:
-```
-REACT_APP_FIREBASE_CONFIG_PROJECT_ID=
+```dotenv
 FIRESTORE_EMULATOR_HOST=localhost:8080
+GCLOUD_PROJECT=
 ```
 #### Running
 Run the following script in the **root** folder to initialize the local emulators:
-```
+```shell
 npm run scripts:initialize-firestore-emulator:local
 ```
 This will fill the emulators with some initial data needed to load the application.  
 
 And now the last step: move into the [game-app](./packages/game-app) folder and run:
-```
+```shell
 npm run start
 ```
 and your Pipeline react app will be available for you to use.
@@ -83,12 +83,12 @@ and your Pipeline react app will be available for you to use.
 ### Run with Firebase
 First of all, make sure you have followed the instructions for the [setup of Firebase and the environment variables](#firebase-and-environment-variables-setup).   
 Make sure you have your firebase project up and running. Then, go to the *.env* file **you** have created (the one in the [game-app](./packages/game-app) folder) and fill in the following variables as follows:
-```
+```dotenv
 REACT_APP_FIREBASE_USE_EMULATORS=false
 ```
 The other environment variables concerning the emulators can be left undefined, since we are not using the emulators in this section. If you want to run locally using the emulators, please refer to [this section](#run-locally).       
 Finally, you just have to move into the [game-app](./packages/game-app) folder and run:
-```
+```shell
 npm run start
 ```
 and your Pipeline react app will be available for you to use.
@@ -97,7 +97,7 @@ and your Pipeline react app will be available for you to use.
 This step is also included in the [How to run](#how-to-run) section, but we rewrite it here for completeness. 
 
 Just go to the **root** folder and execute the following scripts:
-```
+```shell
 npm run bootstrap
 npm run build
 ```
@@ -105,15 +105,30 @@ This will create a production-ready build of the packages for which it is possib
 
 ## :rocket: How to deploy to Firebase
 After [building the project](#building_construction-how-to-make-a-production-ready-build), you can easily deploy to your Firebase project running:
-```
+```shell
 npx firebase deploy --project <FIREBASE_PROJECT_ID>
 ```
 This command will automatically deploy the following projects to firebase:
-* Firestore rules
+* Firestore rules and indexes
+* RealTime Database rules
 * Cloud functions
 * Hosting (game-app)
 
 Please, refer to [the Firebase documentation](https://firebase.google.com/docs/cli#deployment) for details about how to use the <code>firebase deploy</code> command.
+
+### Initialize remote database
+
+To load initial data into the firestore remote database change your root env file, removing 
+the firebase emulator variable and adding the reference to your admin credentials json file
+```dotenv
+GCLOUD_PROJECT=
+GOOGLE_APPLICATION_CREDENTIALS=
+```
+and then run again
+
+```shell
+npm run scripts:initialize-firestore-emulator:local
+```
 
 ## :office: General project structure
 The project follows the [lerna monorepo structure](https://github.com/lerna/lerna).      
@@ -124,8 +139,8 @@ pipeline-the-game               <- The root folder
     ├── package.json            <- 'root' lerna package.json
     └── packages
        ├── common               <- code shared among packages
-       ├── database             <- real-time firebase database
-       ├── firestore            <- firebase firestore
+       ├── database             <- real-time firebase database rules
+       ├── firestore            <- firebase firestore rules
        ├── functions            <- firebase cloud functions
        └── game-app             <- front-end react application
 ```
