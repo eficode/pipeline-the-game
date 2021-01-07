@@ -13,3 +13,7 @@ export const useEmailVerification = createRequestHook('auth.emailVerification', 
 export const useLogin = createRequestHook('auth.login', actions.login, {
   errorMessagesScope: 'login.errors',
 });
+
+export const useLogout = createRequestHook('auth.logout', actions.logout, {
+  errorMessagesScope: 'auth.errors',
+});

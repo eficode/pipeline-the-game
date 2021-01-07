@@ -3,6 +3,7 @@ const translations = {
     errors: {
       'auth/invalid-action-code': 'Verification link invalid or already used',
     },
+    logout: 'Sign out',
   },
   dashboard: {
     title: 'Pipeline',

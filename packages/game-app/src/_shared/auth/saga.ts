@@ -62,6 +62,11 @@ function* executeLogin({ payload: { email, password } }: ReturnType<typeof actio
   }
 }
 
+function* executeLogout() {
+  yield call(() => firebase.auth().signOut());
+  yield put(actions.setLoggedUser(null));
+}
+
 export default function* authSaga() {
   yield takeEvery(actions.initialize, initializeAuthSaga);
   yield takeEvery(
@@ -70,4 +75,5 @@ export default function* authSaga() {
   );
   yield takeEvery(actions.verifyEmail, addRequestStatusManagement(executeEmailVerification, 'auth.emailVerification'));
   yield takeEvery(actions.login, addRequestStatusManagement(executeLogin, 'auth.login'));
+  yield takeEvery(actions.logout, addRequestStatusManagement(executeLogout, 'auth.logout'));
 }
