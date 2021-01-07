@@ -1,6 +1,6 @@
 {
   "name": "@pipeline/common",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "types": "build/index.d.ts",
   "typings": "build/index.d.ts",
   "main": "build/index.js",
