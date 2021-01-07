@@ -12,6 +12,8 @@ const translations = {
   },
   login: {
     title: 'Sign in to play',
+    notYetAccount: "Haven't played yet?",
+    goToSignup: 'Create account',
     form: {
       emailLabel: 'Email',
       passwordLabel: 'Password',
@@ -26,6 +28,8 @@ const translations = {
   },
   signup: {
     title: 'Signup to play',
+    alreadyAccount: 'Already have an account?',
+    goToSignIn: 'Sign in',
     verificationRequired: {
       message: "You need to verify your email to start playing! If you don't find it, try in your spam",
       resend: 'Resend email',
