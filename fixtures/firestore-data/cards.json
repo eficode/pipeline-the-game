@@ -1,0 +1,333 @@
+{
+  "51xgCF43n5iaMNLkxGs9": {
+    "type": "Scenario",
+    "tags": null,
+    "title": "Social Media Online Application",
+    "subtitle": null,
+    "content": "• Users create and share links to articles about current affairs,\nwith comments.\n• Users search for current affairs stories to view articles and\ncomments on them.\n• Advertisers pay to promote their articles in the search results.\n• Searches must be fast and the interface must look attractive.\nYour competitor has a monolithic PHP-based application and\ntheir deployment lead time is two days.",
+    "number": 7,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "1Zs45g2y6GSE5s4XS9BA": {
+    "type": "Scenario",
+    "tags": null,
+    "title": "Online Payments for Solar Power",
+    "subtitle": null,
+    "content": "• Users generate solar power on their roof and get payments for\ntheir contributions to the grid.\n• This application pays customers monthly by bank transfer.\nSolar electricity contribution data is obtained from a third party\nsystem.\n• This application handles money and is regulated by financial\nauthorities.\nYour competitor is a large energy company using Java and\ntheir deployment lead time is two weeks.",
+    "number": 8,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "G5JfGVoM7SZ6jOsdjWWp": {
+    "type": "Scenario",
+    "tags": null,
+    "title": "Fitness & Running Mobile App",
+    "subtitle": null,
+    "content": "Mobile exercise app monitors your running.\nGives feedback on lap time and coaches you towards your goals.\n• The system sends encouraging emails with weekly fitness\nsummaries.\nHandles potentially sensitive health data.\nYour competitor is a Silicon Valley startup using Python and their\ndeployment lead time is six hours.",
+    "number": 9,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "UUmhPl9KzWZ3v7Vt7nrT": {
+    "type": "Scenario",
+    "tags": null,
+    "title": "Photo Editing Software",
+    "subtitle": null,
+    "content": "• Users edit their photos and compose them into albums.\n• Users can have the albums printed (for a fee).\n• Smooth, intuitive user experience is important.\n• Large number of photo editing techniques are supported.\n• Third parties handle printing, shipping, and payment.\nYour competitor has a huge C++ codebase and their deployment\nlead time is seven weeks.",
+    "number": 10,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "k4ourZRR6MBxmfXJiDd5": {
+    "type": "Scenario",
+    "tags": null,
+    "title": "Classified Ads for Second-Hand Items",
+    "subtitle": null,
+    "content": "• Individuals pay to display advertisements on your site for items they\nwant to sell.\n• Payment for advertisements is handled by a third party service.\n• Users can search or browse categories to find items.\n• Users can contact each other via messages on the site or by\ntelephone, and arrange to meet in person to buy and sell items.\nYour competitor has a microservices architecture written in at least\nfive different languages, and their deployment lead time is less than\none hour.",
+    "number": 11,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "sAgOgpSk0phDUfJ7d3Q7": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Delivery Step",
+      "Manual Step"
+    ],
+    "title": "A Developer Commits Code",
+    "subtitle": "Delivery Step",
+    "content": "A developer shares their code\nby pushing a commit to a\nversion control server, such\nas Git.\nIf you include steps before\nthis, they do not count\ntowards your deployment\nlead time.",
+    "number": 13,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "vpttIdLCr7AEwNyFv75m": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Delivery Step",
+      "Deploy Step"
+    ],
+    "title": "Deploy to Production Environment",
+    "subtitle": "Delivery Step",
+    "content": "A Release Candidate is deployed to\nproduction where there are actual\nusers and live data.\nYou cannot complete this step\nuntil you have built the Release\nCandidate.\nIf you include steps after this,\nthey do not count towards your\ndeployment lead time.",
+    "number": 14,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "gFDFKdnMmbwL5Vt7ouDE": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Package"
+    ],
+    "title": "Build Release Candidate",
+    "subtitle": "Build Step",
+    "content": "Code is compiled and built\ninto a deployable Release\nCandidate.\nYou cannot complete this step\nbefore the Code is Merged to\nTrunk.",
+    "number": 15,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "oMSlvF0Vn5Bt0F9YYZbQ": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Deploy Step"
+    ],
+    "title": "Deploy to Production-Like\nTest Environment 1",
+    "subtitle": "Deployment Step",
+    "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
+    "number": 16,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "4wEMpQdP5N52iurAkiZR": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Deploy Step"
+    ],
+    "title": "Deploy to Production-Like\nTest Environment 2",
+    "subtitle": "Deployment Step",
+    "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
+    "number": 17,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "7MpHg7z6NSNKkcNmY11a": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Deploy Step"
+    ],
+    "title": "Deploy to Production-Like\nTest Environment 3",
+    "subtitle": "Deployment Step",
+    "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
+    "number": 18,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "5Hq5DBmvxTtsFyto0weW": {
+    "type": "Pipeline Step",
+    "tags": [],
+    "title": "Unit Testing",
+    "subtitle": "Test Step",
+    "content": "Tests written by developers are\nrun against all the individual\nclasses and methods in the\nsystem.",
+    "number": 19,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "bG1qFmdarVbhXquuWkly": {
+    "type": "Pipeline Step",
+    "tags": [
+      "System Test"
+    ],
+    "title": "Automated Load Test",
+    "subtitle": "Test Step",
+    "content": "Bombard the system with\nmany concurrent requests,\nmeasure response times and\nsystem performance.",
+    "number": 20,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "Q8339NFFpyhfDz83s0ke": {
+    "type": "Pipeline Step",
+    "tags": [],
+    "title": "Static Code Analysis",
+    "subtitle": "Test Step",
+    "content": "Run a tool on the source code\nthat measures complexity,\nclass and method size, circular\ndependencies, etc. Assess\nwhether measured values are\nacceptable compared to a\nstandard.",
+    "number": 21,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "EWGhSgDp444Bvx90TI9W": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Manual Step",
+      "System Test"
+    ],
+    "title": "User Acceptance Testing",
+    "subtitle": "Test Step",
+    "content": "End-user representatives\nvalidate that the functionality\nworks in the way they want it\nto work.",
+    "number": 22,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "7tuSNJdQmKPnGIaqrf6u": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Manual Step",
+      "System Test"
+    ],
+    "title": "Security & Penetration Testing",
+    "subtitle": "Test Step",
+    "content": "Skilled testers explore the\nsystem in a structured way\nlooking for security issues.",
+    "number": 23,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "KRdlU3yCjCDu7LXDDkkQ": {
+    "type": "Pipeline Step",
+    "tags": [],
+    "title": "Code is Merged to Trunk (Master)",
+    "subtitle": "Delivery Step",
+    "content": "All developers can now see,\nuse, and build on this code.\nYou cannot build the Release\nCandidate before this pipeline\nstep has completed.",
+    "number": 24,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "aqmtzNJsJ2Rq0amtNaVC": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Manual Step",
+      "System Test"
+    ],
+    "title": "Usability Testing",
+    "subtitle": "Test Step",
+    "content": "UX experts observe real users\nusing the system to see how\nthey behave and how they use\nfeatures.",
+    "number": 25,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "9tzSep5ORXJoylxVlb6M": {
+    "type": "Pipeline Step",
+    "tags": [
+      "System Test"
+    ],
+    "title": "Automated Smoke Test",
+    "subtitle": "Test Step",
+    "content": "One very basic feature is\nexercised, such as “View the\nlogin screen”. Nothing more is\ntested.",
+    "number": 26,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "Smxjkq3JZNEJ7r3zVfyK": {
+    "type": "Pipeline Step",
+    "tags": [
+      "System Test"
+    ],
+    "title": "Automated User Interface Testing",
+    "subtitle": "Test Step",
+    "content": "Test scripts exercise a wide\nvariety of functionality in the\nsystem, using the UI in the\nsame way as an actual user.",
+    "number": 27,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "EoORqrovfdC02W0GWKyb": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Deploy Step"
+    ],
+    "title": "Deploy on Build Agent",
+    "subtitle": "Deployment Step",
+    "content": "The whole system is deployed\non a single machine. Third\nparty services are replaced by\nmocks or stubs. Databases,\nload balancers, and queues\nmay be omitted, or substituted\nby in-memory lightweight\nalternatives.",
+    "number": 28,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "euc9onmGXFCKz4EMXAh2": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Manual Step"
+    ],
+    "title": "Code Review",
+    "subtitle": "Test Step",
+    "content": "Source code is examined and\nassessed by developers other\nthan the original author.",
+    "number": 29,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "15tVTz9XKHPxagkBwFLD": {
+    "type": "Pipeline Step",
+    "tags": [
+      "System Test"
+    ],
+    "title": "Deployment Health Check",
+    "subtitle": "Test Step",
+    "content": "Verify the software has deployed\ncorrectly. For example, you could\ncheck:\n• The database schema is valid.\n• All services are registered and\ndiscoverable.\n• Needed ports are opened.\n• Logs are being produced.",
+    "number": 30,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "TdUxJ7APAa8mHfANtlRn": {
+    "type": "Pipeline Step",
+    "tags": [],
+    "title": "Contract Testing",
+    "subtitle": "Test Step",
+    "content": "Verify the software will integrate\ncorrectly with a third party service\nby ensuring it fulfills the contract\nrequired by that service. The\ncontract test should be supplied by\nthe third party and is run against\nour software.",
+    "number": 31,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "16c8sWQTSXcXoFx3QJCe": {
+    "type": "Pipeline Step",
+    "tags": [],
+    "title": "Third Party Integration Testing",
+    "subtitle": "Test Step",
+    "content": "Verify the system talks to a third\nparty service correctly. The third\nparty may provide a ‘test’ version\nof their component, for example a\npayment service that doesn’t make\nreal payments.",
+    "number": 32,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "oW2c37tpOK3qYQWdb9M7": {
+    "type": "Pipeline Step",
+    "tags": [],
+    "title": "Component Testing",
+    "subtitle": "Test Step",
+    "content": "Test only one component of\nthe system. Replace the other\ncomponents with mocks or fake\nobjects.\nAlso known as ‘module testing.’",
+    "number": 33,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "6IqpaCa4X9RfXlJS9WE3": {
+    "type": "Pipeline Step",
+    "tags": [
+      "System Test"
+    ],
+    "title": "Automated Functional Testing",
+    "subtitle": "Test Step",
+    "content": "These tests each execute a\nfunction of the system, checking\nboth happy paths and error\nconditions. They use an API to\naccess functionality instead of the\nUser Interface.",
+    "number": 34,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "ST0wgNZhTclzqSRizg0Y": {
+    "type": "Pipeline Step",
+    "tags": [
+      "System Test"
+    ],
+    "title": "End-to-End Testing",
+    "subtitle": "Test Step",
+    "content": "These tests execute all parts of\nthe system, including third party\ncomponents. They may be manual\nor automated.",
+    "number": 35,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "gkCXoVnzA0r3TM3xJZsh": {
+    "type": "Pipeline Step",
+    "tags": [],
+    "title": "Create Release Notes",
+    "subtitle": "Build Step",
+    "content": "Alongside the Release Candidate,\nwe also publish notes about what\nchanges are included in this\ndeployment. The release notes\nmay be assembled by hand or\ngenerated automatically.",
+    "number": 36,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "KdqSH6RykC4qsYENGpnh": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Package"
+    ],
+    "title": "Build Snapshot Version",
+    "subtitle": "Build Step",
+    "content": "Code is compiled and built\ninto a deployable unit, which\nis labelled as “snapshot.”\nThis means it is not suitable for\ndeployment in production, it is\nonly for testing.",
+    "number": 37,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "V3KgW196nrobZiQXAL5g": {
+    "type": "Pipeline Step",
+    "tags": [],
+    "title": "Decide Release Version Number",
+    "subtitle": "Build Step",
+    "content": "When the package is deployed\nit should have a unique\nname or number to identify\nit, for example “4.6.12” or\n“989c45ef21” or “gingerbread.”\nIt could be automatically\ngenerated, or decided manually.",
+    "number": 38,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "4OLftJ9cS5lJ49xtdUzT": {
+    "type": "Pipeline Step",
+    "tags": [
+      "Manual Step"
+    ],
+    "title": "Go/No Go Decision Meeting",
+    "subtitle": "Test Step",
+    "content": "A group of managers, testers and\nother stakeholders meet to assess\nwhether to deploy the new version\nof the software. They base their\ndecision on test results, perceived\nrisks, market conditions and cost\nof delay.",
+    "number": 39,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  }
+}
