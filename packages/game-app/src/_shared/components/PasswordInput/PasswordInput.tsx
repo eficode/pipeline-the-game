@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button } from '@pipeline/ui-kit';
+import styled from 'styled-components';
 
 type Props = {
   name: string;
@@ -8,6 +10,15 @@ type Props = {
   errorMessage?: string | null;
 };
 
+const IconDiv = styled.div`
+  position: relative;
+  & input + button {
+    //TODO improve here
+    position: absolute;
+    right: 10px;
+  }
+`;
+
 const PasswordInput: React.FC<Props> = ({ name, value, errorMessage, label, onChange }) => {
   const [type, setType] = useState<'text' | 'password'>('password');
 
@@ -16,12 +27,12 @@ const PasswordInput: React.FC<Props> = ({ name, value, errorMessage, label, onCh
   return (
     <div className="column">
       <label htmlFor={name}>{label}</label>
-      <div className="p-relative">
+      <IconDiv>
         <input type={type} value={value} name={name} id={name} onChange={onChange} />
-        <button type="button" className="icon-button" onClick={toggleType}>
-          <i className="gg-eye"></i>
-        </button>
-      </div>
+        <Button variant="icon" onClick={toggleType}>
+          <i className="gg-eye" />
+        </Button>
+      </IconDiv>
       {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
     </div>
   );

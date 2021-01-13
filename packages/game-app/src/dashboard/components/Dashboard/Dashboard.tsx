@@ -3,6 +3,7 @@ import { useTranslate } from '@pipeline/i18n';
 import { useLogout } from '@pipeline/auth';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from '@pipeline/routing';
+import { Link } from '@pipeline/ui-kit';
 
 type Props = {};
 
@@ -15,9 +16,7 @@ const Dashboard: React.FC<Props> = () => {
   return (
     <div className="dashboard">
       <div className="sign-out-button">
-        <button type="button" className="link" onClick={executeLogout}>
-          {t('auth.logout')}
-        </button>
+        <Link onClick={executeLogout}>{t('auth.logout')}</Link>
       </div>
       <h1>{t('dashboard.title')}</h1>
       <h2>{t('dashboard.subtitle')}</h2>

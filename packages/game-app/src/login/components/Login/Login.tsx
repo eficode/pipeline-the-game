@@ -6,6 +6,7 @@ import { useTranslate } from '@pipeline/i18n';
 import { useLogin } from '@pipeline/auth';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from '@pipeline/routing';
+import { Button, Link } from '@pipeline/ui-kit';
 
 type Props = {};
 
@@ -40,17 +41,13 @@ const Login: React.FC<Props> = () => {
           <FormTextField name="email" label={t('login.form.emailLabel')} />
           <FormTextField CustomInput={PasswordInput} name="password" label={t('login.form.passwordLabel')} />
           <div className="text-center">
-            <button type="button" className="primary" onClick={submit}>
-              {t('login.form.buttonText')}
-            </button>
+            <Button onClick={submit}>{t('login.form.buttonText')}</Button>
           </div>
           {translatedError ? <span className="error-message">{translatedError}</span> : null}
           {loading ? <span>Loading</span> : null}
           <div className="text-center">
             <span>{t('login.notYetAccount')}</span>&nbsp;
-            <button type="button" className="link" onClick={goToSignUp}>
-              {t('login.goToSignup')}
-            </button>
+            <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
           </div>
         </FormProvider>
       </div>
