@@ -7,4 +7,6 @@ export interface RequestsKeys {
   'auth.emailVerification': null;
   'auth.login': null;
   'auth.logout': null;
+  'game.loadCards': null;
+  createGame: null;
 }

@@ -2,6 +2,7 @@ import * as admin from 'firebase-admin';
 
 import fs from 'fs';
 import readline from 'readline';
+import {WhereFilterOp, Query} from '@google-cloud/firestore';
 
 export async function getFirebaseUserByEmail(adminInstance: admin.app.App, {email}: { email: string }): Promise<admin.auth.UserRecord> {
   return adminInstance.auth().getUserByEmail(email.toLocaleLowerCase());
@@ -66,4 +67,17 @@ export async function initializeUser(adminInstance: admin.app.App, {
   })
 
   return user;
+}
+
+
+export async function queryFirestore(adminInstance: admin.app.App, {
+  collection,
+  data
+}: { collection: string; data?: { field: string; condition: WhereFilterOp; value: any; } }) {
+
+  let query: Query = admin.firestore().collection(collection);
+  if (data) {
+    query = query.where(data.field, data.condition, data.value);
+  }
+  return query.get().then(res => res.docs.map(d => ({id: d.id, ...d.data()})));
 }

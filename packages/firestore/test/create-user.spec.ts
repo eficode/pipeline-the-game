@@ -1,5 +1,5 @@
 import * as firebase from "@firebase/rules-unit-testing";
-import {reinitializeFirestore} from "./utils";
+import {getAuthedFirestore, reinitializeFirestore} from "./utils";
 import {FirebaseCollections, FirebaseDocs} from '@pipeline/common/build/cjs'
 
 const PROJECT_ID = "firestore-emulator-example-" + Math.floor(Math.random() * 1000);
@@ -7,16 +7,6 @@ const PROJECT_ID = "firestore-emulator-example-" + Math.floor(Math.random() * 10
 
 const COVERAGE_URL = `http://${process.env.FIRESTORE_EMULATOR_HOST}/emulator/v1/projects/${PROJECT_ID}:ruleCoverage.html`;
 
-type Auth = Parameters<typeof firebase.initializeTestApp>[0]['auth'];
-
-/**
- * Creates a new client FirebaseApp with authentication and returns the Firestore instance.
- */
-function getAuthedFirestore(auth: Auth) {
-  return firebase
-    .initializeTestApp({projectId: PROJECT_ID, auth})
-    .firestore();
-}
 
 
 beforeEach(async () => {
@@ -31,7 +21,7 @@ after(async () => {
 describe("User create", () => {
 
   it("should not allow user creation if not authenticated", async () => {
-    const db = getAuthedFirestore(undefined);
+    const db = getAuthedFirestore(PROJECT_ID, undefined);
     const profile = db.collection(FirebaseCollections.Users).doc("alice");
     const rolesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`).get();
     const maturitiesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.DevOpsMaturities}`).get();
@@ -47,7 +37,7 @@ describe("User create", () => {
   it("should allow user creation with correct data", async () => {
     const userUID = 'test';
     const email = 'test@email.com';
-    const db = getAuthedFirestore({uid: 'test', email});
+    const db = getAuthedFirestore(PROJECT_ID, {uid: 'test', email});
     const profile = db.collection(FirebaseCollections.Users).doc(userUID);
     const rolesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`).get();
     const maturitiesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.DevOpsMaturities}`).get();
@@ -63,7 +53,7 @@ describe("User create", () => {
   it("should not allow user creation with invalid role", async () => {
     const userUID = 'test';
     const email = 'test@email.com';
-    const db = getAuthedFirestore({uid: 'test', email});
+    const db = getAuthedFirestore(PROJECT_ID, {uid: 'test', email});
     const profile = db.collection(FirebaseCollections.Users).doc(userUID);
     const maturitiesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.DevOpsMaturities}`).get();
     const realMaturity = maturitiesDoc.data().maturities[0];
@@ -77,7 +67,7 @@ describe("User create", () => {
   it("should not allow user creation with invalid maturity", async () => {
     const userUID = 'test';
     const email = 'test@email.com';
-    const db = getAuthedFirestore({uid: 'test', email});
+    const db = getAuthedFirestore(PROJECT_ID, {uid: 'test', email});
     const profile = db.collection(FirebaseCollections.Users).doc(userUID);
     const rolesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`).get();
     const realRole = rolesDoc.data().roles[0];
@@ -91,7 +81,7 @@ describe("User create", () => {
   it("should not allow a user creation if the authenticated request has an email different from the user that is being created", async () => {
     const userUID = 'test';
     const email = 'test@email.com';
-    const db = getAuthedFirestore({uid: 'test', email});
+    const db = getAuthedFirestore(PROJECT_ID, {uid: 'test', email});
     const profile = db.collection(FirebaseCollections.Users).doc(userUID);
     const rolesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`).get();
     const maturitiesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.DevOpsMaturities}`).get();
@@ -107,7 +97,7 @@ describe("User create", () => {
   it("should not allow user creation if the request contains unexpected fields", async () => {
     const userUID = 'test';
     const email = 'test@email.com';
-    const db = getAuthedFirestore({uid: 'test', email});
+    const db = getAuthedFirestore(PROJECT_ID, {uid: 'test', email});
     const profile = db.collection(FirebaseCollections.Users).doc(userUID);
     const rolesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`).get();
     const maturitiesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.DevOpsMaturities}`).get();
@@ -124,7 +114,7 @@ describe("User create", () => {
   it("should not allow user creation if the request does not contain all fields", async () => {
     const userUID = 'test';
     const email = 'test@email.com';
-    const db = getAuthedFirestore({uid: 'test', email});
+    const db = getAuthedFirestore(PROJECT_ID, {uid: 'test', email});
     const profile = db.collection(FirebaseCollections.Users).doc(userUID);
     const rolesDoc = await db.doc(`${FirebaseCollections.DynamicData}/${FirebaseDocs.GameRoles}`).get();
     const realRole = rolesDoc.data().roles[0];

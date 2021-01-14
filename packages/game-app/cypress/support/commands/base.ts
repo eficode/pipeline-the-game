@@ -61,6 +61,6 @@ Cypress.Commands.add('clearIndexedDB', async () => {
 
 
 Cypress.Commands.add('getInputByName', (name: string, options: Parameters<typeof cy.get>[1]) => {
-  cy.get(`input[name="${name}"],select[name="${name}"]`, options);
+  cy.get(`input[name="${name}"],select[name="${name}"],textarea[name="${name}"]`, options);
 });
 

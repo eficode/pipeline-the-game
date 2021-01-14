@@ -1,6 +1,6 @@
 {
   "51xgCF43n5iaMNLkxGs9": {
-    "type": "Scenario",
+    "type": "scenario",
     "tags": null,
     "title": "Social Media Online Application",
     "subtitle": null,
@@ -9,7 +9,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "1Zs45g2y6GSE5s4XS9BA": {
-    "type": "Scenario",
+    "type": "scenario",
     "tags": null,
     "title": "Online Payments for Solar Power",
     "subtitle": null,
@@ -18,7 +18,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "G5JfGVoM7SZ6jOsdjWWp": {
-    "type": "Scenario",
+    "type": "scenario",
     "tags": null,
     "title": "Fitness & Running Mobile App",
     "subtitle": null,
@@ -27,7 +27,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "UUmhPl9KzWZ3v7Vt7nrT": {
-    "type": "Scenario",
+    "type": "scenario",
     "tags": null,
     "title": "Photo Editing Software",
     "subtitle": null,
@@ -36,7 +36,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "k4ourZRR6MBxmfXJiDd5": {
-    "type": "Scenario",
+    "type": "scenario",
     "tags": null,
     "title": "Classified Ads for Second-Hand Items",
     "subtitle": null,

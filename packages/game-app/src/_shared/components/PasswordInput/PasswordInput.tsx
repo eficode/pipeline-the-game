@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 type Props = {
   name: string;
-  label: string;
+  label?: string;
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   errorMessage?: string | null;

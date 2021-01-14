@@ -24,9 +24,13 @@ const collectionObjects = files.map((file) => {
  * @param projectId
  */
 export async function reinitializeFirestore(projectId: string) {
-  await firebase.clearFirestoreData({projectId});
-  await loadData(projectId);
-  await firebase.loadFirestoreRules({projectId, rules});
+  try {
+    await firebase.clearFirestoreData({projectId});
+    await loadData(projectId);
+    await firebase.loadFirestoreRules({projectId, rules});
+  } catch (e) {
+    console.error(e);
+  }
 
 }
 
@@ -49,4 +53,13 @@ async function loadData(projectId: string) {
   }
 
   await batch.commit();
+}
+
+type Auth = Parameters<typeof firebase.initializeTestApp>[0]['auth'];
+
+/**
+ * Creates a new client FirebaseApp with authentication and returns the Firestore instance.
+ */
+export function getAuthedFirestore(projectId: string, auth: Auth) {
+  return firebase.initializeTestApp({ projectId, auth }).firestore();
 }

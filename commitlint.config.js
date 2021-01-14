@@ -8,7 +8,8 @@ const scopes = [
     "board",
     "general",
     "rules",
-    "release"
+    "release",
+    "create-game"
 ];
 const _prefixed = scopes.map((s) => apps.map((p) => `${p}-${s}`));
 const scopeEnum = [].concat.apply([], _prefixed);

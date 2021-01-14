@@ -10,6 +10,7 @@ const VerifyEmail = React.lazy(() => import('./signup/components/VerifyEmail'));
 const Dashboard = React.lazy(() => import('./dashboard/components/Dashboard'));
 const Login = React.lazy(() => import('./login/components/Login'));
 const GameView = React.lazy(() => import('./gameView/components/GameView'));
+const CreateGameView = React.lazy(() => import('./createGame/components/CreateGameView'));
 
 /**
  * Returns route and default redirect according to auth condition:
@@ -56,7 +57,8 @@ function App() {
     <Suspense fallback={null}>
       <Switch>
         <PrivateRoute path={RoutingPath.Dashboard} component={Dashboard} />
-        <PrivateRoute path={RoutingPath.Game} component={GameView} />
+        <PrivateRoute path={`${RoutingPath.Game}/:id`} component={GameView} />
+        <PrivateRoute path={RoutingPath.CreateGame} component={CreateGameView} />
         {renderAuthRoutes(user)}
       </Switch>
     </Suspense>

@@ -12,9 +12,43 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    match /cards/{cardId} {
+      allow read: if isAuthenticated();
+    }
+
+    match /decks/{deckId} {
+      allow read: if isAuthenticated();
+    }
+
     match /users/{userId} {
       allow read: if userId == authUserUid();
       allow create: if userId == authUserUid() && isValidUserCreate();
+    }
+
+    match /games/{gameId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isValidGameCreate();
+    }
+
+    function isValidGameCreate() {
+      let facilitatorId = authUserUid();
+      let gameData = getDataToWrite();
+      let scenarioCard = getDocumentData(/cards/$(gameData.scenarioCardId));
+
+      return gameData.keys().hasOnly(['scenarioTitle', 'scenarioContent', 'scenarioCardId', 'deckId', 'facilitator', 'createdAt']) &&
+      (
+        (gameData.scenarioCardId != null && exists(/databases/$(database)/documents/cards/$(gameData.scenarioCardId)) &&
+          getDocumentData(/cards/$(gameData.scenarioCardId)).title == gameData.scenarioTitle &&
+          getDocumentData(/cards/$(gameData.scenarioCardId)).content == gameData.scenarioContent)
+        ||
+        (gameData.scenarioCardId == null &&
+        isStringShorterThan(gameData.scenarioTitle, 100) &&
+        isStringShorterThan(gameData.scenarioContent, 3000))
+      ) &&
+      exists(/databases/$(database)/documents/decks/$(gameData.deckId)) &&
+      isMapBigAs(gameData.facilitator, 1) &&
+      isServerCreationTime(gameData.createdAt) &&
+      facilitatorId == gameData.facilitator.id;
     }
 
     function isValidUserCreate() {
@@ -28,6 +62,17 @@ service cloud.firestore {
         && allowedMaturities.hasAny([userData.devOpsMaturity]);
     }
 
+    function isMapBigAs(val, size) {
+      return val is map && val.size() == size;
+    }
+
+    function isStringShorterThan(val, len) {
+      return val is string && val.size() < len;
+    }
+
+    function isServerCreationTime(val) {
+      return val == request.time;
+    }
 
     function getDocumentData(documentPath) {
       return get(/databases/$(database)/documents/$(documentPath)).data;
@@ -39,6 +84,10 @@ service cloud.firestore {
 
     function authUserUid() {
       return request.auth.uid;
+    }
+
+    function isAuthenticated() {
+      return request.auth != null && request.auth.token.email_verified;
     }
 
   }

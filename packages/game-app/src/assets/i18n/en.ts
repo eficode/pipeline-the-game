@@ -5,9 +5,16 @@ const translations = {
     },
     logout: 'Sign out',
   },
+  createGame: {
+    title: 'Choose a scenario',
+    subtitle: 'Premade {{cardsCount}}',
+    writeYours: 'Make your own',
+    createButtonText: 'Start Game',
+  },
   dashboard: {
     title: 'Pipeline',
     subtitle: 'The Game that Delivers',
+    newGameLabel: 'Create game',
     message:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
   },
@@ -53,6 +60,7 @@ const translations = {
     },
   },
   general: {
+    cancel: 'Cancel',
     errors: {
       required: 'This field is required',
     },
