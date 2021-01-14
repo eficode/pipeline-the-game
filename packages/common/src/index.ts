@@ -3,6 +3,8 @@ import {FirebaseDocs} from "./firebaseDocs";
 import {DevOpsMaturitiesDoc} from "./devOpsMaturitiesDoc";
 import {GameRolesDoc} from "./gameRolesDoc";
 import {Card, CardTypes, CardTags} from "./card";
+import {Game} from "./game";
+import {ShortUser} from "./user";
 
 export {
   FirebaseCollections,
@@ -14,6 +16,8 @@ export {
 export type {
   DevOpsMaturitiesDoc,
   GameRolesDoc,
-  Card
+  Card,
+  Game,
+  ShortUser
 };
 
