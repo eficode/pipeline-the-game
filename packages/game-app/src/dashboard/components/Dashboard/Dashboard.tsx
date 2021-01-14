@@ -21,6 +21,9 @@ const Dashboard: React.FC<Props> = () => {
       <h1>{t('dashboard.title')}</h1>
       <h2>{t('dashboard.subtitle')}</h2>
       <p>{t('dashboard.message')}</p>
+      <button type="button" className="primary test-game" onClick={() => history.push(RoutingPath.CreateGame)}>
+        {t('dashboard.newGameLabel')}
+      </button>
       <button type="button" className="link test-game" onClick={() => history.push(RoutingPath.Game)}>
         Game board test
       </button>

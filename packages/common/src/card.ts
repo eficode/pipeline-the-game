@@ -23,3 +23,5 @@ export interface Card {
   number: number,
   deckId: string
 }
+
+export type CardEntity = Card & {id:string};

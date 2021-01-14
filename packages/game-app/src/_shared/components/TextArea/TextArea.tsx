@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 type Props = {
   name: string;
@@ -6,20 +7,24 @@ type Props = {
   value: string;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
   errorMessage?: string | null;
-  type?: string;
   disabled?: boolean;
 };
 
-const TextInput: React.FC<Props> = ({ name, value, errorMessage, label, onChange, type = 'text', disabled }) => {
+const StyledTextArea = styled.textarea`
+  border: 0;
+  border-radius: 10px;
+`;
+
+const TextArea: React.FC<Props> = ({ name, value, errorMessage, label, onChange, disabled }) => {
   return (
     <div className="column">
       {label ? <label htmlFor={name}>{label}</label> : null}
-      <input disabled={disabled} type={type} value={value} name={name} id={name} onChange={onChange} />
+      <StyledTextArea rows={4} disabled={disabled} value={value} name={name} id={name} onChange={onChange as any} />
       {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
     </div>
   );
 };
 
-TextInput.displayName = 'TextInput';
+TextArea.displayName = 'TextArea';
 
-export default TextInput;
+export default TextArea;

@@ -43,7 +43,7 @@ const Game: React.FC<{ pan: { x: number; y: number }; scale: number }> = React.m
   return (
     <CardsGameListeners onEvent={onCardEvent} boardScale={scale} panAmount={pan} currentGameState={state}>
       <div className="board-wrapper">
-        <TransformComponent>
+        <TransformComponent ref={ref => console.debug('ref', ref)}>
           <Board>
             {Object.entries(state)
               .filter(([key, state]) => state.placedIn === 'board')
@@ -65,9 +65,10 @@ const Game: React.FC<{ pan: { x: number; y: number }; scale: number }> = React.m
 });
 
 const wheelConfig = { step: 70 };
-const transformOptions = {
+const transformOptions: React.ComponentProps<typeof TransformWrapper>['options'] = {
   minScale: 0.5,
-};
+  contentClass: 'zooming-panning-board',
+} as any;
 
 const GameView: React.FC = () => {
   const renderGame = useCallback((transformProps: TansformRenderProps) => {

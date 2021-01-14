@@ -20,11 +20,13 @@ export function translateFactory(language: string) {
     key: Path<typeof enTranslations>,
     options?: {
       default?: string;
+      data?: object;
     },
   ) {
     return I18n.t(key, {
       locale: language,
       defaultValue: options?.default,
+      ...(options?.data || {}),
     });
   };
 }

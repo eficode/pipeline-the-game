@@ -11,16 +11,17 @@ type Props = {
   /**
    * Label to show over the input
    */
-  label: string;
+  label?: string;
   type?: string;
   CustomInput?: React.ComponentType<React.ComponentProps<typeof TextInput>>;
+  disabled?: boolean;
 };
 
 /**
  * Input directly connected to the parent form that includes error message
  * visualization. Its value can be found under the {name} key in the form
  */
-const FormTextField: React.FC<Props> = ({ name, label, type, CustomInput }) => {
+const FormTextField: React.FC<Props> = ({ name, label, type, CustomInput, disabled }) => {
   const data = useFormContext();
 
   const error = data.errors[name];
@@ -46,10 +47,11 @@ const FormTextField: React.FC<Props> = ({ name, label, type, CustomInput }) => {
           onChange={props.onChange}
           errorMessage={translatedError}
           type={type}
+          disabled={disabled}
         />
       );
     },
-    [translatedError, label, type, CustomInput],
+    [CustomInput, label, translatedError, type, disabled],
   );
 
   return (

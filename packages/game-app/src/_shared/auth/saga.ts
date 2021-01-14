@@ -36,6 +36,7 @@ function* executeEmailVerification(action: ReturnType<typeof actions.verifyEmail
   // need to refresh user to get token with email verified set to true
   if (currentUser && firebaseUser) {
     yield call(() => firebaseUser.reload());
+    yield call(() => firebaseUser.getIdToken(true));
     const newUser = firebase.auth().currentUser!;
     yield put(
       actions.setLoggedUser({
