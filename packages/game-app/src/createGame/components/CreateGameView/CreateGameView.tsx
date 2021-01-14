@@ -19,9 +19,7 @@ type Props = {};
 const CreateGameView: React.FC<Props> = () => {
   const [selectedScenarioCard, setSelectedScenario] = useState<string | null>(null);
 
-  const selectScenario = useCallback((scenarioId: string) => {
-    setSelectedScenario(prevState => (scenarioId === prevState ? null : scenarioId));
-  }, []);
+  const t = useTranslate();
 
   const methods = useForm<GameCreationData>({
     defaultValues: {
@@ -32,11 +30,21 @@ const CreateGameView: React.FC<Props> = () => {
     resolver: yupResolver(createGameValidationSchema),
   });
 
-  const t = useTranslate();
-
   const { handleSubmit } = methods;
 
-  const { call, success, loading, translatedError } = useCreateGame();
+  const { setValue, clearErrors } = methods;
+
+  const selectScenario = useCallback(
+    (scenarioId: string) => {
+      setSelectedScenario(prevState => (scenarioId === prevState ? null : scenarioId));
+      setValue('scenarioTitle', '');
+      setValue('scenarioContent', '');
+      clearErrors();
+    },
+    [setValue, clearErrors],
+  );
+
+  const { call, success, loading, translatedError, newCreatedId } = useCreateGame();
 
   const { cards } = useCards(CardTypes.Scenario);
 
@@ -58,7 +66,7 @@ const CreateGameView: React.FC<Props> = () => {
 
   const history = useHistory();
 
-  useNavigateOnCondition(success, RoutingPath.Game);
+  useNavigateOnCondition(success, `${RoutingPath.Game}/${newCreatedId}`);
 
   const cancel = useCallback(() => {
     history.replace(RoutingPath.Dashboard);
@@ -92,7 +100,7 @@ const CreateGameView: React.FC<Props> = () => {
                 {translatedError && <span className="error-message">{translatedError}</span>}
               </div>
               <div className="text-center">
-                <Link onClick={cancel}>{t('createGame.createButtonText')}</Link>
+                <Link onClick={cancel}>{t('general.cancel')}</Link>
               </div>
             </div>
           </form>

@@ -2,24 +2,29 @@ import React from 'react';
 import styled from 'styled-components';
 
 type Props = {
+  id: string;
   title: string;
   content: string;
   selected: boolean;
   onClick: () => void;
 };
 
-const ScenarioCard = styled.div<{ selected: boolean }>(({ selected }) => ({
-  minWidth: '400px',
-  height: '408px',
-  background: 'white',
-  borderRadius: '10px',
-  backdropFilter: 'blur(20px)',
-  padding: selected ? '22px' : '24px',
-  marginRight: '20px',
-  boxSizing: 'border-box',
-  border: selected ? '2px solid #00867C' : '',
-}));
+const ScenarioCard = styled.div<{ selected: boolean }>`
+  min-width: 400px;
+  height: 408px;
+  background: white;
+  border-radius: 10px;
+  backdrop-filter: blur(20px);
+  padding: ${({ selected }) => (selected ? '22px' : '24px')};
+  margin-right: 20px;
+  box-sizing: border-box;
+  border: ${({ selected }) => (selected ? '2px solid #00867C' : '')};
+  transition: transform 0.5s;
 
+  &:hover {
+    transform: translate(0, -20px);
+  }
+`;
 const ScenarioTitle = styled.h5({
   fontSize: '20px',
   fontWeight: 'bold',
@@ -37,9 +42,9 @@ const ScenarioContent = styled.div({
   lineHeight: '22px',
 });
 
-const SelectableScenario: React.FC<Props> = ({ title, content, selected, onClick }) => {
+const SelectableScenario: React.FC<Props> = ({ id, title, content, selected, onClick }) => {
   return (
-    <ScenarioCard selected={selected} onClick={onClick}>
+    <ScenarioCard id={`scenario-${id}`} selected={selected} onClick={onClick}>
       <ScenarioTitle>{title}</ScenarioTitle>
       <ScenarioContent>{content}</ScenarioContent>
     </ScenarioCard>

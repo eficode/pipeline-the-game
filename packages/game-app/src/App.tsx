@@ -57,7 +57,7 @@ function App() {
     <Suspense fallback={null}>
       <Switch>
         <PrivateRoute path={RoutingPath.Dashboard} component={Dashboard} />
-        <PrivateRoute path={RoutingPath.Game} component={GameView} />
+        <PrivateRoute path={`${RoutingPath.Game}/:id`} component={GameView} />
         <PrivateRoute path={RoutingPath.CreateGame} component={CreateGameView} />
         {renderAuthRoutes(user)}
       </Switch>

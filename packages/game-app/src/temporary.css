@@ -275,6 +275,8 @@ input + button.icon-button {
   display: inline-block;
   z-index: 100;
   padding: 15px;
+  box-sizing: border-box;
+  border: 1px solid black;
 }
 
 .draggable {

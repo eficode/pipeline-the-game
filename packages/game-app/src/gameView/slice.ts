@@ -10,12 +10,14 @@ import { CardEntity } from '@pipeline/common';
 
 export interface State {
   cards: EntityState<CardEntity>;
+  selectedGameId: string | null;
 }
 
 const adapter = createEntityAdapter<CardEntity>();
 
 const initialState = {
   cards: adapter.getInitialState(),
+  selectedGameId: null,
 } as State;
 
 const slice = createSlice({
@@ -24,6 +26,9 @@ const slice = createSlice({
   reducers: {
     saveCards(state, action: PayloadAction<CardEntity[]>) {
       state.cards = adapter.addMany(state.cards, action.payload);
+    },
+    setSelectedGameId(state, action: PayloadAction<string>) {
+      state.selectedGameId = action.payload;
     },
   },
 });
@@ -37,6 +42,8 @@ const getSlice = createSelector(
 
 const getAllCards = createSelector(getSlice, slice => cardsEntitiesSelectors.selectAll(slice.cards));
 
+const getSelectedGameId = createSelector(getSlice, slice => slice.selectedGameId);
+
 export const reducer = slice.reducer;
 export const name = slice.name;
 
@@ -47,4 +54,5 @@ export const actions = {
 
 export const selectors = {
   getAllCards,
+  getSelectedGameId,
 };

@@ -24,7 +24,7 @@ const Dashboard: React.FC<Props> = () => {
       <button type="button" className="primary test-game" onClick={() => history.push(RoutingPath.CreateGame)}>
         {t('dashboard.newGameLabel')}
       </button>
-      <button type="button" className="link test-game" onClick={() => history.push(RoutingPath.Game)}>
+      <button type="button" className="link test-game" onClick={() => history.push(`${RoutingPath.Game}/test-id`)}>
         Game board test
       </button>
     </div>

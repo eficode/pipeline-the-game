@@ -9,7 +9,7 @@ import { RoutingPath } from './routingPath';
  * @param condition the condition to check
  * @param route the route to go
  */
-export default function useNavigateOnCondition(condition: boolean, route: RoutingPath) {
+export default function useNavigateOnCondition(condition: boolean, route: RoutingPath | string) {
   const [alreadyNavigated, setAlreadyNavigated] = useState<boolean>(false);
 
   const history = useHistory();

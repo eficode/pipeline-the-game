@@ -14,8 +14,8 @@ const Wrapper = styled.div`
   flex-direction: row;
   padding: 5px;
   overflow-x: scroll;
-  overflow-y: hidden;
   height: 433px;
+  padding-top: 20px;
 
   ::-webkit-scrollbar {
     height: 6px;
@@ -36,12 +36,14 @@ const ScenariosList: React.FC<Props> = ({ cards, onScenarioSelected, selectedSce
 
   return (
     <Wrapper>
-      {cards.map((value, index) => (
+      {cards.map((card, index) => (
         <SelectableScenario
-          title={value.title}
-          content={value.content}
+          key={card.id}
+          id={card.id}
+          title={card.title}
+          content={card.content}
           onClick={callbacks[index]}
-          selected={selectedScenario === value.id}
+          selected={selectedScenario === card.id}
         />
       ))}
     </Wrapper>

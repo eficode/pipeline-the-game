@@ -5,7 +5,7 @@ import { FirebaseCollections, Game } from '@pipeline/common';
 
 const DEFAULT_DECK_ID = '7p5qqvE8kCV9WWysVc2n';
 
-export default function callCreateGame(data: GameCreationData, userId: string) {
+export default function callCreateGame(data: GameCreationData, userId: string): Promise<string> {
   return firebase
     .firestore()
     .collection(FirebaseCollections.Games)
@@ -18,5 +18,6 @@ export default function callCreateGame(data: GameCreationData, userId: string) {
       },
       deckId: DEFAULT_DECK_ID,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-    } as Game);
+    } as Game)
+    .then(res => res.id);
 }

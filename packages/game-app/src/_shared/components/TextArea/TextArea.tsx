@@ -13,6 +13,7 @@ type Props = {
 const StyledTextArea = styled.textarea`
   border: 0;
   border-radius: 10px;
+  resize: none;
 `;
 
 const TextArea: React.FC<Props> = ({ name, value, errorMessage, label, onChange, disabled }) => {
