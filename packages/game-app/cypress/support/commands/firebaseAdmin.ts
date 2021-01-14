@@ -1,4 +1,5 @@
 /// <reference types="Cypress" />
+import firebase from "firebase/app";
 
 // @ts-ignore
 Cypress.Commands.add('getFirebaseUserByEmail', (email: string) => {
@@ -8,6 +9,10 @@ Cypress.Commands.add('getFirebaseUserByEmail', (email: string) => {
 
 Cypress.Commands.add('getFirestoreDocument', (path: string) => {
   return cy.task('getFirestoreDocument', {path});
+});
+
+Cypress.Commands.add('queryFirestore', (collection: string, data: { field: string; condition: firebase.firestore.WhereFilterOp; value: any; }) => {
+  return cy.task('queryFirestore', {collection, data});
 });
 
 Cypress.Commands.add('getEmailVerificationLink', (email: string) => {

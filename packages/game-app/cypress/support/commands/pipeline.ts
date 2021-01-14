@@ -40,5 +40,6 @@ Cypress.Commands.add('fastLogin', (email: string, password: string) => {
       password: password
     }
   }, {log: false});
+  return cy.wait('@getUser', {log: false});
 });
 
