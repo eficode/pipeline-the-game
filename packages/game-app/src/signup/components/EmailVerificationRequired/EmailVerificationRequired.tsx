@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslate } from '@pipeline/i18n';
 import { useLogout, useResendVerificationEmail } from '@pipeline/auth';
+import { Button, Link } from '@pipeline/ui-kit';
 
 type Props = {};
 
@@ -14,13 +15,11 @@ const EmailVerificationRequired: React.FC<Props> = () => {
     <div className="content">
       <div className="card text-center">
         <h2>{t('signup.verificationRequired.message')}</h2>
-        <button type="button" className="primary" disabled={loading} onClick={resendEmail}>
+        <Button disabled={loading} onClick={resendEmail}>
           {t('signup.verificationRequired.resend')}
-        </button>
+        </Button>
         &nbsp;
-        <button type="button" className="link" onClick={executeLogout}>
-          {t('auth.logout')}
-        </button>
+        <Link onClick={executeLogout}>{t('auth.logout')}</Link>
         {success ? t('signup.verificationRequired.resendSuccess') : null}
         {translatedError ? <span className="error-message">{translatedError}</span> : null}
       </div>
