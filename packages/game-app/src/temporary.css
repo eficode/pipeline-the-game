@@ -215,3 +215,85 @@ input + button.icon-button {
   top: 15px;
   right: 60px;
 }
+
+.dashboard .test-game {
+  margin-left: 50px;
+  margin-top: 20px;
+}
+
+/*
+  game board
+ */
+
+.board-wrapper {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.board {
+  background-color: #ae8888;
+  width: 200vw;
+  height: 200vh;
+  padding: 16px;
+  position: relative;
+}
+
+.panel {
+  transition: 0.5s;
+}
+
+.panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;
+  height: 100vh;
+  background-color: #3e555b;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.panel .item + .item {
+  margin-top: 8px;
+}
+
+.panel.closed {
+  transform: translate(300px);
+}
+
+.react-transform-component {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.item {
+  width: 280px;
+  height: 200px;
+  border-radius: 20px;
+  background-color: white;
+  display: inline-block;
+  z-index: 100;
+  padding: 15px;
+}
+
+.draggable {
+  display: inline-block;
+  z-index: 100;
+}
+
+.board {
+  background-image: linear-gradient(transparent 11px, rgba(220, 220, 200, 0.8) 12px, transparent 12px),
+    linear-gradient(90deg, transparent 11px, rgba(220, 220, 200, 0.8) 12px, transparent 12px);
+  background-size: 100% 12px, 12px 100%;
+}
+
+.transform-0 {
+  transform-origin: 0px 0px !important;
+}
+
+.item.dragging {
+  opacity: 0.6;
+  box-sizing: border-box;
+  border: dashed 2px black;
+}
