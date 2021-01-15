@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '@pipeline/ui-kit';
+import { IconButton } from '@pipeline/components';
 import styled from 'styled-components';
 
 type Props = {
@@ -29,9 +29,9 @@ const PasswordInput: React.FC<Props> = ({ name, value, errorMessage, label, onCh
       <label htmlFor={name}>{label}</label>
       <IconDiv>
         <input type={type} value={value} name={name} id={name} onChange={onChange} />
-        <Button variant="icon" onClick={toggleType}>
+        <IconButton onClick={toggleType}>
           <i className="gg-eye" />
-        </Button>
+        </IconButton>
       </IconDiv>
       {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
     </div>

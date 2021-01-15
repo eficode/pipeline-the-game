@@ -10,7 +10,7 @@ import { useTranslate } from '@pipeline/i18n';
 import { PasswordInput } from '@pipeline/components';
 import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
 import { useHistory } from 'react-router-dom';
-import { Link, Button } from '@pipeline/ui-kit';
+import { Link, Button } from '@pipeline/components';
 
 type Props = {};
 
@@ -73,9 +73,7 @@ const Signup: React.FC<Props> = () => {
             <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
             <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
             <div className="text-center">
-              <Button id="signup-button" onClick={submit}>
-                {t('signup.form.buttonText')}
-              </Button>
+              <Button id="signup-button" label={t('signup.form.buttonText')} onClick={submit} />
             </div>
 
             {signupLoading ? <span>Loading</span> : null}

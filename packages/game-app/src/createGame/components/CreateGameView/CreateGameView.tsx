@@ -8,11 +8,12 @@ import { CardTypes } from '@pipeline/common';
 import ScenariosList from '../ScenariosList';
 import { FormTextField } from '@pipeline/form';
 import { TextArea } from '@pipeline/components';
-import { Button, Link } from '@pipeline/ui-kit';
+import { Button, Link } from '@pipeline/components';
 import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
 import useCreateGame from '../../hook/useCreateGame';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createGameValidationSchema } from '../../utils/validation';
+import Box from '../../../_shared/components/Box';
 
 type Props = {};
 
@@ -92,16 +93,14 @@ const CreateGameView: React.FC<Props> = () => {
                 label=" "
                 name="scenarioContent"
               />
-              <div className="text-center">
-                <Button type="primary" onClick={submit}>
-                  {t('createGame.createButtonText')}
-                </Button>
+              <Box textAlign="center">
+                <Button label={t('createGame.createButtonText')} onClick={submit} />
                 {loading && <span>Loading...</span>}
                 {translatedError && <span className="error-message">{translatedError}</span>}
-              </div>
-              <div className="text-center">
+              </Box>
+              <Box textAlign="center">
                 <Link onClick={cancel}>{t('general.cancel')}</Link>
-              </div>
+              </Box>
             </div>
           </form>
         </FormProvider>

@@ -1,4 +1,7 @@
 import React from 'react';
+import styled from 'styled-components';
+import Box from '../Box';
+import Typography from '../Typography';
 
 type Props = {
   name: string;
@@ -10,15 +13,44 @@ type Props = {
   disabled?: boolean;
 };
 
-const TextInput: React.FC<Props> = ({ name, value, errorMessage, label, onChange, type = 'text', disabled }) => {
-  return (
-    <div className="column">
-      {label ? <label htmlFor={name}>{label}</label> : null}
-      <input disabled={disabled} type={type} value={value} name={name} id={name} onChange={onChange} />
-      {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
-    </div>
-  );
-};
+const Input = styled.input`
+  width: 100%;
+  height: 40px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 1px solid #9a9a9a;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus {
+    border: 1px solid #00867c;
+  }
+`;
+
+const InputContainer = styled(Box)<React.ComponentProps<typeof Box>>`
+  ${Typography} + ${Input} {
+    margin-top: 5px;
+  }
+`;
+
+const TextInput = React.forwardRef<HTMLInputElement, Props>(
+  ({ name, value, errorMessage, label, onChange, type = 'text', disabled }, ref) => {
+    return (
+      <InputContainer flexDirection="column">
+        {label ? (
+          <Typography as="label" variant="label" htmlFor={name}>
+            {label}
+          </Typography>
+        ) : null}
+        <Input ref={ref} disabled={disabled} type={type} value={value} name={name} id={name} onChange={onChange} />
+        {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
+      </InputContainer>
+    );
+  },
+);
 
 TextInput.displayName = 'TextInput';
 

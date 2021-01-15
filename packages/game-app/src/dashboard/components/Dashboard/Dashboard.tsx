@@ -3,7 +3,7 @@ import { useTranslate } from '@pipeline/i18n';
 import { useLogout } from '@pipeline/auth';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from '@pipeline/routing';
-import { Link } from '@pipeline/ui-kit';
+import { Link } from '@pipeline/components';
 
 type Props = {};
 
