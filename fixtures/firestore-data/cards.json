@@ -4,7 +4,7 @@
     "tags": null,
     "title": "Social Media Online Application",
     "subtitle": null,
-    "content": "• Users create and share links to articles about current affairs,\nwith comments.\n• Users search for current affairs stories to view articles and\ncomments on them.\n• Advertisers pay to promote their articles in the search results.\n• Searches must be fast and the interface must look attractive.\nYour competitor has a monolithic PHP-based application and\ntheir deployment lead time is two days.",
+    "content": "• Users create and share links to articles about current affairs, with comments.\n• Users search for current affairs stories to view articles and comments on them.\n• Advertisers pay to promote their articles in the search results.\n• Searches must be fast and the interface must look attractive.\nYour competitor has a monolithic PHP-based application and their deployment lead time is two days.",
     "number": 7,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
@@ -13,7 +13,7 @@
     "tags": null,
     "title": "Online Payments for Solar Power",
     "subtitle": null,
-    "content": "• Users generate solar power on their roof and get payments for\ntheir contributions to the grid.\n• This application pays customers monthly by bank transfer.\nSolar electricity contribution data is obtained from a third party\nsystem.\n• This application handles money and is regulated by financial\nauthorities.\nYour competitor is a large energy company using Java and\ntheir deployment lead time is two weeks.",
+    "content": "• Users generate solar power on their roof and get payments for their contributions to the grid.\n• This application pays customers monthly by bank transfer.\nSolar electricity contribution data is obtained from a third party system.\n• This application handles money and is regulated by financial authorities.\nYour competitor is a large energy company using Java and their deployment lead time is two weeks.",
     "number": 8,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
@@ -22,7 +22,7 @@
     "tags": null,
     "title": "Fitness & Running Mobile App",
     "subtitle": null,
-    "content": "Mobile exercise app monitors your running.\nGives feedback on lap time and coaches you towards your goals.\n• The system sends encouraging emails with weekly fitness\nsummaries.\nHandles potentially sensitive health data.\nYour competitor is a Silicon Valley startup using Python and their\ndeployment lead time is six hours.",
+    "content": "• Mobile exercise app monitors your running.\n• Gives feedback on lap time and coaches you towards your goals.\n• The system sends encouraging emails with weekly fitness summaries.\n• Handles potentially sensitive health data.\nYour competitor is a Silicon Valley startup using Python and their deployment lead time is six hours.",
     "number": 9,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
@@ -31,7 +31,7 @@
     "tags": null,
     "title": "Photo Editing Software",
     "subtitle": null,
-    "content": "• Users edit their photos and compose them into albums.\n• Users can have the albums printed (for a fee).\n• Smooth, intuitive user experience is important.\n• Large number of photo editing techniques are supported.\n• Third parties handle printing, shipping, and payment.\nYour competitor has a huge C++ codebase and their deployment\nlead time is seven weeks.",
+    "content": "• Users edit their photos and compose them into albums.\n• Users can have the albums printed (for a fee).\n• Smooth, intuitive user experience is important.\n• Large number of photo editing techniques are supported.\n• Third parties handle printing, shipping, and payment.\nYour competitor has a huge C++ codebase and their deployment lead time is seven weeks.",
     "number": 10,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
@@ -40,16 +40,13 @@
     "tags": null,
     "title": "Classified Ads for Second-Hand Items",
     "subtitle": null,
-    "content": "• Individuals pay to display advertisements on your site for items they\nwant to sell.\n• Payment for advertisements is handled by a third party service.\n• Users can search or browse categories to find items.\n• Users can contact each other via messages on the site or by\ntelephone, and arrange to meet in person to buy and sell items.\nYour competitor has a microservices architecture written in at least\nfive different languages, and their deployment lead time is less than\none hour.",
+    "content": "• Individuals pay to display advertisements on your site for items they want to sell.\n• Payment for advertisements is handled by a third party service.\n• Users can search or browse categories to find items.\n• Users can contact each other via messages on the site or by telephone, and arrange to meet in person to buy and sell items.\nYour competitor has a microservices architecture written in at least five different languages, and their deployment lead time is less than one hour.",
     "number": 11,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "sAgOgpSk0phDUfJ7d3Q7": {
     "type": "Pipeline Step",
-    "tags": [
-      "Delivery Step",
-      "Manual Step"
-    ],
+    "tags": ["Delivery Step", "Manual Step"],
     "title": "A Developer Commits Code",
     "subtitle": "Delivery Step",
     "content": "A developer shares their code\nby pushing a commit to a\nversion control server, such\nas Git.\nIf you include steps before\nthis, they do not count\ntowards your deployment\nlead time.",
@@ -58,10 +55,7 @@
   },
   "vpttIdLCr7AEwNyFv75m": {
     "type": "Pipeline Step",
-    "tags": [
-      "Delivery Step",
-      "Deploy Step"
-    ],
+    "tags": ["Delivery Step", "Deploy Step"],
     "title": "Deploy to Production Environment",
     "subtitle": "Delivery Step",
     "content": "A Release Candidate is deployed to\nproduction where there are actual\nusers and live data.\nYou cannot complete this step\nuntil you have built the Release\nCandidate.\nIf you include steps after this,\nthey do not count towards your\ndeployment lead time.",
@@ -70,9 +64,7 @@
   },
   "gFDFKdnMmbwL5Vt7ouDE": {
     "type": "Pipeline Step",
-    "tags": [
-      "Package"
-    ],
+    "tags": ["Package"],
     "title": "Build Release Candidate",
     "subtitle": "Build Step",
     "content": "Code is compiled and built\ninto a deployable Release\nCandidate.\nYou cannot complete this step\nbefore the Code is Merged to\nTrunk.",
@@ -81,9 +73,7 @@
   },
   "oMSlvF0Vn5Bt0F9YYZbQ": {
     "type": "Pipeline Step",
-    "tags": [
-      "Deploy Step"
-    ],
+    "tags": ["Deploy Step"],
     "title": "Deploy to Production-Like\nTest Environment 1",
     "subtitle": "Deployment Step",
     "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
@@ -92,9 +82,7 @@
   },
   "4wEMpQdP5N52iurAkiZR": {
     "type": "Pipeline Step",
-    "tags": [
-      "Deploy Step"
-    ],
+    "tags": ["Deploy Step"],
     "title": "Deploy to Production-Like\nTest Environment 2",
     "subtitle": "Deployment Step",
     "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
@@ -103,9 +91,7 @@
   },
   "7MpHg7z6NSNKkcNmY11a": {
     "type": "Pipeline Step",
-    "tags": [
-      "Deploy Step"
-    ],
+    "tags": ["Deploy Step"],
     "title": "Deploy to Production-Like\nTest Environment 3",
     "subtitle": "Deployment Step",
     "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
@@ -123,9 +109,7 @@
   },
   "bG1qFmdarVbhXquuWkly": {
     "type": "Pipeline Step",
-    "tags": [
-      "System Test"
-    ],
+    "tags": ["System Test"],
     "title": "Automated Load Test",
     "subtitle": "Test Step",
     "content": "Bombard the system with\nmany concurrent requests,\nmeasure response times and\nsystem performance.",
@@ -143,10 +127,7 @@
   },
   "EWGhSgDp444Bvx90TI9W": {
     "type": "Pipeline Step",
-    "tags": [
-      "Manual Step",
-      "System Test"
-    ],
+    "tags": ["Manual Step", "System Test"],
     "title": "User Acceptance Testing",
     "subtitle": "Test Step",
     "content": "End-user representatives\nvalidate that the functionality\nworks in the way they want it\nto work.",
@@ -155,10 +136,7 @@
   },
   "7tuSNJdQmKPnGIaqrf6u": {
     "type": "Pipeline Step",
-    "tags": [
-      "Manual Step",
-      "System Test"
-    ],
+    "tags": ["Manual Step", "System Test"],
     "title": "Security & Penetration Testing",
     "subtitle": "Test Step",
     "content": "Skilled testers explore the\nsystem in a structured way\nlooking for security issues.",
@@ -176,10 +154,7 @@
   },
   "aqmtzNJsJ2Rq0amtNaVC": {
     "type": "Pipeline Step",
-    "tags": [
-      "Manual Step",
-      "System Test"
-    ],
+    "tags": ["Manual Step", "System Test"],
     "title": "Usability Testing",
     "subtitle": "Test Step",
     "content": "UX experts observe real users\nusing the system to see how\nthey behave and how they use\nfeatures.",
@@ -188,9 +163,7 @@
   },
   "9tzSep5ORXJoylxVlb6M": {
     "type": "Pipeline Step",
-    "tags": [
-      "System Test"
-    ],
+    "tags": ["System Test"],
     "title": "Automated Smoke Test",
     "subtitle": "Test Step",
     "content": "One very basic feature is\nexercised, such as “View the\nlogin screen”. Nothing more is\ntested.",
@@ -199,9 +172,7 @@
   },
   "Smxjkq3JZNEJ7r3zVfyK": {
     "type": "Pipeline Step",
-    "tags": [
-      "System Test"
-    ],
+    "tags": ["System Test"],
     "title": "Automated User Interface Testing",
     "subtitle": "Test Step",
     "content": "Test scripts exercise a wide\nvariety of functionality in the\nsystem, using the UI in the\nsame way as an actual user.",
@@ -210,9 +181,7 @@
   },
   "EoORqrovfdC02W0GWKyb": {
     "type": "Pipeline Step",
-    "tags": [
-      "Deploy Step"
-    ],
+    "tags": ["Deploy Step"],
     "title": "Deploy on Build Agent",
     "subtitle": "Deployment Step",
     "content": "The whole system is deployed\non a single machine. Third\nparty services are replaced by\nmocks or stubs. Databases,\nload balancers, and queues\nmay be omitted, or substituted\nby in-memory lightweight\nalternatives.",
@@ -221,9 +190,7 @@
   },
   "euc9onmGXFCKz4EMXAh2": {
     "type": "Pipeline Step",
-    "tags": [
-      "Manual Step"
-    ],
+    "tags": ["Manual Step"],
     "title": "Code Review",
     "subtitle": "Test Step",
     "content": "Source code is examined and\nassessed by developers other\nthan the original author.",
@@ -232,9 +199,7 @@
   },
   "15tVTz9XKHPxagkBwFLD": {
     "type": "Pipeline Step",
-    "tags": [
-      "System Test"
-    ],
+    "tags": ["System Test"],
     "title": "Deployment Health Check",
     "subtitle": "Test Step",
     "content": "Verify the software has deployed\ncorrectly. For example, you could\ncheck:\n• The database schema is valid.\n• All services are registered and\ndiscoverable.\n• Needed ports are opened.\n• Logs are being produced.",
@@ -270,9 +235,7 @@
   },
   "6IqpaCa4X9RfXlJS9WE3": {
     "type": "Pipeline Step",
-    "tags": [
-      "System Test"
-    ],
+    "tags": ["System Test"],
     "title": "Automated Functional Testing",
     "subtitle": "Test Step",
     "content": "These tests each execute a\nfunction of the system, checking\nboth happy paths and error\nconditions. They use an API to\naccess functionality instead of the\nUser Interface.",
@@ -281,9 +244,7 @@
   },
   "ST0wgNZhTclzqSRizg0Y": {
     "type": "Pipeline Step",
-    "tags": [
-      "System Test"
-    ],
+    "tags": ["System Test"],
     "title": "End-to-End Testing",
     "subtitle": "Test Step",
     "content": "These tests execute all parts of\nthe system, including third party\ncomponents. They may be manual\nor automated.",
@@ -301,9 +262,7 @@
   },
   "KdqSH6RykC4qsYENGpnh": {
     "type": "Pipeline Step",
-    "tags": [
-      "Package"
-    ],
+    "tags": ["Package"],
     "title": "Build Snapshot Version",
     "subtitle": "Build Step",
     "content": "Code is compiled and built\ninto a deployable unit, which\nis labelled as “snapshot.”\nThis means it is not suitable for\ndeployment in production, it is\nonly for testing.",
@@ -321,9 +280,7 @@
   },
   "4OLftJ9cS5lJ49xtdUzT": {
     "type": "Pipeline Step",
-    "tags": [
-      "Manual Step"
-    ],
+    "tags": ["Manual Step"],
     "title": "Go/No Go Decision Meeting",
     "subtitle": "Test Step",
     "content": "A group of managers, testers and\nother stakeholders meet to assess\nwhether to deploy the new version\nof the software. They base their\ndecision on test results, perceived\nrisks, market conditions and cost\nof delay.",
