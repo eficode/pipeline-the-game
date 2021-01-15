@@ -1,5 +1,5 @@
-import {FirebaseCollections} from "./firebaseCollections";
-import {FirebaseDocs} from "./firebaseDocs";
+import {FirebaseCollection} from "./firebaseCollection";
+import {FirebaseDoc} from "./firebaseDoc";
 import {DevOpsMaturitiesDoc} from "./devOpsMaturitiesDoc";
 import {GameRolesDoc} from "./gameRolesDoc";
 import {Card, CardTypes, CardTags, CardEntity} from "./card";
@@ -7,8 +7,8 @@ import {Game} from "./game";
 import {ShortUser} from "./user";
 
 export {
-  FirebaseCollections,
-  FirebaseDocs,
+  FirebaseCollection,
+  FirebaseDoc,
   CardTypes,
   CardTags
 };

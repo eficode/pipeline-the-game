@@ -1,4 +1,4 @@
-export enum FirebaseCollections {
+export enum FirebaseCollection {
   Users = 'users',
   DynamicData = 'dynamicData',
   Games = 'games',

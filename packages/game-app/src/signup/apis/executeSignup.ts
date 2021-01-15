@@ -1,6 +1,6 @@
 import { SignupInfo } from '../types/signupInfo';
 import firebase from 'firebase/app';
-import { FirebaseCollections } from '@pipeline/common';
+import { FirebaseCollection } from '@pipeline/common';
 import 'firebase/auth';
 import 'firebase/firestore';
 import { AuthUser } from '../../_shared/auth/slice';
@@ -10,7 +10,7 @@ export async function executeSignup(signupInfo: SignupInfo): Promise<AuthUser> {
   if (credentials.user) {
     const user = credentials.user;
     try {
-      await firebase.firestore().doc(`${FirebaseCollections.Users}/${user?.uid}`).set({
+      await firebase.firestore().doc(`${FirebaseCollection.Users}/${user?.uid}`).set({
         email: signupInfo.email,
         role: signupInfo.role,
         devOpsMaturity: signupInfo.devOpsMaturity,
