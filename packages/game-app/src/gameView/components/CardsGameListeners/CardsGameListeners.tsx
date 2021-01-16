@@ -4,7 +4,7 @@ import { RectEntry, ViewRect } from '@dnd-kit/core/dist/types';
 import { createPortal } from 'react-dom';
 import { Transform } from '@dnd-kit/utilities';
 import { GameEvent, GameEventType } from '../../types/gameEvents';
-import { GameState } from '../../types/gameState';
+import { GameUIState } from '../../types/gameUIState';
 
 const DEBUG_ENABLED = false;
 
@@ -20,7 +20,7 @@ type Props = {
   /**
    * Current game state containing cards positions and placement (board or panel).
    */
-  currentGameState: GameState;
+  currentGameState: GameUIState;
   /**
    * Current game board scale (used for target coordinates calculation).
    */
@@ -66,7 +66,7 @@ let movementStart = 0;
  *  Wrap panel and game with this
  */
 const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameState, boardScale, panAmount }) => {
-  const gameStateRef = useRef<GameState>(currentGameState);
+  const gameStateRef = useRef<GameUIState>(currentGameState);
   const translationDeltaRef = useRef<TranslationDeltas>({});
   const absoluteItemPositionWithResectToWindowRef = useRef<AbsoluteWindowPositions>({});
   const panScaleRef = useRef(boardScale);

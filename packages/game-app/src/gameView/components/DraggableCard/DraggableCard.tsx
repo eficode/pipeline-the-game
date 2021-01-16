@@ -1,18 +1,21 @@
 import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
+import { useSelector } from 'react-redux';
+import { selectors } from '../../slice';
 
 type Props = {
   id: string;
-  position?: { x: number; y: number } | null;
 };
 
 /**
  * A card enhanced with dragging capability
  */
-const DraggableCard: React.FC<Props> = ({ id, position = null }) => {
+const DraggableCard: React.FC<Props> = ({ id }) => {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id,
   });
+
+  const position = useSelector(selectors.getCardPosition(id));
 
   const style =
     position?.x || position?.y

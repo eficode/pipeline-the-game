@@ -1,6 +1,7 @@
 import { all } from 'redux-saga/effects';
-import loadGards from './loadCards';
+import loadCards from './loadCards';
+import loadGame from './loadGame';
 
 export default function* gameSaga() {
-  yield all([loadGards()]);
+  yield all([loadCards(), loadGame()]);
 }

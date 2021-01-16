@@ -1,4 +1,4 @@
-export interface GameState {
+export interface GameUIState {
   [cardId: string]: {
     placedIn: 'panel' | 'board';
     position?: {
