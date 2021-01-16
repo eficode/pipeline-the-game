@@ -14,9 +14,10 @@ declare namespace Cypress {
      *
      * Like contains, retrieves the element that contain the translation of the provided key
      *
-     * @param key the translation key
+     * @param keyOrSelector selector if you want to specify one, or translation key
+     * @param key only if you specify selector as a first argument
      */
-    containsTranslationOf(key: string): Chainable<Subject>;
+    containsTranslationOf(keyOrSelector:string, key?: string): Chainable<Subject>;
 
     drag: (position: { x: number; y: number }) => Chainable;
 

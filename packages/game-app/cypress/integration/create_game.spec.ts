@@ -38,19 +38,19 @@ context("Create Game", () => {
 
   it("should create scenario correctly from card", () => {
     cy.get('[id*="scenario-"]').first().click();
-    cy.containsTranslationOf('createGame.createButtonText').click();
+    cy.containsTranslationOf('button', 'createGame.createButtonText').click();
     cy.location('pathname').should('contain', '/game');
   });
 
   it("should show error on invalid values", () => {
-    cy.containsTranslationOf('createGame.createButtonText').click();
+    cy.containsTranslationOf('button', 'createGame.createButtonText').click();
     cy.get('body').should('contain.translationOf', 'general.errors.required');
   });
 
   it("should create scenario correctly using form", () => {
     cy.getInputByName('scenarioTitle').fill('scenario test title');
     cy.getInputByName('scenarioContent').fill('scenario test content');
-    cy.containsTranslationOf('createGame.createButtonText').click();
+    cy.containsTranslationOf('button', 'createGame.createButtonText').click();
     cy.location('pathname').should('contain', '/game').then(path=>{
       const id = path.replace('/game/', '');
       cy.getFirestoreDocument(`/games/${id}`).then(doc=>{
