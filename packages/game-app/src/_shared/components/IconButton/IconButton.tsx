@@ -13,7 +13,7 @@ const StyledButton = styled.button`
 
 const IconButton: React.FC<Props> = ({ children, onClick }) => {
   return (
-    <StyledButton role="button" onClick={onClick}>
+    <StyledButton type="button" onClick={onClick}>
       {children}
     </StyledButton>
   );
