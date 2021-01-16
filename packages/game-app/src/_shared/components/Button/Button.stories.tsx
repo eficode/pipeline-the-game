@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 
 import Button from './Button';
 
@@ -11,15 +11,16 @@ export default {
 
 const Template: Story<React.ComponentProps<typeof Button>> = args => <Button {...args} />;
 
-export const Primary = Template.bind({});
+export const Default = Template.bind({});
 
-Primary.args = {
-  variant: 'primary',
+Default.args = {
+  variant: 'default',
   label: 'Button',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  variant: 'secondary',
+export const Fun = Template.bind({});
+
+Fun.args = {
+  variant: 'fun',
   label: 'Button',
 };
