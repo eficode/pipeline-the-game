@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { actions, GameState } from '../slice';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
-import { CardEntity, Game } from '@pipeline/common';
+import { CardEntity, CardTypes, Game } from '@pipeline/common';
 import loadGame from '../apis/callLoadGame';
 import loadCardsForDeck from '../apis/callLoadCardsForDeck';
 
@@ -13,7 +13,7 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   // TODO load actual game state from firestore
   const gameState: GameState = {
     boardCards: [],
-    deckCards: cards.map(c => c.id),
+    deckCards: cards.filter(c => c.type === CardTypes.PipelineStep).map(c => c.id),
     cardsState: {},
   };
   yield put(actions.setInitialGameState({ state: gameState, gameId: action.payload }));

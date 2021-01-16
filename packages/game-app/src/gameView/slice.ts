@@ -125,6 +125,9 @@ const getCardStateForUI = createSelector(getGameState, gameState => {
 const getCardPosition = (cardId: string) =>
   createSelector(getGameState, gameState => gameState?.cardsState?.[cardId]?.position);
 
+const getCardById = (cardId: string) =>
+  createSelector(getSlice, state => cardsEntitiesSelectors.selectById(state.cards, cardId));
+
 export const reducer = slice.reducer;
 export const name = slice.name;
 
@@ -141,4 +144,5 @@ export const selectors = {
   getPlacedCards,
   getCardStateForUI,
   getCardPosition,
+  getCardById,
 };

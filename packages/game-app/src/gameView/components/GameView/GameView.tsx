@@ -1,12 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Board from '../Board';
 import Panel from '../Panel';
 import { TansformRenderProps } from '../../types/tansformRenderProps';
 import DraggableCard from '../DraggableCard';
-import { GameUIState } from '../../types/gameUIState';
-import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { useParams } from 'react-router-dom';
 import useGameState from '../../hooks/useGameState';
 import { useSelector } from 'react-redux';
