@@ -37,6 +37,7 @@ const HoverButtonContent = styled.div`
   height: 100%;
   transform: translate(-100%);
   transition: transform 0.5s;
+  font-weight: 600;
 `;
 
 const StyledButton = styled('button')<{ variant: Variants }>`
