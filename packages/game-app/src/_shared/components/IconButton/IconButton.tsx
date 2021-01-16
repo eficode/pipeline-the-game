@@ -12,7 +12,11 @@ const StyledButton = styled.button`
 `;
 
 const IconButton: React.FC<Props> = ({ children, onClick }) => {
-  return <StyledButton onClick={onClick}>{children}</StyledButton>;
+  return (
+    <StyledButton role="button" onClick={onClick}>
+      {children}
+    </StyledButton>
+  );
 };
 
 IconButton.displayName = 'IconButton';

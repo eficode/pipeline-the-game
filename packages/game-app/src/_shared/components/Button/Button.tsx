@@ -87,7 +87,7 @@ const StyledButton = styled('button')<{ variant: Variants }>`
 
 const Button: React.FC<Props> = ({ variant = 'default', label, onClick, id, disabled, hoverLabel }) => {
   return (
-    <StyledButton id={id} disabled={disabled} onClick={onClick} variant={variant}>
+    <StyledButton role="button" id={id} disabled={disabled} onClick={onClick} variant={variant}>
       {label}
       <HoverButton>
         <HoverButtonContent>
