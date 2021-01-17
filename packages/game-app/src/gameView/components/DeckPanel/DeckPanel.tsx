@@ -2,8 +2,7 @@ import React, { useState } from 'react';
 import DraggableCard from '../DraggableCard';
 import styled from 'styled-components';
 import { CardWrapper } from '../DraggableCard/DraggableCard';
-import Box from '../../../_shared/components/Box';
-import { IconButton } from '@pipeline/components';
+import { IconButton, AnimatedGrid } from '@pipeline/components';
 import { ReactComponent as StackedIcon } from '@assets/icons/stacked-cards.svg';
 import DroppablePanelArea from '../DroppablePanelArea';
 
@@ -46,10 +45,7 @@ const DeckPanelContent = styled.div<{ mode: PanelMode }>`
   `
       : `
   
-    display: grid;
-    grid-template-columns: 280px 280px;
-    column-gap:16px;
-    row-gap:16px;
+
   `}
 `;
 
@@ -69,7 +65,7 @@ type Props = {
 };
 
 const DeckPanel: React.FC<Props> = ({ cardsIds }) => {
-  const [panelMode, setPanelMode] = useState<PanelMode>('stacked');
+  const [panelMode, setPanelMode] = useState<PanelMode>('tow-columns');
 
   return (
     <DroppablePanelArea mode={panelMode}>
@@ -82,9 +78,19 @@ const DeckPanel: React.FC<Props> = ({ cardsIds }) => {
         </IconButton>
       </PanelButtons>
       <DeckPanelContent mode={panelMode}>
-        {cardsIds.map(id => (
-          <DraggableCard key={id} id={id} />
-        ))}
+        <AnimatedGrid
+          itemWidth={280}
+          itemHeight={200}
+          margin={16}
+          marginVertical={panelMode === 'tow-columns' ? 16 : -90}
+          containerWidth={panelMode === 'tow-columns' ? 576 : 360}
+          transitionTime={'400ms'}
+          transitionTimingFunction={'ease-in-out'}
+        >
+          {cardsIds.map(id => (
+            <DraggableCard key={id} id={id} />
+          ))}
+        </AnimatedGrid>
       </DeckPanelContent>
     </DroppablePanelArea>
   );
