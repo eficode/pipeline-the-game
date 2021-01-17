@@ -1,29 +1,11 @@
 import React, { useState } from 'react';
 import DraggableCard from '../DraggableCard';
 import styled from 'styled-components';
-import { CardWrapper } from '../DraggableCard/DraggableCard';
 import { IconButton, AnimatedGrid } from '@pipeline/components';
 import { ReactComponent as StackedIcon } from '@assets/icons/stacked-cards.svg';
 import DroppablePanelArea from '../DroppablePanelArea';
 
 export type PanelMode = 'stacked' | 'tow-columns';
-
-function createStackedCss() {
-  let cssString = '';
-  for (let i = 0; i < 100; i++) {
-    cssString += `
-    ${CardWrapper}:nth-child(${i + 1}){
-      position: absolute;
-      top: ${110 * i}px;
-      transition: transform .3s;
-    }
-    ${CardWrapper}:hover{
-      transform: translate(0, -100px);
-    }
-    `;
-  }
-  return cssString;
-}
 
 const DeckPanelContent = styled.div<{ mode: PanelMode }>`
   flex: 1 1 auto;
@@ -33,20 +15,6 @@ const DeckPanelContent = styled.div<{ mode: PanelMode }>`
   ::-webkit-scrollbar {
     display: none;
   }
-
-  ${props =>
-    props.mode === 'stacked'
-      ? `
-    ${CardWrapper} + ${CardWrapper} {
-    margin-top: 8px;
-  }
-
-  ${createStackedCss()}
-  `
-      : `
-  
-
-  `}
 `;
 
 const PanelButtons = styled.div`

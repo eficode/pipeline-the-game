@@ -22,7 +22,8 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode }>`
   flex-direction: column;
   transition: transform 0.5s, width 0.5s;
 
-  ${props => props.closed && 'transform: translate(300px)'}
+  ${props =>
+    props.closed ? `transform: translate(${props.mode === 'stacked' ? 300 : 594}px);` : 'transform: translate(0);'}
 
   ${props => (props.mode === 'stacked' ? 'width: 360px;' : 'width: 656px;')}
 `;
