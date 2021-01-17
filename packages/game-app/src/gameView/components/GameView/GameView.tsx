@@ -31,9 +31,7 @@ const Game: React.FC<{ pan: { x: number; y: number }; scale: number; gameId: str
             </Board>
           </TransformComponent>
         </div>
-        <DroppablePanelArea>
-          <DeckPanel cardsIds={deckCardsIds} />
-        </DroppablePanelArea>
+        <DeckPanel cardsIds={deckCardsIds} />
       </CardsGameListeners>
     );
   },

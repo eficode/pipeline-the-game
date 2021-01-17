@@ -42,6 +42,8 @@ const CardWrapper = styled.div`
 
 const CardHeader = styled.header<CardHeaderProps>`
   padding: 8px 16px;
+  box-sizing: border-box;
+  height: 56px;
   background: ${props => props.theme.cardsTypes[props.type]};
   border-radius: 10px 10px 0px 0px;
 `;
@@ -75,7 +77,6 @@ const CardHeading = styled.h1`
 
 const CardBody = styled.div`
   padding: 12px 16px 32px 16px;
-  height: 100%;
   border-radius: 0px 0px 10px 10px;
 `;
 

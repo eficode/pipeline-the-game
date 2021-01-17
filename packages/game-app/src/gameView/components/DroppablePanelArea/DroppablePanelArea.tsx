@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import styled from 'styled-components';
-import Box from '../../../_shared/components/Box';
+import { PanelMode } from '../DeckPanel/DeckPanel';
 
-type Props = {};
+type Props = {
+  mode: PanelMode;
+};
 
-const FixedPanel = styled.div<{ closed: boolean }>`
+const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode }>`
   position: fixed;
   top: 0;
   right: 0;
-  width: 360px;
   height: 100vh;
   border-radius: 40px 0px 0px 0px;
   opacity: 1;
@@ -19,9 +20,11 @@ const FixedPanel = styled.div<{ closed: boolean }>`
   background-color: rgb(170, 180, 175, 0.4);
   display: flex;
   flex-direction: column;
-  transition: transform 0.5s;
+  transition: transform 0.5s, width 0.5s;
 
   ${props => props.closed && 'transform: translate(300px)'}
+
+  ${props => (props.mode === 'stacked' ? 'width: 360px;' : 'width: 656px;')}
 `;
 
 const ToggleWrapper = styled.div`
@@ -61,7 +64,7 @@ const ToggleIndicator = styled.div`
  * and where you can find all cards that ar not placed into the board.
  * It is also a droppable are, where you can release cards moved out from the board
  */
-const DroppablePanelArea: React.FC<Props> = ({ children }) => {
+const DroppablePanelArea: React.FC<Props> = ({ children, mode }) => {
   const { setNodeRef } = useDroppable({
     id: 'panel',
   });
@@ -69,7 +72,7 @@ const DroppablePanelArea: React.FC<Props> = ({ children }) => {
   const [closed, setClosed] = useState(false);
 
   return (
-    <FixedPanel ref={setNodeRef} closed={closed}>
+    <FixedPanel ref={setNodeRef} closed={closed} mode={mode}>
       <ToggleWrapper>
         <ToggleButton onClick={() => setClosed(state => !state)}>
           <ToggleIndicator />
