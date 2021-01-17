@@ -37,3 +37,10 @@ PipelineStep.args = {
   number: 13,
   deckId: '7p5qqvE8kCV9WWysVc2n',
 };
+
+export const Dragged = Template.bind({});
+
+Dragged.args = {
+  ...PipelineStep.args,
+  dragging: true,
+};

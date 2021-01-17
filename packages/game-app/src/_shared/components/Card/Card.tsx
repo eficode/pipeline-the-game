@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Card, CardTags, CardTypes } from '@pipeline/common';
 import React from 'react';
 
-type CardProps = Card & { headerTitle?: string; readOnly?: boolean; imgURL?: string };
+type CardProps = Card & { headerTitle?: string; readOnly?: boolean; imgURL?: string; dragging?: boolean };
 
 interface CardHeaderProps {
   type: CardTypes;
@@ -30,14 +30,24 @@ const tagObj = {
   },
 } as { [key in CardTags]: { backgroundColor: string } };
 
-const CardWrapper = styled.div`
+const CardWrapper = styled.div<{ dragging?: boolean }>`
   padding: 0 0 16px;
   width: 280px;
   height: 200px;
   border-radius: 10px;
   background: #f9f9f9;
-  box-shadow: 0px 0px 6px #10182029;
+
   box-sizing: border-box;
+
+  ${props =>
+    props.dragging
+      ? `
+          transform: rotate(6deg);
+          box-shadow: 0px 80px 20px #10182026;
+          `
+      : `
+          box-shadow: 0px 0px 6px #10182029;
+          `}
 `;
 
 const CardHeader = styled.header<CardHeaderProps>`
@@ -106,10 +116,11 @@ const CardComponent: React.FC<CardProps> = ({
   content,
   readOnly = true,
   tags,
+  dragging,
   ...other
 }) => {
   return (
-    <CardWrapper>
+    <CardWrapper dragging={dragging}>
       <CardHeader type={type}>
         <CardHeading>{type}</CardHeading>
         <CardHeadingTags>
