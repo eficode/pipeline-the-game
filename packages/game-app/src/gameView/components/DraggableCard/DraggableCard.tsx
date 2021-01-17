@@ -3,10 +3,16 @@ import { useDraggable } from '@dnd-kit/core';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 import { Card } from '@pipeline/components';
+import styled from 'styled-components';
+import ConnectedCard from '../ConnectedCard';
 
 type Props = {
   id: string;
 };
+
+export const CardWrapper = styled.div`
+  cursor: pointer;
+`;
 
 /**
  * A card enhanced with dragging capability
@@ -17,7 +23,6 @@ const DraggableCard: React.FC<Props> = ({ id }) => {
   });
 
   const position = useSelector(selectors.getCardPosition(id));
-  const cardData = useSelector(selectors.getCardById(id))!;
 
   const style =
     position?.x || position?.y
@@ -29,9 +34,15 @@ const DraggableCard: React.FC<Props> = ({ id }) => {
       : {};
 
   return (
-    <div style={style} ref={setNodeRef} {...listeners} {...attributes} className={`${isDragging ? 'dragging' : ''}`}>
-      <Card {...cardData} />
-    </div>
+    <CardWrapper
+      style={style}
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      className={`${isDragging ? 'dragging' : ''}`}
+    >
+      <ConnectedCard id={id} />
+    </CardWrapper>
   );
 };
 

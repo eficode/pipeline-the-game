@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { Transform } from '@dnd-kit/utilities';
 import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { GameUIState } from '../../types/gameUIState';
+import ConnectedCard from '../ConnectedCard';
 
 const DEBUG_ENABLED = false;
 
@@ -329,7 +330,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
       {children}
       {createPortal(
         <DragOverlay adjustScale dropAnimation={null} modifiers={modifiers} className="transform-0">
-          {draggingCardId ? <div className="item" /> : null}
+          {draggingCardId ? <ConnectedCard id={draggingCardId} /> : null}
         </DragOverlay>,
         document.body,
       )}
