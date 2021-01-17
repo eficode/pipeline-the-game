@@ -2,7 +2,6 @@ import React from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
-import { Card } from '@pipeline/components';
 import styled from 'styled-components';
 import ConnectedCard from '../ConnectedCard';
 

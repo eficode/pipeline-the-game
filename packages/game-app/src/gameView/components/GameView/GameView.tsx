@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Board from '../Board';
-import DroppablePanelArea from '../DroppablePanelArea';
 import { TansformRenderProps } from '../../types/tansformRenderProps';
 import DraggableCard from '../DraggableCard';
 import { useParams } from 'react-router-dom';
