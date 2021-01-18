@@ -1,68 +1,44 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Board from '../Board';
 import Panel from '../Panel';
 import { TansformRenderProps } from '../../types/tansformRenderProps';
 import DraggableCard from '../DraggableCard';
-import { GameState } from '../../types/gameState';
-import { GameEvent, GameEventType } from '../../types/gameEvents';
+import { useParams } from 'react-router-dom';
+import useGameState from '../../hooks/useGameState';
+import { useSelector } from 'react-redux';
+import { selectors } from '../../slice';
+import useCardEventHandler from '../../hooks/useCardEventHandler';
 
-const cardsNum = 10;
+const Game: React.FC<{ pan: { x: number; y: number }; scale: number; gameId: string }> = React.memo(
+  ({ pan, scale, gameId }) => {
+    const state = useSelector(selectors.getCardStateForUI);
 
-const initialState = new Array(cardsNum)
-  .fill(null)
-  .map((value, index) => index)
-  .reduce((previousValue, currentValue) => {
-    return {
-      ...previousValue,
-      [currentValue]: {
-        placedIn: 'panel',
-      },
-    };
-  }, {} as GameState);
+    const { deckCardsIds, placedCardsIds } = useGameState(gameId);
 
-const Game: React.FC<{ pan: { x: number; y: number }; scale: number }> = React.memo(({ pan, scale }) => {
-  const [state, setState] = useState<GameState>(initialState);
+    const { onCardEvent } = useCardEventHandler();
 
-  const onCardEvent = useCallback((event: GameEvent) => {
-    if (event.type === GameEventType.CardMovingEnd) {
-      const { cardId, target } = event;
-      setState(currentState => {
-        return {
-          ...currentState,
-          [cardId]: {
-            placedIn: target,
-            position: event.position,
-          },
-        };
-      });
-    }
-  }, []);
-
-  return (
-    <CardsGameListeners onEvent={onCardEvent} boardScale={scale} panAmount={pan} currentGameState={state}>
-      <div className="board-wrapper">
-        <TransformComponent ref={ref => console.debug('ref', ref)}>
-          <Board>
-            {Object.entries(state)
-              .filter(([key, state]) => state.placedIn === 'board')
-              .map(([key, state]) => (
-                <DraggableCard key={key} id={key} position={state.position} />
+    return (
+      <CardsGameListeners onEvent={onCardEvent} boardScale={scale} panAmount={pan} currentGameState={state}>
+        <div className="board-wrapper">
+          <TransformComponent ref={ref => console.debug('ref', ref)}>
+            <Board>
+              {placedCardsIds.map(id => (
+                <DraggableCard key={id} id={id} />
               ))}
-          </Board>
-        </TransformComponent>
-      </div>
-      <Panel>
-        {Object.entries(state)
-          .filter(([key, state]) => state.placedIn === 'panel')
-          .map(([key, state]) => (
-            <DraggableCard key={key} id={key} />
+            </Board>
+          </TransformComponent>
+        </div>
+        <Panel>
+          {deckCardsIds.map(id => (
+            <DraggableCard key={id} id={id} />
           ))}
-      </Panel>
-    </CardsGameListeners>
-  );
-});
+        </Panel>
+      </CardsGameListeners>
+    );
+  },
+);
 
 const wheelConfig = { step: 70 };
 const transformOptions: React.ComponentProps<typeof TransformWrapper>['options'] = {
@@ -71,11 +47,18 @@ const transformOptions: React.ComponentProps<typeof TransformWrapper>['options']
 } as any;
 
 const GameView: React.FC = () => {
-  const renderGame = useCallback((transformProps: TansformRenderProps) => {
-    const scale = transformProps.scale;
-    const pan = { x: transformProps.positionX, y: transformProps.positionY };
-    return <Game pan={pan} scale={scale} />;
-  }, []);
+  const params = useParams<{ gameId: string }>();
+
+  const gameId = params.gameId;
+
+  const renderGame = useCallback(
+    (transformProps: TansformRenderProps) => {
+      const scale = transformProps.scale;
+      const pan = { x: transformProps.positionX, y: transformProps.positionY };
+      return <Game pan={pan} scale={scale} gameId={gameId} />;
+    },
+    [gameId],
+  );
 
   return (
     <TransformWrapper defaultScale={1} options={transformOptions} wheel={wheelConfig}>

@@ -5,6 +5,7 @@ import TextArea from './TextArea';
 import Button from './Button';
 import IconButton from './IconButton';
 import Link from './Link';
+import Card from './Card';
 import Box from './Box';
 
-export { TextInput, SelectInput, PasswordInput, TextArea, Button, Link, IconButton, Box };
+export { TextInput, SelectInput, PasswordInput, TextArea, Button, Link, IconButton, Box, Card };

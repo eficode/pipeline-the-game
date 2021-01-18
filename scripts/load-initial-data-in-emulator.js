@@ -11,7 +11,7 @@ async function loadData() {
         const collectionName = dir.replace('.json', '');
         const content = fs.readFileSync(`./fixtures/firestore-data/${dir}`, 'utf8');
         const collectionData = JSON.parse(content);
-        for(const docID in collectionData){
+        for (const docID in collectionData) {
             batch.set(admin.firestore().doc(`${collectionName}/${docID}`), collectionData[docID]);
         }
     }
@@ -19,4 +19,15 @@ async function loadData() {
     await batch.commit();
 }
 
-loadData().then(()=>console.info("Initial data loaded successfully"));
+async function createTestUser() {
+    if(process.env.CREATE_TEST_USER === 'true'){
+        const user = await admin.auth().createUser({email: 'test@test.com', emailVerified: true, password:'Test123'});
+        await admin.firestore().doc(`users/${user.uid}`).set({
+            email: 'test@test.com',
+            role:'budgetOwner',
+            devOpsMaturity:'veryImmature'
+        });
+    }
+}
+
+Promise.all([loadData(), createTestUser()]).then(() => console.info("Initial data loaded successfully"));

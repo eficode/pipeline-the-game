@@ -64,8 +64,15 @@ Note: If you need these ports and cannot make them available, you can always con
 Before running the project, you will need to create a *.env* file also in the **root** folder containing the following **environment variables**:
 ```dotenv
 FIRESTORE_EMULATOR_HOST=localhost:8080
-GCLOUD_PROJECT=
+FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
 ```
+
+If you want to skip signup and email verification you can add 
+```dotenv
+CREATE_TEST_USER=true
+```
+
+This will create a test user with email test@test.com and password Test123
 #### Running
 Run the following script in the **root** folder to initialize the local emulators:
 ```shell

@@ -45,26 +45,26 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "sAgOgpSk0phDUfJ7d3Q7": {
-    "type": "Pipeline Step",
-    "tags": ["Delivery Step", "Manual Step"],
+    "type": "pipeline-step",
+    "tags": ["delivery-step", "manual-step"],
     "title": "A Developer Commits Code",
-    "subtitle": "Delivery Step",
+    "subtitle": "delivery-step",
     "content": "A developer shares their code\nby pushing a commit to a\nversion control server, such\nas Git.\nIf you include steps before\nthis, they do not count\ntowards your deployment\nlead time.",
     "number": 13,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "vpttIdLCr7AEwNyFv75m": {
-    "type": "Pipeline Step",
-    "tags": ["Delivery Step", "Deploy Step"],
+    "type": "pipeline-step",
+    "tags": ["delivery-step", "deploy-step"],
     "title": "Deploy to Production Environment",
-    "subtitle": "Delivery Step",
+    "subtitle": "delivery-step",
     "content": "A Release Candidate is deployed to\nproduction where there are actual\nusers and live data.\nYou cannot complete this step\nuntil you have built the Release\nCandidate.\nIf you include steps after this,\nthey do not count towards your\ndeployment lead time.",
     "number": 14,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "gFDFKdnMmbwL5Vt7ouDE": {
-    "type": "Pipeline Step",
-    "tags": ["Package"],
+    "type": "pipeline-step",
+    "tags": ["package"],
     "title": "Build Release Candidate",
     "subtitle": "Build Step",
     "content": "Code is compiled and built\ninto a deployable Release\nCandidate.\nYou cannot complete this step\nbefore the Code is Merged to\nTrunk.",
@@ -72,8 +72,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "oMSlvF0Vn5Bt0F9YYZbQ": {
-    "type": "Pipeline Step",
-    "tags": ["Deploy Step"],
+    "type": "pipeline-step",
+    "tags": ["deploy-step"],
     "title": "Deploy to Production-Like\nTest Environment 1",
     "subtitle": "Deployment Step",
     "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
@@ -81,8 +81,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "4wEMpQdP5N52iurAkiZR": {
-    "type": "Pipeline Step",
-    "tags": ["Deploy Step"],
+    "type": "pipeline-step",
+    "tags": ["deploy-step"],
     "title": "Deploy to Production-Like\nTest Environment 2",
     "subtitle": "Deployment Step",
     "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
@@ -90,8 +90,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "7MpHg7z6NSNKkcNmY11a": {
-    "type": "Pipeline Step",
-    "tags": ["Deploy Step"],
+    "type": "pipeline-step",
+    "tags": ["deploy-step"],
     "title": "Deploy to Production-Like\nTest Environment 3",
     "subtitle": "Deployment Step",
     "content": "Deploy to protected environment\nwith production-like hardware where\neveryone in the IT department can\nuse and test it with (anonymized)\nproduction-like data. (May be called ‘QA’\nor ‘Pre-prod’, etc instead of 1, 2, 3).",
@@ -99,7 +99,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "5Hq5DBmvxTtsFyto0weW": {
-    "type": "Pipeline Step",
+    "type": "pipeline-step",
     "tags": [],
     "title": "Unit Testing",
     "subtitle": "Test Step",
@@ -108,8 +108,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "bG1qFmdarVbhXquuWkly": {
-    "type": "Pipeline Step",
-    "tags": ["System Test"],
+    "type": "pipeline-step",
+    "tags": ["system-test"],
     "title": "Automated Load Test",
     "subtitle": "Test Step",
     "content": "Bombard the system with\nmany concurrent requests,\nmeasure response times and\nsystem performance.",
@@ -117,7 +117,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "Q8339NFFpyhfDz83s0ke": {
-    "type": "Pipeline Step",
+    "type": "pipeline-step",
     "tags": [],
     "title": "Static Code Analysis",
     "subtitle": "Test Step",
@@ -126,8 +126,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "EWGhSgDp444Bvx90TI9W": {
-    "type": "Pipeline Step",
-    "tags": ["Manual Step", "System Test"],
+    "type": "pipeline-step",
+    "tags": ["manual-step", "system-test"],
     "title": "User Acceptance Testing",
     "subtitle": "Test Step",
     "content": "End-user representatives\nvalidate that the functionality\nworks in the way they want it\nto work.",
@@ -135,8 +135,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "7tuSNJdQmKPnGIaqrf6u": {
-    "type": "Pipeline Step",
-    "tags": ["Manual Step", "System Test"],
+    "type": "pipeline-step",
+    "tags": ["manual-step", "system-test"],
     "title": "Security & Penetration Testing",
     "subtitle": "Test Step",
     "content": "Skilled testers explore the\nsystem in a structured way\nlooking for security issues.",
@@ -144,17 +144,17 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "KRdlU3yCjCDu7LXDDkkQ": {
-    "type": "Pipeline Step",
+    "type": "pipeline-step",
     "tags": [],
     "title": "Code is Merged to Trunk (Master)",
-    "subtitle": "Delivery Step",
+    "subtitle": "delivery-step",
     "content": "All developers can now see,\nuse, and build on this code.\nYou cannot build the Release\nCandidate before this pipeline\nstep has completed.",
     "number": 24,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "aqmtzNJsJ2Rq0amtNaVC": {
-    "type": "Pipeline Step",
-    "tags": ["Manual Step", "System Test"],
+    "type": "pipeline-step",
+    "tags": ["manual-step", "system-test"],
     "title": "Usability Testing",
     "subtitle": "Test Step",
     "content": "UX experts observe real users\nusing the system to see how\nthey behave and how they use\nfeatures.",
@@ -162,8 +162,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "9tzSep5ORXJoylxVlb6M": {
-    "type": "Pipeline Step",
-    "tags": ["System Test"],
+    "type": "pipeline-step",
+    "tags": ["system-test"],
     "title": "Automated Smoke Test",
     "subtitle": "Test Step",
     "content": "One very basic feature is\nexercised, such as “View the\nlogin screen”. Nothing more is\ntested.",
@@ -171,8 +171,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "Smxjkq3JZNEJ7r3zVfyK": {
-    "type": "Pipeline Step",
-    "tags": ["System Test"],
+    "type": "pipeline-step",
+    "tags": ["system-test"],
     "title": "Automated User Interface Testing",
     "subtitle": "Test Step",
     "content": "Test scripts exercise a wide\nvariety of functionality in the\nsystem, using the UI in the\nsame way as an actual user.",
@@ -180,8 +180,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "EoORqrovfdC02W0GWKyb": {
-    "type": "Pipeline Step",
-    "tags": ["Deploy Step"],
+    "type": "pipeline-step",
+    "tags": ["deploy-step"],
     "title": "Deploy on Build Agent",
     "subtitle": "Deployment Step",
     "content": "The whole system is deployed\non a single machine. Third\nparty services are replaced by\nmocks or stubs. Databases,\nload balancers, and queues\nmay be omitted, or substituted\nby in-memory lightweight\nalternatives.",
@@ -189,8 +189,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "euc9onmGXFCKz4EMXAh2": {
-    "type": "Pipeline Step",
-    "tags": ["Manual Step"],
+    "type": "pipeline-step",
+    "tags": ["manual-step"],
     "title": "Code Review",
     "subtitle": "Test Step",
     "content": "Source code is examined and\nassessed by developers other\nthan the original author.",
@@ -198,8 +198,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "15tVTz9XKHPxagkBwFLD": {
-    "type": "Pipeline Step",
-    "tags": ["System Test"],
+    "type": "pipeline-step",
+    "tags": ["system-test"],
     "title": "Deployment Health Check",
     "subtitle": "Test Step",
     "content": "Verify the software has deployed\ncorrectly. For example, you could\ncheck:\n• The database schema is valid.\n• All services are registered and\ndiscoverable.\n• Needed ports are opened.\n• Logs are being produced.",
@@ -207,7 +207,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "TdUxJ7APAa8mHfANtlRn": {
-    "type": "Pipeline Step",
+    "type": "pipeline-step",
     "tags": [],
     "title": "Contract Testing",
     "subtitle": "Test Step",
@@ -216,7 +216,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "16c8sWQTSXcXoFx3QJCe": {
-    "type": "Pipeline Step",
+    "type": "pipeline-step",
     "tags": [],
     "title": "Third Party Integration Testing",
     "subtitle": "Test Step",
@@ -225,7 +225,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "oW2c37tpOK3qYQWdb9M7": {
-    "type": "Pipeline Step",
+    "type": "pipeline-step",
     "tags": [],
     "title": "Component Testing",
     "subtitle": "Test Step",
@@ -234,8 +234,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "6IqpaCa4X9RfXlJS9WE3": {
-    "type": "Pipeline Step",
-    "tags": ["System Test"],
+    "type": "pipeline-step",
+    "tags": ["system-test"],
     "title": "Automated Functional Testing",
     "subtitle": "Test Step",
     "content": "These tests each execute a\nfunction of the system, checking\nboth happy paths and error\nconditions. They use an API to\naccess functionality instead of the\nUser Interface.",
@@ -243,8 +243,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "ST0wgNZhTclzqSRizg0Y": {
-    "type": "Pipeline Step",
-    "tags": ["System Test"],
+    "type": "pipeline-step",
+    "tags": ["system-test"],
     "title": "End-to-End Testing",
     "subtitle": "Test Step",
     "content": "These tests execute all parts of\nthe system, including third party\ncomponents. They may be manual\nor automated.",
@@ -252,7 +252,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "gkCXoVnzA0r3TM3xJZsh": {
-    "type": "Pipeline Step",
+    "type": "pipeline-step",
     "tags": [],
     "title": "Create Release Notes",
     "subtitle": "Build Step",
@@ -261,8 +261,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "KdqSH6RykC4qsYENGpnh": {
-    "type": "Pipeline Step",
-    "tags": ["Package"],
+    "type": "pipeline-step",
+    "tags": ["package"],
     "title": "Build Snapshot Version",
     "subtitle": "Build Step",
     "content": "Code is compiled and built\ninto a deployable unit, which\nis labelled as “snapshot.”\nThis means it is not suitable for\ndeployment in production, it is\nonly for testing.",
@@ -270,7 +270,7 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "V3KgW196nrobZiQXAL5g": {
-    "type": "Pipeline Step",
+    "type": "pipeline-step",
     "tags": [],
     "title": "Decide Release Version Number",
     "subtitle": "Build Step",
@@ -279,8 +279,8 @@
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "4OLftJ9cS5lJ49xtdUzT": {
-    "type": "Pipeline Step",
-    "tags": ["Manual Step"],
+    "type": "pipeline-step",
+    "tags": ["manual-step"],
     "title": "Go/No Go Decision Meeting",
     "subtitle": "Test Step",
     "content": "A group of managers, testers and\nother stakeholders meet to assess\nwhether to deploy the new version\nof the software. They base their\ndecision on test results, perceived\nrisks, market conditions and cost\nof delay.",

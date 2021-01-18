@@ -8,5 +8,6 @@ export interface RequestsKeys {
   'auth.login': null;
   'auth.logout': null;
   'game.loadCards': null;
+  'game.loadGame': null;
   createGame: null;
 }
