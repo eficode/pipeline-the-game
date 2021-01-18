@@ -52,8 +52,8 @@ const DeckPanel: React.FC<Props> = ({ cardsIds }) => {
           margin={16}
           marginVertical={panelMode === 'tow-columns' ? 16 : -90}
           containerWidth={panelMode === 'tow-columns' ? 576 : 360}
-          transitionTime={'400ms'}
-          transitionTimingFunction={'ease-in-out'}
+          transitionTime="400ms"
+          transitionTimingFunction="ease-in-out"
         >
           {cardsIds.map(id => (
             <DraggableCard key={id} id={id} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import styled from 'styled-components';
 import { PanelMode } from '../DeckPanel/DeckPanel';
@@ -62,8 +62,8 @@ const ToggleIndicator = styled.div`
 
 /**
  * The right game panel, where the deck is placed at the start of the game
- * and where you can find all cards that ar not placed into the board.
- * It is also a droppable are, where you can release cards moved out from the board
+ * and where you can find all cards that are not placed into the board.
+ * It is also a droppable area, where you can release cards moved out from the board
  */
 const DroppablePanelArea: React.FC<Props> = ({ children, mode }) => {
   const { setNodeRef } = useDroppable({
@@ -72,10 +72,14 @@ const DroppablePanelArea: React.FC<Props> = ({ children, mode }) => {
 
   const [closed, setClosed] = useState(false);
 
+  const toggle = useCallback(() => {
+    setClosed(state => !state);
+  }, []);
+
   return (
     <FixedPanel ref={setNodeRef} closed={closed} mode={mode}>
       <ToggleWrapper>
-        <ToggleButton onClick={() => setClosed(state => !state)}>
+        <ToggleButton onClick={toggle}>
           <ToggleIndicator />
         </ToggleButton>
       </ToggleWrapper>
