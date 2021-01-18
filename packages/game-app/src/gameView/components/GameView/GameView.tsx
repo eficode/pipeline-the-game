@@ -2,7 +2,6 @@ import React, { useCallback } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Board from '../Board';
-import Panel from '../Panel';
 import { TansformRenderProps } from '../../types/tansformRenderProps';
 import DraggableCard from '../DraggableCard';
 import { useParams } from 'react-router-dom';
@@ -10,6 +9,7 @@ import useGameState from '../../hooks/useGameState';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 import useCardEventHandler from '../../hooks/useCardEventHandler';
+import DeckPanel from '../DeckPanel';
 
 const Game: React.FC<{ pan: { x: number; y: number }; scale: number; gameId: string }> = React.memo(
   ({ pan, scale, gameId }) => {
@@ -30,11 +30,7 @@ const Game: React.FC<{ pan: { x: number; y: number }; scale: number; gameId: str
             </Board>
           </TransformComponent>
         </div>
-        <Panel>
-          {deckCardsIds.map(id => (
-            <DraggableCard key={id} id={id} />
-          ))}
-        </Panel>
+        <DeckPanel cardsIds={deckCardsIds} />
       </CardsGameListeners>
     );
   },
