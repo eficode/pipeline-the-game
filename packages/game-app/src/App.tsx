@@ -61,7 +61,7 @@ function App() {
     if (!state && user?.emailVerified && location.state?.desiredUrl) {
       history.push(location.state.desiredUrl);
       setState(true);
-      //TODO: verify if this boolean state if really necessary and whether we can avoid it.
+      //TODO: verify if this boolean state is really necessary and whether we can avoid it.
     }
   }, [location, user, history, state]);
 
