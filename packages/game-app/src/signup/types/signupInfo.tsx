@@ -4,4 +4,5 @@ export interface SignupInfo {
   repeatPassword: string;
   role: string;
   devOpsMaturity: string;
+  desiredUrl: string | null;
 }

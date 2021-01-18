@@ -15,9 +15,17 @@ export async function executeSignup(signupInfo: SignupInfo): Promise<AuthUser> {
         role: signupInfo.role,
         devOpsMaturity: signupInfo.devOpsMaturity,
       });
+
       const emailVerified = user.emailVerified;
       if (!emailVerified) {
-        await user.sendEmailVerification();
+        if (signupInfo.desiredUrl) {
+          console.log('desiredUrl:', signupInfo.desiredUrl);
+          // it has to be a full URL otherwise firebase will not send the continueUrl parameter in the verification link
+          const redirectUrl = window.location.origin + signupInfo.desiredUrl;
+          user.sendEmailVerification({ url: redirectUrl });
+        } else {
+          user.sendEmailVerification();
+        }
       }
       return {
         id: user.uid,

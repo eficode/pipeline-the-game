@@ -3,4 +3,5 @@ export interface VerifyEmailParams {
   lang: string;
   oobCode: string;
   apiKey: string;
+  continueUrl?: string;
 }

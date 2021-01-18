@@ -4,7 +4,7 @@ import { FormTextField } from '@pipeline/form';
 import { PasswordInput } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { useLogin } from '@pipeline/auth';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { RoutingPath } from '@pipeline/routing';
 import { Button, Link } from '@pipeline/components';
 
@@ -21,17 +21,18 @@ const Login: React.FC<Props> = () => {
     },
   });
 
-  const handleSubmit = methods.handleSubmit;
+  const { handleSubmit } = methods;
 
-  const { call, translatedError, loading } = useLogin();
+  const { call: login, translatedError: loginTranslateError, loading: loginLoading } = useLogin();
 
-  const submit = useMemo(() => handleSubmit(call), [handleSubmit, call]);
+  const submit = useMemo(() => handleSubmit(login), [login, handleSubmit]);
 
   const history = useHistory();
+  const location = useLocation<{ desiredUrl: string }>();
 
   const goToSignUp = useCallback(() => {
-    history.push(RoutingPath.Signup);
-  }, [history]);
+    history.push(RoutingPath.Signup, location.state);
+  }, [history, location]);
 
   return (
     <div className="login">
@@ -43,8 +44,8 @@ const Login: React.FC<Props> = () => {
           <div className="text-center">
             <Button label={t('login.form.buttonText')} onClick={submit} />
           </div>
-          {translatedError ? <span className="error-message">{translatedError}</span> : null}
-          {loading ? <span>Loading</span> : null}
+          {loginTranslateError ? <span className="error-message">{loginTranslateError}</span> : null}
+          {loginLoading ? <span>Loading</span> : null}
           <div className="text-center">
             <span>{t('login.notYetAccount')}</span>&nbsp;
             <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
