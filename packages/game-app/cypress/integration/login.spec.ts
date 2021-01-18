@@ -15,7 +15,7 @@ context("Login", () => {
     const randomEmail = generateRandomEmail();
     cy.getInputByName('email').fill(randomEmail);
     cy.getInputByName('password').fill('anyPassword');
-    cy.get('button').containsTranslationOf('login.form.buttonText').click();
+    cy.containsTranslationOf('button', 'login.form.buttonText').click();
     cy.get('body').should('contain.translationOf', 'login.errors.auth/user-not-found');
   });
 
@@ -24,7 +24,7 @@ context("Login", () => {
     cy.initializeUser({email: email, password: password}).then(user => {
       cy.getInputByName('email').fill(email);
       cy.getInputByName('password').fill('invalidPassword');
-      cy.get('button').containsTranslationOf('login.form.buttonText').click();
+      cy.containsTranslationOf('button', 'login.form.buttonText').click();
       cy.get('body').should('contain.translationOf', 'login.errors.auth/wrong-password');
     });
   });
@@ -35,7 +35,7 @@ context("Login", () => {
     cy.initializeUser({email, password, emailVerified: true}).then(user => {
       cy.getInputByName('email').fill(email);
       cy.getInputByName('password').fill(password);
-      cy.get('button').containsTranslationOf('login.form.buttonText').click();
+      cy.containsTranslationOf('button', 'login.form.buttonText').click();
       cy.location('pathname').should('equal', '/dashboard');
     });
   });
@@ -45,7 +45,7 @@ context("Login", () => {
     cy.initializeUser({email, password, emailVerified: false}).then(user => {
       cy.getInputByName('email').fill(email);
       cy.getInputByName('password').fill(password);
-      cy.get('button').containsTranslationOf('login.form.buttonText').click();
+      cy.containsTranslationOf('button', 'login.form.buttonText').click();
       cy.location('pathname').should('equal', '/email-verification-required');
     });
   });

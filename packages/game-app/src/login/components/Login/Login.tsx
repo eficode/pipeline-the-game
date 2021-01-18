@@ -6,7 +6,7 @@ import { useTranslate } from '@pipeline/i18n';
 import { useLogin } from '@pipeline/auth';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from '@pipeline/routing';
-import { Button, Link } from '@pipeline/ui-kit';
+import { Button, Link } from '@pipeline/components';
 
 type Props = {};
 
@@ -41,7 +41,7 @@ const Login: React.FC<Props> = () => {
           <FormTextField name="email" label={t('login.form.emailLabel')} />
           <FormTextField CustomInput={PasswordInput} name="password" label={t('login.form.passwordLabel')} />
           <div className="text-center">
-            <Button onClick={submit}>{t('login.form.buttonText')}</Button>
+            <Button label={t('login.form.buttonText')} onClick={submit} />
           </div>
           {translatedError ? <span className="error-message">{translatedError}</span> : null}
           {loading ? <span>Loading</span> : null}

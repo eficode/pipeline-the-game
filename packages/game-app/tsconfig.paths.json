@@ -11,8 +11,7 @@
       "@pipeline/form": ["src/_shared/form"],
       "@pipeline/components": ["src/_shared/components"],
       "@pipeline/models": ["src/_shared/models"],
-      "@pipeline/dynamicData": ["src/_shared/dynamicData"],
-      "@pipeline/ui-kit": ["src/ui-kit"]
+      "@pipeline/dynamicData": ["src/_shared/dynamicData"]
     }
   }
 }

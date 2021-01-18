@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 import { FirebaseCollection } from '@pipeline/common';
 import 'firebase/auth';
 import 'firebase/firestore';
-import { AuthUser } from '../../_shared/auth/slice';
+import { AuthUser } from '@pipeline/auth';
 
 export async function executeSignup(signupInfo: SignupInfo): Promise<AuthUser> {
   const credentials = await firebase.auth().createUserWithEmailAndPassword(signupInfo.email, signupInfo.password);
