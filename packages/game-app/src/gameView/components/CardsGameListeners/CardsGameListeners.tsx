@@ -330,7 +330,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
       {children}
       {createPortal(
         <DragOverlay adjustScale dropAnimation={null} modifiers={modifiers} className="transform-0">
-          {draggingCardId ? <ConnectedCard dragging={true} id={draggingCardId} /> : null}
+          {draggingCardId ? <ConnectedCard bigger dragging={true} id={draggingCardId} /> : null}
         </DragOverlay>,
         document.body,
       )}

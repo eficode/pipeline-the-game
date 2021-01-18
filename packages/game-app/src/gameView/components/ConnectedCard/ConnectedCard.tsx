@@ -6,12 +6,13 @@ import { Card } from '@pipeline/components';
 type Props = {
   id: string;
   dragging?: boolean;
+  bigger?: boolean;
 };
 
-const ConnectedCard: React.FC<Props> = ({ id, dragging }) => {
+const ConnectedCard: React.FC<Props> = ({ id, dragging, bigger }) => {
   const cardData = useSelector(selectors.getCardById(id))!;
 
-  return <Card {...cardData} dragging={dragging} />;
+  return <Card {...cardData} dragging={dragging} bigger={bigger} />;
 };
 
 ConnectedCard.displayName = 'ConnectedCard';

@@ -1,8 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Card, CardTags, CardTypes } from '@pipeline/common';
 import React from 'react';
+import { PANEL_CARD_SCALE } from '../../../dimensions';
 
-type CardProps = Card & { headerTitle?: string; readOnly?: boolean; imgURL?: string; dragging?: boolean };
+type CardProps = Card & {
+  headerTitle?: string;
+  readOnly?: boolean;
+  imgURL?: string;
+  dragging?: boolean;
+  bigger?: boolean;
+};
 
 interface CardHeaderProps {
   type: CardTypes;
@@ -30,7 +37,7 @@ const tagObj = {
   },
 } as { [key in CardTags]: { backgroundColor: string } };
 
-const CardWrapper = styled.div<{ dragging?: boolean }>`
+const CardWrapper = styled.div<{ dragging?: boolean; bigger?: boolean }>`
   padding: 0 0 16px;
   width: 280px;
   height: 200px;
@@ -38,11 +45,11 @@ const CardWrapper = styled.div<{ dragging?: boolean }>`
   background: #f9f9f9;
 
   box-sizing: border-box;
-
+  ${props => (props.bigger ? `transform:scale(${PANEL_CARD_SCALE});transform-origin:0 0;` : '')}
   ${props =>
     props.dragging
       ? `
-          transform: rotate(6deg);
+          transform: rotate(6deg) ${props.bigger && `scale(${PANEL_CARD_SCALE})`};
           box-shadow: 0px 80px 20px #10182026;
           `
       : `
@@ -104,7 +111,7 @@ const CardBodySubTitle = styled.h3`
 `;
 
 const CardContent = styled.div`
-  font-size: 10px;
+  font-size: 8px;
   margin-top: 8px;
 `;
 
@@ -117,10 +124,11 @@ const CardComponent: React.FC<CardProps> = ({
   readOnly = true,
   tags,
   dragging,
+  bigger,
   ...other
 }) => {
   return (
-    <CardWrapper dragging={dragging}>
+    <CardWrapper dragging={dragging} bigger={bigger}>
       <CardHeader type={type}>
         <CardHeading>{type}</CardHeading>
         <CardHeadingTags>

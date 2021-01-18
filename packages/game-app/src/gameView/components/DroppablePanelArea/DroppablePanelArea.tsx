@@ -2,6 +2,7 @@ import React, { useCallback, useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
 import styled from 'styled-components';
 import { PanelMode } from '../DeckPanel/DeckPanel';
+import { PANEL_ONE_COLUMNS_WIDTH, PANEL_TWO_COLUMNS_WIDTH } from '../../../dimensions';
 
 type Props = {
   mode: PanelMode;
@@ -23,9 +24,10 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode }>`
   transition: transform 0.5s, width 0.5s;
 
   ${props =>
-    props.closed ? `transform: translate(${props.mode === 'stacked' ? 300 : 594}px);` : 'transform: translate(0);'}
-
-  ${props => (props.mode === 'stacked' ? 'width: 360px;' : 'width: 656px;')}
+    props.closed
+      ? `transform: translate(${props.mode === 'stacked' ? 300 : 594}px);`
+      : 'transform: translate(0);'} ${props =>
+    props.mode === 'stacked' ? `width: ${PANEL_ONE_COLUMNS_WIDTH}px;` : `width: ${PANEL_TWO_COLUMNS_WIDTH}px;`}
 `;
 
 const ToggleWrapper = styled.div`

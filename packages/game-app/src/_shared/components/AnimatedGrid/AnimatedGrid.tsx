@@ -50,7 +50,10 @@ const AnimatedGrid: React.FC<Props> = ({
   );
 
   const parseChildren = useCallback(() => {
-    const elementsPerRow = calculateItemsPerRow(itemWidth, margin, containerWidth);
+    let elementsPerRow = calculateItemsPerRow(itemWidth, margin, containerWidth);
+    if (elementsPerRow < 1) {
+      elementsPerRow = 1;
+    }
     const newMargin = margin;
     return Children.map(children, (child, index) => {
       const { row, col } = calculateItemPosition(index, elementsPerRow);
