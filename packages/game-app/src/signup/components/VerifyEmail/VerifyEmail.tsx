@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { VerifyEmailParams } from '../../types/emailValidationParams';
 import { RoutingPath, useNavigateOnCondition, useQueryParams } from '@pipeline/routing';
-import { useEmailVerification, useLoggedUser } from '@pipeline/auth';
+import { useEmailVerification } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
 
 type Props = {};
