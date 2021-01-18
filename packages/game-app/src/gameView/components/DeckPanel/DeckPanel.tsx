@@ -3,6 +3,7 @@ import DraggableCard from '../DraggableCard';
 import styled, { css } from 'styled-components';
 import { IconButton, AnimatedGrid } from '@pipeline/components';
 import { ReactComponent as StackedIcon } from '@assets/icons/stacked-cards.svg';
+import { ReactComponent as TwoColumnsIcon } from '@assets/icons/2column-view.svg';
 import DroppablePanelArea from '../DroppablePanelArea';
 import { PANEL_CARD_SIZE, PANEL_ONE_COLUMNS_WIDTH, PANEL_TWO_COLUMNS_WIDTH } from '../../../dimensions';
 import { CardWrapper } from '../DraggableCard/DraggableCard';
@@ -53,7 +54,7 @@ const DeckPanel: React.FC<Props> = ({ cardsIds }) => {
           <StackedIcon />
         </IconButton>
         <IconButton active={panelMode === 'tow-columns'} onClick={() => setPanelMode('tow-columns')}>
-          <StackedIcon />
+          <TwoColumnsIcon />
         </IconButton>
       </PanelButtons>
       <DeckPanelContent mode={panelMode}>

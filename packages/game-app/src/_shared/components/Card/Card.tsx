@@ -43,18 +43,24 @@ const CardWrapper = styled.div<{ dragging?: boolean; bigger?: boolean }>`
   height: 200px;
   border-radius: 10px;
   background: #f9f9f9;
-
   box-sizing: border-box;
-  ${props => (props.bigger ? `transform:scale(${PANEL_CARD_SCALE});transform-origin:0 0;` : '')}
+
+  ${props =>
+    props.bigger
+      ? css`
+          transform: scale(${PANEL_CARD_SCALE});
+          transform-origin: 0 0;
+        `
+      : ''}
   ${props =>
     props.dragging
-      ? `
+      ? css`
           transform: rotate(6deg) ${props.bigger && `scale(${PANEL_CARD_SCALE})`};
           box-shadow: 0px 80px 20px #10182026;
-          `
-      : `
+        `
+      : css`
           box-shadow: 0px 0px 6px #10182029;
-          `}
+        `}
 `;
 
 const CardHeader = styled.header<CardHeaderProps>`

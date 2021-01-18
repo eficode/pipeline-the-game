@@ -16,7 +16,16 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
     deckCards: cards.filter(c => c.type === CardTypes.PipelineStep).map(c => c.id),
     cardsState: {},
   };
-  yield put(actions.setInitialGameState({ state: gameState, gameId: action.payload }));
+  yield put(
+    actions.setInitialGameState({
+      state: gameState,
+      gameId: action.payload,
+      scenario: {
+        title: game.scenarioTitle,
+        content: game.scenarioContent,
+      },
+    }),
+  );
 }
 
 export default function* loadGameSaga() {
