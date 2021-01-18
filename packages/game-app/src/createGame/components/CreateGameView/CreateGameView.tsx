@@ -7,13 +7,11 @@ import useCards from '../../../gameView/hooks/useCards';
 import { CardTypes } from '@pipeline/common';
 import ScenariosList from '../ScenariosList';
 import { FormTextField } from '@pipeline/form';
-import { TextArea } from '@pipeline/components';
-import { Button, Link } from '@pipeline/components';
+import { Button, Link, Box, TextArea } from '@pipeline/components';
 import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
 import useCreateGame from '../../hook/useCreateGame';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createGameValidationSchema } from '../../utils/validation';
-import Box from '../../../_shared/components/Box';
 
 type Props = {};
 
