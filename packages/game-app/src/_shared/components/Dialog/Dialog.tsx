@@ -16,7 +16,7 @@ type Props = {
   /**
    * Content placed inside the dialog under the title
    */
-  children?: React.ReactChild;
+  children?: React.ReactNode;
 };
 
 /**
