@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { variant, color, ColorProps } from 'styled-system';
 import Box from '../Box';
 import Typography from '../Typography';
 
@@ -7,19 +8,20 @@ type Props = {
   name: string;
   label?: string;
   value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   errorMessage?: string | null;
   type?: string;
   disabled?: boolean;
 };
 
-const Input = styled.input`
+type InputVariants = 'default' | 'clear';
+
+export const Input = styled.input<{ variant: InputVariants } & ColorProps>`
   width: 100%;
   height: 40px;
   padding: 5px 10px;
   box-sizing: border-box;
   border-radius: 10px;
-  border: 1px solid #9a9a9a;
 
   &:focus {
     outline: none;
@@ -28,6 +30,18 @@ const Input = styled.input`
   &:focus {
     border: 1px solid #00867c;
   }
+
+  ${variant({
+    variants: {
+      default: {
+        border: '1px solid #9a9a9a',
+      },
+      clear: {
+        border: 'none',
+      },
+    },
+  })}
+  ${color}
 `;
 
 const InputContainer = styled(Box)<React.ComponentProps<typeof Box>>`
@@ -45,7 +59,16 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>(
             {label}
           </Typography>
         ) : null}
-        <Input ref={ref} disabled={disabled} type={type} value={value} name={name} id={name} onChange={onChange} />
+        <Input
+          ref={ref}
+          variant="default"
+          disabled={disabled}
+          type={type}
+          value={value}
+          name={name}
+          id={name}
+          onChange={onChange}
+        />
         {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
       </InputContainer>
     );

@@ -20,6 +20,10 @@ const translations = {
   },
   game: {
     contactUs: 'Contact us',
+    share: {
+      title: 'Share the game',
+      subtitle: 'Copy the link below and share it with your colleagues.',
+    },
   },
   login: {
     title: 'Sign in to play',
@@ -64,6 +68,7 @@ const translations = {
   },
   general: {
     cancel: 'Cancel',
+    done: 'Done',
     errors: {
       required: 'This field is required',
     },

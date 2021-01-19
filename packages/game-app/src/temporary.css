@@ -71,7 +71,6 @@ body {
   margin: 15px 0;
 }
 
-input,
 select {
   width: 100%;
   padding: 5px 10px;
@@ -80,9 +79,7 @@ select {
   border: 1px solid #9a9a9a;
 }
 
-label + input,
-label + div > select,
-label + div > input {
+label + div > select {
   margin-bottom: 10px;
 }
 
@@ -91,7 +88,6 @@ label {
   font-weight: 600;
 }
 
-input:focus,
 select:focus,
 button:focus {
   outline: none;

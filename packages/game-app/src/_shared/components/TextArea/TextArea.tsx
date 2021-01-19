@@ -5,7 +5,7 @@ type Props = {
   name: string;
   label?: string;
   value: string;
-  onChange: React.ChangeEventHandler<HTMLInputElement>;
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   errorMessage?: string | null;
   disabled?: boolean;
 };
