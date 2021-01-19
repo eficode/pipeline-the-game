@@ -9,7 +9,7 @@ import { signupValidationSchema } from '../../utils/validation';
 import { useTranslate } from '@pipeline/i18n';
 import { PasswordInput } from '@pipeline/components';
 import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { Link, Button } from '@pipeline/components';
 
 type Props = {};
@@ -41,19 +41,22 @@ const Signup: React.FC<Props> = () => {
   const devOpsMaturities = useDevOpsMaturities();
   const gameRoles = useGameRoles();
 
+  const location = useLocation<{ desiredUrl: string }>();
+
   const submit = useMemo(
     () =>
       handleSubmit((info: SignupInfo) => {
+        info.desiredUrl = location.state?.desiredUrl;
         signup(info);
       }),
-    [signup, handleSubmit],
+    [signup, handleSubmit, location],
   );
 
   const history = useHistory();
 
   const goToSignIn = useCallback(() => {
-    history.push(RoutingPath.Login);
-  }, [history]);
+    history.push(RoutingPath.Login, location.state);
+  }, [history, location]);
 
   useNavigateOnCondition(signupSuccess, RoutingPath.EmailVerificationRequired);
 

@@ -9,15 +9,19 @@ import { RoutingPath } from './routingPath';
  * @param condition the condition to check
  * @param route the route to go
  */
-export default function useNavigateOnCondition(condition: boolean, route: RoutingPath | string) {
+export default function useNavigateOnCondition<State = any>(
+  condition: boolean,
+  route: RoutingPath | string,
+  state?: State,
+) {
   const [alreadyNavigated, setAlreadyNavigated] = useState<boolean>(false);
 
   const history = useHistory();
 
   useEffect(() => {
     if (condition && !alreadyNavigated) {
-      history.push(route);
+      history.push(route, state);
       setAlreadyNavigated(true);
     }
-  }, [condition, history, route, alreadyNavigated]);
+  }, [condition, history, route, alreadyNavigated, state]);
 }

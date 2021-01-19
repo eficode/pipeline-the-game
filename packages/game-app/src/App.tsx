@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import React, { Suspense, useEffect, useState } from 'react';
+import { Redirect, Route, Switch, useLocation, useHistory } from 'react-router-dom';
 import { PrivateRoute, RoutingPath } from '@pipeline/routing';
 import { useBootstrapIsFinished } from './_shared';
 import { AuthUser, useLoggedUser } from '@pipeline/auth';
@@ -26,7 +26,7 @@ function renderAuthRoutes(user: AuthUser | null) {
       <Route path={RoutingPath.Signup} component={Signup} />,
       <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
       <Route path="*">
-        <Redirect to={RoutingPath.Signup} />
+        <Redirect to={RoutingPath.Login} />
       </Route>,
     ];
   }
@@ -52,6 +52,18 @@ function App() {
   const bootstrapIsFinished = useBootstrapIsFinished();
 
   const user = useLoggedUser();
+  const [state, setState] = useState(false);
+
+  const location = useLocation<{ desiredUrl: string }>();
+  const history = useHistory();
+
+  useEffect(() => {
+    if (!state && user?.emailVerified && location.state?.desiredUrl) {
+      history.push(location.state.desiredUrl);
+      setState(true);
+      //TODO: verify if this boolean state is really necessary and whether we can avoid it.
+    }
+  }, [location, user, history, state]);
 
   return bootstrapIsFinished ? (
     <Suspense fallback={null}>

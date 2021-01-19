@@ -2,46 +2,45 @@
 /// <reference types="../support" />
 
 // @ts-ignore
-import {generateRandomCredentials} from "./utils/generators";
+import { generateRandomCredentials } from './utils/generators';
 
-context("Signup", () => {
-
+context('Signup', () => {
   const usedEmails: string[] = [];
 
   beforeEach(() => {
-    cy.clearLocalStorage()
+    cy.clearLocalStorage();
     cy.clearIndexedDB();
-    cy.visit(Cypress.config().baseUrl!);
+    cy.visit('/signup');
   });
 
   // TODO test for all required fields
-  it("should show invalid email error message", () => {
+  it('should show invalid email error message', () => {
     cy.getInputByName('email').fill('non-valid-email');
     cy.containsTranslationOf('button', 'signup.form.buttonText').click();
-    cy.get('body').should('contain.translationOf', 'signup.errors.invalidEmail')
+    cy.get('body').should('contain.translationOf', 'signup.errors.invalidEmail');
   });
 
-  it("should show invalid password error", () => {
+  it('should show invalid password error', () => {
     cy.getInputByName('password').fill('123456789');
     cy.containsTranslationOf('button', 'signup.form.buttonText').click();
-    cy.get('body').should('contain.translationOf', 'signup.errors.passwordRequirements')
+    cy.get('body').should('contain.translationOf', 'signup.errors.passwordRequirements');
   });
 
-  it("should not show invalid password error for correct password", () => {
+  it('should not show invalid password error for correct password', () => {
     cy.getInputByName('password').fill('Aa1sfesfsf');
     cy.containsTranslationOf('button', 'signup.form.buttonText').click();
-    cy.get('body').should('not.contain.translationOf', 'signup.errors.passwordRequirements')
+    cy.get('body').should('not.contain.translationOf', 'signup.errors.passwordRequirements');
   });
 
-  it("should show mismatch password error", () => {
+  it('should show mismatch password error', () => {
     cy.getInputByName('password').fill('123456789');
     cy.getInputByName('repeatPassword').fill('123456788');
     cy.containsTranslationOf('button', 'signup.form.buttonText').click();
-    cy.get('body').should('contain.translationOf', 'signup.errors.passwordMatch')
+    cy.get('body').should('contain.translationOf', 'signup.errors.passwordMatch');
   });
 
-  it("should signup correctly and go to email verification required", () => {
-    const {email, password} = generateRandomCredentials()
+  it('should signup correctly and go to email verification required', () => {
+    const { email, password } = generateRandomCredentials();
     usedEmails.push(email);
     cy.getInputByName('email').fill(email);
     cy.getInputByName('password').fill(password);
@@ -49,26 +48,29 @@ context("Signup", () => {
     cy.getInputByName('role').select('endUser');
     cy.getInputByName('devOpsMaturity').select('veryImmature');
     cy.containsTranslationOf('button', 'signup.form.buttonText').click();
-    cy.location("pathname").should("equal", "/email-verification-required");
+    cy.location('pathname').should('equal', '/email-verification-required');
 
     // check auth presence
-    cy.getFirebaseUserByEmail(email).should('deep.include', {
-      email: email,
-      emailVerified: false,
-      disabled: false
-    }).its('uid').then(uid => {
-      // check firestore data
-      cy.getFirestoreDocument(`users/${uid}`).should('deep.eq', {
-        devOpsMaturity: 'veryImmature',
-        role: 'endUser',
-        email: email
+    cy.getFirebaseUserByEmail(email)
+      .should('deep.include', {
+        email: email,
+        emailVerified: false,
+        disabled: false,
+      })
+      .its('uid')
+      .then(uid => {
+        // check firestore data
+        cy.getFirestoreDocument(`users/${uid}`).should('deep.eq', {
+          devOpsMaturity: 'veryImmature',
+          role: 'endUser',
+          email: email,
+        });
       });
-    });
   });
 
-  it("should show email already used error", () => {
-    const {email, password} = generateRandomCredentials()
-    cy.initializeUser({email})
+  it('should show email already used error', () => {
+    const { email, password } = generateRandomCredentials();
+    cy.initializeUser({ email });
     const alreadyUsedEmail = email;
     cy.getInputByName('email').fill(alreadyUsedEmail);
     cy.getInputByName('password').fill(password);
@@ -78,5 +80,4 @@ context("Signup", () => {
     cy.containsTranslationOf('button', 'signup.form.buttonText').click();
     cy.get('body').should('contain.translationOf', 'signup.errors.auth/email-already-in-use');
   });
-
 });
