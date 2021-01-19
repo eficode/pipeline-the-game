@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import DraggableCard from '../DraggableCard';
 import styled, { css } from 'styled-components';
 import { IconButton, AnimatedGrid } from '@pipeline/components';
@@ -42,10 +42,15 @@ const PanelButtons = styled.div`
 
 type Props = {
   cardsIds: string[];
+  panelModeRef: React.MutableRefObject<PanelMode>;
 };
 
-const DeckPanel: React.FC<Props> = ({ cardsIds }) => {
-  const [panelMode, setPanelMode] = useState<PanelMode>('tow-columns');
+const DeckPanel: React.FC<Props> = ({ cardsIds, panelModeRef }) => {
+  const [panelMode, setPanelMode] = useState<PanelMode>('stacked');
+
+  useEffect(() => {
+    panelModeRef.current = panelMode;
+  }, [panelMode, panelModeRef]);
 
   return (
     <DroppablePanelArea mode={panelMode}>

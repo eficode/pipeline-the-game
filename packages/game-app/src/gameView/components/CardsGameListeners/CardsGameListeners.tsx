@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { DndContext, DragEndEvent, DragMoveEvent, DragOverlay, DragStartEvent, Modifiers } from '@dnd-kit/core';
 import { RectEntry, ViewRect } from '@dnd-kit/core/dist/types';
 import { createPortal } from 'react-dom';
@@ -6,8 +6,10 @@ import { Transform } from '@dnd-kit/utilities';
 import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { GameUIState } from '../../types/gameUIState';
 import ConnectedCard from '../ConnectedCard';
+import { PanelMode } from '../DeckPanel/DeckPanel';
+import { DEFAULT_CARD_SIZE, PANEL_CARD_SCALE, PANEL_CARD_SIZE } from '../../../dimensions';
 
-const DEBUG_ENABLED = false;
+const DEBUG_ENABLED = true;
 
 const debugPrint = (...data: any[]) => DEBUG_ENABLED && console.debug('[CardsGameListeners]', ...data);
 
@@ -26,6 +28,10 @@ type Props = {
    * Current game board scale (used for target coordinates calculation).
    */
   boardScale: number;
+  /**
+   * Current panel mode
+   */
+  panelModeRef: RefObject<PanelMode>;
   /**
    * Current game board panning amount (used for target coordinates calculation).
    */
@@ -49,9 +55,6 @@ type AbsoluteWindowPositions = {
   };
 };
 
-const CARD_WIDTH = 280;
-const CARD_HEIGHT = 200;
-
 let collisionTime = 0;
 let moveTime = 0;
 let modifiersTime = 0;
@@ -66,7 +69,14 @@ let movementStart = 0;
  *
  *  Wrap panel and game with this
  */
-const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameState, boardScale, panAmount }) => {
+const CardsGameListeners: React.FC<Props> = ({
+  onEvent,
+  children,
+  currentGameState,
+  boardScale,
+  panAmount,
+  panelModeRef,
+}) => {
   const gameStateRef = useRef<GameUIState>(currentGameState);
   const translationDeltaRef = useRef<TranslationDeltas>({});
   const absoluteItemPositionWithResectToWindowRef = useRef<AbsoluteWindowPositions>({});
@@ -158,10 +168,21 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
           y: currentPosition.y + delta.y / panScaleRef.current,
         };
       } else {
-        const centerAdjustmentX = (CARD_WIDTH - CARD_WIDTH * panScaleRef.current) / 2;
-        const centerAdjustmentY = (CARD_HEIGHT - CARD_HEIGHT * panScaleRef.current) / 2;
+        const centerAdjustmentX = (PANEL_CARD_SIZE.width - DEFAULT_CARD_SIZE.width * panScaleRef.current) / 2;
+        const centerAdjustmentY = (PANEL_CARD_SIZE.height - DEFAULT_CARD_SIZE.height * panScaleRef.current) / 2;
 
-        const absoluteWindowPosition = absoluteItemPositionWithResectToWindowRef.current[cardId];
+        let absoluteWindowPosition = absoluteItemPositionWithResectToWindowRef.current[cardId];
+
+        /*
+         * dnd kit does not consider translation on calculating absolute position so we need to subtract the
+         * translation given by the card animation on hover
+         */
+        if (panelModeRef.current === 'stacked') {
+          absoluteWindowPosition = {
+            ...absoluteWindowPosition,
+            y: absoluteWindowPosition.y - 100,
+          };
+        }
 
         // rescale window position considering panning and scale
         newPosition = {
@@ -187,7 +208,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
         position: newPosition,
       });
     },
-    [onEvent],
+    [onEvent, panelModeRef],
   );
 
   const modifiers = useMemo(
@@ -228,11 +249,19 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
                 panPositionRef.current.y,
             };
           } else {
+            let y = args.transform.y;
+            /*
+             * dnd kit does not consider translation on calculating absolute position so we need to subtract the
+             * translation given by the card animation on hover
+             */
+            if (panelModeRef.current === 'stacked') {
+              y = y - 100;
+            }
             newTransform = {
               scaleY: 1,
               scaleX: 1,
               x: args.transform.x,
-              y: args.transform.y,
+              y: y,
             };
           }
           const end = performance.now();
@@ -240,7 +269,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
           return newTransform;
         },
       ] as Modifiers,
-    [draggingCardId],
+    [draggingCardId, panelModeRef],
   );
 
   const customCollisionDetectionStrategy = useCallback(

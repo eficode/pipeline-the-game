@@ -25,7 +25,9 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode }>`
 
   ${props =>
     props.closed
-      ? `transform: translate(${props.mode === 'stacked' ? 300 : 594}px);`
+      ? `transform: translate(${
+          (props.mode === 'stacked' ? PANEL_ONE_COLUMNS_WIDTH : PANEL_TWO_COLUMNS_WIDTH) - 40
+        }px);`
       : 'transform: translate(0);'} ${props =>
     props.mode === 'stacked' ? `width: ${PANEL_ONE_COLUMNS_WIDTH}px;` : `width: ${PANEL_TWO_COLUMNS_WIDTH}px;`}
 `;
@@ -48,6 +50,7 @@ const ToggleButton = styled.button`
   background: transparent;
   border: none;
   border-radius: 9px;
+  cursor: pointer;
 `;
 
 const ToggleIndicator = styled.div`
