@@ -15,6 +15,9 @@ import {
 
 export type BoxProps = SpaceProps & LayoutProps & FlexboxProps & PositionProps & MarginProps & TextAlignProps;
 
+/**
+ * Simple div wrapper that exposes flex, margin and other inline props
+ */
 const Box = styled.div<BoxProps>(
   {
     boxSizing: 'border-box',

@@ -14,8 +14,10 @@ declare module 'styled-components' {
       primary: string;
       primaryLight: string;
       secondary: string;
+      secondaryDark: string;
       activeAccent: string;
       activeAccentLight: string;
+      textColor: string;
     };
     cardsTypes: {
       [key: string]: string;

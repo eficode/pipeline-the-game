@@ -1,19 +1,47 @@
 import React, { Children, useCallback } from 'react';
 import { calculateCoordinates, calculateItemPosition, calculateItemsPerRow } from './animatedGridUtils';
+import { AnimatedGridContainer } from './AnimatedGrid.styled';
 
 type Props = {
+  /**
+   * the width of the grid container
+   */
   containerWidth: number;
+  /**
+   * width of the element inside the grid
+   */
   itemWidth: number;
+  /**
+   * height of the element inside the grid
+   */
   itemHeight: number;
+  /**
+   * margin between elements
+   */
   margin: number;
+  /**
+   * vertical margin between elements if it is different from the margin
+   */
   marginVertical: number;
+  /**
+   * class applied to the child elements
+   */
   childClassName?: string;
+  /**
+   * class applied to the grid container
+   */
   className?: string;
   transitionTime?: string;
   transitionTimingFunction?: string;
   children: React.ReactChild[];
 };
 
+/**
+ * Component that calculates absolute position inside the grid given the margin and the
+ * exact width and height of the elements, the position is then animated between
+ * rendering. Each children must heave a unique key so that the transition
+ * between to rendering can be created.
+ */
 const AnimatedGrid: React.FC<Props> = ({
   margin,
   children,
@@ -62,18 +90,7 @@ const AnimatedGrid: React.FC<Props> = ({
     });
   }, [children, containerWidth, itemHeight, itemWidth, margin, marginVertical, renderChild]);
 
-  return (
-    <div
-      className={className}
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-      }}
-    >
-      {parseChildren()}
-    </div>
-  );
+  return <AnimatedGridContainer className={className}>{parseChildren()}</AnimatedGridContainer>;
 };
 
 AnimatedGrid.displayName = 'AnimatedGrid';

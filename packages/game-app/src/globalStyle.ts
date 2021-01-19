@@ -37,10 +37,13 @@ Temporary css waiting for the ui components
   body {
     background-color: #d7d2cb;
     font-size: 14px;
+    color: #101820;
   }
 
   select:focus,
   button:focus {
     outline: none;
   }
+  
+  
 `;

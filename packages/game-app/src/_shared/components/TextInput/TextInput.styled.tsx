@@ -30,6 +30,7 @@ export const Input = styled.input<{ variant: InputVariants } & ColorProps>`
 `;
 
 Input.displayName = 'Input';
+
 export const InputContainer = styled(Box)<React.ComponentProps<typeof Box>>`
   flex-direction: column;
 
