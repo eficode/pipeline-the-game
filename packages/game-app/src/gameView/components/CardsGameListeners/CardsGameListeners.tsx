@@ -95,14 +95,15 @@ const CardsGameListeners: React.FC<Props> = ({
     panPositionRef.current = panAmount;
   }, [panAmount]);
 
-  const [draggingCardId, setDraggingCardId] = useState<string | null>(null);
+  const [draggingCard, setDraggingCard] = useState<{ id: string; parent: 'panel' | 'board' } | null>(null);
 
   const handleDragStart = useCallback(
     (ev: DragStartEvent) => {
       movementStart = performance.now();
 
       const { active } = ev;
-      setDraggingCardId(active.id);
+      const parent = gameStateRef.current[active.id].placedIn;
+      setDraggingCard({ id: active.id, parent });
       onEvent({
         type: GameEventType.CardMovingStart,
         cardId: active.id,
@@ -148,7 +149,7 @@ const CardsGameListeners: React.FC<Props> = ({
         active: { id: cardId },
       } = ev;
       const newParent = over?.id;
-      setDraggingCardId(null);
+      setDraggingCard(null);
 
       if (newParent === 'panel') {
         onEvent({
@@ -217,7 +218,7 @@ const CardsGameListeners: React.FC<Props> = ({
         args => {
           const start = performance.now();
 
-          if (!draggingCardId) {
+          if (!draggingCard?.id) {
             return {
               scaleY: 1,
               scaleX: 1,
@@ -225,7 +226,7 @@ const CardsGameListeners: React.FC<Props> = ({
               y: args.transform.y,
             };
           }
-          const currentMovingCardState = gameStateRef.current[draggingCardId!];
+          const currentMovingCardState = gameStateRef.current[draggingCard!.id];
           let newTransform: Transform;
           if (currentMovingCardState.placedIn === 'board') {
             /**
@@ -269,17 +270,17 @@ const CardsGameListeners: React.FC<Props> = ({
           return newTransform;
         },
       ] as Modifiers,
-    [draggingCardId, panelModeRef],
+    [draggingCard, panelModeRef],
   );
 
   const customCollisionDetectionStrategy = useCallback(
     (rects: RectEntry[], draggingRect: ViewRect) => {
       const start = performance.now();
-      if (!draggingCardId) {
+      if (!draggingCard) {
         return null;
       }
       const panelRect = rects.filter(([id]) => id === 'panel');
-      const currentMovingCardState = gameStateRef.current[draggingCardId!];
+      const currentMovingCardState = gameStateRef.current[draggingCard!.id];
 
       let absoluteRectWithRespectToWindow = draggingRect;
       if (currentMovingCardState.placedIn === 'board') {
@@ -288,10 +289,10 @@ const CardsGameListeners: React.FC<Props> = ({
         const absoluteRectWithRespectToBoard = {
           left:
             currentMovingCardState.position!.x +
-            (translationDeltaRef.current[draggingCardId!]?.x || 0) / panScaleRef.current,
+            (translationDeltaRef.current[draggingCard!.id]?.x || 0) / panScaleRef.current,
           top:
             currentMovingCardState.position!.y +
-            (translationDeltaRef.current[draggingCardId!]?.y || 0) / panScaleRef.current,
+            (translationDeltaRef.current[draggingCard!.id]?.y || 0) / panScaleRef.current,
           height: draggingRect.height,
           width: draggingRect.width,
           right: draggingRect.right,
@@ -346,7 +347,7 @@ const CardsGameListeners: React.FC<Props> = ({
         return 'board';
       }
     },
-    [draggingCardId],
+    [draggingCard],
   );
 
   return (
@@ -359,7 +360,9 @@ const CardsGameListeners: React.FC<Props> = ({
       {children}
       {createPortal(
         <DragOverlay adjustScale dropAnimation={null} modifiers={modifiers} className="transform-0">
-          {draggingCardId ? <ConnectedCard bigger dragging={true} id={draggingCardId} /> : null}
+          {draggingCard ? (
+            <ConnectedCard bigger={draggingCard.parent === 'panel'} dragging={true} id={draggingCard.id} />
+          ) : null}
         </DragOverlay>,
         document.body,
       )}
