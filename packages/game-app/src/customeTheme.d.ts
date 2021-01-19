@@ -10,6 +10,13 @@ declare module 'styled-components' {
         clear: object;
       };
     };
+    iconButton: {
+      variants: {
+        default: {
+          background: string;
+        };
+      };
+    };
     colors: {
       primary: string;
       primaryLight: string;

@@ -44,3 +44,10 @@ Dragged.args = {
   ...PipelineStep.args,
   dragging: true,
 };
+
+export const Bigger = Template.bind({});
+
+Bigger.args = {
+  ...PipelineStep.args,
+  bigger: true,
+};

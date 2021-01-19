@@ -11,6 +11,13 @@ const theme: DefaultTheme = {
       },
     },
   },
+  iconButton: {
+    variants: {
+      default: {
+        background: '#b4aea9',
+      },
+    },
+  },
   colors: {
     primary: '#2C3644',
     primaryLight: '#465060',
