@@ -12,6 +12,9 @@ import * as animations from './animations';
 import ExpandableTopPanel from './ExpandableTopPanel';
 import Typography from './Typography';
 import FabDial from './FabDial';
+import useDialog from './Dialog/useDialog';
+import Dialog from './Dialog';
+import { Input } from './TextInput/TextInput';
 
 export {
   TextInput,
@@ -28,4 +31,7 @@ export {
   ExpandableTopPanel,
   Typography,
   FabDial,
+  useDialog,
+  Dialog,
+  Input,
 };
