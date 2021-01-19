@@ -43,9 +43,6 @@ const BottomWidgetsRowStyled: React.FC<Props> = ({ fitWindow, zoomIn, zoomOut })
           },
         ]}
       />
-      <IconButton onClick={() => ({})}>
-        <ZoomInIcon />
-      </IconButton>
     </BottomWidgetsRowContainer>
   );
 };
