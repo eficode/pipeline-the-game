@@ -7,7 +7,7 @@ import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { GameUIState } from '../../types/gameUIState';
 import ConnectedCard from '../ConnectedCard';
 
-const DEBUG_ENABLED = true;
+const DEBUG_ENABLED = false;
 
 const debugPrint = (...data: any[]) => DEBUG_ENABLED && console.debug('[CardsGameListeners]', ...data);
 

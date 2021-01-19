@@ -97,46 +97,6 @@ button:focus {
   outline: none;
 }
 
-button:hover {
-  transform: scale(1.05);
-}
-
-button {
-  cursor: pointer;
-}
-
-button.primary {
-  background-color: #101820; /* Green */
-  border: none;
-  color: white;
-  padding: 10px 35px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 16px;
-  border-radius: 25px;
-  font-weight: 600;
-  margin: 15px 0;
-}
-
-button.icon-button {
-  background-color: transparent;
-  border: none;
-  padding: 8px;
-}
-
-button.link {
-  background-color: transparent;
-  border: 0;
-  text-decoration: underline;
-  font-size: 15px;
-  color: #9f998f;
-}
-
-input + button.icon-button {
-  position: absolute;
-  right: 10px;
-}
-
 /** eye icon */
 .gg-eye {
   position: relative;

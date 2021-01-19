@@ -7,13 +7,15 @@ export const BottomWidgetsRowContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
+  & > * {
+    margin-left: 50px;
+  }
 `;
 
 export const PoweredByContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  margin-left: 50px;
 `;
 
 export const TextLogoWrapper = styled.div`

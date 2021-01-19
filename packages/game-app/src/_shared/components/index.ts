@@ -11,6 +11,7 @@ import AnimatedGrid from './AnimatedGrid';
 import * as animations from './animations';
 import ExpandableTopPanel from './ExpandableTopPanel';
 import Typography from './Typography';
+import FabDial from './FabDial';
 
 export {
   TextInput,
@@ -26,4 +27,5 @@ export {
   animations,
   ExpandableTopPanel,
   Typography,
+  FabDial,
 };
