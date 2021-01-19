@@ -8,7 +8,7 @@ type Props = {
   mode: PanelMode;
 };
 
-const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode }>`
+const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode; isOver: boolean }>`
   position: fixed;
   top: 0;
   right: 0;
@@ -21,11 +21,13 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode }>`
   background-color: rgb(170, 180, 175, 0.4);
   display: flex;
   flex-direction: column;
-  transition: transform 0.5s, width 0.5s;
+  transition: transform 0.5s, width 0.5s, right 0.5s;
+  border: 2px solid transparent;
+  ${props => props.isOver && 'border-color: #00867c;'}
 
   ${props =>
     props.closed
-      ? `transform: translate(${props.mode === 'stacked' ? 300 : 594}px);`
+      ? `right: -${(props.mode === 'stacked' ? PANEL_ONE_COLUMNS_WIDTH : PANEL_TWO_COLUMNS_WIDTH) - 40}px;`
       : 'transform: translate(0);'} ${props =>
     props.mode === 'stacked' ? `width: ${PANEL_ONE_COLUMNS_WIDTH}px;` : `width: ${PANEL_TWO_COLUMNS_WIDTH}px;`}
 `;
@@ -48,6 +50,7 @@ const ToggleButton = styled.button`
   background: transparent;
   border: none;
   border-radius: 9px;
+  cursor: pointer;
 `;
 
 const ToggleIndicator = styled.div`
@@ -68,7 +71,7 @@ const ToggleIndicator = styled.div`
  * It is also a droppable area, where you can release cards moved out from the board
  */
 const DroppablePanelArea: React.FC<Props> = ({ children, mode }) => {
-  const { setNodeRef } = useDroppable({
+  const { setNodeRef, isOver } = useDroppable({
     id: 'panel',
   });
 
@@ -79,7 +82,7 @@ const DroppablePanelArea: React.FC<Props> = ({ children, mode }) => {
   }, []);
 
   return (
-    <FixedPanel ref={setNodeRef} closed={closed} mode={mode}>
+    <FixedPanel ref={setNodeRef} closed={closed} mode={mode} isOver={isOver}>
       <ToggleWrapper>
         <ToggleButton onClick={toggle}>
           <ToggleIndicator />

@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Board from '../Board';
@@ -11,6 +11,7 @@ import { selectors } from '../../slice';
 import useCardEventHandler from '../../hooks/useCardEventHandler';
 import DeckPanel from '../DeckPanel';
 import BottomWidgetsRow from '../BottomWidgetsRow/BottomWidgetsRow';
+import { PanelMode } from '../DeckPanel/DeckPanel';
 
 type GameProps = {
   pan: { x: number; y: number };
@@ -28,8 +29,16 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
 
   const { onCardEvent } = useCardEventHandler();
 
+  const panelModeRef = useRef<PanelMode>('stacked');
+
   return (
-    <CardsGameListeners onEvent={onCardEvent} boardScale={scale} panAmount={pan} currentGameState={state}>
+    <CardsGameListeners
+      panelModeRef={panelModeRef}
+      onEvent={onCardEvent}
+      boardScale={scale}
+      panAmount={pan}
+      currentGameState={state}
+    >
       <div className="board-wrapper">
         <TransformComponent>
           <Board>
@@ -40,7 +49,7 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
         </TransformComponent>
         <BottomWidgetsRow fitWindow={fitWindow} zoomIn={zoomIn} zoomOut={zoomOut} />
       </div>
-      <DeckPanel cardsIds={deckCardsIds} />
+      <DeckPanel panelModeRef={panelModeRef} cardsIds={deckCardsIds} />
     </CardsGameListeners>
   );
 });
