@@ -82,5 +82,8 @@ export interface TansformRenderProps {
   scalePadding: ScalePadding;
   zoomIn: () => void;
   zoomOut: () => void;
+  setScale: (scale: number) => void;
+  setPositionY: (y: number) => void;
+  setPositionX: (x: number) => void;
   resetTransform: () => void;
 }

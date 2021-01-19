@@ -41,7 +41,7 @@ const Login: React.FC<Props> = () => {
 
   return (
     <div className="login">
-      <LoginForm className="content card" error={!!translatedError}>
+      <LoginForm className="content card" error={!!loginTranslateError}>
         <h2>{t('login.title')}</h2>
         <FormProvider {...methods}>
           <FormTextField name="email" label={t('login.form.emailLabel')} />
