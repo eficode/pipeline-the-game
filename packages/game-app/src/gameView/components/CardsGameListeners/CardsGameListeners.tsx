@@ -7,9 +7,9 @@ import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { GameUIState } from '../../types/gameUIState';
 import ConnectedCard from '../ConnectedCard';
 import { PanelMode } from '../DeckPanel/DeckPanel';
-import { DEFAULT_CARD_SIZE, PANEL_CARD_SCALE, PANEL_CARD_SIZE } from '../../../dimensions';
+import { DEFAULT_CARD_SIZE, PANEL_CARD_SIZE } from '../../../dimensions';
 
-const DEBUG_ENABLED = true;
+const DEBUG_ENABLED = false;
 
 const debugPrint = (...data: any[]) => DEBUG_ENABLED && console.debug('[CardsGameListeners]', ...data);
 

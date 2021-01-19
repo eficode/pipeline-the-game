@@ -21,15 +21,13 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode; isOver: boolea
   background-color: rgb(170, 180, 175, 0.4);
   display: flex;
   flex-direction: column;
-  transition: transform 0.5s, width 0.5s;
+  transition: transform 0.5s, width 0.5s, right 0.5s;
   border: 2px solid transparent;
   ${props => props.isOver && 'border-color: #00867c;'}
 
   ${props =>
     props.closed
-      ? `transform: translate(${
-          (props.mode === 'stacked' ? PANEL_ONE_COLUMNS_WIDTH : PANEL_TWO_COLUMNS_WIDTH) - 40
-        }px);`
+      ? `right: -${(props.mode === 'stacked' ? PANEL_ONE_COLUMNS_WIDTH : PANEL_TWO_COLUMNS_WIDTH) - 40}px;`
       : 'transform: translate(0);'} ${props =>
     props.mode === 'stacked' ? `width: ${PANEL_ONE_COLUMNS_WIDTH}px;` : `width: ${PANEL_TWO_COLUMNS_WIDTH}px;`}
 `;
