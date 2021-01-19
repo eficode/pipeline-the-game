@@ -12,6 +12,7 @@ import useCardEventHandler from '../../hooks/useCardEventHandler';
 import DeckPanel from '../DeckPanel';
 import BottomWidgetsRow from '../BottomWidgetsRow/BottomWidgetsRow';
 import { PanelMode } from '../DeckPanel/DeckPanel';
+import TopWidgetsRow from '../TopWidgetsRow';
 
 type GameProps = {
   pan: { x: number; y: number };
@@ -40,6 +41,7 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
       currentGameState={state}
     >
       <div className="board-wrapper">
+        <TopWidgetsRow />
         <TransformComponent>
           <Board>
             {placedCardsIds.map(id => (
@@ -47,6 +49,7 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
             ))}
           </Board>
         </TransformComponent>
+
         <BottomWidgetsRow fitWindow={fitWindow} zoomIn={zoomIn} zoomOut={zoomOut} />
       </div>
       <DeckPanel panelModeRef={panelModeRef} cardsIds={deckCardsIds} />

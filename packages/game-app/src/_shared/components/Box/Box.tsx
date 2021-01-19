@@ -27,4 +27,6 @@ const Box = styled.div<BoxProps>(
   textAlign,
 );
 
+Box.displayName = 'Box';
+
 export default Box;

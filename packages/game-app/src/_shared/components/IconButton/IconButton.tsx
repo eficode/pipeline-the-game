@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import { variant } from 'styled-system';
 
-type IconButtonVariants = 'default' | 'rounded';
+type IconButtonVariants = 'default' | 'rounded' | 'clear';
 
 type Props = {
   onClick: () => void;
@@ -26,18 +26,21 @@ const StyledButton = styled.button<{ active?: boolean; variant: IconButtonVarian
     color: #00867c;
   }
 
-  &:active {
-    background: #eeeeee;
-    color: #00867c;
-  }
-
   ${props =>
     props.active &&
     css`
       background: #eeeeee;
       color: #00867c;
-    `} ${variant({
+    `}
+
+  ${variant({
     variants: {
+      default: {
+        '&:active': {
+          background: '#eeeeee',
+          color: '#00867c',
+        },
+      },
       rounded: {
         borderRadius: '50%',
         background: '#FFFFFF',
