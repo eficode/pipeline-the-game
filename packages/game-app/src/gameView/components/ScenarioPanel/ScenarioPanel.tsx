@@ -5,7 +5,7 @@ import { selectors } from '../../slice';
 
 type Props = {};
 
-const ScenarioPanel: React.FC<Props> = ({}) => {
+const ScenarioPanel: React.FC<Props> = () => {
   const scenario = useSelector(selectors.getScenario);
 
   return (

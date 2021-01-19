@@ -6,7 +6,7 @@ import { Typography } from '@pipeline/components';
 
 type Props = {};
 
-const BottomWidgetsRowStyled: React.FC<Props> = ({}) => {
+const BottomWidgetsRowStyled: React.FC<Props> = () => {
   return (
     <BottomWidgetsRowContainer>
       <ScenarioPanel />
