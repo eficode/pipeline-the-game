@@ -6,7 +6,7 @@ import { ReactComponent as LensIcon } from '@assets/icons/zoom.svg';
 import { ReactComponent as ZoomInIcon } from '@assets/icons/zoom-in.svg';
 import { ReactComponent as ZoomOutIcon } from '@assets/icons/zoom-out.svg';
 import { ReactComponent as FitScreenIcon } from '@assets/icons/fit-screen.svg';
-import { FabDial, IconButton, Typography } from '@pipeline/components';
+import { FabDial, Typography } from '@pipeline/components';
 
 type Props = {
   zoomIn: () => void;
