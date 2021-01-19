@@ -22,6 +22,10 @@ const StyledButton = styled.button<{ active?: boolean; variant: IconButtonVarian
   box-sizing: border-box;
   cursor: pointer;
 
+  :focus {
+    outline: none;
+  }
+
   &:hover {
     color: #00867c;
   }
