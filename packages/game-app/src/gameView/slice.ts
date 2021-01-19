@@ -27,9 +27,15 @@ export interface State {
   cards: EntityState<CardEntity>;
   selectedGameId: string | null;
   gameState: GameState | null;
+  scenario: {
+    title: string;
+    content: string;
+  };
 }
 
-const adapter = createEntityAdapter<CardEntity>();
+const adapter = createEntityAdapter<CardEntity>({
+  sortComparer: (a, b) => a.number - b.number,
+});
 
 const initialState = {
   cards: adapter.getInitialState(),
@@ -47,9 +53,20 @@ const slice = createSlice({
     setSelectedGameId(state, action: PayloadAction<string>) {
       state.selectedGameId = action.payload;
     },
-    setInitialGameState(state, action: PayloadAction<{ state: GameState; gameId: string }>) {
+    setInitialGameState(
+      state,
+      action: PayloadAction<{
+        state: GameState;
+        gameId: string;
+        scenario: {
+          title: string;
+          content: string;
+        };
+      }>,
+    ) {
       state.gameState = action.payload.state;
       state.selectedGameId = action.payload.gameId;
+      state.scenario = action.payload.scenario;
     },
     updateCardPosition(
       state,
@@ -90,11 +107,23 @@ const getSlice = createSelector(
 );
 
 const getAllCards = createSelector(getSlice, state => cardsEntitiesSelectors.selectAll(state.cards));
+const getAllCardsEntities = createSelector(getSlice, state => cardsEntitiesSelectors.selectEntities(state.cards));
 
 const getSelectedGameId = createSelector(getSlice, state => state.selectedGameId);
 const getGameState = createSelector(getSlice, state => state.gameState);
-const getDeckCardsIds = createSelector(getGameState, getGameState => getGameState?.deckCards);
+// TODO sort on write?
+const getDeckCardsIds = createSelector(getGameState, getAllCardsEntities, (getGameState, cardsMap) => {
+  const cardsIds = getGameState?.deckCards;
+  if (!cardsIds) {
+    return cardsIds;
+  }
+  const copy = [...(getGameState?.deckCards || [])];
+
+  copy.sort((a, b) => cardsMap[a]!.number - cardsMap[b]!.number);
+  return copy;
+});
 const getPlacedCards = createSelector(getGameState, getGameState => getGameState?.boardCards);
+const getScenario = createSelector(getSlice, slice => slice.scenario);
 
 // TODO try to remove the listener
 const getCardStateForUI = createSelector(getGameState, gameState => {
@@ -145,4 +174,5 @@ export const selectors = {
   getCardStateForUI,
   getCardPosition,
   getCardById,
+  getScenario,
 };

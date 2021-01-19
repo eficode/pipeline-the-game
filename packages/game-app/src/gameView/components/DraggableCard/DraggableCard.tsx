@@ -7,6 +7,7 @@ import ConnectedCard from '../ConnectedCard';
 
 type Props = {
   id: string;
+  bigger?: boolean;
 };
 
 export const CardWrapper = styled.div`
@@ -17,7 +18,7 @@ export const CardWrapper = styled.div`
 /**
  * A card enhanced with dragging capability
  */
-const DraggableCard: React.FC<Props> = ({ id }) => {
+const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     id,
   });
@@ -41,7 +42,7 @@ const DraggableCard: React.FC<Props> = ({ id }) => {
       {...attributes}
       className={`${isDragging ? 'dragging' : ''}`}
     >
-      <ConnectedCard id={id} />
+      <ConnectedCard bigger={bigger} id={id} />
     </CardWrapper>
   );
 };

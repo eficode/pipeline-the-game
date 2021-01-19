@@ -7,7 +7,7 @@ import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { GameUIState } from '../../types/gameUIState';
 import ConnectedCard from '../ConnectedCard';
 
-const DEBUG_ENABLED = false;
+const DEBUG_ENABLED = true;
 
 const debugPrint = (...data: any[]) => DEBUG_ENABLED && console.debug('[CardsGameListeners]', ...data);
 
@@ -330,7 +330,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
       {children}
       {createPortal(
         <DragOverlay adjustScale dropAnimation={null} modifiers={modifiers} className="transform-0">
-          {draggingCardId ? <ConnectedCard dragging={true} id={draggingCardId} /> : null}
+          {draggingCardId ? <ConnectedCard bigger dragging={true} id={draggingCardId} /> : null}
         </DragOverlay>,
         document.body,
       )}

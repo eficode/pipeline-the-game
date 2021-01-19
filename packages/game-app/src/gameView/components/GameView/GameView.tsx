@@ -10,6 +10,7 @@ import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 import useCardEventHandler from '../../hooks/useCardEventHandler';
 import DeckPanel from '../DeckPanel';
+import BottomWidgetsRow from '../BottomWidgetsRow/BottomWidgetsRow';
 
 const Game: React.FC<{ pan: { x: number; y: number }; scale: number; gameId: string }> = React.memo(
   ({ pan, scale, gameId }) => {
@@ -22,13 +23,14 @@ const Game: React.FC<{ pan: { x: number; y: number }; scale: number; gameId: str
     return (
       <CardsGameListeners onEvent={onCardEvent} boardScale={scale} panAmount={pan} currentGameState={state}>
         <div className="board-wrapper">
-          <TransformComponent ref={ref => console.debug('ref', ref)}>
+          <TransformComponent>
             <Board>
               {placedCardsIds.map(id => (
                 <DraggableCard key={id} id={id} />
               ))}
             </Board>
           </TransformComponent>
+          <BottomWidgetsRow />
         </div>
         <DeckPanel cardsIds={deckCardsIds} />
       </CardsGameListeners>

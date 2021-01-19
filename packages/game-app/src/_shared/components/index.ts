@@ -8,5 +8,22 @@ import Link from './Link';
 import Card from './Card';
 import Box from './Box';
 import AnimatedGrid from './AnimatedGrid';
+import * as animations from './animations';
+import ExpandableTopPanel from './ExpandableTopPanel';
+import Typography from './Typography';
 
-export { TextInput, SelectInput, PasswordInput, TextArea, Button, Link, IconButton, Box, Card, AnimatedGrid };
+export {
+  TextInput,
+  SelectInput,
+  PasswordInput,
+  TextArea,
+  Button,
+  Link,
+  IconButton,
+  Box,
+  Card,
+  AnimatedGrid,
+  animations,
+  ExpandableTopPanel,
+  Typography,
+};

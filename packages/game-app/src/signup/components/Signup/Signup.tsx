@@ -11,8 +11,11 @@ import { PasswordInput } from '@pipeline/components';
 import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
 import { useHistory, useLocation } from 'react-router-dom';
 import { Link, Button } from '@pipeline/components';
+import styled from 'styled-components';
 
 type Props = {};
+
+const SignupForm = styled.div``;
 
 const Signup: React.FC<Props> = () => {
   const t = useTranslate();
@@ -62,7 +65,7 @@ const Signup: React.FC<Props> = () => {
 
   return (
     <div className="signup">
-      <div className="content card">
+      <SignupForm className="content card">
         <h2>{t('signup.title')}</h2>
         <FormProvider {...methods}>
           <form>
@@ -88,7 +91,7 @@ const Signup: React.FC<Props> = () => {
             </div>
           </form>
         </FormProvider>
-      </div>
+      </SignupForm>
     </div>
   );
 };

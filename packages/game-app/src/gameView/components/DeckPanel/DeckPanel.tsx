@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import DraggableCard from '../DraggableCard';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { IconButton, AnimatedGrid } from '@pipeline/components';
 import { ReactComponent as StackedIcon } from '@assets/icons/stacked-cards.svg';
+import { ReactComponent as TwoColumnsIcon } from '@assets/icons/2column-view.svg';
 import DroppablePanelArea from '../DroppablePanelArea';
+import { PANEL_CARD_SIZE, PANEL_ONE_COLUMNS_WIDTH, PANEL_TWO_COLUMNS_WIDTH } from '../../../dimensions';
+import { CardWrapper } from '../DraggableCard/DraggableCard';
 
 export type PanelMode = 'stacked' | 'tow-columns';
 
@@ -15,6 +18,15 @@ const DeckPanelContent = styled.div<{ mode: PanelMode }>`
   ::-webkit-scrollbar {
     display: none;
   }
+
+  ${props =>
+    props.mode === 'stacked'
+      ? css`
+          ${CardWrapper}:hover {
+            transform: translate(0, -100px);
+          }
+        `
+      : ''}
 `;
 
 const PanelButtons = styled.div`
@@ -42,21 +54,21 @@ const DeckPanel: React.FC<Props> = ({ cardsIds }) => {
           <StackedIcon />
         </IconButton>
         <IconButton active={panelMode === 'tow-columns'} onClick={() => setPanelMode('tow-columns')}>
-          <StackedIcon />
+          <TwoColumnsIcon />
         </IconButton>
       </PanelButtons>
       <DeckPanelContent mode={panelMode}>
         <AnimatedGrid
-          itemWidth={280}
-          itemHeight={200}
+          itemWidth={PANEL_CARD_SIZE.width}
+          itemHeight={PANEL_CARD_SIZE.height}
           margin={16}
           marginVertical={panelMode === 'tow-columns' ? 16 : -90}
-          containerWidth={panelMode === 'tow-columns' ? 576 : 360}
+          containerWidth={panelMode === 'tow-columns' ? PANEL_TWO_COLUMNS_WIDTH - 80 : PANEL_ONE_COLUMNS_WIDTH - 80}
           transitionTime="400ms"
           transitionTimingFunction="ease-in-out"
         >
           {cardsIds.map(id => (
-            <DraggableCard key={id} id={id} />
+            <DraggableCard bigger key={id} id={id} />
           ))}
         </AnimatedGrid>
       </DeckPanelContent>
