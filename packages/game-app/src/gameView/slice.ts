@@ -9,17 +9,20 @@ import {
 import { CardEntity } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
 
+export interface AdditionalCardData {
+  held: boolean;
+  position: {
+    x: number;
+    y: number;
+  };
+  estimation?: string;
+}
+
 export interface GameState {
   boardCards: string[];
   deckCards: string[];
   cardsState: {
-    [cardId: string]: {
-      held: boolean;
-      position: {
-        x: number;
-        y: number;
-      };
-    };
+    [cardId: string]: AdditionalCardData;
   };
 }
 
@@ -52,6 +55,13 @@ const slice = createSlice({
     },
     setSelectedGameId(state, action: PayloadAction<string>) {
       state.selectedGameId = action.payload;
+    },
+    setEstimation(state, action: PayloadAction<{ cardId: string; estimation: string }>) {
+      const gameState = state.gameState!;
+      gameState.cardsState[action.payload.cardId] = {
+        ...(gameState.cardsState[action.payload.cardId] || {}),
+        estimation: action.payload.estimation,
+      };
     },
     setInitialGameState(
       state,
@@ -91,6 +101,7 @@ const slice = createSlice({
           gameState.boardCards.push(cardId);
         }
         gameState.cardsState[cardId] = {
+          ...(gameState.cardsState[cardId] || {}),
           position: position!,
           held: false,
         };
@@ -154,6 +165,9 @@ const getCardStateForUI = createSelector(getGameState, gameState => {
 const getCardPosition = (cardId: string) =>
   createSelector(getGameState, gameState => gameState?.cardsState?.[cardId]?.position);
 
+const getCardAdditionalInfo = (cardId: string) =>
+  createSelector(getGameState, gameState => gameState?.cardsState?.[cardId] ?? ({} as AdditionalCardData));
+
 const getCardById = (cardId: string) =>
   createSelector(getSlice, state => cardsEntitiesSelectors.selectById(state.cards, cardId));
 
@@ -175,4 +189,5 @@ export const selectors = {
   getCardPosition,
   getCardById,
   getScenario,
+  getCardAdditionalInfo,
 };
