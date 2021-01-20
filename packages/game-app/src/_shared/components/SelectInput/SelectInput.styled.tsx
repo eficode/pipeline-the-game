@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { color, ColorProps, variant } from 'styled-system';
 import Box from '../Box';
 import React from 'react';
 import Typography from '../Typography';
