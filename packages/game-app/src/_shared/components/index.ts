@@ -16,6 +16,8 @@ import useDialog from './Dialog/useDialog';
 import Dialog from './Dialog';
 import ErrorMessage from './ErrorMessage';
 import { Input } from './TextInput/TextInput.styled';
+import EstimationEditor from './EstimationEditor';
+import EstimationInCard from './EstimationInCard';
 
 export {
   TextInput,
@@ -36,4 +38,6 @@ export {
   Dialog,
   Input,
   ErrorMessage,
+  EstimationEditor,
+  EstimationInCard,
 };
