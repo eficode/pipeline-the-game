@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useRef } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
 import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Board from '../Board';
@@ -32,6 +32,8 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
 
   const panelModeRef = useRef<PanelMode>('stacked');
 
+  const [background, setBackGround] = useState(true);
+
   return (
     <CardsGameListeners
       panelModeRef={panelModeRef}
@@ -41,9 +43,9 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
       currentGameState={state}
     >
       <div className="board-wrapper">
-        <TopWidgetsRow />
+        <TopWidgetsRow toggleBackGround={() => setBackGround(s => !s)} />
         <TransformComponent>
-          <Board>
+          <Board scale={background ? scale : -1}>
             {placedCardsIds.map(id => (
               <DraggableCard key={id} id={id} />
             ))}
@@ -59,12 +61,11 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
 
 const wheelConfig = { step: 70 };
 const transformOptions: React.ComponentProps<typeof TransformWrapper>['options'] = {
-  minScale: 0.5,
+  minScale: Math.max(window.innerWidth / (1920 * 2), window.innerHeight / (1080 * 2)),
   contentClass: 'zooming-panning-board',
 } as any;
 
 const GameWrapper = ({ gameId, transformProps }: { transformProps: TansformRenderProps; gameId: string }) => {
-  console.debug(transformProps);
   const { scale, zoomIn, zoomOut, positionX, positionY, setScale } = transformProps;
   const pan = useMemo(() => ({ x: positionX, y: positionY }), [positionX, positionY]);
   const fitWindow = useCallback(() => {

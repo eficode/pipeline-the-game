@@ -105,22 +105,21 @@ label {
   width: 100vw;
   background-color: white;
   position: relative;
+  padding-left: 50px;
+  box-sizing: border-box;
 }
 
 .dashboard h1 {
   font-size: 70px;
   margin-top: 50px;
-  margin-left: 50px;
 }
 
 .dashboard h2 {
   font-size: 35px;
-  margin-left: 50px;
 }
 .dashboard h2 + p {
   margin-top: 50px;
   max-width: 450px;
-  margin-left: 50px;
 }
 
 .dashboard .sign-out-button {
@@ -142,14 +141,6 @@ label {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-}
-
-.board {
-  background-color: #eeeeee;
-  width: 200vw;
-  height: 200vh;
-  padding: 16px;
-  position: relative;
 }
 
 .react-transform-component {

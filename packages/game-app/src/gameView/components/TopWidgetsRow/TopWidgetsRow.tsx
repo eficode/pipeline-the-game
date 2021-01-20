@@ -11,9 +11,11 @@ import { RoutingPath } from '@pipeline/routing';
 import { useTranslate } from '@pipeline/i18n';
 import ShareGameDialog from '../ShareGameDialog';
 
-type Props = {};
+type Props = {
+  toggleBackGround: () => void;
+};
 
-const TopWidgetsRow: React.FC<Props> = () => {
+const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
   const history = useHistory();
 
   const shareDialog = useDialog();
@@ -25,7 +27,7 @@ const TopWidgetsRow: React.FC<Props> = () => {
   // TODO
   const showRules = () => ({});
   // TODO
-  const triggerReview = () => ({});
+  const triggerReview = () => toggleBackGround();
   // TODO
   const contactUs = () => ({});
 
