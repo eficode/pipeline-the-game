@@ -3,8 +3,8 @@ import { Box } from '@pipeline/components';
 
 export const TopRowContainer = styled(Box)`
   position: absolute;
-  left: 40px;
-  top: 40px;
+  left: 16px;
+  top: 16px;
   z-index: 1;
   display: flex;
   flex-direction: row;
