@@ -1,11 +1,31 @@
-const theme = {
+import { DefaultTheme } from 'styled-components';
+
+const theme: DefaultTheme = {
+  input: {
+    variants: {
+      default: {
+        border: '1px solid #9a9a9a',
+      },
+      clear: {
+        border: 'none',
+      },
+    },
+  },
+  iconButton: {
+    variants: {
+      default: {
+        background: '#b4aea9',
+      },
+    },
+  },
   colors: {
-    blue: '#007ce0',
-    navy: '#004175',
     primary: '#2C3644',
     primaryLight: '#465060',
     secondary: '#ffd700',
+    secondaryDark: '#FDC300',
+    activeAccent: '#00867c',
     activeAccentLight: '#36B2AF',
+    textColor: '#101820',
   },
   space: [0, 4, 8, 16, 24, 32],
   cardsTypes: {

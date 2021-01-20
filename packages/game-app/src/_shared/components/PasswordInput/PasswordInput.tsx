@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { IconButton } from '@pipeline/components';
-import styled from 'styled-components';
+import IconButton from '../IconButton';
+import ErrorMessage from '../ErrorMessage';
+import Typography from '../Typography';
+import { IconDiv, InputContainer } from './PasswordInput.styled';
+import { Input } from '../TextInput/TextInput.styled';
 
 type Props = {
   name: string;
@@ -10,33 +13,28 @@ type Props = {
   errorMessage?: string | null;
 };
 
-const IconDiv = styled.div`
-  position: relative;
-  & input + button {
-    //TODO improve here
-    position: absolute;
-    right: 10px;
-  }
-`;
+const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
+  ({ name, value, errorMessage, label, onChange }, ref) => {
+    const [type, setType] = useState<'text' | 'password'>('password');
 
-const PasswordInput: React.FC<Props> = ({ name, value, errorMessage, label, onChange }) => {
-  const [type, setType] = useState<'text' | 'password'>('password');
+    const toggleType = () => setType(type => (type === 'text' ? 'password' : 'text'));
 
-  const toggleType = () => setType(type => (type === 'text' ? 'password' : 'text'));
-
-  return (
-    <div className="column">
-      <label htmlFor={name}>{label}</label>
-      <IconDiv>
-        <input type={type} value={value} name={name} id={name} onChange={onChange} />
-        <IconButton onClick={toggleType}>
-          <i className="gg-eye" />
-        </IconButton>
-      </IconDiv>
-      {errorMessage ? <span className="error-message">{errorMessage}</span> : null}
-    </div>
-  );
-};
+    return (
+      <InputContainer>
+        <Typography as="label" variant="label" htmlFor={name}>
+          {label}
+        </Typography>
+        <IconDiv>
+          <Input ref={ref} variant="default" type={type} value={value} name={name} id={name} onChange={onChange} />
+          <IconButton variant="clear" onClick={toggleType}>
+            <i className="gg-eye" />
+          </IconButton>
+        </IconDiv>
+        {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
+      </InputContainer>
+    );
+  },
+);
 
 PasswordInput.displayName = 'PasswordInput';
 

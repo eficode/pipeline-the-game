@@ -9,6 +9,8 @@ export const PanelHeader = styled.div`
   position: relative;
 `;
 
+PanelHeader.displayName = 'PanelHeader';
+
 export const PanelWrapper = styled.div`
   width: 400px;
   background: rgba(255, 255, 255, 0.5);
@@ -16,6 +18,8 @@ export const PanelWrapper = styled.div`
   backdrop-filter: blur(20px);
   cursor: pointer;
 `;
+
+PanelWrapper.displayName = 'PanelWrapper';
 
 export const PanelContentWrapper = styled.div<{ collapsed: boolean }>`
   transition: all 0.5s ease-out;
@@ -32,9 +36,13 @@ export const PanelContentWrapper = styled.div<{ collapsed: boolean }>`
         `}
 `;
 
+PanelContentWrapper.displayName = 'PanelContentWrapper';
+
 export const PanelContent = styled.div<{ collapsed: boolean }>`
   padding: 14px 24px 24px 24px;
 `;
+
+PanelContent.displayName = 'PanelContent';
 
 export const ExpandIcon = styled.div<{ collapsed: boolean }>`
   position: absolute;
@@ -47,3 +55,5 @@ export const ExpandIcon = styled.div<{ collapsed: boolean }>`
       transform: rotate(180deg);
     `}
 `;
+
+ExpandIcon.displayName = 'ExpandIcon';

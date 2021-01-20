@@ -14,7 +14,8 @@ import Typography from './Typography';
 import FabDial from './FabDial';
 import useDialog from './Dialog/useDialog';
 import Dialog from './Dialog';
-import { Input } from './TextInput/TextInput';
+import ErrorMessage from './ErrorMessage';
+import { Input } from './TextInput/TextInput.styled';
 
 export {
   TextInput,
@@ -34,4 +35,5 @@ export {
   useDialog,
   Dialog,
   Input,
+  ErrorMessage,
 };
