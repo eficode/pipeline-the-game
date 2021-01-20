@@ -1,17 +1,9 @@
 import React from 'react';
-import styled from 'styled-components';
+import { LinkButton } from './Link.styled';
 
 type Props = {
   onClick: () => void;
 };
-
-const LinkButton = styled.button`
-  background-color: transparent;
-  border: 0;
-  text-decoration: underline;
-  font-size: 15px;
-  color: #9f998f;
-`;
 
 const Link: React.FC<Props> = ({ onClick, children }) => {
   return (
