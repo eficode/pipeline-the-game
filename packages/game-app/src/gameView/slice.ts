@@ -6,7 +6,7 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { CardEntity } from '@pipeline/common';
+import { CardEntity, Game } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
 
 export interface AdditionalCardData {
@@ -53,6 +53,7 @@ export interface GameState {
 }
 
 export interface State {
+  game: Game | null;
   cards: EntityState<CardEntity>;
   selectedGameId: string | null;
   gameState: GameState | null;
@@ -67,6 +68,7 @@ const adapter = createEntityAdapter<CardEntity>({
 });
 
 const initialState = {
+  game: null,
   cards: adapter.getInitialState(),
   selectedGameId: null,
   gameState: null,
@@ -134,6 +136,12 @@ const slice = createSlice({
         };
       }
     },
+    saveGame(state, action: PayloadAction<Game>) {
+      return {
+        ...state,
+        game: action.payload,
+      };
+    },
   },
 });
 
@@ -162,6 +170,7 @@ const getDeckCardsIds = createSelector(getGameState, getAllCardsEntities, (getGa
 });
 const getPlacedCards = createSelector(getGameState, getGameState => getGameState?.boardCards);
 const getScenario = createSelector(getSlice, slice => slice.scenario);
+const getGame = createSelector(getSlice, slice => slice.game);
 
 // TODO try to remove the listener
 const getCardStateForUI = createSelector(getGameState, gameState => {
@@ -205,6 +214,7 @@ export const actions = {
   ...slice.actions,
   loadCards: createAction(`${name}/loadCards`),
   loadGame: createAction<string>(`${name}/loadGame`),
+  updateRTDBInstanceGame: createAction<string>(`${name}/updateRTDBInstanceGame`),
 };
 
 export const selectors = {

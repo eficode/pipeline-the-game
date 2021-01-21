@@ -10,4 +10,5 @@ export interface RequestsKeys {
   'game.loadCards': null;
   'game.loadGame': null;
   createGame: null;
+  'loadBalancer.status': null;
 }
