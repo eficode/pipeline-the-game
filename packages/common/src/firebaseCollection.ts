@@ -4,4 +4,5 @@ export enum FirebaseCollection {
   Games = 'games',
   Decks = 'decks',
   Cards = 'cards',
+  RTDBInstances = 'rtdbInstances',
 }
