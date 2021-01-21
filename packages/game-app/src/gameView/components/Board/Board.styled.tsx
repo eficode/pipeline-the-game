@@ -6,6 +6,7 @@ export const BoardContainer = styled.div<{ scale: number }>`
   height: 2160px;
   padding: 16px;
   position: relative;
+  z-index: -999999;
 
   ${({ scale }) =>
     scale > 0 &&

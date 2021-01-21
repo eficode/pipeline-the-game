@@ -10,20 +10,46 @@ import { CardEntity } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
 
 export interface AdditionalCardData {
+  /**
+   * if it is beeing moving
+   */
   held: boolean;
+  /**
+   * absolute position inside the board
+   */
   position: {
     x: number;
     y: number;
   };
+  /**
+   * time estimation placed inside the card
+   */
   estimation?: string;
+  /**
+   * Card z-index to put it in front of all the others when drag finish
+   */
+  zIndex: number;
 }
 
 export interface GameState {
+  /**
+   * list of card ids inside the board
+   */
   boardCards: string[];
+  /**
+   * list of card ids inside the panel
+   */
   deckCards: string[];
+  /**
+   * cards infomration
+   */
   cardsState: {
     [cardId: string]: AdditionalCardData;
   };
+  /**
+   * max z-index, the z-index of the last placed cards inside the board
+   */
+  maxZIndex: number;
 }
 
 export interface State {
@@ -104,6 +130,7 @@ const slice = createSlice({
           ...(gameState.cardsState[cardId] || {}),
           position: position!,
           held: false,
+          zIndex: gameState.maxZIndex++,
         };
       }
     },
