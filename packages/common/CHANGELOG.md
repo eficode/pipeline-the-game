@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/eficode/pipeline-the-game/compare/v0.1.0...v0.2.0) (2021-01-21)
+
+
+### Features
+
+* **app-components:** update card design ([787182d](https://github.com/eficode/pipeline-the-game/commit/787182d069303c5ef6bf5e51ae5e49315face94e))
+* **app-create-game:** add create game form ([de21b18](https://github.com/eficode/pipeline-the-game/commit/de21b18ccb93f2902174697bac17e818e65c1b41))
+* **common-general:** add card models ([66a2636](https://github.com/eficode/pipeline-the-game/commit/66a2636ba814a0a71c6c0b381a5045a667dad69c))
+* **common-general:** add game and short user models ([ae15d31](https://github.com/eficode/pipeline-the-game/commit/ae15d310d6fe62586c6e572d0db260bf3cf6e0ea))
+
+
+
+
+
 # 0.1.0 (2021-01-07)
 
 

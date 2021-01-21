@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.2.0](https://github.com/eficode/pipeline-the-game/compare/v0.1.0...v0.2.0) (2021-01-21)
+
+
+### Bug Fixes
+
+* **app-board:** improve widget position and background ([0c8f026](https://github.com/eficode/pipeline-the-game/commit/0c8f02692759a267285463805a25aedf75a4cb96))
+* **app-board:** make drag aware of panel mode ([22d892d](https://github.com/eficode/pipeline-the-game/commit/22d892deee404464e98b2ec1430d3431c0a1d2c9))
+* **app-board:** remove zoom button ([b8e34ed](https://github.com/eficode/pipeline-the-game/commit/b8e34ed20372d1f9ef15c7ecd807d6c3e07a808b))
+* **app-board:** update panel closing transition ([8896e63](https://github.com/eficode/pipeline-the-game/commit/8896e63141b542d2ba63207097feaf4c9b404864))
+* **app-components:** add role to buttons ([4f9efa4](https://github.com/eficode/pipeline-the-game/commit/4f9efa43b87c334382702e86d2852f89d4a7448d))
+* **app-components:** update font weight on fun button ([cdc2422](https://github.com/eficode/pipeline-the-game/commit/cdc242261967c233706cefebb019fcaf553c142d))
+* **app-components:** update role to type ([6f936b7](https://github.com/eficode/pipeline-the-game/commit/6f936b72e3c708e2b71c03a53a1b15c3cf840e0c))
+
+
+### Features
+
+* **app-board:** add card animation in panel ([e450993](https://github.com/eficode/pipeline-the-game/commit/e450993e46afd1ed1ba2af6d7e938bc85df311d3))
+* **app-board:** add estimation component ([fdab96e](https://github.com/eficode/pipeline-the-game/commit/fdab96edee7bbe86c8eb42c8c42ed42052ca0eca))
+* **app-board:** add game view draft ([a495702](https://github.com/eficode/pipeline-the-game/commit/a495702dfdb96140b92ec5dfb8ddb8ce427f24ec))
+* **app-board:** add initial panel ui ([2787925](https://github.com/eficode/pipeline-the-game/commit/2787925b2518ecb6dd85999f13168235cbff678e))
+* **app-board:** add over highlight to panel ([6511a21](https://github.com/eficode/pipeline-the-game/commit/6511a21a1d4cfacedff6e520c3feea4c48bb0c37))
+* **app-board:** add panel mode switch ([697d502](https://github.com/eficode/pipeline-the-game/commit/697d502c8e62d808f32db9ba6183ed57bdeddce7))
+* **app-board:** add scenario panel and text logo ([28a2eaa](https://github.com/eficode/pipeline-the-game/commit/28a2eaac0db62bd1d30e79d5a741337453f0db0c))
+* **app-board:** add share game dialog ([9de335f](https://github.com/eficode/pipeline-the-game/commit/9de335f330a29485c9f9a3c05ae08b74079bb6ed))
+* **app-board:** add top widgets bar ([210bf3a](https://github.com/eficode/pipeline-the-game/commit/210bf3aa6a164d0fffefdc0c70b079071d28a55b))
+* **app-board:** add zoom fab dial ([c55c1e5](https://github.com/eficode/pipeline-the-game/commit/c55c1e550a929a578db35a21e64fbe922a6ea957))
+* **app-board:** connect game board to state ([d258839](https://github.com/eficode/pipeline-the-game/commit/d258839863a58aa2363f642926bde6e9fa9777f4))
+* **app-board:** improve cards scale on panel ([2533af7](https://github.com/eficode/pipeline-the-game/commit/2533af72e5f25269dafa729fd842a51d72a30ff7))
+* **app-components:** add button variants ([3076637](https://github.com/eficode/pipeline-the-game/commit/30766377783d94af7c9d3111e2a81c6d0af0dd67))
+* **app-components:** add dragging state to card ([77fe04c](https://github.com/eficode/pipeline-the-game/commit/77fe04c20ffec8580834661a02a4f5e074555078))
+* **app-components:** add overlay and dialog component ([6b9dcb8](https://github.com/eficode/pipeline-the-game/commit/6b9dcb88d2bd260693b95b318d5eaae89562d63a))
+* **app-components:** update card design ([787182d](https://github.com/eficode/pipeline-the-game/commit/787182d069303c5ef6bf5e51ae5e49315face94e))
+* **app-create-game:** add create game form ([de21b18](https://github.com/eficode/pipeline-the-game/commit/de21b18ccb93f2902174697bac17e818e65c1b41))
+* **app-create-game:** add navigation with game id ([5c2566e](https://github.com/eficode/pipeline-the-game/commit/5c2566edbe992013815eb2c7d68116d0cb1de2c6))
+* **app-general:** add icons ([8aea75a](https://github.com/eficode/pipeline-the-game/commit/8aea75a4f03ecc3b2d601e6a21065263b1f54fa0))
+* **app-general:** add initial styled-system and storybook integration ([56d6f5b](https://github.com/eficode/pipeline-the-game/commit/56d6f5b308504b6100811b18a4f981ff2fffa533))
+* **app-general:** create first ui-components ([cb5cc5d](https://github.com/eficode/pipeline-the-game/commit/cb5cc5d1b748ea7dc2eb98c27a0f852166248380))
+* **app-general:** redirect user to visited link after authentication ([9946a73](https://github.com/eficode/pipeline-the-game/commit/9946a735ca56b8f50e06f5e138527bbf1240377e))
+
+
+
+
+
 # 0.1.0 (2021-01-07)
 
 
