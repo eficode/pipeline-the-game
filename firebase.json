@@ -1,13 +1,17 @@
 {
-  "rulesFile": "packages/database/database.rules.json",
+  "rulesFile": "packages/database/database.rules",
   "firestore": {
     "rules": "packages/firestore/firestore.rules",
     "indexes": "packages/firestore/firestore.indexes.json"
   },
   "functions": {
     "predeploy": [
+      "node pre-deploy.js",
       "npm --prefix packages/functions run lint",
       "npm --prefix packages/functions run build"
+    ],
+    "postdeploy": [
+      "node post-deploy.js"
     ],
     "source": "packages/functions"
   },
