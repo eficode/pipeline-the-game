@@ -1,9 +1,17 @@
-import * as functions from 'firebase-functions';
+import * as admin from "firebase-admin";
 
-// Start writing Firebase Functions
-// https://firebase.google.com/docs/functions/typescript
+admin.initializeApp();
 
-export const helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
-});
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'onOnlineGameStatusUpdate') {
+  exports.onOnlineGameStatusUpdate = require('./load-balancing/onOnlineGameStatusUpdate').onOnlineGameStatusUpdate;
+}
+
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'selectBestRTDBInstance') {
+  exports.selectBestRTDBInstance = require('./load-balancing/selectBestRTDBInstance').selectBestRTDBInstance;
+}
+
+if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'scheduledSyncStatusJob') {
+  exports.scheduledSyncStatusJob = require('./load-balancing/syncStatusJob').scheduledSyncStatusJob;
+}
+
+

@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBInstance, RTDBPaths, Status} from "@pipeline/common";
 import {PROJECT_ID} from "../utils/rtdb";
 import FieldValue = admin.firestore.FieldValue;
-import {end, RTDB_LOCATION} from "../utils/general";
+import {RTDB_LOCATION} from "../utils/general";
 import {moveGameFromRTDBToFirestore} from "./moveGameFromRTDBToFirestore";
 
 const db = admin.firestore();
@@ -21,6 +21,9 @@ const INSTANCE_ID = `${PROJECT_ID}-default-rtdb`
  *  Next, if the new status is 'offline', an RTDB query is performed to look for the online users for that game.
  *  If more than one are found (because one is the one we were updating), this means there is still someone in the game
  *  Otherwise, we can move the game from RTDB back to Firestore
+ *
+ *  TODO check if locked cards should be unlocked
+ *
  */
 
 export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID).ref(`/${RTDBPaths.Statuses}/{userId}`)
@@ -35,7 +38,7 @@ export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID)
 
     if (originalStatus.state !== nextStatus.state) {
 
-        const gameId = nextStatus.gameId;
+        const gameId = nextStatus.gameId as string;
 
         logger.log(`User ${userId} from game ${gameId} going from ${originalStatus.state} to ${nextStatus.state}`);
 
@@ -57,10 +60,6 @@ export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID)
                 await moveGameFromRTDBToFirestore(gameId, db, rtdb);
                 logger.log(`Game ${gameId} moved from RTDB to Firestore`);
             }
-            return end();
         }
-        return end();
-
     }
-    return end();
   });

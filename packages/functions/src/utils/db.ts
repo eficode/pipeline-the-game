@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
-import {Transaction} from '@google-cloud/firestore';
+
+type Transaction = admin.firestore.Transaction;
 
 const wait = (ms: number) => { return new Promise(resolve => setTimeout(resolve, ms))};
 

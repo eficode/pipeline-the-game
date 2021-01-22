@@ -1,16 +1,13 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
-import axios from 'axios';
-import FieldValue = admin.firestore.FieldValue;
 import {checkAuth} from "../utils/auth";
 import {runTransactionWithRetry} from "../utils/db";
-import {FirebaseCollection, RTDBInstance, Game, RTDBPaths} from '@pipeline/common';
-import {getRTDBInstanceName, PROJECT_ID} from "../utils/rtdb";
-import {end, RTDB_LOCATION} from "../utils/general";
+import {FirebaseCollection, Game, RTDBPaths} from '@pipeline/common';
+import {RTDB_LOCATION} from "../utils/general";
 const db = admin.firestore();
 const logger = functions.logger;
 
-const getNextRTDBInstanceNum = async (): Promise<number> => {
+/*const getNextRTDBInstanceNum = async (): Promise<number> => {
   const res = await axios.get(`https://firebasedatabase.googleapis.com/v1beta/projects/${PROJECT_ID}/locations/-/instances?pageSize=100`, {
     headers: {
       'Authorization': `Bearer `,
@@ -41,6 +38,8 @@ const createNewRTDBInstance = async () => {
   return newRTDBInstanceName;
 }
 
+ */
+
 
 export const selectBestRTDBInstance = functions.region(
   'europe-west1'
@@ -52,13 +51,13 @@ export const selectBestRTDBInstance = functions.region(
 
     if (req.method !== "GET") {
       res.status(405).send("Method not allowed");
-      return end();
+      return;
     }
 
     const gameId = req.query.gameId as string;
     if (!gameId) {
       res.status(400).send("Missing required parameter");
-      return end();
+      return;
     }
 
     const decodedToken = await checkAuth(req, res);
@@ -66,7 +65,7 @@ export const selectBestRTDBInstance = functions.region(
     if (!decodedToken) {
       logger.log('User is not authenticated');
       res.status(403).send();
-      return end();
+      return;
     }
 
 
@@ -112,6 +111,6 @@ export const selectBestRTDBInstance = functions.region(
     res.status(500).send("Unknown error");
   }
 
-  return end();
+  return;
 
 });

@@ -1,9 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
-import {FirebaseCollection, RTDBInstance, RTDBPaths, Status} from "@pipeline/common";
-import {PROJECT_ID} from "../utils/rtdb";
+import {FirebaseCollection, RTDBPaths, Status} from "@pipeline/common";
 import Timestamp = admin.firestore.Timestamp;
-import {end, RTDB_LOCATION} from "../utils/general";
+import {RTDB_LOCATION} from "../utils/general";
 import {moveGameFromRTDBToFirestore} from "./moveGameFromRTDBToFirestore";
 import * as _ from 'lodash';
 
@@ -71,3 +70,18 @@ const syncStatusJob = async () => {
     }
   }
 };
+
+export const scheduledSyncStatusJob = functions.region(
+  'europe-west1'
+).runWith({
+  memory: '2GB',
+  timeoutSeconds: 540,
+}).pubsub.schedule(`every 30 minutes`)
+  .timeZone('Europe/Rome')
+  .onRun(async () => {
+    try {
+      await syncStatusJob();
+    } catch (e) {
+      logger.error(e);
+    }
+  });
