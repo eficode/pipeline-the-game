@@ -1,0 +1,34 @@
+{
+  "rules": {
+    "statuses": {
+      "$uid": {
+        ".read": "request.auth !== null",
+        ".write": "request.auth.uid === $uid",
+        ".validate": "newData.hasChildren(['state', 'gameId', 'updatedAt']) &&
+                      (newData.child('state') === 'online' || newData.child('state') === 'offline') &&
+                       newData.child('updatedAt') === now
+                      ",
+        ".indexOn": ["online"]
+      }
+    }
+    "games": {
+      "$gameId": {
+        ".read": "request.auth !== null && root.child('statuses').child(request.auth.uid).child('state').val() === 'online'",
+        ".write": false,
+        "cards": {
+          ".write": "request.auth !== null && root.child('statuses').child(request.auth.uid).child('state').val() === 'online'",
+          "$cardId": {
+            "position": {
+              ".write": "root.child('games').child($gameId).child('cards').child($cardId).child('lockedBy').val() === request.auth.uid ||
+                         (data.child('lockedBy') === null && newData.child('lockedBy') === request.auth.uid) "
+            }
+            "lockedBy": {
+              ".write": "(data.child('lockedBy').isString() && data.child('lockedBy') === request.auth.uid && newData.child('lockedBy') === null) ||
+                                   (data.child('lockedBy') === null && newData.child('lockedBy') === request.auth.uid) "
+            }
+          }
+        }
+      }
+    }
+  }
+}
