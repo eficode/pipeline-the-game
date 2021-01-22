@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select } from 'redux-saga/effects';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 import { actions, AuthUser, selectors } from './slice';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -20,9 +20,22 @@ function getCurrentUser(): Promise<AuthUser | null> {
   });
 }
 
+async function getToken(): Promise<string | undefined> {
+  return firebase.auth().currentUser?.getIdToken();
+}
+
 function* initializeAuthSaga() {
   const user: AuthUser | null = yield call(getCurrentUser);
+  const token: string | undefined = yield call(getToken);
+  if (user) {
+    user.token = token;
+  }
   yield put(actions.setLoggedUser(user));
+}
+
+function* executeGetToken() {
+  const token: string | undefined = yield call(getToken);
+  return token;
 }
 
 function* resendVerificationEmail() {
@@ -77,4 +90,5 @@ export default function* authSaga() {
   yield takeEvery(actions.verifyEmail, addRequestStatusManagement(executeEmailVerification, 'auth.emailVerification'));
   yield takeEvery(actions.login, addRequestStatusManagement(executeLogin, 'auth.login'));
   yield takeEvery(actions.logout, addRequestStatusManagement(executeLogout, 'auth.logout'));
+  yield takeEvery(actions.getToken, executeGetToken);
 }

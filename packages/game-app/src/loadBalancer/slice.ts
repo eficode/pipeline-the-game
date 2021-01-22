@@ -2,12 +2,10 @@ import { createAction, createSelector, createSlice, PayloadAction } from '@redux
 
 import firebase from 'firebase/app';
 import { Status } from '@pipeline/common';
-import Timestamp = firebase.firestore.Timestamp;
-import Database = firebase.database.Database;
 
 export interface State {
   status: Status | null;
-  rtdb: Database;
+  rtdb: firebase.database.Database;
 }
 
 const initialState = {
@@ -18,16 +16,17 @@ const slice = createSlice({
   name: 'loadBalancer',
   initialState: initialState,
   reducers: {
-    updateOnlineStatusSuccess(state, action: PayloadAction<'online' | 'offline'>) {
+    updateOnlineStatusSuccess(state, action: PayloadAction<Partial<Status>>) {
       return {
         ...state,
         status: {
-          state: action.payload,
-          updatedAt: Timestamp.now(),
+          state: action.payload.state!,
+          updatedAt: firebase.firestore.Timestamp.now(),
+          gameId: action.payload.gameId!,
         },
       };
     },
-    updateRTDB(state, action: PayloadAction<Database>) {
+    updateRTDB(state, action: PayloadAction<firebase.database.Database>) {
       return {
         ...state,
         rtdb: action.payload,
@@ -48,7 +47,7 @@ export const name = slice.name;
 
 export const actions = {
   ...slice.actions,
-  updateOnlineStatus: createAction<'online' | 'offline'>(`${name}/startListenToOnlineStatus`),
+  updateOnlineStatus: createAction<'online' | 'offline'>(`${name}/updateOnlineStatus`),
   startListenToOnlineStatus: createAction(`${name}/startListenToOnlineStatus`),
   stopListenToOnlineStatus: createAction(`${name}/stopListenToOnlineStatus`),
   startPollingOnlineStatus: createAction(`${name}/startPollingToOnlineStatus`),
@@ -56,7 +55,5 @@ export const actions = {
 };
 
 export const selectors = {
-  getRTDBInstanceName,
-  getRTDBInstanceURL,
   getRTDB,
 };

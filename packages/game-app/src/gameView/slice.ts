@@ -227,4 +227,5 @@ export const selectors = {
   getCardById,
   getScenario,
   getCardAdditionalInfo,
+  getGame,
 };

@@ -10,16 +10,15 @@ import {
 } from '../apis/callUpdateOnlineStatus';
 import firebase from 'firebase';
 import { AuthUser, selectors as authSelectors } from '@pipeline/auth';
-import Database = firebase.database.Database;
 
 const statusChannel = channel();
 
 function* executeUpdateOnlineStatus(action: ReturnType<typeof actions.updateOnlineStatus>) {
-  const rtdb: Database = yield select(loadBalancerSelectors.getRTDB);
+  const rtdb: firebase.database.Database = yield select(loadBalancerSelectors.getRTDB);
   const user: AuthUser = yield select(authSelectors.getCurrentUser);
   const gameId: string = yield select(gameSelectors.getSelectedGameId);
   yield call(callUpdateOnlineStatus, rtdb, user.id, gameId, action.payload);
-  yield put(actions.updateOnlineStatusSuccess(action.payload));
+  yield put(actions.updateOnlineStatusSuccess({ gameId, state: action.payload }));
 }
 
 export function* updateOnlineStatusSaga() {
@@ -30,7 +29,7 @@ export function* updateOnlineStatusSaga() {
 }
 
 function* executeStartListenToOnlineStatus(action: ReturnType<typeof actions.startListenToOnlineStatus>) {
-  const rtdb: Database = yield select(loadBalancerSelectors.getRTDB);
+  const rtdb: firebase.database.Database = yield select(loadBalancerSelectors.getRTDB);
   const user: AuthUser = yield select(authSelectors.getCurrentUser);
   const gameId: string = yield select(gameSelectors.getSelectedGameId);
   yield call(
@@ -39,10 +38,10 @@ function* executeStartListenToOnlineStatus(action: ReturnType<typeof actions.sta
     user.id,
     gameId,
     () => {
-      statusChannel.put(actions.updateOnlineStatusSuccess('online'));
+      statusChannel.put(actions.updateOnlineStatusSuccess({ state: 'online', gameId }));
     },
     () => {
-      statusChannel.put(actions.updateOnlineStatusSuccess('offline'));
+      statusChannel.put(actions.updateOnlineStatusSuccess({ state: 'offline', gameId }));
     },
   );
 }
@@ -52,7 +51,7 @@ export function* startListenToOnlineStatusSaga() {
 }
 
 function* executeStopListenToOnlineStatus(action: ReturnType<typeof actions.stopListenToOnlineStatus>) {
-  const rtdb: Database = yield select(loadBalancerSelectors.getRTDB);
+  const rtdb: firebase.database.Database = yield select(loadBalancerSelectors.getRTDB);
   yield call(stopListenToOnlineStatus, rtdb);
 }
 
@@ -62,11 +61,11 @@ export function* stopListenToOnlineStatusSaga() {
 
 function* pollUpdateStatusSagaWorker() {
   while (true) {
-    const rtdb: Database = yield select(loadBalancerSelectors.getRTDB);
+    const rtdb: firebase.database.Database = yield select(loadBalancerSelectors.getRTDB);
     const user: AuthUser = yield select(authSelectors.getCurrentUser);
     const gameId: string = yield select(gameSelectors.getSelectedGameId);
     yield call(callUpdateOnlineStatus, rtdb, user.id, gameId, 'online');
-    yield put(actions.updateOnlineStatusSuccess('online'));
+    yield put(actions.updateOnlineStatusSuccess({ state: 'online', gameId }));
     yield call(delay, 5000);
   }
 }

@@ -1,9 +1,8 @@
 import firebase from 'firebase';
-import Database = firebase.database.Database;
 import { RTDBPaths, Status } from '@pipeline/common';
 
 export async function startListenToOnlineStatus(
-  rtdb: Database,
+  rtdb: firebase.database.Database,
   uid: string,
   gameId: string,
   onConnect: () => void,
@@ -34,11 +33,16 @@ export async function startListenToOnlineStatus(
   });
 }
 
-export async function stopListenToOnlineStatus(rtdb: Database) {
+export async function stopListenToOnlineStatus(rtdb: firebase.database.Database) {
   rtdb.ref('.info/connected').off('value');
 }
 
-export async function callUpdateOnlineStatus(rtdb: Database, uid: string, gameId: string, state: 'online' | 'offline') {
+export async function callUpdateOnlineStatus(
+  rtdb: firebase.database.Database,
+  uid: string,
+  gameId: string,
+  state: 'online' | 'offline',
+) {
   const userStatusDatabaseRef = firebase.database().ref(`/${RTDBPaths.Statuses}/${uid}`);
 
   const statusForDatabase = {
