@@ -13,6 +13,7 @@ import { PanelMode } from '../DeckPanel/DeckPanel';
 import TopWidgetsRow from '../TopWidgetsRow';
 import ZoomPanContainer from '../ZoomPanContainer';
 import ZoomPanContext from '../ZoomPanContext';
+import useStopPollingOnlineStatus from '../../hooks/useStopPollingOnlineStatus';
 
 type GameProps = {
   zoomIn: () => void;
@@ -41,6 +42,8 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
   const toggleBackground = useCallback(() => {
     setBackGround(s => !s);
   }, []);
+
+  useStopPollingOnlineStatus();
 
   return (
     <ZoomPanContext initialPan={initialPan}>

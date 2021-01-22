@@ -96,3 +96,12 @@ function* executeInitializeRTDB(action: ReturnType<typeof loadGameActions.saveGa
 export function* initializeRTDB() {
   yield takeEvery(loadGameActions.saveGame, executeInitializeRTDB);
 }
+
+function* executeStartPolling(action: ReturnType<typeof actions.updateRTDB>) {
+  yield put(actions.startPollingOnlineStatus());
+  yield put(actions.startListenToOnlineStatus());
+}
+
+export function* startPolling() {
+  yield takeEvery(actions.updateRTDB, executeStartPolling);
+}
