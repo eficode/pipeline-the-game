@@ -89,7 +89,7 @@ function calculatePan(bounds: Bounds, scale: number): Pan {
 
 /**
  *
- * Calculate pna and zoom to fit all the cards in the screen and center them
+ * Calculate pan and zoom to fit all the cards in the screen and center them
  *
  * @param {GameUIState} state
  */
