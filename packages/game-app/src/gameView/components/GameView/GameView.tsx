@@ -19,6 +19,11 @@ type GameProps = {
   zoomOut: () => void;
 };
 
+const initialPan = {
+  y: -700,
+  x: 0,
+};
+
 const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
   const state = useSelector(selectors.getCardStateForUI);
   const params = useParams<{ gameId: string }>();
@@ -34,7 +39,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
   const [background, setBackGround] = useState(true);
 
   return (
-    <ZoomPanContext>
+    <ZoomPanContext initialPan={initialPan}>
       <CardsGameListeners panelModeRef={panelModeRef} onEvent={onCardEvent} currentGameState={state}>
         <div className="board-wrapper">
           <TopWidgetsRow toggleBackGround={() => setBackGround(s => !s)} />

@@ -148,6 +148,10 @@ const ZoomPanContainer: React.FC<Props> = ({ children }) => {
     [onWheel],
   );
 
+  useEffect(() => {
+    setDivTransformation(scaleRef.current, panRef.current);
+  }, [panRef, scaleRef, setDivTransformation]);
+
   return (
     <div key="zoom-container" ref={setRef} style={containerStyle}>
       <div
