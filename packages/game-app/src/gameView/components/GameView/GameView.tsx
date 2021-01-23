@@ -13,18 +13,26 @@ import DeckPanel from '../DeckPanel';
 import BottomWidgetsRow from '../BottomWidgetsRow/BottomWidgetsRow';
 import { PanelMode } from '../DeckPanel/DeckPanel';
 import TopWidgetsRow from '../TopWidgetsRow';
+import ZoomPanContainer from '../ZoomPanContainer';
 
 type GameProps = {
-  pan: { x: number; y: number };
   scale: number;
-  gameId: string;
   zoomIn: () => void;
   zoomOut: () => void;
   fitWindow: () => void;
 };
 
-const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, zoomIn, zoomOut }) => {
+const wheelConfig = { step: 70 };
+const transformOptions: React.ComponentProps<typeof TransformWrapper>['options'] = {
+  minScale: Math.max(window.innerWidth / (1920 * 2), window.innerHeight / (1080 * 2)),
+  contentClass: 'zooming-panning-board',
+} as any;
+
+const GameView: React.FC<GameProps> = ({ scale, fitWindow, zoomIn, zoomOut }) => {
   const state = useSelector(selectors.getCardStateForUI);
+  const params = useParams<{ gameId: string }>();
+
+  const gameId = params.gameId;
 
   const { deckCardsIds, placedCardsIds } = useGameState(gameId);
 
@@ -33,64 +41,30 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
   const panelModeRef = useRef<PanelMode>('stacked');
 
   const [background, setBackGround] = useState(true);
+  const panScaleRef = useRef(1);
+  const panPositionRef = useRef({ x: 0, y: 0 });
 
   return (
     <CardsGameListeners
       panelModeRef={panelModeRef}
       onEvent={onCardEvent}
-      boardScale={scale}
-      panAmount={pan}
+      boardScaleRef={panScaleRef}
+      panAmountRef={panPositionRef}
       currentGameState={state}
     >
       <div className="board-wrapper">
         <TopWidgetsRow toggleBackGround={() => setBackGround(s => !s)} />
-        <TransformComponent>
+        <ZoomPanContainer scaleRef={panScaleRef} panRef={panPositionRef}>
           <Board scale={background ? scale : -1}>
             {placedCardsIds.map(id => (
               <DraggableCard key={id} id={id} />
             ))}
           </Board>
-        </TransformComponent>
-
+        </ZoomPanContainer>
         <BottomWidgetsRow fitWindow={fitWindow} zoomIn={zoomIn} zoomOut={zoomOut} />
       </div>
       <DeckPanel panelModeRef={panelModeRef} cardsIds={deckCardsIds} />
     </CardsGameListeners>
-  );
-});
-
-const wheelConfig = { step: 70 };
-const transformOptions: React.ComponentProps<typeof TransformWrapper>['options'] = {
-  minScale: Math.max(window.innerWidth / (1920 * 2), window.innerHeight / (1080 * 2)),
-  contentClass: 'zooming-panning-board',
-} as any;
-
-const GameWrapper = ({ gameId, transformProps }: { transformProps: TansformRenderProps; gameId: string }) => {
-  const { scale, zoomIn, zoomOut, positionX, positionY, setScale } = transformProps;
-  const pan = useMemo(() => ({ x: positionX, y: positionY }), [positionX, positionY]);
-  const fitWindow = useCallback(() => {
-    setScale(0.5);
-  }, [setScale]);
-
-  return <Game pan={pan} scale={scale} gameId={gameId} zoomIn={zoomIn} zoomOut={zoomOut} fitWindow={fitWindow} />;
-};
-
-const GameView: React.FC = () => {
-  const params = useParams<{ gameId: string }>();
-
-  const gameId = params.gameId;
-
-  const renderGame = useCallback(
-    (transformProps: TansformRenderProps) => {
-      return <GameWrapper transformProps={transformProps} gameId={gameId} />;
-    },
-    [gameId],
-  );
-
-  return (
-    <TransformWrapper defaultScale={1} options={transformOptions} wheel={wheelConfig}>
-      {renderGame}
-    </TransformWrapper>
   );
 };
 

@@ -27,7 +27,7 @@ type Props = {
   /**
    * Current game board scale (used for target coordinates calculation).
    */
-  boardScale: number;
+  boardScaleRef: React.MutableRefObject<number>;
   /**
    * Current panel mode
    */
@@ -35,10 +35,10 @@ type Props = {
   /**
    * Current game board panning amount (used for target coordinates calculation).
    */
-  panAmount: {
+  panAmountRef: React.MutableRefObject<{
     x: number;
     y: number;
-  };
+  }>;
 };
 
 type TranslationDeltas = {
@@ -73,27 +73,17 @@ const CardsGameListeners: React.FC<Props> = ({
   onEvent,
   children,
   currentGameState,
-  boardScale,
-  panAmount,
+  boardScaleRef,
+  panAmountRef,
   panelModeRef,
 }) => {
   const gameStateRef = useRef<GameUIState>(currentGameState);
   const translationDeltaRef = useRef<TranslationDeltas>({});
   const absoluteItemPositionWithResectToWindowRef = useRef<AbsoluteWindowPositions>({});
-  const panScaleRef = useRef(boardScale);
-  const panPositionRef = useRef(panAmount);
 
   useEffect(() => {
     gameStateRef.current = currentGameState;
   }, [currentGameState]);
-
-  useEffect(() => {
-    panScaleRef.current = boardScale;
-  }, [boardScale]);
-
-  useEffect(() => {
-    panPositionRef.current = panAmount;
-  }, [panAmount]);
 
   const [draggingCard, setDraggingCard] = useState<{ id: string; parent: 'panel' | 'board' } | null>(null);
 
@@ -165,12 +155,12 @@ const CardsGameListeners: React.FC<Props> = ({
       if (parent === 'board') {
         const currentPosition = gameStateRef.current[cardId].position!;
         newPosition = {
-          x: currentPosition.x + delta.x / panScaleRef.current,
-          y: currentPosition.y + delta.y / panScaleRef.current,
+          x: currentPosition.x + delta.x / boardScaleRef.current,
+          y: currentPosition.y + delta.y / boardScaleRef.current,
         };
       } else {
-        const centerAdjustmentX = (PANEL_CARD_SIZE.width - DEFAULT_CARD_SIZE.width * panScaleRef.current) / 2;
-        const centerAdjustmentY = (PANEL_CARD_SIZE.height - DEFAULT_CARD_SIZE.height * panScaleRef.current) / 2;
+        const centerAdjustmentX = (PANEL_CARD_SIZE.width - DEFAULT_CARD_SIZE.width * boardScaleRef.current) / 2;
+        const centerAdjustmentY = (PANEL_CARD_SIZE.height - DEFAULT_CARD_SIZE.height * boardScaleRef.current) / 2;
 
         let absoluteWindowPosition = absoluteItemPositionWithResectToWindowRef.current[cardId];
 
@@ -187,8 +177,8 @@ const CardsGameListeners: React.FC<Props> = ({
 
         // rescale window position considering panning and scale
         newPosition = {
-          x: (absoluteWindowPosition.x - panPositionRef.current.x + centerAdjustmentX) / panScaleRef.current,
-          y: (absoluteWindowPosition.y - panPositionRef.current.y + centerAdjustmentY) / panScaleRef.current,
+          x: (absoluteWindowPosition.x - panAmountRef.current.x + centerAdjustmentX) / boardScaleRef.current,
+          y: (absoluteWindowPosition.y - panAmountRef.current.y + centerAdjustmentY) / boardScaleRef.current,
         };
       }
       const movementEnd = performance.now();
@@ -238,16 +228,16 @@ const CardsGameListeners: React.FC<Props> = ({
              */
 
             newTransform = {
-              scaleY: panScaleRef.current,
-              scaleX: panScaleRef.current,
+              scaleY: boardScaleRef.current,
+              scaleX: boardScaleRef.current,
               x:
                 args.transform.x +
-                (currentMovingCardState.position?.x || 0) * (panScaleRef.current - 1) +
-                panPositionRef.current.x,
+                (currentMovingCardState.position?.x || 0) * (boardScaleRef.current - 1) +
+                panAmountRef.current.x,
               y:
                 args.transform.y +
-                (currentMovingCardState.position?.y || 0) * (panScaleRef.current - 1) +
-                panPositionRef.current.y,
+                (currentMovingCardState.position?.y || 0) * (boardScaleRef.current - 1) +
+                panAmountRef.current.y,
             };
           } else {
             let y = args.transform.y;
@@ -284,15 +274,15 @@ const CardsGameListeners: React.FC<Props> = ({
 
       let absoluteRectWithRespectToWindow = draggingRect;
       if (currentMovingCardState.placedIn === 'board') {
-        debugPrint('board scale', panScaleRef.current);
+        debugPrint('board scale', boardScaleRef.current);
 
         const absoluteRectWithRespectToBoard = {
           left:
             currentMovingCardState.position!.x +
-            (translationDeltaRef.current[draggingCard!.id]?.x || 0) / panScaleRef.current,
+            (translationDeltaRef.current[draggingCard!.id]?.x || 0) / boardScaleRef.current,
           top:
             currentMovingCardState.position!.y +
-            (translationDeltaRef.current[draggingCard!.id]?.y || 0) / panScaleRef.current,
+            (translationDeltaRef.current[draggingCard!.id]?.y || 0) / boardScaleRef.current,
           height: draggingRect.height,
           width: draggingRect.width,
           right: draggingRect.right,
@@ -304,23 +294,25 @@ const CardsGameListeners: React.FC<Props> = ({
           absoluteRectWithRespectToBoard.left,
           absoluteRectWithRespectToBoard.top,
         );
-        debugPrint('panning position', panPositionRef.current.x, panPositionRef.current.y);
+        debugPrint('panning position', panAmountRef.current.x, panAmountRef.current.y);
         // TODO right and bottom
         absoluteRectWithRespectToWindow = {
           bottom: absoluteRectWithRespectToBoard.bottom,
-          height: absoluteRectWithRespectToBoard.height * panScaleRef.current,
+          height: absoluteRectWithRespectToBoard.height * boardScaleRef.current,
           left:
-            (absoluteRectWithRespectToBoard.left + panPositionRef.current.x / panScaleRef.current) *
-            panScaleRef.current,
+            (absoluteRectWithRespectToBoard.left + panAmountRef.current.x / boardScaleRef.current) *
+            boardScaleRef.current,
           offsetLeft:
-            (absoluteRectWithRespectToBoard.left + panPositionRef.current.x / panScaleRef.current) *
-            panScaleRef.current,
+            (absoluteRectWithRespectToBoard.left + panAmountRef.current.x / boardScaleRef.current) *
+            boardScaleRef.current,
           offsetTop:
-            (absoluteRectWithRespectToBoard.top + panPositionRef.current.y / panScaleRef.current) * panScaleRef.current,
+            (absoluteRectWithRespectToBoard.top + panAmountRef.current.y / boardScaleRef.current) *
+            boardScaleRef.current,
           right: absoluteRectWithRespectToBoard.right,
           top:
-            (absoluteRectWithRespectToBoard.top + panPositionRef.current.y / panScaleRef.current) * panScaleRef.current,
-          width: absoluteRectWithRespectToBoard.width * panScaleRef.current,
+            (absoluteRectWithRespectToBoard.top + panAmountRef.current.y / boardScaleRef.current) *
+            boardScaleRef.current,
+          width: absoluteRectWithRespectToBoard.width * boardScaleRef.current,
         };
         debugPrint(
           'adjusted rect',
