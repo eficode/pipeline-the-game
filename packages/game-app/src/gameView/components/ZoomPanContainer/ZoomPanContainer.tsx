@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 
-type Pan = {
+export type Pan = {
   x: number;
   y: number;
 };
@@ -8,6 +8,7 @@ type Pan = {
 type Props = React.PropsWithChildren<{
   panRef: React.MutableRefObject<Pan>;
   scaleRef: React.MutableRefObject<number>;
+  setZoomPanRef: React.MutableRefObject<({ scale, pan }: { scale?: number; pan?: Pan }) => void>;
 }>;
 
 const scaleFactor = 0.99;
@@ -27,21 +28,26 @@ function constrainPan(pan: Pan, scale: number): Pan {
   };
 }
 
-const ZoomPanContainer: React.FC<Props> = ({ children, panRef, scaleRef }) => {
-  const divRef = useRef<HTMLDivElement>(null);
+const ZoomPanContainer: React.FC<Props> = ({ children, panRef, scaleRef, setZoomPanRef }) => {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   // pan is at board dimension
   const isPanning = useRef(false);
 
+  const setTransformation = useCallback((scale: number, pan: Pan) => {
+    contentRef.current!.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
+  }, []);
+
   function onPointerDown(ev: React.PointerEvent) {
     console.debug('target', ev.target);
-    console.debug('current', divRef.current);
+    console.debug('current', contentRef.current);
     isPanning.current = true;
-    divRef.current!.addEventListener('pointermove', onPointerMove as any);
+    contentRef.current!.addEventListener('pointermove', onPointerMove as any);
   }
 
   function onPointerUp(ev: React.PointerEvent) {
     isPanning.current = false;
-    divRef.current!.removeEventListener('pointermove', onPointerMove as any);
+    contentRef.current!.removeEventListener('pointermove', onPointerMove as any);
   }
 
   function onPointerMove(ev: React.PointerEvent) {
@@ -55,60 +61,105 @@ const ZoomPanContainer: React.FC<Props> = ({ children, panRef, scaleRef }) => {
         },
         currentScale,
       );
-      divRef.current!.style.transform = `translate(${newPan.x}px, ${newPan.y}px) scale(${currentScale})`;
+      contentRef.current!.style.transform = `translate(${newPan.x}px, ${newPan.y}px) scale(${currentScale})`;
 
       panRef.current = newPan;
     }
   }
 
-  function onWheel(ev: React.WheelEvent) {
-    const delta = ev.deltaY;
-    const currentScale = scaleRef.current;
-    const currentPan = panRef.current;
+  const onWheel = useCallback(
+    (ev: WheelEvent) => {
+      ev.preventDefault();
+      ev.stopPropagation();
 
-    let factor = scaleFactor;
-    if (delta < 0) {
-      factor = 1 / factor;
-    }
+      const delta = ev.deltaY;
+      const currentScale = scaleRef.current;
+      const currentPan = panRef.current;
 
-    const newScale = Math.max(currentScale * factor, minScale);
-    const recalculatedFactor = newScale / currentScale;
+      let factor = scaleFactor;
+      if (delta < 0) {
+        factor = 1 / factor;
+      }
 
-    const mouseWindowX = ev.pageX;
-    const mouseWindowY = ev.pageY;
+      const newScale = Math.max(currentScale * factor, minScale);
+      const recalculatedFactor = newScale / currentScale;
 
-    // https://stackoverflow.com/questions/30002361/image-zoom-centered-on-mouse-position
-    const dx = (mouseWindowX - currentPan.x) * (recalculatedFactor - 1);
-    const dy = (mouseWindowY - currentPan.y) * (recalculatedFactor - 1);
+      const mouseWindowX = ev.pageX;
+      const mouseWindowY = ev.pageY;
 
-    const newPanX = currentPan.x - dx;
-    const newPanY = currentPan.y - dy;
+      // https://stackoverflow.com/questions/30002361/image-zoom-centered-on-mouse-position
+      const dx = (mouseWindowX - currentPan.x) * (recalculatedFactor - 1);
+      const dy = (mouseWindowY - currentPan.y) * (recalculatedFactor - 1);
 
-    const newPan = constrainPan({ x: newPanX, y: newPanY }, newScale);
+      const newPanX = currentPan.x - dx;
+      const newPanY = currentPan.y - dy;
 
-    divRef.current!.style.transform = `translate(${newPan.x}px, ${newPan.y}px) scale(${newScale})`;
+      const newPan = constrainPan({ x: newPanX, y: newPanY }, newScale);
 
-    scaleRef.current = newScale;
-    panRef.current = newPan;
-  }
+      contentRef.current!.style.transform = `translate(${newPan.x}px, ${newPan.y}px) scale(${newScale})`;
 
-  console.debug('rendering ZoomPanContainer');
+      scaleRef.current = newScale;
+      panRef.current = newPan;
+    },
+    [panRef, scaleRef],
+  );
+
+  const setZoomPan = useCallback(
+    ({ scale, pan }: { scale?: number; pan?: Pan }) => {
+      const newPan = constrainPan(pan || panRef.current, scale || scaleRef.current);
+
+      if (scale !== undefined) {
+        scaleRef.current = scale;
+      }
+      if (pan !== undefined) {
+        panRef.current = newPan;
+      }
+      setTransformation(scaleRef.current, panRef.current);
+    },
+    [panRef, scaleRef, setTransformation],
+  );
+
+  useEffect(() => {
+    setZoomPanRef.current = setZoomPan;
+  }, [setZoomPan, setZoomPanRef]);
+
+  useEffect(() => {
+    console.debug('refs', containerRef.current, contentRef.current);
+    containerRef.current!.addEventListener('wheel', onWheel, { passive: false });
+
+    return () => {
+      containerRef.current!.removeEventListener('wheel', onWheel);
+    };
+  }, [onWheel]);
 
   return (
     <div
-      ref={divRef}
-      onWheel={onWheel}
-      onPointerDown={onPointerDown}
-      onPointerUp={onPointerUp}
-      onPointerCancel={onPointerUp}
+      ref={containerRef}
       style={{
-        transformOrigin: '0px 0px',
+        margin: '0',
+        padding: '0',
+        userSelect: 'none',
         width: 'fit-content',
         height: 'fit-content',
-        userSelect: 'none',
+        overflow: 'hidden',
+        position: 'relative',
       }}
     >
-      {children}
+      <div
+        ref={contentRef}
+        onPointerDown={onPointerDown}
+        onPointerUp={onPointerUp}
+        onPointerCancel={onPointerUp}
+        style={{
+          transformOrigin: '0px 0px',
+          margin: '0',
+          padding: '0',
+          display: 'flex',
+          flexWrap: 'wrap',
+        }}
+      >
+        {children}
+      </div>
     </div>
   );
 };
