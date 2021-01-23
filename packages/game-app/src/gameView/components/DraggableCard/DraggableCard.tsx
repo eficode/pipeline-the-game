@@ -20,7 +20,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
     id,
   });
 
-  const { position, estimation } = useSelector(selectors.getCardAdditionalInfo(id));
+  const { position, estimation, zIndex } = useSelector(selectors.getCardAdditionalInfo(id));
   const [estimationOpen, setEstimationOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -36,6 +36,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   const style =
     position?.x || position?.y
       ? {
+          zIndex,
           top: position.y,
           left: position.x,
           position: 'absolute' as const,
