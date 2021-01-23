@@ -1,8 +1,6 @@
-import React, { useCallback, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
-import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch';
 import Board from '../Board';
-import { TansformRenderProps } from '../../types/tansformRenderProps';
 import DraggableCard from '../DraggableCard';
 import { useParams } from 'react-router-dom';
 import useGameState from '../../hooks/useGameState';
@@ -13,18 +11,24 @@ import DeckPanel from '../DeckPanel';
 import BottomWidgetsRow from '../BottomWidgetsRow/BottomWidgetsRow';
 import { PanelMode } from '../DeckPanel/DeckPanel';
 import TopWidgetsRow from '../TopWidgetsRow';
+import ZoomPanContainer from '../ZoomPanContainer';
+import ZoomPanContext from '../ZoomPanContext';
 
 type GameProps = {
-  pan: { x: number; y: number };
-  scale: number;
-  gameId: string;
   zoomIn: () => void;
   zoomOut: () => void;
-  fitWindow: () => void;
 };
 
-const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, zoomIn, zoomOut }) => {
+const initialPan = {
+  y: -700,
+  x: 0,
+};
+
+const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
   const state = useSelector(selectors.getCardStateForUI);
+  const params = useParams<{ gameId: string }>();
+
+  const gameId = params.gameId;
 
   const { deckCardsIds, placedCardsIds } = useGameState(gameId);
 
@@ -34,63 +38,27 @@ const Game: React.FC<GameProps> = React.memo(({ pan, scale, gameId, fitWindow, z
 
   const [background, setBackGround] = useState(true);
 
-  return (
-    <CardsGameListeners
-      panelModeRef={panelModeRef}
-      onEvent={onCardEvent}
-      boardScale={scale}
-      panAmount={pan}
-      currentGameState={state}
-    >
-      <div className="board-wrapper">
-        <TopWidgetsRow toggleBackGround={() => setBackGround(s => !s)} />
-        <TransformComponent>
-          <Board scale={background ? scale : -1}>
-            {placedCardsIds.map(id => (
-              <DraggableCard key={id} id={id} />
-            ))}
-          </Board>
-        </TransformComponent>
-
-        <BottomWidgetsRow fitWindow={fitWindow} zoomIn={zoomIn} zoomOut={zoomOut} />
-      </div>
-      <DeckPanel panelModeRef={panelModeRef} cardsIds={deckCardsIds} />
-    </CardsGameListeners>
-  );
-});
-
-const wheelConfig = { step: 70 };
-const transformOptions: React.ComponentProps<typeof TransformWrapper>['options'] = {
-  minScale: Math.max(window.innerWidth / (1920 * 2), window.innerHeight / (1080 * 2)),
-  contentClass: 'zooming-panning-board',
-} as any;
-
-const GameWrapper = ({ gameId, transformProps }: { transformProps: TansformRenderProps; gameId: string }) => {
-  const { scale, zoomIn, zoomOut, positionX, positionY, setScale } = transformProps;
-  const pan = useMemo(() => ({ x: positionX, y: positionY }), [positionX, positionY]);
-  const fitWindow = useCallback(() => {
-    setScale(0.5);
-  }, [setScale]);
-
-  return <Game pan={pan} scale={scale} gameId={gameId} zoomIn={zoomIn} zoomOut={zoomOut} fitWindow={fitWindow} />;
-};
-
-const GameView: React.FC = () => {
-  const params = useParams<{ gameId: string }>();
-
-  const gameId = params.gameId;
-
-  const renderGame = useCallback(
-    (transformProps: TansformRenderProps) => {
-      return <GameWrapper transformProps={transformProps} gameId={gameId} />;
-    },
-    [gameId],
-  );
+  const toggleBackground = useCallback(() => {
+    setBackGround(s => !s);
+  }, []);
 
   return (
-    <TransformWrapper defaultScale={1} options={transformOptions} wheel={wheelConfig}>
-      {renderGame}
-    </TransformWrapper>
+    <ZoomPanContext initialPan={initialPan}>
+      <CardsGameListeners panelModeRef={panelModeRef} onEvent={onCardEvent} currentGameState={state}>
+        <div className="board-wrapper">
+          <TopWidgetsRow toggleBackGround={toggleBackground} />
+          <ZoomPanContainer>
+            <Board scale={background ? 3 : -1}>
+              {placedCardsIds.map(id => (
+                <DraggableCard key={id} id={id} />
+              ))}
+            </Board>
+          </ZoomPanContainer>
+          <BottomWidgetsRow />
+        </div>
+        <DeckPanel panelModeRef={panelModeRef} cardsIds={deckCardsIds} />
+      </CardsGameListeners>
+    </ZoomPanContext>
   );
 };
 

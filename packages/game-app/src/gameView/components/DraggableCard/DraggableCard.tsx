@@ -54,6 +54,8 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
     (e: React.PointerEvent) => {
       fire();
       dragOnPointer?.(e);
+      e.stopPropagation();
+      e.preventDefault();
     },
     [fire, dragOnPointer],
   );
