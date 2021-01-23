@@ -1,6 +1,6 @@
 import { GameUIState } from '../types/gameUIState';
 import { DEFAULT_CARD_SIZE } from '../../dimensions';
-import { Pan } from '../components/ZoomPanContainer/ZoomPanContainer';
+import { Pan } from '../types/pan';
 
 type Bounds = {
   minX: number;

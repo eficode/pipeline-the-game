@@ -8,6 +8,7 @@ import { GameUIState } from '../../types/gameUIState';
 import ConnectedCard from '../ConnectedCard';
 import { PanelMode } from '../DeckPanel/DeckPanel';
 import { DEFAULT_CARD_SIZE, PANEL_CARD_SIZE } from '../../../dimensions';
+import { useZoomPanRefs } from '../ZoomPanContext';
 
 const DEBUG_ENABLED = false;
 
@@ -25,20 +26,9 @@ type Props = {
    */
   currentGameState: GameUIState;
   /**
-   * Current game board scale (used for target coordinates calculation).
-   */
-  boardScaleRef: React.MutableRefObject<number>;
-  /**
    * Current panel mode
    */
   panelModeRef: RefObject<PanelMode>;
-  /**
-   * Current game board panning amount (used for target coordinates calculation).
-   */
-  panAmountRef: React.MutableRefObject<{
-    x: number;
-    y: number;
-  }>;
 };
 
 type TranslationDeltas = {
@@ -69,17 +59,11 @@ let movementStart = 0;
  *
  *  Wrap panel and game with this
  */
-const CardsGameListeners: React.FC<Props> = ({
-  onEvent,
-  children,
-  currentGameState,
-  boardScaleRef,
-  panAmountRef,
-  panelModeRef,
-}) => {
+const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameState, panelModeRef }) => {
   const gameStateRef = useRef<GameUIState>(currentGameState);
   const translationDeltaRef = useRef<TranslationDeltas>({});
   const absoluteItemPositionWithResectToWindowRef = useRef<AbsoluteWindowPositions>({});
+  const { panRef: panAmountRef, scaleRef: boardScaleRef } = useZoomPanRefs();
 
   useEffect(() => {
     gameStateRef.current = currentGameState;
@@ -199,7 +183,7 @@ const CardsGameListeners: React.FC<Props> = ({
         position: newPosition,
       });
     },
-    [onEvent, panelModeRef],
+    [boardScaleRef, onEvent, panAmountRef, panelModeRef],
   );
 
   const modifiers = useMemo(
@@ -260,7 +244,7 @@ const CardsGameListeners: React.FC<Props> = ({
           return newTransform;
         },
       ] as Modifiers,
-    [draggingCard, panelModeRef],
+    [boardScaleRef, draggingCard, panAmountRef, panelModeRef],
   );
 
   const customCollisionDetectionStrategy = useCallback(
@@ -339,7 +323,7 @@ const CardsGameListeners: React.FC<Props> = ({
         return 'board';
       }
     },
-    [draggingCard],
+    [boardScaleRef, draggingCard, panAmountRef],
   );
 
   return (

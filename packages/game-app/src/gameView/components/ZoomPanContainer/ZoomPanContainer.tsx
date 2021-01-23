@@ -1,22 +1,22 @@
 import React, { useCallback, useEffect, useRef } from 'react';
+import { Pan } from '../../types/pan';
+import { useZoomPanSetters } from '../ZoomPanContext';
+import { containerStyle, contentStyle } from './ZoomPanContainer.style';
 
-export type Pan = {
-  x: number;
-  y: number;
-};
-
-type Props = React.PropsWithChildren<{
-  panRef: React.MutableRefObject<Pan>;
-  scaleRef: React.MutableRefObject<number>;
-  setZoomPanRef: React.MutableRefObject<({ scale, pan }: { scale?: number; pan?: Pan }) => void>;
-}>;
+type Props = React.PropsWithChildren<{}>;
 
 const scaleFactor = 0.99;
-
-const minScale = Math.max(window.innerWidth / 3840, window.innerHeight / 2160);
-
 const boardSize = { width: 3840, height: 2160 };
 
+const minScale = Math.max(window.innerWidth / boardSize.width, window.innerHeight / boardSize.height);
+
+/**
+ *
+ * Limit pans to window boundaries. This way you can not move the board limits inside the window
+ *
+ * @param {Pan} pan pant that you want to set
+ * @param {number} scale current scale
+ */
 function constrainPan(pan: Pan, scale: number): Pan {
   const panXConstrained = Math.max(Math.min(pan.x, 0), -boardSize.width * scale + window.innerWidth);
 
@@ -28,52 +28,70 @@ function constrainPan(pan: Pan, scale: number): Pan {
   };
 }
 
-const containerStyle = {
-  margin: '0',
-  padding: '0',
-  userSelect: 'none' as const,
-  width: 'fit-content' as const,
-  height: 'fit-content' as const,
-  overflow: 'hidden' as const,
-  position: 'relative' as const,
-};
+/**
+ * Compute new pan to keep the cursor position fixed and scale centered
+ * at that specific point
+ */
+function calculateNewPan(newScale: number, currentScale: number, ev: WheelEvent, currentPan: Pan) {
+  const recalculatedFactor = newScale / currentScale;
 
-const contentStyle = {
-  transformOrigin: '0px 0px',
-  margin: '0',
-  padding: '0',
-  display: 'flex' as const,
-  flexWrap: 'wrap' as const,
-};
+  const mouseWindowX = ev.pageX;
+  const mouseWindowY = ev.pageY;
 
-const ZoomPanContainer: React.FC<Props> = ({ children, panRef, scaleRef, setZoomPanRef }) => {
+  // https://stackoverflow.com/questions/30002361/image-zoom-centered-on-mouse-position
+  const dx = (mouseWindowX - currentPan.x) * (recalculatedFactor - 1);
+  const dy = (mouseWindowY - currentPan.y) * (recalculatedFactor - 1);
+
+  const newPanX = currentPan.x - dx;
+  const newPanY = currentPan.y - dy;
+
+  return { x: newPanX, y: newPanY };
+}
+
+const ZoomPanContainer: React.FC<Props> = ({ children }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>();
-  // pan is at board dimension
+  // pan is at board dimension, so scaled
   const isPanning = useRef(false);
 
-  const setTransformation = useCallback((scale: number, pan: Pan) => {
-    contentRef.current!.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
-  }, []);
+  const { panRef, scaleRef, setScaleAndPanRef, setZoomAndPan: setValuesInContext } = useZoomPanSetters();
+
+  const setDivTransformation = useCallback(
+    (scale: number, pan: Pan) => {
+      contentRef.current!.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
+      setValuesInContext({ scale, pan });
+    },
+    [setValuesInContext],
+  );
+
+  const setZoomAndPanInternal = useCallback(
+    ({ scale, pan }: { scale?: number; pan?: Pan }) => {
+      const newPan = constrainPan(pan || panRef.current, scale || scaleRef.current);
+
+      if (scale !== undefined) {
+        scaleRef.current = scale;
+      }
+      if (pan !== undefined) {
+        panRef.current = newPan;
+      }
+      setDivTransformation(scaleRef.current, panRef.current);
+    },
+    [panRef, scaleRef, setDivTransformation],
+  );
 
   const onPointerMove = useCallback(
     (ev: React.PointerEvent) => {
       if (isPanning.current) {
-        const currentScale = scaleRef.current;
         const currentPan = panRef.current;
-        const newPan = constrainPan(
-          {
-            x: currentPan.x + ev.movementX,
-            y: currentPan.y + ev.movementY,
-          },
-          currentScale,
-        );
-        contentRef.current!.style.transform = `translate(${newPan.x}px, ${newPan.y}px) scale(${currentScale})`;
+        const newPan = {
+          x: currentPan.x + ev.movementX,
+          y: currentPan.y + ev.movementY,
+        };
 
-        panRef.current = newPan;
+        setZoomAndPanInternal({ pan: newPan });
       }
     },
-    [panRef, scaleRef],
+    [panRef, setZoomAndPanInternal],
   );
 
   const onPointerDown = useCallback(
@@ -107,46 +125,16 @@ const ZoomPanContainer: React.FC<Props> = ({ children, panRef, scaleRef, setZoom
       }
 
       const newScale = Math.max(currentScale * factor, minScale);
-      const recalculatedFactor = newScale / currentScale;
+      const newPan = calculateNewPan(newScale, currentScale, ev, currentPan);
 
-      const mouseWindowX = ev.pageX;
-      const mouseWindowY = ev.pageY;
-
-      // https://stackoverflow.com/questions/30002361/image-zoom-centered-on-mouse-position
-      const dx = (mouseWindowX - currentPan.x) * (recalculatedFactor - 1);
-      const dy = (mouseWindowY - currentPan.y) * (recalculatedFactor - 1);
-
-      const newPanX = currentPan.x - dx;
-      const newPanY = currentPan.y - dy;
-
-      const newPan = constrainPan({ x: newPanX, y: newPanY }, newScale);
-
-      contentRef.current!.style.transform = `translate(${newPan.x}px, ${newPan.y}px) scale(${newScale})`;
-
-      scaleRef.current = newScale;
-      panRef.current = newPan;
+      setZoomAndPanInternal({ pan: newPan, scale: newScale });
     },
-    [panRef, scaleRef],
-  );
-
-  const setZoomPan = useCallback(
-    ({ scale, pan }: { scale?: number; pan?: Pan }) => {
-      const newPan = constrainPan(pan || panRef.current, scale || scaleRef.current);
-
-      if (scale !== undefined) {
-        scaleRef.current = scale;
-      }
-      if (pan !== undefined) {
-        panRef.current = newPan;
-      }
-      setTransformation(scaleRef.current, panRef.current);
-    },
-    [panRef, scaleRef, setTransformation],
+    [panRef, scaleRef, setZoomAndPanInternal],
   );
 
   useEffect(() => {
-    setZoomPanRef.current = setZoomPan;
-  }, [setZoomPan, setZoomPanRef]);
+    setScaleAndPanRef.current = setZoomAndPanInternal;
+  }, [setZoomAndPanInternal, setScaleAndPanRef]);
 
   const setRef = useCallback(
     (ref: HTMLDivElement) => {
