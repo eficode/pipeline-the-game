@@ -28,9 +28,27 @@ function constrainPan(pan: Pan, scale: number): Pan {
   };
 }
 
+const containerStyle = {
+  margin: '0',
+  padding: '0',
+  userSelect: 'none' as const,
+  width: 'fit-content' as const,
+  height: 'fit-content' as const,
+  overflow: 'hidden' as const,
+  position: 'relative' as const,
+};
+
+const contentStyle = {
+  transformOrigin: '0px 0px',
+  margin: '0',
+  padding: '0',
+  display: 'flex' as const,
+  flexWrap: 'wrap' as const,
+};
+
 const ZoomPanContainer: React.FC<Props> = ({ children, panRef, scaleRef, setZoomPanRef }) => {
   const contentRef = useRef<HTMLDivElement>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>();
   // pan is at board dimension
   const isPanning = useRef(false);
 
@@ -38,34 +56,41 @@ const ZoomPanContainer: React.FC<Props> = ({ children, panRef, scaleRef, setZoom
     contentRef.current!.style.transform = `translate(${pan.x}px, ${pan.y}px) scale(${scale})`;
   }, []);
 
-  function onPointerDown(ev: React.PointerEvent) {
-    console.debug('target', ev.target);
-    console.debug('current', contentRef.current);
-    isPanning.current = true;
-    contentRef.current!.addEventListener('pointermove', onPointerMove as any);
-  }
+  const onPointerMove = useCallback(
+    (ev: React.PointerEvent) => {
+      if (isPanning.current) {
+        const currentScale = scaleRef.current;
+        const currentPan = panRef.current;
+        const newPan = constrainPan(
+          {
+            x: currentPan.x + ev.movementX,
+            y: currentPan.y + ev.movementY,
+          },
+          currentScale,
+        );
+        contentRef.current!.style.transform = `translate(${newPan.x}px, ${newPan.y}px) scale(${currentScale})`;
 
-  function onPointerUp(ev: React.PointerEvent) {
-    isPanning.current = false;
-    contentRef.current!.removeEventListener('pointermove', onPointerMove as any);
-  }
+        panRef.current = newPan;
+      }
+    },
+    [panRef, scaleRef],
+  );
 
-  function onPointerMove(ev: React.PointerEvent) {
-    if (isPanning.current) {
-      const currentScale = scaleRef.current;
-      const currentPan = panRef.current;
-      const newPan = constrainPan(
-        {
-          x: currentPan.x + ev.movementX,
-          y: currentPan.y + ev.movementY,
-        },
-        currentScale,
-      );
-      contentRef.current!.style.transform = `translate(${newPan.x}px, ${newPan.y}px) scale(${currentScale})`;
+  const onPointerDown = useCallback(
+    (ev: React.PointerEvent) => {
+      isPanning.current = true;
+      contentRef.current!.addEventListener('pointermove', onPointerMove as any);
+    },
+    [onPointerMove],
+  );
 
-      panRef.current = newPan;
-    }
-  }
+  const onPointerUp = useCallback(
+    (ev: React.PointerEvent) => {
+      isPanning.current = false;
+      contentRef.current!.removeEventListener('pointermove', onPointerMove as any);
+    },
+    [onPointerMove],
+  );
 
   const onWheel = useCallback(
     (ev: WheelEvent) => {
@@ -123,40 +148,26 @@ const ZoomPanContainer: React.FC<Props> = ({ children, panRef, scaleRef, setZoom
     setZoomPanRef.current = setZoomPan;
   }, [setZoomPan, setZoomPanRef]);
 
-  useEffect(() => {
-    console.debug('refs', containerRef.current, contentRef.current);
-    containerRef.current!.addEventListener('wheel', onWheel, { passive: false });
-
-    return () => {
-      containerRef.current!.removeEventListener('wheel', onWheel);
-    };
-  }, [onWheel]);
+  const setRef = useCallback(
+    (ref: HTMLDivElement) => {
+      if (ref) {
+        ref.addEventListener('wheel', onWheel, { passive: false });
+      } else {
+        containerRef.current && containerRef.current.removeEventListener('wheel', onWheel);
+      }
+      containerRef.current = ref;
+    },
+    [onWheel],
+  );
 
   return (
-    <div
-      ref={containerRef}
-      style={{
-        margin: '0',
-        padding: '0',
-        userSelect: 'none',
-        width: 'fit-content',
-        height: 'fit-content',
-        overflow: 'hidden',
-        position: 'relative',
-      }}
-    >
+    <div key="zoom-container" ref={setRef} style={containerStyle}>
       <div
         ref={contentRef}
         onPointerDown={onPointerDown}
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
-        style={{
-          transformOrigin: '0px 0px',
-          margin: '0',
-          padding: '0',
-          display: 'flex',
-          flexWrap: 'wrap',
-        }}
+        style={contentStyle}
       >
         {children}
       </div>
