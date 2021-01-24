@@ -15,6 +15,7 @@ export type ZoomPanRefs = {
   scaleRef: React.MutableRefObject<number>;
   panRef: React.MutableRefObject<Pan>;
   setScaleAndPanRef: React.MutableRefObject<(props: { scale?: number; pan?: Pan }) => void>;
+  zoomRef: React.MutableRefObject<(factor: number) => void>;
 };
 
 export type ZoomPanSetter = {
@@ -43,12 +44,14 @@ const ZoomPan: React.FC<Props> = ({ children, initialScale, initialPan }) => {
   const scaleRef = useRef(initialScale || 1);
   const panRef = useRef(initialPan || { x: 0, y: 0 });
   const setScaleAndPanRef = useRef((props: { scale?: number; pan?: Pan }) => ({}));
+  const zoomRef = useRef((factor: number) => {});
 
   const refsState = useMemo(() => {
     return {
       panRef: panRef,
       setScaleAndPanRef: setScaleAndPanRef,
       scaleRef: scaleRef,
+      zoomRef: zoomRef,
     } as ZoomPanRefs;
   }, []);
 
@@ -58,6 +61,7 @@ const ZoomPan: React.FC<Props> = ({ children, initialScale, initialPan }) => {
       setScaleAndPanRef: setScaleAndPanRef,
       scaleRef: scaleRef,
       setZoomAndPan: setZoomAndPan,
+      zoomRef: zoomRef,
     } as ZoomPanSetter;
   }, [setZoomAndPan]);
 

@@ -5,7 +5,7 @@ import { containerStyle, contentStyle } from './ZoomPanContainer.style';
 
 type Props = React.PropsWithChildren<{}>;
 
-const scaleFactor = 0.99;
+const scaleFactor = 0.9;
 const boardSize = { width: 3840, height: 2160 };
 
 const minScale = Math.max(window.innerWidth / boardSize.width, window.innerHeight / boardSize.height);
@@ -32,7 +32,12 @@ function constrainPan(pan: Pan, scale: number): Pan {
  * Compute new pan to keep the cursor position fixed and scale centered
  * at that specific point
  */
-function calculateNewPan(newScale: number, currentScale: number, ev: WheelEvent, currentPan: Pan) {
+function calculateNewPan(
+  newScale: number,
+  currentScale: number,
+  ev: { pageX: number; pageY: number },
+  currentPan: Pan,
+) {
   const recalculatedFactor = newScale / currentScale;
 
   const mouseWindowX = ev.pageX;
@@ -54,7 +59,7 @@ const ZoomPanContainer: React.FC<Props> = ({ children }) => {
   // pan is at board dimension, so scaled
   const isPanning = useRef(false);
 
-  const { panRef, scaleRef, setScaleAndPanRef, setZoomAndPan: setValuesInContext } = useZoomPanSetters();
+  const { panRef, scaleRef, setScaleAndPanRef, setZoomAndPan: setValuesInContext, zoomRef } = useZoomPanSetters();
 
   const setDivTransformation = useCallback(
     (scale: number, pan: Pan) => {
@@ -77,6 +82,24 @@ const ZoomPanContainer: React.FC<Props> = ({ children }) => {
       setDivTransformation(scaleRef.current, panRef.current);
     },
     [panRef, scaleRef, setDivTransformation],
+  );
+
+  const zoom = useCallback(
+    (factor: number) => {
+      const newScale = Math.max(scaleRef.current * factor, minScale);
+      const newPan = calculateNewPan(
+        newScale,
+        scaleRef.current,
+        {
+          pageX: window.innerWidth / 2,
+          pageY: window.innerHeight / 2,
+        },
+        panRef.current,
+      );
+
+      setZoomAndPanInternal({ pan: newPan, scale: newScale });
+    },
+    [panRef, scaleRef, setZoomAndPanInternal],
   );
 
   const onPointerMove = useCallback(
@@ -135,6 +158,10 @@ const ZoomPanContainer: React.FC<Props> = ({ children }) => {
   useEffect(() => {
     setScaleAndPanRef.current = setZoomAndPanInternal;
   }, [setZoomAndPanInternal, setScaleAndPanRef]);
+
+  useEffect(() => {
+    zoomRef.current = zoom;
+  }, [zoom, zoomRef]);
 
   const setRef = useCallback(
     (ref: HTMLDivElement) => {

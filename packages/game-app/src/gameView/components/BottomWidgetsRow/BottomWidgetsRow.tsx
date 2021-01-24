@@ -17,7 +17,7 @@ type Props = {};
 const BottomWidgetsRowStyled: React.FC<Props> = () => {
   const state = useSelector(selectors.getCardStateForUI);
 
-  const { setScaleAndPanRef } = useZoomPanRefs();
+  const { setScaleAndPanRef, zoomRef } = useZoomPanRefs();
 
   const fitWindow = useCallback(() => {
     const { actualScale, pan } = calculatePanAndZoomToFitWindow(state);
@@ -26,6 +26,14 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
       pan: pan,
     });
   }, [setScaleAndPanRef, state]);
+
+  const zoomIn = useCallback(() => {
+    zoomRef.current?.(1.1);
+  }, [zoomRef]);
+
+  const zoomOut = useCallback(() => {
+    zoomRef.current?.(0.9);
+  }, [zoomRef]);
 
   return (
     <BottomWidgetsRowContainer>
@@ -43,15 +51,16 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
         buttons={[
           {
             icon: <ZoomInIcon />,
-            onClick: () => ({}),
+            onClick: zoomIn,
           },
           {
             icon: <ZoomOutIcon />,
-            onClick: () => ({}),
+            onClick: zoomOut,
           },
           {
             icon: <FitScreenIcon />,
             onClick: fitWindow,
+            autoClose: true,
           },
         ]}
       />

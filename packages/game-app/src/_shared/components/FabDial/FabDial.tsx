@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import IconButton from '../IconButton';
 import styled, { css } from 'styled-components';
 
@@ -9,6 +9,7 @@ type Props = {
   buttons: {
     icon: React.ReactNode;
     onClick: () => void;
+    autoClose?: boolean;
   }[];
 };
 
@@ -53,6 +54,13 @@ const MainButtonIcon = styled(IconButton)`
 const FabDial: React.FC<Props> = ({ icon, buttons, className }) => {
   const [open, setOpen] = useState(false);
 
+  const callbacks = useMemo(() => {
+    return buttons.map(b => () => {
+      b.onClick();
+      b.autoClose && setOpen(false);
+    });
+  }, [buttons]);
+
   return (
     <div style={{ position: 'relative', width: '40px', height: '40px' }} className={className}>
       <MainButtonIcon onClick={() => setOpen(s => !s)} variant="rounded">
@@ -60,7 +68,7 @@ const FabDial: React.FC<Props> = ({ icon, buttons, className }) => {
       </MainButtonIcon>
       <ButtonsWrapper isOpen={open}>
         {buttons.map((b, index) => (
-          <IconButton key={index} variant="rounded" onClick={b.onClick}>
+          <IconButton key={index} variant="rounded" onClick={callbacks[index]}>
             {b.icon}
           </IconButton>
         ))}
