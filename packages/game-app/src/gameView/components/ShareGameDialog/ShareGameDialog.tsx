@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslate } from '@pipeline/i18n';
-import { Box, IconButton, Input, Typography, Dialog, Button } from '@pipeline/components';
+import { Box, IconButton, Typography, Dialog, Button, Input } from '@pipeline/components';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 import { ReactComponent as CopyIcon } from '@assets/icons/review.svg';

@@ -4,6 +4,7 @@ import { useLogout } from '@pipeline/auth';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from '@pipeline/routing';
 import { Box, Button, Link } from '@pipeline/components';
+import JoinGameButton from '../JoinGameButton';
 
 type Props = {};
 
@@ -21,8 +22,9 @@ const Dashboard: React.FC<Props> = () => {
       <h1>{t('dashboard.title')}</h1>
       <h2>{t('dashboard.subtitle')}</h2>
       <p>{t('dashboard.message')}</p>
-      <Box mt={4}>
+      <Box mt={4} display="flex" flexDirection="row">
         <Button onClick={() => history.push(RoutingPath.CreateGame)} label={t('dashboard.newGameLabel')} />
+        <JoinGameButton />
       </Box>
     </div>
   );

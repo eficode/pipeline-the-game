@@ -1,6 +1,6 @@
 import Box from '../Box';
-import { Input } from '../TextInput/TextInput.styled';
 import styled from 'styled-components';
+import Input from '../Input';
 /*
 const estimationWrapperDefinition = keyframes`
   0% {
