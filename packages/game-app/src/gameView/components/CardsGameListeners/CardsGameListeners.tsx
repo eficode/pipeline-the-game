@@ -131,6 +131,10 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
           target: 'panel',
           type: GameEventType.CardMovingEnd,
         });
+        if (translationDeltaRef.current[cardId]) {
+          translationDeltaRef.current[cardId].x = 0;
+          translationDeltaRef.current[cardId].y = 0;
+        }
         return;
       }
       const parent = gameStateRef.current[cardId].placedIn;
@@ -165,6 +169,11 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
           y: (absoluteWindowPosition.y - panAmountRef.current.y + centerAdjustmentY) / boardScaleRef.current,
         };
       }
+      if (translationDeltaRef.current[cardId]) {
+        translationDeltaRef.current[cardId].x = 0;
+        translationDeltaRef.current[cardId].y = 0;
+      }
+
       const movementEnd = performance.now();
 
       debugPrint('collision time', collisionTime.toFixed(2));
