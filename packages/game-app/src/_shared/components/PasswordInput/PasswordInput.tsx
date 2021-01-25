@@ -3,7 +3,7 @@ import IconButton from '../IconButton';
 import ErrorMessage from '../ErrorMessage';
 import Typography from '../Typography';
 import { IconDiv, InputContainer } from './PasswordInput.styled';
-import { Input } from '@pipeline/components';
+import Input from '../Input';
 
 type Props = {
   name: string;
