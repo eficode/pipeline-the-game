@@ -3,13 +3,13 @@ import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBInstance, RTDBPaths, Status} from "@pipeline/common";
 import {PROJECT_ID} from "../utils/rtdb";
 import FieldValue = admin.firestore.FieldValue;
-import {RTDB_LOCATION} from "../utils/general";
 import {moveGameFromRTDBToFirestore} from "./moveGameFromRTDBToFirestore";
 
 const db = admin.firestore();
 const logger = functions.logger;
 
 const INSTANCE_ID = `${PROJECT_ID}-default-rtdb`
+const INSTANCE_NAME = `${INSTANCE_ID}.europe-west1`
 
 /**
  * It triggers when the path /statuses/{userId} of that RTDB instance is updated.
@@ -26,7 +26,7 @@ const INSTANCE_ID = `${PROJECT_ID}-default-rtdb`
  *
  */
 
-export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID).ref(`/${RTDBPaths.Statuses}/{userId}`)
+export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_NAME).ref(`/${RTDBPaths.Statuses}/{userId}`)
   .onUpdate(async (snapshot, context) => {
 
     const instanceId = INSTANCE_ID;
@@ -41,18 +41,18 @@ export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID)
         const gameId = nextStatus.gameId as string;
 
         logger.log(`User ${userId} from game ${gameId} going from ${originalStatus.state} to ${nextStatus.state}`);
-
-        await db.collection(FirebaseCollection.RTDBInstances).doc(instanceId)
+        const docInstanceId = instanceId.split(`${PROJECT_ID}-`)[1];
+        await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
           .update({onlineOnGameCount: nextStatus.state === 'online' ?
                 FieldValue.increment(1) as any :
                 FieldValue.increment(-1) as any,
           } as Partial<RTDBInstance>);
         if (nextStatus.state === 'offline') {
-            const rtdb = admin.app().database(`https://${INSTANCE_ID}.${RTDB_LOCATION}.firebasedatabase.app`);
+            const rtdb = admin.app().database(`https://${INSTANCE_NAME}.firebasedatabase.app`);
             const snap = await rtdb.ref(`/${RTDBPaths.Statuses}`).orderByChild('gameId').equalTo(gameId).get();
             const statuses: Status[] = [];
             snap.forEach(s => {
-                statuses.push(s.val())
+                statuses.push(s.val());
             });
             const onlineCount = statuses.filter((s: Status) => s.state === 'online').length;
             logger.log(`Online user for game ${gameId}: ${onlineCount}`);

@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 import {checkAuth} from "../utils/auth";
 import {runTransactionWithRetry} from "../utils/db";
 import {FirebaseCollection, Game, RTDBPaths} from '@pipeline/common';
-import {RTDB_LOCATION} from "../utils/general";
+import {PROJECT_ID} from "../utils/rtdb";
 const db = admin.firestore();
 const logger = functions.logger;
 
@@ -75,9 +75,9 @@ export const selectBestRTDBInstance = functions.region(
       .orderBy('onlineOnGameCount', "asc").limit(1).get();
     const bestRTDBInstanceDoc = bestRTDBInstanceQuery.docs[0];
     const bestRTDBInstance = bestRTDBInstanceDoc.data();
-    const bestRTDBInstanceId = bestRTDBInstanceDoc.id;
+    const bestRTDBInstanceName = `${PROJECT_ID}-${bestRTDBInstanceDoc.id}.${bestRTDBInstance.region}`;
 
-    logger.log(`Selected instance ${bestRTDBInstanceId} with ${bestRTDBInstance.onlineOnGameCount} online on game users`);
+    logger.log(`Selected instance ${bestRTDBInstanceName} with ${bestRTDBInstance.onlineOnGameCount} online on game users`);
 
     /*
     if (bestRTDBInstance.onlineOnGameCount >= RTDB_THRESHOLD) {
@@ -87,7 +87,7 @@ export const selectBestRTDBInstance = functions.region(
     }
     */
 
-    const rtdb = admin.app().database(`https://${bestRTDBInstanceId}.${RTDB_LOCATION}.firebasedatabase.app`);
+    const rtdb = admin.app().database(`https://${bestRTDBInstanceName}.firebasedatabase.app`);
 
     const gameRef = db.collection(FirebaseCollection.Games).doc(gameId);
 
@@ -96,7 +96,7 @@ export const selectBestRTDBInstance = functions.region(
       const game = gameDoc.data() as Game;
       if (!game.rtdbInstance) {
         transaction.update(gameRef, {
-          rtdbInstance: bestRTDBInstanceId,
+          rtdbInstance: bestRTDBInstanceName,
         } as Partial<Game>);
         await rtdb.ref(`/${RTDBPaths.Games}/${gameId}`).set({
           ...game,
@@ -104,7 +104,7 @@ export const selectBestRTDBInstance = functions.region(
       }
     });
 
-    res.status(200).send({bestRTDBInstanceId});
+    res.status(200).send({bestRTDBInstanceName});
 
   } catch (e) {
     logger.error(e);

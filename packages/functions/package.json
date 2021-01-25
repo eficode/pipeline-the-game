@@ -3,6 +3,7 @@
   "scripts": {
     "lint": "eslint \"src/**/*\"",
     "build": "tsc",
+    "watch": "tsc --watch",
     "serve": "npm run build && firebase emulators:start --only functions",
     "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
@@ -17,7 +18,7 @@
     "firebase-admin": "^9.2.0",
     "firebase-functions": "^3.11.0",
     "axios": "^0.21.1",
-    "@pipeline/common": "file:./_packages_copy/common",
+    "@pipeline/common": "^0.2.0",
     "express": "^4.17.1",
     "lodash": "^4.17.20"
   },

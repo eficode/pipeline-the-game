@@ -10,8 +10,3 @@ if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'selectBestRTDBI
   exports.selectBestRTDBInstance = require('./load-balancing/selectBestRTDBInstance').selectBestRTDBInstance;
 }
 
-if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'scheduledSyncStatusJob') {
-  exports.scheduledSyncStatusJob = require('./load-balancing/syncStatusJob').scheduledSyncStatusJob;
-}
-
-
