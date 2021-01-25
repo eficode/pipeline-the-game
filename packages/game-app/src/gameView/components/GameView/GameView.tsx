@@ -43,7 +43,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
     setBackGround(s => !s);
   }, []);
 
-  useStopPollingOnlineStatus();
+  useStopListenOnlineStatus();
 
   return (
     <ZoomPanContext initialPan={initialPan}>
