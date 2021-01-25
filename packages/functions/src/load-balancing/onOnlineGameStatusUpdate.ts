@@ -26,7 +26,7 @@ const INSTANCE_NAME = `${INSTANCE_ID}.europe-west1`
  *
  */
 
-export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_NAME).ref(`/${RTDBPaths.Statuses}/{userId}`)
+export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID).ref(`/${RTDBPaths.Statuses}/{userId}`)
   .onUpdate(async (snapshot, context) => {
 
     const instanceId = INSTANCE_ID;
