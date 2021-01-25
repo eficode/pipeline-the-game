@@ -40,6 +40,7 @@ const getSlice = createSelector(
   state => state[name],
 );
 
+const getStatus = createSelector(getSlice, state => state.status);
 const getRTDB = createSelector(getSlice, state => state.rtdb);
 
 export const reducer = slice.reducer;
@@ -50,10 +51,9 @@ export const actions = {
   updateOnlineStatus: createAction<'online' | 'offline'>(`${name}/updateOnlineStatus`),
   startListenToOnlineStatus: createAction(`${name}/startListenToOnlineStatus`),
   stopListenToOnlineStatus: createAction(`${name}/stopListenToOnlineStatus`),
-  startPollingOnlineStatus: createAction(`${name}/startPollingToOnlineStatus`),
-  stopPollingOnlineStatus: createAction(`${name}/stopPollingToOnlineStatus`),
 };
 
 export const selectors = {
   getRTDB,
+  getStatus,
 };

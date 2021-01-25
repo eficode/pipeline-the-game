@@ -13,7 +13,7 @@ import { PanelMode } from '../DeckPanel/DeckPanel';
 import TopWidgetsRow from '../TopWidgetsRow';
 import ZoomPanContainer from '../ZoomPanContainer';
 import ZoomPanContext from '../ZoomPanContext';
-import useStopPollingOnlineStatus from '../../hooks/useStopPollingOnlineStatus';
+import useStopListenOnlineStatus from '../../hooks/useStopListenOnlineStatus';
 
 type GameProps = {
   zoomIn: () => void;

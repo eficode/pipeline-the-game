@@ -5,11 +5,9 @@ import { addRequestStatusManagement } from '@pipeline/requests-status';
 import { CardEntity, CardTypes, Game } from '@pipeline/common';
 import loadGame from '../apis/callLoadGame';
 import loadCardsForDeck from '../apis/callLoadCardsForDeck';
-import { AuthUser, selectors as authSelectors } from '@pipeline/auth';
 
 function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   const game: Game = yield call(loadGame, action.payload);
-  const user: AuthUser = yield select(authSelectors.getCurrentUser);
   const cards: CardEntity[] = yield call(loadCardsForDeck, game.deckId);
   yield put(actions.saveCards(cards));
   // TODO load actual game state from firestore
@@ -17,7 +15,7 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   if (game.rtdbInstance) {
     yield put(actions.saveGame(game));
   } else {
-    const bestRTDBInstance = yield call(selectBestRTDBInstance, action.payload, user.token!);
+    const bestRTDBInstance = yield call(selectBestRTDBInstance, action.payload);
     yield put(actions.saveGame({ ...game, rtdbInstance: bestRTDBInstance }));
   }
 

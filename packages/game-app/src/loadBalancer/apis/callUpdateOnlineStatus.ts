@@ -22,6 +22,7 @@ export async function startListenToOnlineStatus(
     gameId,
   } as Status;
 
+  console.log('Connecting to db');
   rtdb.ref('.info/connected').on('value', async snapshot => {
     if (snapshot.val() === false) return;
     await userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase, () => {

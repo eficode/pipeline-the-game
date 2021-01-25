@@ -1,11 +1,10 @@
 import {
   initializeRTDB,
-  pollUpdateStatusSagaWatcher,
   startListenToOnlineStatusSaga,
   stopListenToOnlineStatusSaga,
   updateOnlineStatusSaga,
   watchStatusChannel,
-  startPolling,
+  startListen,
 } from './loadBalancer';
 import { all } from 'redux-saga/effects';
 
@@ -15,8 +14,7 @@ export default function* loadBalancerSaga() {
     updateOnlineStatusSaga(),
     startListenToOnlineStatusSaga(),
     stopListenToOnlineStatusSaga(),
-    pollUpdateStatusSagaWatcher(),
     watchStatusChannel(),
-    startPolling(),
+    startListen(),
   ]);
 }
