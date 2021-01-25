@@ -1,4 +1,4 @@
-import { call, put, select, takeEvery } from 'redux-saga/effects';
+import { call, put, takeEvery } from 'redux-saga/effects';
 import { actions, GameState } from '../slice';
 import selectBestRTDBInstance from '../../loadBalancer/apis/selectBestRTDBInstance';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
