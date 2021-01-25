@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { BottomWidgetsRowContainer, PoweredByContainer, TextLogoWrapper } from './BottomWidgetsRow.styled';
 import ScenarioPanel from '../ScenarioPanel';
 import { ReactComponent as EficodeTextLogo } from '@assets/images/eficode-text-logo.svg';
@@ -35,6 +35,25 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
     zoomRef.current?.(0.9);
   }, [zoomRef]);
 
+  const buttons = useMemo(
+    () => [
+      {
+        icon: <ZoomInIcon />,
+        onClick: zoomIn,
+      },
+      {
+        icon: <ZoomOutIcon />,
+        onClick: zoomOut,
+      },
+      {
+        icon: <FitScreenIcon />,
+        onClick: fitWindow,
+        autoClose: true,
+      },
+    ],
+    [fitWindow, zoomIn, zoomOut],
+  );
+
   return (
     <BottomWidgetsRowContainer>
       <ScenarioPanel />
@@ -46,24 +65,7 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
           <EficodeTextLogo />
         </TextLogoWrapper>
       </PoweredByContainer>
-      <FabDial
-        icon={<LensIcon />}
-        buttons={[
-          {
-            icon: <ZoomInIcon />,
-            onClick: zoomIn,
-          },
-          {
-            icon: <ZoomOutIcon />,
-            onClick: zoomOut,
-          },
-          {
-            icon: <FitScreenIcon />,
-            onClick: fitWindow,
-            autoClose: true,
-          },
-        ]}
-      />
+      <FabDial icon={<LensIcon />} buttons={buttons} />
     </BottomWidgetsRowContainer>
   );
 };
