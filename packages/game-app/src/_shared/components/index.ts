@@ -18,6 +18,8 @@ import ErrorMessage from './ErrorMessage';
 import { Input } from './TextInput/TextInput.styled';
 import EstimationEditor from './EstimationEditor';
 import EstimationInCard from './EstimationInCard';
+import GlassOverlay from './GlassOverlay';
+import Icon from './Icon';
 
 export {
   TextInput,
@@ -40,4 +42,6 @@ export {
   ErrorMessage,
   EstimationEditor,
   EstimationInCard,
+  GlassOverlay,
+  Icon,
 };
