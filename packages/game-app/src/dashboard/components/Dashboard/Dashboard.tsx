@@ -17,7 +17,9 @@ const Dashboard: React.FC<Props> = () => {
   return (
     <div className="dashboard">
       <div className="sign-out-button">
-        <Link onClick={executeLogout}>{t('auth.logout')}</Link>
+        <Link onClick={executeLogout} id="logout-button">
+          {t('auth.logout')}
+        </Link>
       </div>
       <h1>{t('dashboard.title')}</h1>
       <h2>{t('dashboard.subtitle')}</h2>

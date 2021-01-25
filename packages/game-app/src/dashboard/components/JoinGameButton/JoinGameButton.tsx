@@ -34,7 +34,9 @@ const JoinGameButton: React.FC<Props> = () => {
   return (
     <Box marginLeft={5} display="flex" flexDirection="row">
       {!showInput ? <Button onClick={toggleInput} label={t('dashboard.joinGame')} /> : null}
-      {showInput ? <Input iconLeft={<KeyboardIcon />} variant="default" value={text} onChange={onChange} /> : null}
+      {showInput ? (
+        <Input id="join-link-field" iconLeft={<KeyboardIcon />} variant="default" value={text} onChange={onChange} />
+      ) : null}
       {showInput && text ? (
         <Button variant="clear" onClick={join} color="activeAccent" label={t('dashboard.joinButton')} />
       ) : null}

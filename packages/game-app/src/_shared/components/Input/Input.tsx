@@ -13,7 +13,14 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
   ({ variant = 'default', className, iconLeft, ...rest }, ref) => {
     return (
       <Box position="relative">
-        <StyledInput ref={ref} className={className} withIcon={!!iconLeft} variant={variant} {...rest} />
+        <StyledInput
+          ref={ref}
+          data-cy={rest.id}
+          className={className}
+          withIcon={!!iconLeft}
+          variant={variant}
+          {...rest}
+        />
         {iconLeft ? <LeftInputIcon>{iconLeft}</LeftInputIcon> : null}
       </Box>
     );
