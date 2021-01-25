@@ -14,7 +14,8 @@
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
     "firebase-admin": "^9.4.2",
-    "firebase-tools": "9.0.1",
+    "firebase-tools": "^9.2.2",
+    "fs-extra": "^8.1.0",
     "husky": "^4.3.6",
     "lerna": "^3.22.1"
   },

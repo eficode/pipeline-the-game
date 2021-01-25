@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select } from 'redux-saga/effects';
+import { call, put, select, takeEvery } from 'redux-saga/effects';
 import { actions, AuthUser, selectors } from './slice';
 import firebase from 'firebase/app';
 import 'firebase/auth';

@@ -6,5 +6,18 @@ export interface Game extends CreatedAt {
   scenarioContent: string;
   scenarioCardId: string | null;
   deckId: string;
-  facilitator: ShortUser,
+  facilitator: ShortUser;
+  rtdbInstance: string | null;
+  cards: { [key: string]: CardState } | null;
+  boardDimensions: {x: number, y: number} | null;
+}
+
+export interface CardState {
+  parent: 'board'| 'panel';
+  position?: {
+    x: number,
+    y: number
+  };
+  lockedBy: string | null;
+  estimation: string;
 }

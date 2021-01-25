@@ -28,6 +28,21 @@ const slice = createSlice({
       state.isInitialized = false;
       state.loggedUser = null;
     },
+    setToken(state, action: PayloadAction<string | undefined>) {
+      if (state.loggedUser) {
+        return {
+          ...state,
+          loggedUser: {
+            ...state.loggedUser,
+            token: action.payload,
+          },
+        };
+      } else {
+        return {
+          ...state,
+        };
+      }
+    },
   },
 });
 
@@ -50,6 +65,7 @@ export const actions = {
   verifyEmail: createAction<{ code: string }>(`${name}/verifyEmail`),
   login: createAction<{ email: string; password: string }>(`${name}/login`),
   logout: createAction(`${name}/logout`),
+  getToken: createAction(`${name}/getToken`),
 };
 export const selectors = {
   getCurrentUser,

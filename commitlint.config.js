@@ -10,7 +10,8 @@ const scopes = [
     "rules",
     "release",
     "create-game",
-    "components"
+    "components",
+    "load-balancing"
 ];
 const _prefixed = scopes.map((s) => apps.map((p) => `${p}-${s}`));
 const scopeEnum = [].concat.apply([], _prefixed);

@@ -3,8 +3,8 @@
   "version": "0.2.0",
   "types": "build/index.d.ts",
   "typings": "build/index.d.ts",
-  "main": "build/index.js",
-  "module": "",
+  "main": "build/cjs/index.js",
+  "module": "build/index.js",
   "scripts": {
     "build": "npm run build:es5 && npm run build:cjs",
     "build:es5": "tsc --outDir build",

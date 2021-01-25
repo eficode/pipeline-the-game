@@ -13,6 +13,7 @@ import { PanelMode } from '../DeckPanel/DeckPanel';
 import TopWidgetsRow from '../TopWidgetsRow';
 import ZoomPanContainer from '../ZoomPanContainer';
 import ZoomPanContext from '../ZoomPanContext';
+import useStopListenOnlineStatus from '../../hooks/useStopListenOnlineStatus';
 
 type GameProps = {
   zoomIn: () => void;
@@ -41,6 +42,8 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
   const toggleBackground = useCallback(() => {
     setBackGround(s => !s);
   }, []);
+
+  useStopListenOnlineStatus();
 
   return (
     <ZoomPanContext initialPan={initialPan}>
