@@ -1,5 +1,7 @@
 {
-  "rulesFile": "packages/database/database.rules",
+  "database": {
+    "rules": "packages/database/database.rules.json"
+  },
   "firestore": {
     "rules": "packages/firestore/firestore.rules",
     "indexes": "packages/firestore/firestore.indexes.json"
