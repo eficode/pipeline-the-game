@@ -5,7 +5,7 @@
     "build": "tsc --project ./tsconfig.build.json",
     "watch": "tsc --watch --project ./tsconfig.build.json",
     "serve": "npm run build && firebase emulators:start --only functions",
-    "shell": "npm run222222222226602 build && firebase functions:shell",
+    "shell": "npm run build && firebase functions:shell",
     "start": "npm run shell",
     "test": "mocha -r ts-node/register test/*.spec.ts",
     "test:local": "npx env-cmd -f .env mocha -r ts-node/register test/*.spec.ts --timeout 5000",
