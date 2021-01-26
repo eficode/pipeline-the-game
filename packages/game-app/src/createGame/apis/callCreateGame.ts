@@ -1,7 +1,8 @@
 import { GameCreationData } from '../types/gameCreationData';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
-import { FirebaseCollection, Game } from '@pipeline/common';
+import { FirebaseCollection } from '@pipeline/common';
+import { Game } from '@pipeline/models';
 
 const DEFAULT_DECK_ID = '7p5qqvE8kCV9WWysVc2n';
 

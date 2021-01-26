@@ -6,8 +6,9 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { CardEntity, Game } from '@pipeline/common';
+import { CardEntity } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
+import { Game } from '@pipeline/models';
 
 export interface AdditionalCardData {
   /**
@@ -53,7 +54,7 @@ export interface GameState {
 }
 
 export interface State {
-  game: Game | null;
+  game: (Game & { id: string }) | null;
   cards: EntityState<CardEntity>;
   selectedGameId: string | null;
   gameState: GameState | null;
@@ -136,7 +137,7 @@ const slice = createSlice({
         };
       }
     },
-    saveGame(state, action: PayloadAction<Game>) {
+    saveGame(state, action: PayloadAction<Game & { id: string }>) {
       return {
         ...state,
         game: action.payload,

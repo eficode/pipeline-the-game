@@ -1,5 +1,6 @@
 import firebase from 'firebase';
-import { RTDBPaths, Status } from '@pipeline/common';
+import { RTDBPaths } from '@pipeline/common';
+import { Status } from '@pipeline/models';
 
 export async function startListenToOnlineStatus(
   rtdb: firebase.database.Database,
@@ -13,22 +14,21 @@ export async function startListenToOnlineStatus(
   const isOfflineForDatabase = {
     state: 'offline' as const,
     updatedAt: firebase.database.ServerValue.TIMESTAMP,
-    gameId: null,
+    gameIds: null,
   } as Status;
 
   const isOnlineForDatabase = {
     state: 'online' as const,
     updatedAt: firebase.database.ServerValue.TIMESTAMP,
-    gameId,
-  } as Status;
+  } as Partial<Status>;
 
   console.log('Connecting to db');
   rtdb.ref('.info/connected').on('value', async snapshot => {
     if (snapshot.val() === false) return;
-    await userStatusDatabaseRef.onDisconnect().set(isOfflineForDatabase, () => {
+    await userStatusDatabaseRef.onDisconnect().update(isOfflineForDatabase, () => {
       onDisconnect();
     });
-    await userStatusDatabaseRef.set(isOnlineForDatabase, () => {
+    await userStatusDatabaseRef.update({ ...isOnlineForDatabase, [`gameIds/${gameId}`]: true }, () => {
       onConnect();
     });
   });
@@ -44,13 +44,16 @@ export async function callUpdateOnlineStatus(
   gameId: string,
   state: 'online' | 'offline',
 ) {
-  const userStatusDatabaseRef = firebase.database().ref(`/${RTDBPaths.Statuses}/${uid}`);
+  const userStatusDatabaseRef = firebase.app(gameId).database().ref(`/${RTDBPaths.Statuses}/${uid}`);
 
   const statusForDatabase = {
     state,
     updatedAt: firebase.database.ServerValue.TIMESTAMP,
-    gameId,
-  } as Status;
+  } as Partial<Status>;
 
-  await userStatusDatabaseRef.set(statusForDatabase);
+  await userStatusDatabaseRef.update(
+    state === 'offline'
+      ? { ...statusForDatabase, gameIds: null }
+      : { ...statusForDatabase, [`gameIds/${gameId}`]: true },
+  );
 }

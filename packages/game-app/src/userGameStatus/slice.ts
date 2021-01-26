@@ -1,11 +1,10 @@
 import { createAction, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import firebase from 'firebase/app';
-import { Status } from '@pipeline/common';
+import { Status } from '@pipeline/models';
 
 export interface State {
   status: Status | null;
-  rtdb: firebase.database.Database;
 }
 
 const initialState = {
@@ -13,24 +12,32 @@ const initialState = {
 } as State;
 
 const slice = createSlice({
-  name: 'loadBalancer',
+  name: 'userGameStatus',
   initialState: initialState,
   reducers: {
-    updateOnlineStatusSuccess(state, action: PayloadAction<Partial<Status>>) {
-      return {
-        ...state,
-        status: {
-          state: action.payload.state!,
-          updatedAt: firebase.firestore.Timestamp.now(),
-          gameId: action.payload.gameId!,
-        },
-      };
-    },
-    updateRTDB(state, action: PayloadAction<firebase.database.Database>) {
-      return {
-        ...state,
-        rtdb: action.payload,
-      };
+    updateOnlineStatusSuccess(state, action: PayloadAction<{ state: Status['state']; gameId?: string }>) {
+      if (action.payload.state === 'offline') {
+        return {
+          ...state,
+          status: {
+            state: 'offline',
+            updatedAt: firebase.firestore.Timestamp.now(),
+            gameIds: null,
+          },
+        };
+      } else {
+        return {
+          ...state,
+          status: {
+            state: action.payload.state!,
+            updatedAt: firebase.firestore.Timestamp.now(),
+            gameIds:
+              state.status?.gameIds == null
+                ? { [action.payload.gameId!]: true }
+                : { ...state.status?.gameIds, [action.payload.gameId!]: true },
+          },
+        };
+      }
     },
   },
 });
@@ -41,7 +48,6 @@ const getSlice = createSelector(
 );
 
 const getStatus = createSelector(getSlice, state => state.status);
-const getRTDB = createSelector(getSlice, state => state.rtdb);
 
 export const reducer = slice.reducer;
 export const name = slice.name;
@@ -54,6 +60,5 @@ export const actions = {
 };
 
 export const selectors = {
-  getRTDB,
   getStatus,
 };
