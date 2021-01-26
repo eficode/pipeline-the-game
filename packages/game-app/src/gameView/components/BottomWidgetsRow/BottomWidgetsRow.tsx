@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { BottomWidgetsRowContainer, PoweredByContainer, TextLogoWrapper } from './BottomWidgetsRow.styled';
 import ScenarioPanel from '../ScenarioPanel';
 import { ReactComponent as EficodeTextLogo } from '@assets/images/eficode-text-logo.svg';
@@ -17,7 +17,7 @@ type Props = {};
 const BottomWidgetsRowStyled: React.FC<Props> = () => {
   const state = useSelector(selectors.getCardStateForUI);
 
-  const { setScaleAndPanRef } = useZoomPanRefs();
+  const { setScaleAndPanRef, zoomRef } = useZoomPanRefs();
 
   const fitWindow = useCallback(() => {
     const { actualScale, pan } = calculatePanAndZoomToFitWindow(state);
@@ -26,6 +26,33 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
       pan: pan,
     });
   }, [setScaleAndPanRef, state]);
+
+  const zoomIn = useCallback(() => {
+    zoomRef.current?.(1.1);
+  }, [zoomRef]);
+
+  const zoomOut = useCallback(() => {
+    zoomRef.current?.(0.9);
+  }, [zoomRef]);
+
+  const buttons = useMemo(
+    () => [
+      {
+        icon: <ZoomInIcon />,
+        onClick: zoomIn,
+      },
+      {
+        icon: <ZoomOutIcon />,
+        onClick: zoomOut,
+      },
+      {
+        icon: <FitScreenIcon />,
+        onClick: fitWindow,
+        autoClose: true,
+      },
+    ],
+    [fitWindow, zoomIn, zoomOut],
+  );
 
   return (
     <BottomWidgetsRowContainer>
@@ -38,23 +65,7 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
           <EficodeTextLogo />
         </TextLogoWrapper>
       </PoweredByContainer>
-      <FabDial
-        icon={<LensIcon />}
-        buttons={[
-          {
-            icon: <ZoomInIcon />,
-            onClick: () => ({}),
-          },
-          {
-            icon: <ZoomOutIcon />,
-            onClick: () => ({}),
-          },
-          {
-            icon: <FitScreenIcon />,
-            onClick: fitWindow,
-          },
-        ]}
-      />
+      <FabDial icon={<LensIcon />} buttons={buttons} />
     </BottomWidgetsRowContainer>
   );
 };
