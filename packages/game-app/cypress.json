@@ -2,5 +2,6 @@
   "baseUrl": "http://localhost:3000",
   "video": false,
   "blockHosts": ["www.google-analytics.com", "ssl.google-analytics.com"],
-  "testFiles": "**/*.spec.ts"
+  "testFiles": "**/*.spec.ts",
+  "defaultCommandTimeout": 6000
 }

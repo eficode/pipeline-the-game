@@ -31,6 +31,8 @@ export function bootstrap() {
     firebase.firestore().settings({ experimentalForceLongPolling: true });
     firebase.auth().useEmulator('http://localhost:9099/');
     firebase.functions().useEmulator('localhost', 5001);
+    const functions = firebase.app().functions('europe-west1');
+    functions.useEmulator('localhost', 5001);
     firebase.firestore().useEmulator('localhost', 8080);
     firebase.database().useEmulator('localhost', 9000);
   }

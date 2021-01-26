@@ -2,7 +2,9 @@ import * as admin from 'firebase-admin';
 
 type Transaction = admin.firestore.Transaction;
 
-const wait = (ms: number) => { return new Promise(resolve => setTimeout(resolve, ms))};
+const wait = (ms: number) => {
+  return new Promise(resolve => setTimeout(resolve, ms))
+};
 
 function getRandomArbitrary(min: number, max: number) {
   return Math.random() * (max - min) + min;
@@ -24,7 +26,7 @@ const runTransactionWithRetryHelper = async (db: admin.firestore.Firestore, upda
         return null;
       }
     } else {
-      return null;
+      throw  e;
     }
   }
 };
