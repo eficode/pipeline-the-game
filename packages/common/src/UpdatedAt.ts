@@ -1,5 +1,4 @@
-import fb from "firebase";
 
-export interface UpdatedAt {
-  updatedAt: fb.firestore.Timestamp | fb.firestore.FieldValue;
+export interface UpdatedAt<T, F> {
+  updatedAt: T | F;
 }

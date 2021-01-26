@@ -1,7 +1,7 @@
 import {CreatedAt} from "./CreatedAt";
 import {ShortUser} from "./user";
 
-export interface Game extends CreatedAt {
+export interface Game<T, F> extends CreatedAt<T, F> {
   scenarioTitle: string;
   scenarioContent: string;
   scenarioCardId: string | null;
@@ -9,6 +9,15 @@ export interface Game extends CreatedAt {
   facilitator: ShortUser;
   rtdbInstance: string | null;
   cards: { [key: string]: CardState } | null;
+  boardDimensions: {x: number, y: number} | null;
+}
+
+export interface RTDBGame<T, F> extends CreatedAt<T, F> {
+  scenarioTitle: string;
+  scenarioContent: string;
+  scenarioCardId: string | null;
+  deckId: string;
+  facilitator: ShortUser;
   boardDimensions: {x: number, y: number} | null;
 }
 
