@@ -1,5 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
+import { ReactComponent as ArrowIcon } from '../../../assets/icons/arrow.svg';
+import { ReactComponent as ReviewIcon } from '../../../assets/icons/review.svg';
 
 import Button from './Button';
 
@@ -23,4 +25,21 @@ export const Fun = Template.bind({});
 Fun.args = {
   variant: 'fun',
   label: 'Button',
+};
+
+export const IconClear = Template.bind({});
+
+IconClear.decorators = [
+  Story => (
+    <div style={{ padding: '50px', background: 'grey' }}>
+      <Story />
+    </div>
+  ),
+];
+
+IconClear.args = {
+  variant: 'clear',
+  label: 'Back to game',
+  leftIcon: <ArrowIcon />,
+  leftIconHover: <ReviewIcon />,
 };

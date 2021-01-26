@@ -1,11 +1,24 @@
 import styled from 'styled-components';
-import { typography, TypographyProps, variant, margin, MarginProps } from 'styled-system';
+import {
+  typography,
+  TypographyProps,
+  variant,
+  margin,
+  MarginProps,
+  color,
+  ColorProps,
+  TextAlignProps,
+  textAlign,
+} from 'styled-system';
 
-type TypographyVariants = 'label' | 'title' | 'content' | 'contentHead';
+type TypographyVariants = 'label' | 'title' | 'content' | 'contentHead' | 'bigTitle';
 
-const Typography = styled.div<{ variant?: TypographyVariants } & TypographyProps & MarginProps>`
-  ${typography}
-  ${margin}
+type CustomTypographyProps = { variant?: TypographyVariants } & TypographyProps &
+  MarginProps &
+  ColorProps &
+  TextAlignProps;
+
+const Typography = styled.div<CustomTypographyProps>`
   ${variant({
     variants: {
       label: {
@@ -26,8 +39,18 @@ const Typography = styled.div<{ variant?: TypographyVariants } & TypographyProps
         fontFamily: 'Montserrat',
         whiteSpace: 'pre-line',
       },
+      bigTitle: {
+        fontSize: '56px',
+        fontFamily: 'Montserrat',
+        fontWeight: 'bold',
+        textAlign: 'center',
+      },
     },
   })}
+  ${typography} 
+  ${margin} 
+  ${color} 
+  ${textAlign}
 `;
 
 Typography.displayName = 'Typography';

@@ -24,6 +24,8 @@ const translations = {
       title: 'Share the game',
       subtitle: 'Copy the link below and share it with your colleagues.',
     },
+    backToGame: 'Back to game',
+    rules: 'Game Rules',
   },
   login: {
     title: 'Sign in to play',

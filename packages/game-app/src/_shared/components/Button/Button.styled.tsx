@@ -1,7 +1,8 @@
 import styled from 'styled-components';
-import { variant } from 'styled-system';
+import { variant, color } from 'styled-system';
+import Icon from '../Icon';
 
-export type Variants = 'default' | 'fun';
+export type Variants = 'default' | 'fun' | 'clear';
 
 export const HoverButton = styled.div`
   position: absolute;
@@ -35,6 +36,10 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
   border-radius: 4px;
   padding: 2px 40px;
   cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   font-family: Montserrat;
 
   box-sizing: border-box;
@@ -73,6 +78,35 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
           },
         },
       },
+      clear: {
+        bg: 'transparent',
+        color: 'white',
+        p: '2px 16px',
+      },
     },
-  })}
+  })} ${color}
 `;
+
+export const IconWrapper = styled(Icon)`
+  ${StyledButton} > & {
+    margin-right: 4px;
+  }
+`;
+
+IconWrapper.displayName = 'IconWrapper';
+
+export const HoverIconWrapper = styled(IconWrapper)`
+  ${StyledButton}:not(:hover) > & {
+    display: none;
+  }
+`;
+
+HoverIconWrapper.displayName = 'HoverIconWrapper';
+
+export const NotHoverIconWrapper = styled(IconWrapper)`
+  ${StyledButton}:hover > & {
+    display: none;
+  }
+`;
+
+NotHoverIconWrapper.displayName = 'NotHoverIconWrapper';
