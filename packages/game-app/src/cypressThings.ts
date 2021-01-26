@@ -7,6 +7,8 @@ import firebase from 'firebase/app';
  * to use them during the e2e tests.
  */
 export function makeCypressHappy(store: Store) {
+  firebase.firestore().settings({ experimentalForceLongPolling: true });
+
   (window as any).store = store;
   (window as any).i18n = I18n;
   (window as any).firebase = firebase;
