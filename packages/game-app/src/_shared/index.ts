@@ -28,6 +28,7 @@ export function bootstrap() {
   });
   // TODO find a way to not import all firestore module at startup
   if (config.REACT_APP_FIREBASE_USE_EMULATORS === 'true') {
+    firebase.firestore().settings({ experimentalForceLongPolling: true });
     firebase.auth().useEmulator('http://localhost:9099/');
     firebase.functions().useEmulator('localhost', 5001);
     const functions = firebase.app().functions('europe-west1');
