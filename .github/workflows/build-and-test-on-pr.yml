@@ -3,6 +3,7 @@ on: pull_request
 
 jobs:
   build-and-run-tests:
+    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     environment: dev
     steps:
@@ -48,6 +49,13 @@ jobs:
         run: npm run test:firestore
         env:
           FIRESTORE_EMULATOR_HOST: localhost:8080
+
+      - name: Firestore run functions test
+        run: npm run test:functions
+        env:
+          FIRESTORE_EMULATOR_HOST: localhost:8080
+          GCLOUD_PROJECT: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
+          FIREBASE_DATABASE_EMULATOR_HOST: localhost:9000
 
       - name: Run e2e test
         uses: cypress-io/github-action@v2
