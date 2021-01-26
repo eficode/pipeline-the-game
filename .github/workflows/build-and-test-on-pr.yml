@@ -3,7 +3,6 @@ on: pull_request
 
 jobs:
   build-and-run-tests:
-    if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     environment: dev
     steps:
