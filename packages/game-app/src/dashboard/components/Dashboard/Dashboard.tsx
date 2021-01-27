@@ -1,8 +1,7 @@
 import React from 'react';
 import { useTranslate } from '@pipeline/i18n';
 import { useLogout } from '@pipeline/auth';
-import { useHistory } from 'react-router-dom';
-import { RoutingPath } from '@pipeline/routing';
+import { RoutingPath, useNavigateTo } from '@pipeline/routing';
 import { Box, Button, Link } from '@pipeline/components';
 import JoinGameButton from '../JoinGameButton';
 
@@ -12,7 +11,7 @@ const Dashboard: React.FC<Props> = () => {
   const t = useTranslate();
   const { call: executeLogout } = useLogout();
 
-  const history = useHistory();
+  const goToCreateGame = useNavigateTo(RoutingPath.CreateGame);
 
   return (
     <div className="dashboard">
@@ -25,7 +24,7 @@ const Dashboard: React.FC<Props> = () => {
       <h2>{t('dashboard.subtitle')}</h2>
       <p>{t('dashboard.message')}</p>
       <Box mt={4} display="flex" flexDirection="row">
-        <Button onClick={() => history.push(RoutingPath.CreateGame)} label={t('dashboard.newGameLabel')} />
+        <Button onClick={goToCreateGame} label={t('dashboard.newGameLabel')} />
         <JoinGameButton />
       </Box>
     </div>
