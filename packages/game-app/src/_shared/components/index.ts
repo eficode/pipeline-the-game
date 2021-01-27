@@ -15,9 +15,9 @@ import FabDial from './FabDial';
 import useDialog from './Dialog/useDialog';
 import Dialog from './Dialog';
 import ErrorMessage from './ErrorMessage';
-import { Input } from './TextInput/TextInput.styled';
 import EstimationEditor from './EstimationEditor';
 import EstimationInCard from './EstimationInCard';
+import Input from './Input';
 import GlassOverlay from './GlassOverlay';
 import Icon from './Icon';
 

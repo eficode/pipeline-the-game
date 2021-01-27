@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { RoutingPath } from './routingPath';
+import useNavigateTo from './useNavigateTo';
 
 /**
  *
@@ -8,6 +8,7 @@ import { RoutingPath } from './routingPath';
  *
  * @param condition the condition to check
  * @param route the route to go
+ * @param state navigation state
  */
 export default function useNavigateOnCondition<State = any>(
   condition: boolean,
@@ -16,12 +17,12 @@ export default function useNavigateOnCondition<State = any>(
 ) {
   const [alreadyNavigated, setAlreadyNavigated] = useState<boolean>(false);
 
-  const history = useHistory();
+  const navigate = useNavigateTo(route, state);
 
   useEffect(() => {
     if (condition && !alreadyNavigated) {
-      history.push(route, state);
+      navigate();
       setAlreadyNavigated(true);
     }
-  }, [condition, history, route, alreadyNavigated, state]);
+  }, [condition, alreadyNavigated, navigate]);
 }

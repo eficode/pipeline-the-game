@@ -1,7 +1,8 @@
 import React from 'react';
 import Typography from '../Typography';
 import ErrorMessage from '../ErrorMessage';
-import { Input, InputContainer } from './TextInput.styled';
+import { InputContainer } from './TextInput.styled';
+import Input from '../Input';
 
 type Props = {
   name: string;

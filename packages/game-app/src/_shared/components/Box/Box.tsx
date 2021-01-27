@@ -5,6 +5,7 @@ import {
   margin,
   layout,
   flexbox,
+  position,
   SpaceProps,
   LayoutProps,
   FlexboxProps,
@@ -28,6 +29,7 @@ const Box = styled.div<BoxProps>(
   flexbox,
   margin,
   textAlign,
+  position,
 );
 
 Box.displayName = 'Box';
