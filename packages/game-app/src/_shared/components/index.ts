@@ -21,6 +21,7 @@ import Input from './Input';
 import GlassOverlay from './GlassOverlay';
 import Icon from './Icon';
 import TowColumnPage from './TowColumnPage';
+import TextLogo from './TextLogo';
 
 export {
   TextInput,
@@ -46,4 +47,5 @@ export {
   GlassOverlay,
   Icon,
   TowColumnPage,
+  TextLogo,
 };

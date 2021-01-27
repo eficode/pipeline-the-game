@@ -1,55 +1,3 @@
-.column {
-  display: flex;
-  flex-direction: column;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.p-relative {
-  position: relative;
-}
-
-.error-message {
-  color: red;
-  font-size: 0.8em;
-}
-
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  transition: 0.3s;
-  border-radius: 5px;
-  padding: 10px 25px;
-  background-color: white;
-}
-
-.card h2 {
-  margin: 15px 0;
-}
-
-select {
-  width: 100%;
-  padding: 5px 10px;
-  box-sizing: border-box;
-  border-radius: 10px;
-  border: 1px solid #9a9a9a;
-}
-
-label + div > select {
-  margin-bottom: 10px;
-}
-
-label {
-  margin-bottom: 4px;
-  font-weight: 600;
-}
-
 /** eye icon */
 .gg-eye {
   position: relative;
@@ -84,76 +32,12 @@ label {
   left: 6px;
 }
 
-/* signup */
 .signup,
-.login,
 .dashboard {
   display: inline-block;
   width: 100%;
 }
 
-.content {
-  max-width: 350px;
-  margin: auto;
-  margin-top: 120px;
-}
-
-/* dashboard */
-
-.dashboard {
-  height: 100vh;
-  width: 100vw;
-  background-color: white;
-  position: relative;
-  padding-left: 50px;
-  box-sizing: border-box;
-}
-
-.dashboard h1 {
-  font-size: 70px;
-  margin-top: 50px;
-}
-
-.dashboard h2 {
-  font-size: 35px;
-}
-.dashboard h2 + p {
-  margin-top: 50px;
-  max-width: 450px;
-}
-
-.dashboard .sign-out-button {
-  position: absolute;
-  top: 15px;
-  right: 60px;
-}
-
-.dashboard .test-game {
-  margin-left: 50px;
-  margin-top: 20px;
-}
-
 /*
   game board
  */
-
-.board-wrapper {
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-.react-transform-component {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-.draggable {
-  display: inline-block;
-  z-index: 100;
-}
-
-.transform-0 {
-  transform-origin: 0px 0px !important;
-}

@@ -12,13 +12,13 @@ const translations = {
     createButtonText: 'Start Game',
   },
   dashboard: {
-    title: 'Pipeline',
-    subtitle: 'The Game that Delivers',
+    title: 'Pipeline - The Game that Delivers',
     newGameLabel: 'Create game',
     message:
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
     joinGame: ' Join game',
     joinButton: 'Join',
+    contactUs: 'Contact us',
   },
   game: {
     contactUs: 'Contact us',

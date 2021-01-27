@@ -35,15 +35,25 @@ Temporary css waiting for the ui components
   }
 
   body {
-    background-color: #d7d2cb;
     font-size: 14px;
     color: #101820;
   }
 
   select:focus,
+  input:focus,
   button:focus {
     outline: none;
   }
   
-  
+  .transform-0 {
+    transform-origin: 0px 0px !important;
+  }
+
+  .board-wrapper {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
 `;
