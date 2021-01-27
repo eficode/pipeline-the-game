@@ -1,11 +1,11 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormTextField } from '@pipeline/form';
-import { Box, Button, Link, PasswordInput, Typography, TowColumnPage } from '@pipeline/components';
+import { Box, Button, Link, PasswordInput, TowColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { useLogin } from '@pipeline/auth';
-import { useHistory, useLocation } from 'react-router-dom';
-import { RoutingPath } from '@pipeline/routing';
+import { useLocation } from 'react-router-dom';
+import { RoutingPath, useNavigateTo } from '@pipeline/routing';
 import { LoginForm } from './Login.styled';
 
 type Props = {};
@@ -27,12 +27,9 @@ const Login: React.FC<Props> = () => {
 
   const submit = useMemo(() => handleSubmit(login), [login, handleSubmit]);
 
-  const history = useHistory();
   const location = useLocation<{ desiredUrl: string }>();
 
-  const goToSignUp = useCallback(() => {
-    history.push(RoutingPath.Signup, location.state);
-  }, [history, location]);
+  const goToSignUp = useNavigateTo(RoutingPath.Signup, location.state);
 
   return (
     <TowColumnPage
@@ -58,7 +55,7 @@ const Login: React.FC<Props> = () => {
           </Box>
         </LoginForm>
       }
-    ></TowColumnPage>
+    />
   );
 };
 
