@@ -62,6 +62,7 @@ export interface State {
     title: string;
     content: string;
   };
+  searchText: string | null;
 }
 
 const adapter = createEntityAdapter<CardEntity>({
@@ -73,6 +74,7 @@ const initialState = {
   cards: adapter.getInitialState(),
   selectedGameId: null,
   gameState: null,
+  searchText: null,
 } as State;
 
 const slice = createSlice({
@@ -138,10 +140,10 @@ const slice = createSlice({
       }
     },
     saveGame(state, action: PayloadAction<GameEntity<FirebaseTimestamp, FirebaseFieldValue>>) {
-      return {
-        ...state,
-        game: action.payload,
-      };
+      state.game = action.payload;
+    },
+    setSearchText(state, action: PayloadAction<string>) {
+      state.searchText = action.payload;
     },
   },
 });
@@ -208,6 +210,31 @@ const getCardAdditionalInfo = (cardId: string) =>
 const getCardById = (cardId: string) =>
   createSelector(getSlice, state => cardsEntitiesSelectors.selectById(state.cards, cardId));
 
+const getSearchedText = createSelector(getSlice, slice => slice.searchText);
+
+const getFilteredDeckCardsIds = createSelector(
+  getSearchedText,
+  getDeckCardsIds,
+  getAllCardsEntities,
+  (searchedText, deckCardsIds, cardsMap) => {
+    if (!searchedText) {
+      return null;
+    }
+
+    const loweCaseSearchedText = searchedText.toLowerCase();
+
+    return deckCardsIds?.filter(id => {
+      const cardData = cardsMap[id]!;
+      return (
+        cardData.content.toLowerCase().includes(loweCaseSearchedText) ||
+        cardData.title.toLowerCase().includes(loweCaseSearchedText) ||
+        cardData.subtitle?.toLowerCase()?.includes(loweCaseSearchedText) ||
+        cardData.tags?.some(t => t.toLowerCase().includes(loweCaseSearchedText))
+      );
+    });
+  },
+);
+
 export const reducer = slice.reducer;
 export const name = slice.name;
 
@@ -229,4 +256,6 @@ export const selectors = {
   getScenario,
   getCardAdditionalInfo,
   getGame,
+  getFilteredDeckCardsIds,
+  getSearchedText,
 };

@@ -34,6 +34,7 @@ type Props = {
   transitionTime?: string;
   transitionTimingFunction?: string;
   children: React.ReactChild[];
+  ChildComponent?: React.ElementType;
 };
 
 /**
@@ -51,6 +52,7 @@ const AnimatedGrid: React.FC<Props> = ({
   itemHeight,
   itemWidth,
   marginVertical,
+  ChildComponent = 'div',
   transitionTime = '400ms',
   transitionTimingFunction = 'ease-out',
 }) => {
@@ -69,12 +71,12 @@ const AnimatedGrid: React.FC<Props> = ({
   const renderChild = useCallback(
     (child: React.ReactElement, top: number = 0, left: number = 0) => {
       return (
-        <div className={childClassName} key={child.key} style={getChildStyles(top, left)}>
+        <ChildComponent className={childClassName} key={child.key} style={getChildStyles(top, left)}>
           {child}
-        </div>
+        </ChildComponent>
       );
     },
-    [childClassName, getChildStyles],
+    [ChildComponent, childClassName, getChildStyles],
   );
 
   const parseChildren = useCallback(() => {

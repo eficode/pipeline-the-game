@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { variant } from 'styled-system';
 import { getFromTheme } from '../utils';
 
-export type IconButtonVariants = 'default' | 'rounded' | 'clear';
+export type IconButtonVariants = 'default' | 'rounded' | 'clear' | 'clearSmall';
 
 export const StyledButton = styled.button<{ active?: boolean; variant: IconButtonVariants }>`
   background-color: transparent;
@@ -51,6 +51,11 @@ export const StyledButton = styled.button<{ active?: boolean; variant: IconButto
             transform: 'rotate(20deg) scale(1.2)',
           },
         },
+      },
+      clearSmall: {
+        width: '24px',
+        height: '24px',
+        padding: '4px',
       },
     },
   })}
