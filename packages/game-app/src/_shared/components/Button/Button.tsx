@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  HoverButton,
-  HoverButtonContent,
-  HoverIconWrapper,
-  NotHoverIconWrapper,
-  StyledButton,
-  Variants,
-} from './Button.styled';
+import { ButtonContent, NotHoverIconWrapper, StyledButton, Variants } from './Button.styled';
 
 type Props = {
   id?: string;
@@ -41,14 +34,10 @@ const Button: React.FC<Props> = ({
       variant={variant}
       color={color}
     >
-      {leftIcon ? <NotHoverIconWrapper>{leftIcon}</NotHoverIconWrapper> : null}
-      {leftIconHover || leftIcon ? <HoverIconWrapper>{leftIconHover || leftIcon!}</HoverIconWrapper> : null}
-      {label}
-      <HoverButton>
-        <HoverButtonContent>
-          <span>{hoverLabel || label}</span>
-        </HoverButtonContent>
-      </HoverButton>
+      <ButtonContent>
+        {leftIcon ? <NotHoverIconWrapper>{leftIcon}</NotHoverIconWrapper> : null}
+        {label}
+      </ButtonContent>
     </StyledButton>
   );
 };

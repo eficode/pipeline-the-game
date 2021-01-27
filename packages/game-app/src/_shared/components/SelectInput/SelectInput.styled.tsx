@@ -31,7 +31,7 @@ SelectLoadingWrapper.displayName = 'SelectLoadingWrapper';
 export const SelectContainer = styled(Box)<React.ComponentProps<typeof Box>>`
   flex-direction: column;
 
-  ${Typography} + ${SelectLoadingWrapper} {
+  ${SelectLoadingWrapper} {
     margin-top: 5px;
   }
 `;
