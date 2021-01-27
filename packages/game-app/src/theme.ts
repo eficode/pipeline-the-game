@@ -4,7 +4,7 @@ const theme: DefaultTheme = {
   input: {
     variants: {
       default: {
-        border: '1px solid #9a9a9a',
+        border: '1px solid #D7D2CB',
       },
       clear: {
         border: 'none',

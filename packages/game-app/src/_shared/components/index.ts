@@ -20,6 +20,7 @@ import EstimationInCard from './EstimationInCard';
 import Input from './Input';
 import GlassOverlay from './GlassOverlay';
 import Icon from './Icon';
+import TowColumnPage from './TowColumnPage';
 
 export {
   TextInput,
@@ -44,4 +45,5 @@ export {
   EstimationInCard,
   GlassOverlay,
   Icon,
+  TowColumnPage,
 };

@@ -27,7 +27,7 @@ const Dialog: React.FC<Props> = ({ open, title, children }) => {
   return (
     <GlassOverlay open={open}>
       <DialogContainer>
-        <Typography variant="title">{title}</Typography>
+        <Typography variant="dialogHead">{title}</Typography>
         {children}
       </DialogContainer>
     </GlassOverlay>
