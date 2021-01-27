@@ -17,14 +17,14 @@ export const DeckPanelContent = styled.div<{ mode: PanelMode }>`
   ${props =>
     props.mode === 'stacked'
       ? css`
-          padding-top: 95px;
+          padding-top: 186px;
 
           ${CardWrapper}:hover {
             transform: translate(0, -100px);
           }
         `
       : css`
-          padding-top: 64px;
+          padding-top: 136px;
         `}
 `;
 
@@ -34,11 +34,7 @@ export const PanelButtons = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
-  margin-bottom: 8px;
-  position: absolute;
-  right: 0px;
-  top: 12px;
-  z-index: 1;
+  margin-top: 8px;
 
   ${IconButton} + ${IconButton} {
     margin-left: 8px;
@@ -46,6 +42,19 @@ export const PanelButtons = styled.div`
 `;
 
 PanelButtons.displayName = 'PanelButtons';
+
+export const PanelTools = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  left: 40px;
+  z-index: 1;
+`;
+
+PanelTools.displayName = 'PanelTools';
 
 export const AnimatedChild = styled.div`
   z-index: 2;

@@ -16,7 +16,7 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode; isOver: boolea
   border-radius: 40px 0px 0px 0px;
   opacity: 1;
   backdrop-filter: blur(30px);
-  padding: 40px 40px 0 40px;
+  padding: 0px 40px 0 40px;
   box-sizing: border-box;
   background-color: rgb(170, 180, 175, 0.4);
   display: flex;

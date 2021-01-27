@@ -5,7 +5,7 @@ import { ReactComponent as StackedIcon } from '@assets/icons/stacked-view.svg';
 import { ReactComponent as TwoColumnsIcon } from '@assets/icons/two-column-view.svg';
 import DroppablePanelArea from '../DroppablePanelArea';
 import { PANEL_CARD_SIZE, PANEL_ONE_COLUMNS_WIDTH, PANEL_TWO_COLUMNS_WIDTH } from '../../../dimensions';
-import { AnimatedChild, DeckPanelContent, PanelButtons } from './DeckPanel.styled';
+import { AnimatedChild, DeckPanelContent, PanelButtons, PanelTools } from './DeckPanel.styled';
 import { ReactComponent as SearchIcon } from '@assets/icons/zoom.svg';
 import { ReactComponent as ClearIcon } from '@assets/icons/zoom.svg';
 import useDeckState from '../../hooks/useDeckState';
@@ -46,7 +46,7 @@ const DeckPanel: React.FC<Props> = ({ panelModeRef }) => {
 
   return (
     <DroppablePanelArea mode={panelMode}>
-      <Box>
+      <PanelTools>
         <Input
           variant="clearRound"
           value={searchedText}
@@ -60,8 +60,6 @@ const DeckPanel: React.FC<Props> = ({ panelModeRef }) => {
             )
           }
         />
-      </Box>
-      <DeckPanelContent mode={panelMode}>
         <PanelButtons>
           <IconButton active={panelMode === 'stacked'} onClick={() => setPanelMode('stacked')}>
             <StackedIcon />
@@ -70,8 +68,8 @@ const DeckPanel: React.FC<Props> = ({ panelModeRef }) => {
             <TwoColumnsIcon />
           </IconButton>
         </PanelButtons>
-        {content}
-      </DeckPanelContent>
+      </PanelTools>
+      <DeckPanelContent mode={panelMode}>{content}</DeckPanelContent>
     </DroppablePanelArea>
   );
 };
