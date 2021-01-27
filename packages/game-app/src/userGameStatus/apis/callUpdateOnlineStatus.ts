@@ -1,14 +1,25 @@
 import firebase from 'firebase';
 import { RTDBPaths } from '@pipeline/common';
 import { Status } from '@pipeline/models';
+import CONFIG from '@pipeline/app-config';
+
+export function initializeRTDB(rtdbInstance: string, gameId: string) {
+  const app = firebase.initializeApp(
+    {
+      databaseURL: `https://${rtdbInstance}.firebasedatabase.app`,
+    },
+    gameId,
+  );
+  CONFIG.REACT_APP_FIREBASE_USE_EMULATORS === 'true' && app.database().useEmulator('localhost', 9000);
+}
 
 export async function startListenToOnlineStatus(
-  rtdb: firebase.database.Database,
   uid: string,
   gameId: string,
   onConnect: () => void,
   onDisconnect: () => void,
 ) {
+  const rtdb: firebase.database.Database = firebase.app(gameId).database();
   const userStatusDatabaseRef = rtdb.ref(`/${RTDBPaths.Statuses}/${uid}`);
 
   const isOfflineForDatabase = {
@@ -34,16 +45,12 @@ export async function startListenToOnlineStatus(
   });
 }
 
-export async function stopListenToOnlineStatus(rtdb: firebase.database.Database) {
+export async function stopListenToOnlineStatus(gameId: string) {
+  const rtdb: firebase.database.Database = firebase.app(gameId).database();
   rtdb.ref('.info/connected').off('value');
 }
 
-export async function callUpdateOnlineStatus(
-  rtdb: firebase.database.Database,
-  uid: string,
-  gameId: string,
-  state: 'online' | 'offline',
-) {
+export async function callUpdateOnlineStatus(uid: string, gameId: string, state: 'online' | 'offline') {
   const userStatusDatabaseRef = firebase.app(gameId).database().ref(`/${RTDBPaths.Statuses}/${uid}`);
 
   const statusForDatabase = {

@@ -6,13 +6,13 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { CardEntity } from '@pipeline/common';
+import { CardEntity, GameEntity } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
-import { Game } from '@pipeline/models';
+import { FirebaseFieldValue, FirebaseTimestamp } from '@pipeline/models';
 
 export interface AdditionalCardData {
   /**
-   * if it is beeing moving
+   * if it is being moving
    */
   held: boolean;
   /**
@@ -54,7 +54,7 @@ export interface GameState {
 }
 
 export interface State {
-  game: (Game & { id: string }) | null;
+  game: GameEntity<FirebaseTimestamp, FirebaseFieldValue> | null;
   cards: EntityState<CardEntity>;
   selectedGameId: string | null;
   gameState: GameState | null;
@@ -137,7 +137,7 @@ const slice = createSlice({
         };
       }
     },
-    saveGame(state, action: PayloadAction<Game & { id: string }>) {
+    saveGame(state, action: PayloadAction<GameEntity<FirebaseTimestamp, FirebaseFieldValue>>) {
       return {
         ...state,
         game: action.payload,
