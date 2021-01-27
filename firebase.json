@@ -8,12 +8,13 @@
   },
   "functions": {
     "predeploy": [
-      "node pre-deploy.js",
+      "node scripts/pre-deploy.js",
       "npm --prefix packages/functions run lint",
-      "npm --prefix packages/functions run build"
+      "npm --prefix packages/functions run build",
+      "npx lerna run update-package-lock"
     ],
     "postdeploy": [
-      "node post-deploy.js"
+      "node scripts/pre-deploy.js"
     ],
     "source": "packages/functions"
   },

@@ -10,7 +10,8 @@
     "test": "mocha -r ts-node/register test/*.spec.ts",
     "test:local": "npx env-cmd -f .env mocha -r ts-node/register test/*.spec.ts --timeout 5000",
     "deploy": "firebase deploy --only functions",
-    "logs": "firebase functions:log"
+    "logs": "firebase functions:log",
+    "update-package-lock": "npm i"
   },
   "engines": {
     "node": "12"
