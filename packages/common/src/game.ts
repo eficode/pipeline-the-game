@@ -12,14 +12,7 @@ export interface Game<T, F> extends CreatedAt<T, F> {
   boardDimensions: {x: number, y: number} | null;
 }
 
-export interface RTDBGame<T, F> extends CreatedAt<T, F> {
-  scenarioTitle: string;
-  scenarioContent: string;
-  scenarioCardId: string | null;
-  deckId: string;
-  facilitator: ShortUser;
-  boardDimensions: {x: number, y: number} | null;
-}
+export type RTDBGame<T, F> = Omit<Game<T, F>, 'rtdbInstance' | 'cards'>;
 
 export interface CardState {
   parent: 'board'| 'panel';
@@ -30,3 +23,5 @@ export interface CardState {
   lockedBy: string | null;
   estimation: string;
 }
+
+export type GameEntity<T, F> = Game<T, F> & {id:string};
