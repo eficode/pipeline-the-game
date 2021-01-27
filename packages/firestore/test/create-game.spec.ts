@@ -1,8 +1,9 @@
 import * as firebase from "@firebase/rules-unit-testing";
 import {getAuthedFirestore, reinitializeFirestore} from "./utils";
 import {FirebaseCollection} from '@pipeline/common/build/cjs'
-import {Card, Game} from "@pipeline/common";
+import {Card} from "@pipeline/common";
 import fb from "firebase";
+import {Game} from "../models/Game";
 
 const PROJECT_ID = "firestore-emulator-example-" + Math.floor(Math.random() * 1000);
 
@@ -30,7 +31,12 @@ describe("Game create", () => {
         id: 'id1'
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     } as Game));
   });
 
@@ -47,7 +53,12 @@ describe("Game create", () => {
         id: userUID
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     } as Game));
   });
 
@@ -64,7 +75,12 @@ describe("Game create", () => {
         id: userUID
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: 'randomDeckId'
+      deckId: 'randomDeckId',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     } as Game));
   });
 
@@ -80,7 +96,12 @@ describe("Game create", () => {
         id: userUID
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     }));
   });
 
@@ -97,7 +118,12 @@ describe("Game create", () => {
         id: 'randomUserId'
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     } as Game));
   });
 
@@ -114,7 +140,12 @@ describe("Game create", () => {
         id: userUID
       },
       createdAt: fb.firestore.Timestamp.now(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     } as Game));
   });
 
@@ -131,7 +162,12 @@ describe("Game create", () => {
         id: userUID
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     } as Game));
   });
 
@@ -148,7 +184,12 @@ describe("Game create", () => {
         id: userUID
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     } as Game));
   });
 
@@ -168,7 +209,12 @@ describe("Game create", () => {
         id: userUID
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      }
     } as Game));
   });
 
@@ -188,7 +234,74 @@ describe("Game create", () => {
         id: userUID
       },
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
-      deckId: '7p5qqvE8kCV9WWysVc2n'
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: null
+    } as Game));
+  });
+
+  it("should not allow game creation with a valued rtdbInstance", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
+    await firebase.assertFails(gameRef.set({
+      scenarioTitle: 'Title',
+      scenarioContent: 'Content',
+      scenarioCardId: null,
+      facilitator: {
+        id: userUID
+      },
+      createdAt: fb.firestore.FieldValue.serverTimestamp(),
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: 'random',
+      cards: null,
+      boardDimensions: {
+        x: 3840, y: 2160
+      },
+    } as Game));
+  });
+
+  it("should not allow game creation with a valued cards", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
+    await firebase.assertFails(gameRef.set({
+      scenarioTitle: 'Title',
+      scenarioContent: 'Content',
+      scenarioCardId: null,
+      facilitator: {
+        id: userUID
+      },
+      createdAt: fb.firestore.FieldValue.serverTimestamp(),
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: {},
+      boardDimensions: {
+        x: 3840, y: 2160
+      },
+    } as Game));
+  });
+
+  it("should not allow game creation with a null boardDimension", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
+    await firebase.assertFails(gameRef.set({
+      scenarioTitle: 'Title',
+      scenarioContent: 'Content',
+      scenarioCardId: null,
+      facilitator: {
+        id: userUID
+      },
+      createdAt: fb.firestore.FieldValue.serverTimestamp(),
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      boardDimensions: null,
     } as Game));
   });
 

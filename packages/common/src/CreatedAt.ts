@@ -1,5 +1,4 @@
-import fb from "firebase";
 
-export interface CreatedAt {
-  createdAt: fb.firestore.Timestamp | fb.firestore.FieldValue;
+export interface CreatedAt<T, F> {
+  createdAt: T | F;
 }

@@ -16,7 +16,6 @@ const runTransactionWithRetryHelper = async (db: admin.firestore.Firestore, upda
     await db.runTransaction(updateFunction);
     return null
   } catch (e) {
-    console.log(e);
     if (e.code === 10) {
       console.log(`Transaction abort error! Running it again: #${retry} retries.`);
       if (retry < maxRetries) {
@@ -26,7 +25,7 @@ const runTransactionWithRetryHelper = async (db: admin.firestore.Firestore, upda
         return null;
       }
     } else {
-      throw  e;
+      throw e;
     }
   }
 };

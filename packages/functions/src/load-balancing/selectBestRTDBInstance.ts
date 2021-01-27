@@ -1,8 +1,9 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import {runTransactionWithRetry} from "../utils/db";
-import {FirebaseCollection, Game, RTDBPaths} from '@pipeline/common';
+import {FirebaseCollection, RTDBPaths} from '@pipeline/common';
 import {PROJECT_ID} from "../utils/rtdb";
+import {Game} from "../models/Game";
 
 const db = admin.firestore();
 const logger = functions.logger;
@@ -40,6 +41,14 @@ const createNewRTDBInstance = async () => {
 
  */
 
+/**
+ * API to effectively balance the game load by selected the best RTDB instance, in terms of minimum number of online users.
+ * It needs a "gameId" as url parameter and can be called only by authenticated users.
+ *
+ * This will be called, and then effective, only by the first user entering a game without any other users.
+ *
+ * It returns the best RTDB instance to use.
+ */
 
 export const selectBestRTDBInstance = functions.region(
   'europe-west1'
@@ -90,9 +99,17 @@ export const selectBestRTDBInstance = functions.region(
       transaction.update(gameRef, {
         rtdbInstance: bestRTDBInstanceName,
       } as Partial<Game>);
+      const cards = game.cards !== null ? {...game.cards}: null;
+      game.cards = null;
+      game.rtdbInstance = null;
       await rtdb.ref(`/${RTDBPaths.Games}/${gameId}`).set({
         ...game,
-      })
+      });
+      if (cards) {
+        await rtdb.ref(`/${RTDBPaths.Cards}/${gameId}`).set({
+          ...cards,
+        });
+      }
     }
   });
 

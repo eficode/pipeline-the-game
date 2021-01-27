@@ -1,6 +1,4 @@
-import {CreatedAt} from "./CreatedAt";
-
-export interface RTDBInstance extends CreatedAt {
+export interface RTDBInstance {
   onlineOnGameCount: number;
   region: string;
 }

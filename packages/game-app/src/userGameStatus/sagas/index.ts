@@ -4,8 +4,7 @@ import {
   stopListenToOnlineStatusSaga,
   updateOnlineStatusSaga,
   watchStatusChannel,
-  startListen,
-} from './loadBalancer';
+} from './userGameStatus';
 import { all } from 'redux-saga/effects';
 
 export default function* loadBalancerSaga() {
@@ -15,6 +14,5 @@ export default function* loadBalancerSaga() {
     startListenToOnlineStatusSaga(),
     stopListenToOnlineStatusSaga(),
     watchStatusChannel(),
-    startListen(),
   ]);
 }

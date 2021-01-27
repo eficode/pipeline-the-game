@@ -3,7 +3,7 @@ import {FirebaseDoc} from "./firebaseDoc";
 import {DevOpsMaturitiesDoc} from "./devOpsMaturitiesDoc";
 import {GameRolesDoc} from "./gameRolesDoc";
 import {Card, CardTypes, CardTags, CardEntity} from "./card";
-import {Game} from "./game";
+import {Game, RTDBGame, GameEntity, CardState} from "./game";
 import {ShortUser} from "./user";
 import {RTDBInstance} from "./rtdbInstance";
 import {Status} from "./status";
@@ -23,6 +23,9 @@ export type {
   CardEntity,
   Card,
   Game,
+  RTDBGame,
+  GameEntity,
+  CardState,
   ShortUser,
   RTDBInstance,
   Status,

@@ -4,7 +4,7 @@ import { saga as authSaga } from '@pipeline/auth';
 import signupSaga from '../../signup/sagas';
 import gameSaga from '../../gameView/sagas';
 import createGameSaga from '../../createGame/sagas';
-import loadBalancerSaga from '../../loadBalancer/sagas';
+import userGameStatusSaga from '../../userGameStatus/sagas';
 
 import {
   runRetrieveDevOpsMaturities as retrieveDevOpsMaturitiesSaga,
@@ -19,7 +19,7 @@ export default function* rootSaga() {
     retrieveDevOpsMaturitiesSaga,
     gameSaga,
     createGameSaga,
-    loadBalancerSaga,
+    userGameStatusSaga,
   ];
   yield all(
     sagas.map(saga =>

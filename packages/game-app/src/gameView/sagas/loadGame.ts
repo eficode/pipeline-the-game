@@ -1,10 +1,11 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { actions, GameState } from '../slice';
-import selectBestRTDBInstance from '../../loadBalancer/apis/selectBestRTDBInstance';
+import selectBestRTDBInstance from '../../userGameStatus/apis/selectBestRTDBInstance';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
-import { CardEntity, CardTypes, Game } from '@pipeline/common';
+import { CardEntity, CardTypes } from '@pipeline/common';
 import loadGame from '../apis/callLoadGame';
 import loadCardsForDeck from '../apis/callLoadCardsForDeck';
+import { Game } from '@pipeline/models';
 
 function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   const game: Game = yield call(loadGame, action.payload);
@@ -13,10 +14,10 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   // TODO load actual game state from firestore
 
   if (game.rtdbInstance) {
-    yield put(actions.saveGame(game));
+    yield put(actions.saveGame({ ...game, id: action.payload }));
   } else {
     const bestRTDBInstance = yield call(selectBestRTDBInstance, action.payload);
-    yield put(actions.saveGame({ ...game, rtdbInstance: bestRTDBInstance }));
+    yield put(actions.saveGame({ ...game, id: action.payload, rtdbInstance: bestRTDBInstance }));
   }
 
   const gameState: GameState = {
