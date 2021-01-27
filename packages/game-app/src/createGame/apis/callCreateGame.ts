@@ -19,6 +19,12 @@ export default function callCreateGame(data: GameCreationData, userId: string): 
       },
       deckId: DEFAULT_DECK_ID,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      boardDimensions: {
+        x: 3840,
+        y: 2160,
+      },
+      cards: null,
+      rtdbInstance: null,
     } as Game)
     .then(res => res.id);
 }
