@@ -26,6 +26,7 @@ const theme: DefaultTheme = {
     activeAccent: '#00867c',
     activeAccentLight: '#36B2AF',
     textColor: '#101820',
+    buttonGrey: '#B4AEA9',
   },
   space: [0, 4, 8, 16, 24, 32],
   cardsTypes: {

@@ -17,23 +17,34 @@ type Props = {
    * Content placed inside the dialog under the title
    */
   children?: React.ReactNode;
+  DialogContainerComponent?: React.ElementType;
+  // TODO improve types
+  DialogContainerProps?: object;
 };
 
 /**
  * Dialog component that appears at the center of the screen with animation inside a {{GlassOverlay}}
  *
  */
-const Dialog: React.FC<Props> = ({ open, title, children }) => {
+const Dialog: React.FC<Props> & { DialogContainer: typeof DialogContainer } = ({
+  open,
+  title,
+  DialogContainerComponent = DialogContainer,
+  DialogContainerProps = {},
+  children,
+}) => {
   return (
     <GlassOverlay open={open}>
-      <DialogContainer>
+      <DialogContainerComponent {...DialogContainerProps}>
         <Typography variant="dialogHead">{title}</Typography>
         {children}
-      </DialogContainer>
+      </DialogContainerComponent>
     </GlassOverlay>
   );
 };
 
 Dialog.displayName = 'Dialog';
+
+Dialog.DialogContainer = DialogContainer;
 
 export default Dialog;

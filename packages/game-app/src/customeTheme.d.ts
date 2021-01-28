@@ -25,6 +25,7 @@ declare module 'styled-components' {
       activeAccent: string;
       activeAccentLight: string;
       textColor: string;
+      buttonGrey: string;
     };
     cardsTypes: {
       [key: string]: string;

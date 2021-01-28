@@ -25,6 +25,7 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
     deckCards: cards.filter(c => c.type === CardTypes.PipelineStep).map(c => c.id),
     cardsState: {},
     maxZIndex: -1000,
+    review: false,
   };
   yield put(
     actions.setInitialGameState({

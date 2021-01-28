@@ -36,7 +36,7 @@ const ShareGameDialog: React.FC<Props> = ({ isOpen, close }) => {
         {t('game.share.subtitle')}
       </Typography>
       <Box display="flex" flexDirection="row" mt={4}>
-        <Input readOnly variant="clear" color="activeAccentLight" value={url} />
+        <Input flex={1} readOnly variant="clear" color="activeAccentLight" value={url} />
         <IconButton variant="clear" onClick={() => copy(url)}>
           <CopyIcon />
         </IconButton>

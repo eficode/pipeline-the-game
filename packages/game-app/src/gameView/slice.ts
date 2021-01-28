@@ -51,6 +51,8 @@ export interface GameState {
    * max z-index, the z-index of the last placed cards inside the board
    */
   maxZIndex: number;
+
+  review: boolean;
 }
 
 export interface State {
@@ -138,6 +140,9 @@ const slice = createSlice({
     },
     setSearchText(state, action: PayloadAction<string>) {
       state.searchText = action.payload;
+    },
+    setReview(state, action: PayloadAction<boolean>) {
+      state.gameState!.review = action.payload;
     },
   },
 });
@@ -228,6 +233,8 @@ const getFilteredDeckCardsIds = createSelector(
   },
 );
 
+const getReview = createSelector(getGameState, gameState => gameState?.review);
+
 export const reducer = slice.reducer;
 export const name = slice.name;
 
@@ -250,4 +257,5 @@ export const selectors = {
   getGame,
   getFilteredDeckCardsIds,
   getSearchedText,
+  getReview,
 };
