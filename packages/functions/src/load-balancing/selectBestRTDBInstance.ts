@@ -32,7 +32,7 @@ const createNewRTDBInstance = async () => {
   await createRTDBInstance(newRTDBInstanceName);
   await db.collection(FirebaseCollection.RTDBInstances).doc(newRTDBInstanceName).set({
     createdAt: FieldValue.serverTimestamp(),
-    onlineOnGameCount: 0,
+    connectionsCount: 0,
   } as RTDBInstance)
   admin.app().database(`https://secondary_db_url.firebaseio.com`)
 
@@ -42,7 +42,7 @@ const createNewRTDBInstance = async () => {
  */
 
 /**
- * API to effectively balance the game load by selected the best RTDB instance, in terms of minimum number of online users.
+ * API to effectively balance the game load by selected the best RTDB instance, in terms of minimum number connections (tabs, browsers, devices, ...).
  * It needs a "gameId" as url parameter and can be called only by authenticated users.
  *
  * This will be called, and then effective, only by the first user entering a game without any other users.
@@ -70,15 +70,15 @@ export const selectBestRTDBInstance = functions.region(
 
 
   const bestRTDBInstanceQuery = await db.collection(FirebaseCollection.RTDBInstances)
-    .orderBy('onlineOnGameCount', "asc").limit(1).get();
+    .orderBy('connectionsCount', "asc").limit(1).get();
   const bestRTDBInstanceDoc = bestRTDBInstanceQuery.docs[0];
   const bestRTDBInstance = bestRTDBInstanceDoc.data();
   const bestRTDBInstanceName = `${PROJECT_ID}-${bestRTDBInstanceDoc.id}.${bestRTDBInstance.region}`;
 
-  logger.log(`Selected instance ${bestRTDBInstanceName} with ${bestRTDBInstance.onlineOnGameCount} online on game users`);
+  logger.log(`Selected instance ${bestRTDBInstanceName} with ${bestRTDBInstance.connectionsCount} game connections`);
 
   /*
-  if (bestRTDBInstance.onlineOnGameCount >= RTDB_THRESHOLD) {
+  if (bestRTDBInstance.connectionsCount >= RTDB_THRESHOLD) {
     //create new instance
     axi
     admin.database()
