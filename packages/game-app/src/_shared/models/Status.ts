@@ -1,4 +1,6 @@
-import { Status as InnerStatus } from '@pipeline/common';
-import { FirebaseFieldValue, FirebaseTimestamp } from './FirebaseTypes';
+import { FirebaseTimestamp } from './FirebaseTypes';
 
-export type Status = InnerStatus<FirebaseTimestamp, FirebaseFieldValue>;
+export type Status = {
+  state: 'online' | 'offline';
+  updatedAt: FirebaseTimestamp;
+};

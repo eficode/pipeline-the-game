@@ -4,6 +4,7 @@ import { Box, IconButton, Typography, Dialog, Button, Input } from '@pipeline/co
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 import { ReactComponent as CopyIcon } from '@assets/icons/review.svg';
+import { GameEntity } from '@pipeline/models';
 
 type Props = {
   isOpen: boolean;
@@ -23,9 +24,11 @@ function copy(text: string) {
 const ShareGameDialog: React.FC<Props> = ({ isOpen, close }) => {
   const t = useTranslate();
 
-  const gameId = useSelector(selectors.getSelectedGameId);
+  const game: GameEntity | null = useSelector(selectors.getGame);
 
-  const url = `${window.location.origin}/game/${gameId}`;
+  if (!game) return null;
+
+  const url = `${window.location.origin}/game/${game.id}`;
 
   return (
     <Dialog open={isOpen} title={t('game.share.title')}>

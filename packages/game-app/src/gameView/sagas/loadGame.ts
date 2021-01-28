@@ -17,7 +17,7 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
     yield put(actions.saveGame({ ...game, id: action.payload }));
   } else {
     const bestRTDBInstance = yield call(selectBestRTDBInstance, action.payload);
-    yield put(actions.saveGame({ ...game, id: action.payload, rtdbInstance: bestRTDBInstance }));
+    yield put(actions.saveGame({ ...game, rtdbInstance: bestRTDBInstance, id: action.payload }));
   }
 
   const gameState: GameState = {
@@ -38,6 +38,6 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   );
 }
 
-export default function* loadGameSaga() {
+export function* loadGameSaga() {
   yield takeEvery(actions.loadGame, addRequestStatusManagement(executeLoadGame, 'game.loadGame'));
 }

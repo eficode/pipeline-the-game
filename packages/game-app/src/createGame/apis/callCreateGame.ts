@@ -4,9 +4,10 @@ import 'firebase/firestore';
 import { FirebaseCollection } from '@pipeline/common';
 import { Game } from '@pipeline/models';
 
-const DEFAULT_DECK_ID = '7p5qqvE8kCV9WWysVc2n';
+export const DEFAULT_DECK_ID = '7p5qqvE8kCV9WWysVc2n';
 
-export default function callCreateGame(data: GameCreationData, userId: string): Promise<string> {
+export default async function callCreateGame(data: GameCreationData, userId: string): Promise<string> {
+  data.createdAt = firebase.firestore.Timestamp.now();
   return firebase
     .firestore()
     .collection(FirebaseCollection.Games)
