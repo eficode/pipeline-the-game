@@ -37,6 +37,6 @@ export const onOnlineGameStatusDelete = functions.database.instance(INSTANCE_ID)
     const rtdb = admin.app().database(`https://${INSTANCE_NAME}.firebasedatabase.app`);
     await handleLockedCards(gameId, rtdb, userId);
     logger.log('Locked cards handled');
-    await handleMoveGame(gameId, rtdb);
+    await handleMoveGame(gameId, db, rtdb);
     logger.log('Locked cards handled');
   });
