@@ -33,22 +33,22 @@ export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID)
     const previousConnections = snapshot.before.numChildren();
     const afterConnections = snapshot.after.numChildren();
 
+    const docInstanceId = instanceId.split(`${PROJECT_ID}-`)[1];
 
+    const connectionsDiff = afterConnections - previousConnections;
 
-    if (previousConnections > afterConnections) {
+    if (connectionsDiff < 0) {
       logger.log(`User ${userId} for game ${gameId} has closed one connection`);
-      const docInstanceId = instanceId.split(`${PROJECT_ID}-`)[1];
       await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
         .update({
-          connectionsCount: FieldValue.increment(-1) as any,
+          connectionsCount: FieldValue.increment(connectionsDiff) as any,
         } as Partial<RTDBInstance>);
     }
-    if (afterConnections > previousConnections) {
+    if (connectionsDiff > 0) {
       logger.log(`User ${userId} for game ${gameId} has opened one connection`);
-      const docInstanceId = instanceId.split(`${PROJECT_ID}-`)[1];
       await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
         .update({
-          connectionsCount: FieldValue.increment(1) as any,
+          connectionsCount: FieldValue.increment(connectionsDiff) as any,
         } as Partial<RTDBInstance>);
     }
   });
