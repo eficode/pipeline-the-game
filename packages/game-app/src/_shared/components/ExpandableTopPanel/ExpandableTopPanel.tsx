@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { ExpandIcon, PanelContent, PanelContentWrapper, PanelHeader, PanelWrapper } from './ExpandableTopPanel.styled';
 import Typography from '../Typography';
 
@@ -21,8 +21,12 @@ type Props = {
 const ExpandableTopPanel: React.FC<Props> = ({ className, label, children }) => {
   const [collapsed, setCollapsed] = useState(true);
 
+  const toggle = useCallback(() => {
+    setCollapsed(c => !c);
+  }, []);
+
   return (
-    <PanelWrapper className={className} onClick={() => setCollapsed(c => !c)}>
+    <PanelWrapper className={className} onClick={toggle}>
       <PanelHeader>
         <Typography variant="content" fontWeight="600">
           {label}

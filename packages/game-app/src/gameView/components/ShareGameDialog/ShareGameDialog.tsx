@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useTranslate } from '@pipeline/i18n';
 import { Box, IconButton, Typography, Dialog, Button, Input } from '@pipeline/components';
 import { useSelector } from 'react-redux';
@@ -26,9 +26,11 @@ const ShareGameDialog: React.FC<Props> = ({ isOpen, close }) => {
 
   const game: GameEntity | null = useSelector(selectors.getGame);
 
-  if (!game) return null;
+  const url = `${window.location.origin}/game/${game?.id}`;
 
-  const url = `${window.location.origin}/game/${game.id}`;
+  const copyUrl = useCallback(() => {
+    copy(url);
+  }, [url]);
 
   return (
     <Dialog open={isOpen} title={t('game.share.title')}>
@@ -37,7 +39,7 @@ const ShareGameDialog: React.FC<Props> = ({ isOpen, close }) => {
       </Typography>
       <Box display="flex" flexDirection="row" mt={4}>
         <Input flex={1} readOnly variant="clear" color="activeAccentLight" value={url} />
-        <IconButton variant="clear" onClick={() => copy(url)}>
+        <IconButton variant="clear" onClick={copyUrl}>
           <CopyIcon />
         </IconButton>
       </Box>

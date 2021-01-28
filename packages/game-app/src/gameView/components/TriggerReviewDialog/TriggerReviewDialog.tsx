@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { Box, Button, Dialog, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { TriggerDialogContainer } from './TriggerReviewDialog.styled';
@@ -22,12 +22,16 @@ const TriggerReviewDialog: React.FC<Props> = ({ isOpen, close }) => {
     setShowReviewPosition(true);
   }, [dispatch]);
 
+  const containerProps = useMemo(() => {
+    return { showReviewPosition };
+  }, [showReviewPosition]);
+
   return (
     <Dialog
       open={isOpen}
       title={t(!showReviewPosition ? 'game.triggerReview.title' : 'game.triggerReview.reviewTime')}
       DialogContainerComponent={TriggerDialogContainer}
-      DialogContainerProps={{ showReviewPosition }}
+      DialogContainerProps={containerProps}
     >
       <Typography mt={4} variant="content">
         {t(!showReviewPosition ? 'game.triggerReview.subtitle' : 'game.triggerReview.reviewUnlocked')}
