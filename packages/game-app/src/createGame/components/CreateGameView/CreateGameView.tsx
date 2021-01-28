@@ -7,11 +7,12 @@ import useCards from '../../../gameView/hooks/useCards';
 import { CardTypes } from '@pipeline/common';
 import ScenariosList from '../ScenariosList';
 import { FormTextField } from '@pipeline/form';
-import { Button, Link, Box, TextArea } from '@pipeline/components';
+import { Button, Link, Box, TextArea, Typography, ErrorMessage } from '@pipeline/components';
 import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
 import useCreateGame from '../../hook/useCreateGame';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createGameValidationSchema } from '../../utils/validation';
+import { CreateGameContainer, CreateGameContent } from './CreateGameView.styled';
 
 type Props = {};
 
@@ -72,38 +73,41 @@ const CreateGameView: React.FC<Props> = () => {
   }, [history]);
 
   return (
-    <div className="signup">
-      <div
-        className="content card"
-        style={{ width: '90%', maxWidth: '1000px', background: 'rgba(255,255,255, 0.5)', marginTop: '40px' }}
-      >
-        <h2>{t('createGame.title')}</h2>
-        <h5>{t('createGame.subtitle', { data: { cardsCount: cards.length } })}</h5>
+    <CreateGameContainer>
+      <CreateGameContent>
+        <Typography variant="dialogHead">{t('createGame.title')}</Typography>
+        <Typography variant="content" fontWeight="600">
+          {t('createGame.subtitle', { data: { cardsCount: cards.length } })}
+        </Typography>
         <FormProvider {...methods}>
           <form>
             <ScenariosList cards={cards} onScenarioSelected={selectScenario} selectedScenario={selectedScenarioCard} />
-            <div>
-              <h4>{t('createGame.writeYours')}</h4>
+            <Box mt={3}>
+              <Typography variant="content" fontWeight="600">
+                {t('createGame.writeYours')}
+              </Typography>
               <FormTextField disabled={!!selectedScenarioCard} name="scenarioTitle" label=" " />
-              <FormTextField
-                disabled={!!selectedScenarioCard}
-                CustomInput={TextArea}
-                label=" "
-                name="scenarioContent"
-              />
-              <Box textAlign="center">
+              <Box mt={2}>
+                <FormTextField
+                  disabled={!!selectedScenarioCard}
+                  CustomInput={TextArea}
+                  label=" "
+                  name="scenarioContent"
+                />
+              </Box>
+              <Box textAlign="center" mt={4}>
                 <Button label={t('createGame.createButtonText')} onClick={submit} />
                 {loading && <span>Loading...</span>}
-                {translatedError && <span className="error-message">{translatedError}</span>}
+                {translatedError && <ErrorMessage message={translatedError} />}
               </Box>
-              <Box textAlign="center">
+              <Box textAlign="center" mt={2}>
                 <Link onClick={cancel}>{t('general.cancel')}</Link>
               </Box>
-            </div>
+            </Box>
           </form>
         </FormProvider>
-      </div>
-    </div>
+      </CreateGameContent>
+    </CreateGameContainer>
   );
 };
 

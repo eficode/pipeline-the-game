@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
-import { Box, Button, Link, PasswordInput, TowColumnPage, Typography } from '@pipeline/components';
+import { Box, Button, ErrorMessage, Link, PasswordInput, TowColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { RoutingPath, useNavigateOnCondition, useNavigateTo } from '@pipeline/routing';
 
@@ -87,7 +87,7 @@ const Signup: React.FC<Props> = () => {
                 </Box>
 
                 {signupLoading ? <span>Loading</span> : null}
-                {signupTranslateError ? <span className="error-message">{signupTranslateError}</span> : null}
+                {signupTranslateError ? <ErrorMessage message={signupTranslateError} /> : null}
                 {signupSuccess ? <span>Success</span> : null}
                 <Box mt={4} display="flex" flexDirection="row" justifyContent="center">
                   <span>{t('signup.alreadyAccount')}</span>&nbsp;

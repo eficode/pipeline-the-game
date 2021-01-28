@@ -7,7 +7,7 @@ const translations = {
   },
   createGame: {
     title: 'Choose a scenario',
-    subtitle: 'Premade {{cardsCount}}',
+    subtitle: 'Premade ({{cardsCount}})',
     writeYours: 'Make your own',
     createButtonText: 'Start Game',
   },

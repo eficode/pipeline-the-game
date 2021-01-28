@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormTextField } from '@pipeline/form';
-import { Box, Button, Link, PasswordInput, TowColumnPage, Typography } from '@pipeline/components';
+import { Box, Button, ErrorMessage, Link, PasswordInput, TowColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { useLogin } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
@@ -45,7 +45,7 @@ const Login: React.FC<Props> = () => {
               <Box textAlign="center" mt={5}>
                 <Button label={t('login.form.buttonText')} onClick={submit} />
               </Box>
-              {loginTranslateError ? <span className="error-message">{loginTranslateError}</span> : null}
+              {loginTranslateError ? <ErrorMessage message={loginTranslateError} /> : null}
               {loginLoading ? <span>Loading</span> : null}
               <Box display="flex" flexDirection="row" justifyContent="center" mt={4}>
                 <span>{t('login.notYetAccount')}</span>&nbsp;

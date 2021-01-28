@@ -4,7 +4,7 @@ import Box from '../Box';
 
 type Props = {};
 
-const TextLogo: React.FC<Props> = ({}) => {
+const TextLogo: React.FC<Props> = () => {
   return (
     <Box width="100px">
       <TextLogoImage />
