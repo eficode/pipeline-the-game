@@ -1,11 +1,16 @@
 import React from 'react';
+import Box from '../Box';
 
 type Props = {
   message: string;
 };
 
 const ErrorMessage: React.FC<Props> = ({ message }) => {
-  return <span className="error-message">{message}</span>;
+  return (
+    <Box as="span" color="red">
+      {message}
+    </Box>
+  );
 };
 
 ErrorMessage.displayName = 'ErrorMessage';

@@ -19,7 +19,7 @@ const ExpandableRule: React.FC<Props> = ({ title, children }) => {
     <RuleWrapper collapsed={collapsed}>
       <RuleHeader collapsed={collapsed} p={3} onClick={toggle}>
         <Icon>{collapsed ? <ExpandIcon /> : <CollapseIcon />}</Icon>
-        <Typography variant="title" fontWeight="600">
+        <Typography variant="dialogHead" fontWeight="600">
           {title}
         </Typography>
       </RuleHeader>

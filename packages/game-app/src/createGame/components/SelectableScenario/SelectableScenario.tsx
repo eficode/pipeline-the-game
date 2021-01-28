@@ -11,7 +11,7 @@ type Props = {
 
 const ScenarioCard = styled.div<{ selected: boolean }>`
   min-width: 400px;
-  height: 408px;
+  height: 360px;
   background: white;
   border-radius: 10px;
   backdrop-filter: blur(20px);

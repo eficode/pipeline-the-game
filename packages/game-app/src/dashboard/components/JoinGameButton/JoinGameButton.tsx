@@ -1,35 +1,14 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { Box, Button, Input } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { ReactComponent as KeyboardIcon } from '@assets/icons/keyboard.svg';
-import { useHistory } from 'react-router-dom';
-import { RoutingPath } from '@pipeline/routing';
+import useJoinGame from '../../hooks/useJoinGame';
 
 type Props = {};
 
 const JoinGameButton: React.FC<Props> = () => {
   const t = useTranslate();
-
-  const [showInput, setShowInput] = useState(false);
-
-  const toggleInput = useCallback(() => {
-    setShowInput(s => !s);
-  }, []);
-
-  const [text, setText] = useState('');
-
-  const onChange = useCallback((ev: React.ChangeEvent<HTMLInputElement>) => {
-    setText(ev.target.value);
-  }, []);
-
-  const history = useHistory();
-
-  const join = useCallback(() => {
-    if (text.startsWith(`${window.origin}/game/`)) {
-      const gameId = text.replace(`${window.origin}/game/`, '');
-      history.push(`${RoutingPath.Game}/${gameId}`);
-    }
-  }, [text, history]);
+  const { showInput, toggleInput, text, onChange, join } = useJoinGame();
 
   return (
     <Box marginLeft={5} display="flex" flexDirection="row">

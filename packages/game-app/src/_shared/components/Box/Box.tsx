@@ -6,15 +6,23 @@ import {
   layout,
   flexbox,
   position,
+  color,
   SpaceProps,
   LayoutProps,
   FlexboxProps,
   PositionProps,
   MarginProps,
   TextAlignProps,
+  ColorProps,
 } from 'styled-system';
 
-export type BoxProps = SpaceProps & LayoutProps & FlexboxProps & PositionProps & MarginProps & TextAlignProps;
+export type BoxProps = SpaceProps &
+  LayoutProps &
+  FlexboxProps &
+  PositionProps &
+  MarginProps &
+  TextAlignProps &
+  ColorProps;
 
 /**
  * Simple div wrapper that exposes flex, margin and other inline props
@@ -30,6 +38,7 @@ const Box = styled.div<BoxProps>(
   margin,
   textAlign,
   position,
+  color,
 );
 
 Box.displayName = 'Box';

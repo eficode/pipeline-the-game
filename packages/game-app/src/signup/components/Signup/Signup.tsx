@@ -1,21 +1,19 @@
-import React, { useCallback, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { FormSelect, FormTextField } from '@pipeline/form';
+import { useLocation } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+
+import { FormSelect, FormTextField } from '@pipeline/form';
+import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
+import { Box, Button, ErrorMessage, Link, PasswordInput, TowColumnPage, Typography } from '@pipeline/components';
+import { useTranslate } from '@pipeline/i18n';
+import { RoutingPath, useNavigateOnCondition, useNavigateTo } from '@pipeline/routing';
+
 import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
-import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
 import { signupValidationSchema } from '../../utils/validation';
-import { useTranslate } from '@pipeline/i18n';
-import { PasswordInput } from '@pipeline/components';
-import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
-import { useHistory, useLocation } from 'react-router-dom';
-import { Link, Button } from '@pipeline/components';
-import styled from 'styled-components';
 
 type Props = {};
-
-const SignupForm = styled.div``;
 
 const Signup: React.FC<Props> = () => {
   const t = useTranslate();
@@ -55,44 +53,52 @@ const Signup: React.FC<Props> = () => {
     [signup, handleSubmit, location],
   );
 
-  const history = useHistory();
-
-  const goToSignIn = useCallback(() => {
-    history.push(RoutingPath.Login, location.state);
-  }, [history, location]);
+  const goToSignIn = useNavigateTo(RoutingPath.Login, location.state);
 
   useNavigateOnCondition(signupSuccess, RoutingPath.EmailVerificationRequired);
 
   return (
-    <div className="signup">
-      <SignupForm className="content card">
-        <h2>{t('signup.title')}</h2>
-        <FormProvider {...methods}>
-          <form>
-            <FormTextField type="email" name="email" label={t('signup.form.emailLabel')} />
-            <FormTextField CustomInput={PasswordInput} name="password" label={t('signup.form.passwordLabel')} />
-            <FormTextField
-              CustomInput={PasswordInput}
-              name="repeatPassword"
-              label={t('signup.form.repeatPasswordLabel')}
-            />
-            <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
-            <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
-            <div className="text-center">
-              <Button id="signup-button" label={t('signup.form.buttonText')} onClick={submit} />
-            </div>
+    <TowColumnPage
+      left={
+        <Box>
+          <Typography variant="title">{t('signup.title')}</Typography>
+          <Box mt={5}>
+            <FormProvider {...methods}>
+              <form>
+                <FormTextField type="email" name="email" label={t('signup.form.emailLabel')} />
+                <Box mt={3}>
+                  <FormTextField CustomInput={PasswordInput} name="password" label={t('signup.form.passwordLabel')} />
+                </Box>
+                <Box mt={3}>
+                  <FormTextField
+                    CustomInput={PasswordInput}
+                    name="repeatPassword"
+                    label={t('signup.form.repeatPasswordLabel')}
+                  />
+                </Box>
+                <Box mt={3}>
+                  <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
+                </Box>
+                <Box mt={3}>
+                  <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
+                </Box>
+                <Box mt={5} textAlign="center">
+                  <Button id="signup-button" label={t('signup.form.buttonText')} onClick={submit} />
+                </Box>
 
-            {signupLoading ? <span>Loading</span> : null}
-            {signupTranslateError ? <span className="error-message">{signupTranslateError}</span> : null}
-            {signupSuccess ? <span>Success</span> : null}
-            <div className="text-center">
-              <span>{t('signup.alreadyAccount')}</span>&nbsp;
-              <Link onClick={goToSignIn}>{t('signup.goToSignIn')}</Link>
-            </div>
-          </form>
-        </FormProvider>
-      </SignupForm>
-    </div>
+                {signupLoading ? <span>Loading</span> : null}
+                {signupTranslateError ? <ErrorMessage message={signupTranslateError} /> : null}
+                {signupSuccess ? <span>Success</span> : null}
+                <Box mt={4} display="flex" flexDirection="row" justifyContent="center">
+                  <span>{t('signup.alreadyAccount')}</span>&nbsp;
+                  <Link onClick={goToSignIn}>{t('signup.goToSignIn')}</Link>
+                </Box>
+              </form>
+            </FormProvider>
+          </Box>
+        </Box>
+      }
+    />
   );
 };
 

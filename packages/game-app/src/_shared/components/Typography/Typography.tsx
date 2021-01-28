@@ -11,7 +11,7 @@ import {
   textAlign,
 } from 'styled-system';
 
-type TypographyVariants = 'label' | 'title' | 'content' | 'contentHead' | 'bigTitle';
+type TypographyVariants = 'label' | 'title' | 'content' | 'contentHead' | 'bigTitle' | 'dialogHead';
 
 type CustomTypographyProps = { variant?: TypographyVariants } & TypographyProps &
   MarginProps &
@@ -26,6 +26,11 @@ const Typography = styled.div<CustomTypographyProps>`
         fontFamily: 'Montserrat',
       },
       title: {
+        fontSize: '32px',
+        fontFamily: 'Montserrat',
+        fontWeight: 'bold',
+      },
+      dialogHead: {
         fontSize: '24px',
         fontFamily: 'Montserrat',
         fontWeight: 'bold',

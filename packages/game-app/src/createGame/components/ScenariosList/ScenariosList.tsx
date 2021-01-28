@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   padding: 5px;
   overflow-x: scroll;
-  height: 433px;
+  height: 390px;
   padding-top: 20px;
 
   ::-webkit-scrollbar {

@@ -20,7 +20,7 @@ export default {
 const Template: Story<React.ComponentProps<typeof Typography>> = ({ children }) => {
   return (
     <Container>
-      <Typography variant="title">title: {children}</Typography>
+      <Typography variant="dialogHead">dialogHead: {children}</Typography>
       <Typography variant="content">content: {children}</Typography>
       <Typography variant="label">label: {children}</Typography>
     </Container>

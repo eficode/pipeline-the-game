@@ -9,7 +9,7 @@ export const StyledInput = styled.input<{ variant: InputVariants; withIcon?: boo
   height: 40px;
   padding: 5px 10px;
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 4px;
 
   &:focus {
     outline: none;

@@ -10,7 +10,7 @@ const ScenarioPanel: React.FC<Props> = () => {
 
   return (
     <ExpandableTopPanel label="Scenario">
-      <Typography variant="title" as="h2">
+      <Typography variant="dialogHead" as="h2">
         {scenario?.title}
       </Typography>
       <Typography variant="contentHead" as="div" mt={2}>

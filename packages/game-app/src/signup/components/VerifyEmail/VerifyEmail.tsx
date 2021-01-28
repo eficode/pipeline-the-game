@@ -3,6 +3,7 @@ import { VerifyEmailParams } from '../../types/emailValidationParams';
 import { RoutingPath, useNavigateOnCondition, useQueryParams } from '@pipeline/routing';
 import { useEmailVerification } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
+import { ErrorMessage } from '@pipeline/components';
 
 type Props = {};
 
@@ -40,7 +41,7 @@ const VerifyEmail: React.FC<Props> = () => {
     <div>
       {translatedError ? (
         <div>
-          <span className="error-message">{translatedError}</span>
+          <ErrorMessage message={translatedError} />
         </div>
       ) : null}
     </div>

@@ -2,44 +2,13 @@ import styled from 'styled-components';
 import { variant, color } from 'styled-system';
 import Icon from '../Icon';
 
-export type Variants = 'default' | 'fun' | 'clear';
-
-export const HoverButton = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 24px;
-  box-sizing: border-box;
-  overflow: hidden;
-  color: ${props => props.theme.colors.primary};
-
-  transform: translate(100%);
-  opacity: 0;
-  background: ${props => props.theme.colors.secondary};
-  transition: transform 0.5s;
-`;
-
-export const HoverButtonContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  transform: translate(-100%);
-  transition: transform 0.5s;
-  font-weight: 600;
-`;
+export type Variants = 'default' | 'clear';
 
 export const StyledButton = styled('button')<{ variant: Variants }>`
   height: 40px;
   border-radius: 4px;
   padding: 2px 40px;
   cursor: pointer;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
   font-family: Montserrat;
 
   box-sizing: border-box;
@@ -63,21 +32,6 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
           bg: 'secondaryDark',
         },
       },
-      fun: {
-        textTransform: 'uppercase',
-        fontWeight: '600',
-        bg: 'secondary',
-        '&:hover': {
-          [`${HoverButton}`]: {
-            transform: 'translate(0.0)',
-            zIndex: 1,
-            opacity: 1,
-          },
-          [`${HoverButtonContent}`]: {
-            transform: 'translate(0.0)',
-          },
-        },
-      },
       clear: {
         bg: 'transparent',
         color: 'white',
@@ -87,6 +41,19 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
   })} ${color}
 `;
 
+StyledButton.displayName = 'StyledButton';
+
+export const ButtonContent = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
+ButtonContent.displayName = 'ButtonContent';
+
 export const IconWrapper = styled(Icon)`
   ${StyledButton} > & {
     margin-right: 4px;
@@ -94,14 +61,6 @@ export const IconWrapper = styled(Icon)`
 `;
 
 IconWrapper.displayName = 'IconWrapper';
-
-export const HoverIconWrapper = styled(IconWrapper)`
-  ${StyledButton}:not(:hover) > & {
-    display: none;
-  }
-`;
-
-HoverIconWrapper.displayName = 'HoverIconWrapper';
 
 export const NotHoverIconWrapper = styled(IconWrapper)`
   ${StyledButton}:hover > & {
