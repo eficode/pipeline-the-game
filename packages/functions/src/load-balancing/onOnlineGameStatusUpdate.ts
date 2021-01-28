@@ -38,14 +38,14 @@ export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID)
     const connectionsDiff = afterConnections - previousConnections;
 
     if (connectionsDiff < 0) {
-      logger.log(`User ${userId} for game ${gameId} has closed one connection`);
+      logger.log(`User ${userId} for game ${gameId} has closed ${-connectionsDiff} connection`);
       await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
         .update({
           connectionsCount: FieldValue.increment(connectionsDiff) as any,
         } as Partial<RTDBInstance>);
     }
     if (connectionsDiff > 0) {
-      logger.log(`User ${userId} for game ${gameId} has opened one connection`);
+      logger.log(`User ${userId} for game ${gameId} has opened ${connectionsDiff} connection`);
       await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
         .update({
           connectionsCount: FieldValue.increment(connectionsDiff) as any,

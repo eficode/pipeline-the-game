@@ -5,7 +5,6 @@ import {RTDBGame} from "../models/RTDBGame";
 import * as functions from "firebase-functions";
 import {PROJECT_ID} from "../utils/rtdb";
 
-const db = admin.firestore();
 const logger = functions.logger;
 
 /**
@@ -31,7 +30,7 @@ const moveGameFromRTDBToFirestore = async (gameId: string, db: FirebaseFirestore
   await db.collection(FirebaseCollection.Games).doc(gameId).update({...game, rtdbInstance: null, cards: newCards} as Game);
 }
 
-async function handleMoveGame(gameId: string, rtdb: admin.database.Database) {
+async function handleMoveGame(gameId: string, db: FirebaseFirestore.Firestore, rtdb: admin.database.Database) {
   const snap = await rtdb.ref(`/${RTDBPaths.Connections}/${gameId}`).orderByChild(`updatedAt`).get();
   console.log('handleMoveGame snap', snap);
   const onlineCount = snap.numChildren();
