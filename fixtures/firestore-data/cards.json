@@ -1,4 +1,58 @@
 {
+  "51xgsF43n5iaMNLkxGs1": {
+    "type": "game-rule",
+    "tags": null,
+    "title": "Delivery Pipeline Start & End",
+    "subtitle": null,
+    "content": "• Start with “A Developer Commits Code.”\n• End with “Deploy to Production.”\n• Cards placed before or after these do not count towards\ndeployment lead time",
+    "number": 1,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "51xgsF43n5iaMNLkxGs2": {
+    "type": "game-rule",
+    "tags": null,
+    "title": "Step Ordering Constraints",
+    "subtitle": null,
+    "content": "• You cannot Deploy to Production until you have built a\nRelease Candidate.\n• You cannot build a Release Candidate until you have\nMerged to Trunk (Master).",
+    "number": 2,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "51xgsF43n5iaMNLkxGs3": {
+    "type": "game-rule",
+    "tags": null,
+    "title": "Execution Time",
+    "subtitle": null,
+    "content": "How long will this Pipeline step\ntake to execute?\nWrite the time on a sticky note\nand attach it to the card.",
+    "number": 3,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "51xgsF43n5iaMNLkxGs4": {
+    "type": "game-rule",
+    "tags": null,
+    "title": "What Other Steps Should You Include?",
+    "subtitle": null,
+    "content": "You can invent your own steps\nby sticking notes on the blank\nPipeline cards.",
+    "number": 4,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "51xgsF43n5iaMNLkxGs5": {
+    "type": "game-rule",
+    "tags": null,
+    "title": "Deploy Prior to System Test Steps",
+    "subtitle": null,
+    "content": "Some of the Pipeline steps require a deployed system before they can execute. You must have some kind of deployment step earlier in the Pipeline than any card marked as “system test.",
+    "number": 5,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "51xgsF43n5iaMNLkxGs6": {
+    "type": "game-rule",
+    "tags": null,
+    "title": "Build Prior to Deploy",
+    "subtitle": null,
+    "content": "Pipeline steps which deploy the system need a built and\npackaged system before they can execute. You must have\neither “Build Release Candidate” or “Build Snapshot Version”\nbefore any card marked as “Deploy Step.”",
+    "number": 6,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
   "51xgCF43n5iaMNLkxGs9": {
     "type": "scenario",
     "tags": null,
