@@ -31,7 +31,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
 
   const gameId = params.gameId;
 
-  const { deckCardsIds, placedCardsIds } = useGameState(gameId);
+  const { placedCardsIds } = useGameState(gameId);
 
   const { onCardEvent } = useCardEventHandler();
 
@@ -59,7 +59,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
           </ZoomPanContainer>
           <BottomWidgetsRow />
         </div>
-        <DeckPanel panelModeRef={panelModeRef} cardsIds={deckCardsIds} />
+        <DeckPanel panelModeRef={panelModeRef} />
       </CardsGameListeners>
     </ZoomPanContext>
   );

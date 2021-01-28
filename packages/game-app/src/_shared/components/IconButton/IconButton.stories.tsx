@@ -69,3 +69,10 @@ Rounded.args = {
   variant: 'rounded',
   children: icon,
 };
+
+export const ClearSmall = Template.bind({});
+
+ClearSmall.args = {
+  variant: 'clearSmall',
+  children: icon,
+};

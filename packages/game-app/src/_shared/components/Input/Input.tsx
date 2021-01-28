@@ -1,5 +1,5 @@
 import React from 'react';
-import { InputVariants, LeftInputIcon, StyledInput } from './Input.styled';
+import { InputVariants, LeftInputIcon, RightInputIcon, StyledInput } from './Input.styled';
 import Box from '../Box';
 import styled from 'styled-components';
 
@@ -7,10 +7,11 @@ type Props = {
   className?: string;
   variant?: InputVariants;
   iconLeft?: React.ReactElement;
+  iconRight?: React.ReactElement;
 } & React.ComponentProps<typeof StyledInput>;
 
-const Input = React.forwardRef<HTMLInputElement, Props>(
-  ({ variant = 'default', className, iconLeft, ...rest }, ref) => {
+const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>(
+  ({ variant = 'default', className, iconLeft, iconRight, ...rest }, ref) => {
     return (
       <Box position="relative">
         <StyledInput
@@ -22,6 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, Props>(
           {...rest}
         />
         {iconLeft ? <LeftInputIcon>{iconLeft}</LeftInputIcon> : null}
+        {iconRight ? <RightInputIcon>{iconRight}</RightInputIcon> : null}
       </Box>
     );
   },

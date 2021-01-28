@@ -32,3 +32,11 @@ export const WithIcon = Template.bind({});
 WithIcon.args = {
   iconLeft: <KeyboardIcon />,
 };
+
+export const ClearRound = Template.bind({});
+ClearRound.decorators = Clear.decorators;
+
+ClearRound.args = {
+  variant: 'clearRound',
+  iconLeft: <KeyboardIcon />,
+};

@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { CardTags, CardTypes } from '@pipeline/common';
 import { PANEL_CARD_SCALE } from '../../../dimensions';
 
@@ -28,6 +28,26 @@ const tagObj = {
   },
 } as { [key in CardTags]: { backgroundColor: string } };
 
+const dragAnimation = keyframes`
+  0%{
+    
+  }
+  100%{
+    transform: rotate(6deg);
+    box-shadow: 0px 80px 20px #10182026;
+  }
+`;
+
+const dragAnimationBig = keyframes`
+  0%{
+    
+  }
+  100%{
+    transform: rotate(6deg) scale(${PANEL_CARD_SCALE});
+    box-shadow: 0px 80px 20px #10182026;
+  }
+`;
+
 export const CardWrapper = styled.div<{ dragging?: boolean; bigger?: boolean }>`
   padding: 0 0 16px;
   width: 280px;
@@ -46,8 +66,9 @@ export const CardWrapper = styled.div<{ dragging?: boolean; bigger?: boolean }>`
   ${props =>
     props.dragging
       ? css`
-          transform: rotate(6deg) ${props.bigger && `scale(${PANEL_CARD_SCALE})`};
-          box-shadow: 0px 80px 20px #10182026;
+          animation: ${props.bigger ? dragAnimationBig : dragAnimation} linear 0.1s;
+          animation-delay: 0.1s;
+          animation-fill-mode: forwards;
         `
       : css`
           box-shadow: 0px 0px 6px #10182029;
