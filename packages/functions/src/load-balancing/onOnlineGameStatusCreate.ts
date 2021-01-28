@@ -27,6 +27,6 @@ export const onOnlineGameStatusCreate = functions.database.instance(INSTANCE_ID)
     const docInstanceId = instanceId.split(`${PROJECT_ID}-`)[1];
     await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
       .update({
-        connectionsCount: FieldValue.increment(1) as any
+        connectionsCount: FieldValue.increment(1) as any,
       } as Partial<RTDBInstance>);
   });
