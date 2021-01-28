@@ -46,7 +46,7 @@ service cloud.firestore {
         isStringShorterThan(gameData.scenarioTitle, 100) &&
         isStringShorterThan(gameData.scenarioContent, 3000))
       ) &&
-      exists(/databases/$(database)/documents/decks/$(gameData.deckId)) &&
+      existsDocumentData(/decks/$(gameData.deckId)) &&
       isMapBigAs(gameData.facilitator, 1) &&
       isServerCreationTime(gameData.createdAt) &&
       facilitatorId == gameData.facilitator.id &&
@@ -82,6 +82,10 @@ service cloud.firestore {
 
     function getDocumentData(documentPath) {
       return get(/databases/$(database)/documents/$(documentPath)).data;
+    }
+
+    function existsDocumentData(documentPath) {
+      return exists(/databases/$(database)/documents/$(documentPath));
     }
 
     function getDataToWrite() {
