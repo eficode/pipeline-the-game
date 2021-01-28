@@ -25,3 +25,5 @@ export interface CardState {
 }
 
 export type GameEntity<T, F> = Game<T, F> & {id:string};
+
+export const DEFAULT_BOARD_DIMENSIONS = { x: 3840, y: 2160 };

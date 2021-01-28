@@ -1,5 +1,6 @@
 export enum RTDBPaths {
   Games = 'games',
   Cards = 'cards',
-  Statuses = 'statuses'
+  Connections = 'connections',
+  Statuses = 'statuses',
 }
