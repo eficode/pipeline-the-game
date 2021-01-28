@@ -20,6 +20,9 @@ jobs:
       - name: Bootstrap
         run: npm run bootstrap
 
+      - name: Lint functions
+        run: npm --prefix packages/functions run lint
+
       - name: Build project
         run: npm run build
         env:
