@@ -3,10 +3,9 @@ import {FirebaseDoc} from "./firebaseDoc";
 import {DevOpsMaturitiesDoc} from "./devOpsMaturitiesDoc";
 import {GameRolesDoc} from "./gameRolesDoc";
 import {Card, CardTypes, CardTags, CardEntity} from "./card";
-import {Game, RTDBGame, GameEntity, CardState} from "./game";
+import {Game, RTDBGame, GameEntity, CardState, DEFAULT_BOARD_DIMENSIONS} from "./game";
 import {ShortUser} from "./user";
 import {RTDBInstance} from "./rtdbInstance";
-import {Status} from "./status";
 import {RTDBPaths} from "./rtdbPaths";
 
 export {
@@ -14,7 +13,8 @@ export {
   RTDBPaths,
   FirebaseDoc,
   CardTypes,
-  CardTags
+  CardTags,
+  DEFAULT_BOARD_DIMENSIONS,
 };
 
 export type {
@@ -28,6 +28,5 @@ export type {
   CardState,
   ShortUser,
   RTDBInstance,
-  Status,
 };
 

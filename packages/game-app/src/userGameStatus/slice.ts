@@ -15,26 +15,21 @@ const slice = createSlice({
   name: 'userGameStatus',
   initialState: initialState,
   reducers: {
-    updateOnlineStatusSuccess(state, action: PayloadAction<{ state: Status['state']; gameId?: string }>) {
-      if (action.payload.state === 'offline') {
+    updateOnlineStatusSuccess(state, action: PayloadAction<'online' | 'offline'>) {
+      if (action.payload === 'offline') {
         return {
           ...state,
           status: {
             state: 'offline',
             updatedAt: firebase.firestore.Timestamp.now(),
-            gameIds: null,
           },
         };
       } else {
         return {
           ...state,
           status: {
-            state: action.payload.state!,
+            state: action.payload!,
             updatedAt: firebase.firestore.Timestamp.now(),
-            gameIds:
-              state.status?.gameIds == null
-                ? { [action.payload.gameId!]: true }
-                : { ...state.status?.gameIds, [action.payload.gameId!]: true },
           },
         };
       }

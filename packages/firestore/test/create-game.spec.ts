@@ -1,7 +1,7 @@
 import * as firebase from "@firebase/rules-unit-testing";
 import {getAuthedFirestore, reinitializeFirestore} from "./utils";
-import {FirebaseCollection} from '@pipeline/common/build/cjs'
-import {Card} from "@pipeline/common";
+import {FirebaseCollection} from '@pipeline/common/build/cjs';
+import {Card, DEFAULT_BOARD_DIMENSIONS} from "@pipeline/common";
 import fb from "firebase";
 import {Game} from "../models/Game";
 
@@ -34,9 +34,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -56,9 +54,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -78,9 +74,7 @@ describe("Game create", () => {
       deckId: 'randomDeckId',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -99,9 +93,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     }));
   });
 
@@ -121,9 +113,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -143,9 +133,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -165,9 +153,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -187,9 +173,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -212,9 +196,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      }
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -257,9 +239,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: 'random',
       cards: null,
-      boardDimensions: {
-        x: 3840, y: 2160
-      },
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
@@ -279,9 +259,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: {},
-      boardDimensions: {
-        x: 3840, y: 2160
-      },
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 

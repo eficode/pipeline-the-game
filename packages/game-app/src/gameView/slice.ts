@@ -6,9 +6,9 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { CardEntity, GameEntity } from '@pipeline/common';
+import { CardEntity } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
-import { FirebaseFieldValue, FirebaseTimestamp } from '@pipeline/models';
+import { GameEntity } from '@pipeline/models';
 
 export interface AdditionalCardData {
   /**
@@ -54,9 +54,8 @@ export interface GameState {
 }
 
 export interface State {
-  game: GameEntity<FirebaseTimestamp, FirebaseFieldValue> | null;
+  game: GameEntity | null;
   cards: EntityState<CardEntity>;
-  selectedGameId: string | null;
   gameState: GameState | null;
   scenario: {
     title: string;
@@ -72,7 +71,6 @@ const adapter = createEntityAdapter<CardEntity>({
 const initialState = {
   game: null,
   cards: adapter.getInitialState(),
-  selectedGameId: null,
   gameState: null,
   searchText: null,
 } as State;
@@ -83,9 +81,6 @@ const slice = createSlice({
   reducers: {
     saveCards(state, action: PayloadAction<CardEntity[]>) {
       state.cards = adapter.addMany(state.cards, action.payload);
-    },
-    setSelectedGameId(state, action: PayloadAction<string>) {
-      state.selectedGameId = action.payload;
     },
     setEstimation(state, action: PayloadAction<{ cardId: string; estimation: string }>) {
       const gameState = state.gameState!;
@@ -106,7 +101,6 @@ const slice = createSlice({
       }>,
     ) {
       state.gameState = action.payload.state;
-      state.selectedGameId = action.payload.gameId;
       state.scenario = action.payload.scenario;
     },
     updateCardPosition(
@@ -139,7 +133,7 @@ const slice = createSlice({
         };
       }
     },
-    saveGame(state, action: PayloadAction<GameEntity<FirebaseTimestamp, FirebaseFieldValue>>) {
+    saveGame(state, action: PayloadAction<GameEntity>) {
       state.game = action.payload;
     },
     setSearchText(state, action: PayloadAction<string>) {
@@ -158,7 +152,6 @@ const getSlice = createSelector(
 const getAllCards = createSelector(getSlice, state => cardsEntitiesSelectors.selectAll(state.cards));
 const getAllCardsEntities = createSelector(getSlice, state => cardsEntitiesSelectors.selectEntities(state.cards));
 
-const getSelectedGameId = createSelector(getSlice, state => state.selectedGameId);
 const getGameState = createSelector(getSlice, state => state.gameState);
 // TODO sort on write?
 const getDeckCardsIds = createSelector(getGameState, getAllCardsEntities, (getGameState, cardsMap) => {
@@ -247,7 +240,6 @@ export const actions = {
 
 export const selectors = {
   getAllCards,
-  getSelectedGameId,
   getDeckCardsIds,
   getPlacedCards,
   getCardStateForUI,

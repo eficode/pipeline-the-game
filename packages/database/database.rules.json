@@ -1,6 +1,25 @@
 {
   "rules": {
-    ".read": true,
-    ".write": true
+    "statuses": {
+      "$uid": {
+        ".read": "auth !== null",
+        ".write": "auth.uid === $uid"
+      }
+    },
+    "games": {
+      "$gameId": {
+        ".read": "auth !== null && root.child('statuses').child(auth.uid).child('state').val() === 'online'",
+        ".write": false
+      }
+    },
+    "cards": {
+      "$gameId": {
+        "$cardId": {
+          ".indexOn": [
+            "lockedBy"
+          ]
+        }
+      }
+    }
   }
 }

@@ -1,4 +1,4 @@
 export interface RTDBInstance {
-  onlineOnGameCount: number;
+  connectionsCount: number;
   region: string;
 }

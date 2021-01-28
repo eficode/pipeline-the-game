@@ -2,11 +2,12 @@ import React, { useCallback, useEffect, useRef } from 'react';
 import { Pan } from '../../types/pan';
 import { useZoomPanSetters } from '../ZoomPanContext';
 import { containerStyle, contentStyle } from './ZoomPanContainer.style';
+import { DEFAULT_BOARD_DIMENSIONS } from '@pipeline/common';
 
 type Props = React.PropsWithChildren<{}>;
 
 const scaleFactor = 0.9;
-const boardSize = { width: 3840, height: 2160 };
+const boardSize = { width: DEFAULT_BOARD_DIMENSIONS.x, height: DEFAULT_BOARD_DIMENSIONS.y };
 
 const minScale = Math.max(window.innerWidth / boardSize.width, window.innerHeight / boardSize.height);
 
