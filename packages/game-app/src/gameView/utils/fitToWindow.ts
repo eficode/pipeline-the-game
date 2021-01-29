@@ -23,11 +23,13 @@ function getBounds(cardsState: GameUIState): Bounds {
     maxX: Number.NEGATIVE_INFINITY,
     maxY: Number.NEGATIVE_INFINITY,
   };
-
+  let anyCards = false;
   for (const cardId in cardsState) {
     const { position } = cardsState[cardId];
     if (!position) {
       continue;
+    } else {
+      anyCards = true;
     }
     if (position.x < bounds.minX) {
       bounds.minX = position.x;
@@ -41,6 +43,9 @@ function getBounds(cardsState: GameUIState): Bounds {
     if (position.y + DEFAULT_CARD_SIZE.height > bounds.maxY) {
       bounds.maxY = position.y + DEFAULT_CARD_SIZE.height;
     }
+  }
+  if (!anyCards) {
+    throw new Error('No cards placed');
   }
   return bounds;
 }
@@ -95,7 +100,7 @@ function calculatePan(bounds: Bounds, scale: number): Pan {
  */
 export function calculatePanAndZoomToFitWindow(state: GameUIState) {
   const bounds = getBounds(state);
-  const scale = calculateScale(getBounds(state));
+  const scale = calculateScale(bounds);
   const actualScale = Math.min(scale * 0.85, 1.5);
   // center the rect in the board
   const pan = calculatePan(bounds, actualScale);

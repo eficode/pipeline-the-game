@@ -22,11 +22,15 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
   const { setScaleAndPanRef, zoomRef } = useZoomPanRefs();
 
   const fitWindow = useCallback(() => {
-    const { actualScale, pan } = calculatePanAndZoomToFitWindow(state);
-    setScaleAndPanRef.current?.({
-      scale: actualScale,
-      pan: pan,
-    });
+    try {
+      let { actualScale, pan } = calculatePanAndZoomToFitWindow(state);
+      setScaleAndPanRef.current?.({
+        scale: actualScale,
+        pan: pan,
+      });
+    } catch (e) {
+      // in case of exception for example no card placed, do nothing
+    }
   }, [setScaleAndPanRef, state]);
 
   const zoomIn = useCallback(() => {
