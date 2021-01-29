@@ -11,6 +11,7 @@ import { RoutingPath } from '@pipeline/routing';
 import { useTranslate } from '@pipeline/i18n';
 import ShareGameDialog from '../ShareGameDialog';
 import RulesOverlay from '../RulesOverlay';
+import TriggerReviewDialog from '../TriggerReviewDialog';
 
 type Props = {
   toggleBackGround: () => void;
@@ -21,13 +22,12 @@ const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
 
   const shareDialog = useDialog();
   const rulesOverlay = useDialog();
+  const triggerReviewOverlay = useDialog();
 
   const t = useTranslate();
 
   const exitGame = () => history.replace(RoutingPath.Dashboard);
 
-  // TODO
-  const triggerReview = () => toggleBackGround();
   // TODO
   const contactUs = () => ({});
 
@@ -49,7 +49,7 @@ const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
             <RulesIcon />
           </IconButton>
 
-          <IconButton variant="clear" onClick={triggerReview}>
+          <IconButton variant="clear" onClick={triggerReviewOverlay.open}>
             <TriggerReviewIcon />
           </IconButton>
         </ButtonsBar>
@@ -57,6 +57,7 @@ const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
       </TopRowContainer>
       <ShareGameDialog isOpen={shareDialog.isOpen} close={shareDialog.close} />
       <RulesOverlay isOpen={rulesOverlay.isOpen} close={rulesOverlay.close} />
+      <TriggerReviewDialog isOpen={triggerReviewOverlay.isOpen} close={triggerReviewOverlay.close} />
     </>
   );
 };

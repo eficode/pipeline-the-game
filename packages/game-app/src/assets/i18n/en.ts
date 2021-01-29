@@ -28,6 +28,15 @@ const translations = {
     },
     backToGame: 'Back to game',
     rules: 'Game Rules',
+    triggerReview: {
+      title: 'Trigger reivew',
+      subtitle: 'If you continue, the players will be asked to review their pipeline.',
+      buttonText: 'Trigger reivew',
+      reviewTime: "It's review-time!",
+      reviewUnlocked:
+        'You have unlocked the review, which can be found beside the scenario on your screen. Use it to reflect on your pipeline with your team.',
+      understood: 'Understood',
+    },
   },
   login: {
     title: 'Sign in to play',

@@ -4,26 +4,14 @@ import { ButtonContent, NotHoverIconWrapper, StyledButton, Variants } from './Bu
 type Props = {
   id?: string;
   label: string;
-  hoverLabel?: string;
   variant?: Variants;
   onClick: () => void;
   disabled?: boolean;
   leftIcon?: React.ReactElement;
-  leftIconHover?: React.ReactElement;
   color?: React.ComponentProps<typeof StyledButton>['color'];
 };
 
-const Button: React.FC<Props> = ({
-  variant = 'default',
-  label,
-  onClick,
-  id,
-  disabled,
-  hoverLabel,
-  leftIcon,
-  leftIconHover,
-  color,
-}) => {
+const Button: React.FC<Props> = ({ variant = 'default', label, onClick, id, disabled, leftIcon, color }) => {
   return (
     <StyledButton
       type="button"

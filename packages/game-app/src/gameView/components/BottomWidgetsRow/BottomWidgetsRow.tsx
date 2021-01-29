@@ -11,11 +11,13 @@ import { useZoomPanRefs } from '../ZoomPanContext';
 import { calculatePanAndZoomToFitWindow } from '../../utils/fitToWindow';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
+import ReviewPanel from '../ReviewPanel';
 
 type Props = {};
 
 const BottomWidgetsRowStyled: React.FC<Props> = () => {
   const state = useSelector(selectors.getCardStateForUI);
+  const review = useSelector(selectors.getReview);
 
   const { setScaleAndPanRef, zoomRef } = useZoomPanRefs();
 
@@ -57,6 +59,7 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
   return (
     <BottomWidgetsRowContainer>
       <ScenarioPanel />
+      {review && <ReviewPanel />}
       <PoweredByContainer>
         <Typography variant="label" color="#9F998F" as="span">
           Powered By

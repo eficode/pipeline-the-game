@@ -13,7 +13,7 @@ type Props = {
 const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>(
   ({ variant = 'default', className, iconLeft, iconRight, ...rest }, ref) => {
     return (
-      <Box position="relative">
+      <Box position="relative" width="100%">
         <StyledInput
           ref={ref}
           data-cy={rest.id}
