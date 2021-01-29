@@ -21,6 +21,7 @@ function* executeCreateGame(action: ReturnType<typeof actions.createGame>) {
       },
       rtdbInstance: null,
       cards: null,
+      review: true,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS,
       createdAt: action.payload.createdAt!,
     }),
