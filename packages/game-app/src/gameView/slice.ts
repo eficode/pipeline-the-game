@@ -172,6 +172,7 @@ const getDeckCardsIds = createSelector(getGameState, getAllCardsEntities, (getGa
 const getPlacedCards = createSelector(getGameState, getGameState => getGameState?.boardCards);
 const getScenario = createSelector(getSlice, slice => slice.scenario);
 const getGame = createSelector(getSlice, slice => slice.game);
+const getGameId = createSelector(getGame, slice => slice?.id);
 
 // TODO try to remove the listener
 const getCardStateForUI = createSelector(getGameState, gameState => {
@@ -243,6 +244,7 @@ export const actions = {
   loadCards: createAction(`${name}/loadCards`),
   loadGame: createAction<string>(`${name}/loadGame`),
   updateRTDBInstanceGame: createAction<string>(`${name}/updateRTDBInstanceGame`),
+  lockCard: createAction<string>(`${name}/lockCard`),
 };
 
 export const selectors = {
@@ -255,6 +257,7 @@ export const selectors = {
   getScenario,
   getCardAdditionalInfo,
   getGame,
+  getGameId,
   getFilteredDeckCardsIds,
   getSearchedText,
   getReview,
