@@ -24,7 +24,7 @@ export default async function callCreateGame(data: GameCreationData, userId: str
         x: 3840,
         y: 2160,
       },
-      review: true,
+      review: false,
       cards: null,
       rtdbInstance: null,
     } as Game)

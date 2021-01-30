@@ -53,7 +53,7 @@ service cloud.firestore {
       gameData.cards == null &&
       gameData.rtdbInstance == null &&
       isMapBigAs(gameData.boardDimensions, 2) &&
-      gameData.review == true &&
+      gameData.review == false &&
       gameData.boardDimensions.x == 3840 &&
       gameData.boardDimensions.y == 2160;
     }

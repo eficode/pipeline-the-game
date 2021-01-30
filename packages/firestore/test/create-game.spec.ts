@@ -34,7 +34,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -55,7 +55,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -75,7 +75,7 @@ describe("Game create", () => {
       createdAt: fb.firestore.FieldValue.serverTimestamp(),
       deckId: 'randomDeckId',
       rtdbInstance: null,
-      review: true,
+      review: false,
       cards: null,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
@@ -116,7 +116,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -137,7 +137,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -158,7 +158,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -179,7 +179,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -203,7 +203,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -227,7 +227,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: null
     } as Game));
   });
@@ -248,7 +248,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: 'random',
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -269,7 +269,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: {},
-      review: true,
+      review: false,
       boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
@@ -290,7 +290,7 @@ describe("Game create", () => {
       deckId: '7p5qqvE8kCV9WWysVc2n',
       rtdbInstance: null,
       cards: null,
-      review: true,
+      review: false,
       boardDimensions: null,
     } as Game));
   });
