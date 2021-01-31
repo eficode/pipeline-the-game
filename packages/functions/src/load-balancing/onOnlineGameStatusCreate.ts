@@ -13,7 +13,7 @@ const logger = functions.logger;
  * The proper document of Firestore, representing that RTDB instance, is updated incrementing by 1
  *
  */
-async function handler(snapshot: functions.database.DataSnapshot, context: functions.EventContext, rtdbId: string) {
+export async function handler(snapshot: functions.database.DataSnapshot, context: functions.EventContext, rtdbId: string) {
   const userId = context.params.userId;
   const gameId = context.params.gameId;
   // TODO snapshot.instance in emulator is always the default one

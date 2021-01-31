@@ -22,7 +22,7 @@ const logger = functions.logger;
  *
  */
 
-async function handler(snapshot: functions.Change<functions.database.DataSnapshot>, context: functions.EventContext, rtdbId: string) {
+export async function handler(snapshot: functions.Change<functions.database.DataSnapshot>, context: functions.EventContext, rtdbId: string) {
   logger.log('test', context.resource, context.params);
 
   const userId = context.params.userId;
