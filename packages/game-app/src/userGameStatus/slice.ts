@@ -1,6 +1,5 @@
 import { createAction, createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-import firebase from 'firebase/app';
+import { Timestamp } from 'firebase/firestore/lite';
 import { Status } from '@pipeline/models';
 
 export interface State {
@@ -21,7 +20,7 @@ const slice = createSlice({
           ...state,
           status: {
             state: 'offline',
-            updatedAt: firebase.firestore.Timestamp.now(),
+            updatedAt: Timestamp.now(),
           },
         };
       } else {
@@ -29,7 +28,7 @@ const slice = createSlice({
           ...state,
           status: {
             state: action.payload!,
-            updatedAt: firebase.firestore.Timestamp.now(),
+            updatedAt: Timestamp.now(),
           },
         };
       }

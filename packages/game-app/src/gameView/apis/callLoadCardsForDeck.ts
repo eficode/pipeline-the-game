@@ -1,9 +1,12 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { getApp } from 'firebase/app';
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore/lite';
 import { CardEntity, FirebaseCollection } from '@pipeline/common';
 
 export default async function loadCardsForDeck(deckId: string): Promise<CardEntity[]> {
-  const cards = await firebase.firestore().collection(FirebaseCollection.Cards).where('deckId', '==', deckId).get();
-
-  return cards.docs.map(d => ({ id: d.id, ...d.data() } as CardEntity));
+  const q = query<CardEntity>(
+    collection(getFirestore(getApp() as any), FirebaseCollection.Cards),
+    where('deckId', '==', deckId),
+  );
+  const querySnapshot = await getDocs(q);
+  return querySnapshot.docs.map(d => ({ ...d.data(), id: d.id } as CardEntity));
 }

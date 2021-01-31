@@ -1,9 +1,9 @@
-import firebase from 'firebase/app';
-import 'firebase/firestore';
+import { getApp } from 'firebase/app';
+import { collection, getDocs, getFirestore } from 'firebase/firestore/lite';
 import { CardEntity, FirebaseCollection } from '@pipeline/common';
 
 export default async function loadCards(): Promise<CardEntity[]> {
-  const cards = await firebase.firestore().collection(FirebaseCollection.Cards).get();
+  const cards = await getDocs<CardEntity>(collection(getFirestore(getApp() as any), FirebaseCollection.Cards));
 
-  return cards.docs.map(d => ({ id: d.id, ...d.data() } as CardEntity));
+  return cards.docs.map(d => ({ ...d.data(), id: d.id }));
 }

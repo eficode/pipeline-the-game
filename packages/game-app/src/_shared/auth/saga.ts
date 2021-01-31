@@ -1,7 +1,14 @@
 import { call, put, select, takeEvery } from 'redux-saga/effects';
 import { actions, AuthUser, selectors } from './slice';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import { getApp } from 'firebase/app';
+import {
+  getAuth,
+  onAuthStateChanged,
+  sendEmailVerification,
+  applyActionCode,
+  signInWithEmailAndPassword,
+  signOut,
+} from 'firebase/auth';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
 import { RoutingPath } from '@pipeline/routing';
 import CONFIG from '@pipeline/app-config';
@@ -9,7 +16,7 @@ import { actions as analyticsActions } from '@pipeline/analytics';
 
 function getCurrentUser(): Promise<AuthUser | null> {
   return new Promise<AuthUser | null>(resolve => {
-    firebase.auth().onAuthStateChanged(user => {
+    onAuthStateChanged(getAuth(getApp() as any), user => {
       if (user) {
         resolve({
           id: user.uid,
@@ -36,7 +43,7 @@ function* initializeAuthSaga() {
 }
 
 function* resendVerificationEmail() {
-  yield call(() => firebase.auth().currentUser?.sendEmailVerification());
+  yield call(() => sendEmailVerification(getAuth(getApp() as any).currentUser!));
 }
 
 function* sendResetPasswordEmail(action: ReturnType<typeof actions.sendResetPasswordEmail>) {
@@ -56,14 +63,14 @@ function* executeVerifyPasswordResetCode(action: ReturnType<typeof actions.verif
 }
 
 function* executeEmailVerification(action: ReturnType<typeof actions.verifyEmail>) {
-  yield call(() => firebase.auth().applyActionCode(action.payload.code));
+  yield call(() => applyActionCode(getAuth(getApp() as any), action.payload.code));
   const currentUser: AuthUser = yield select(selectors.getCurrentUser);
-  const firebaseUser = firebase.auth().currentUser;
+  const firebaseUser = getAuth(getApp() as any).currentUser;
   // need to refresh user to get token with email verified set to true
   if (currentUser && firebaseUser) {
     yield call(() => firebaseUser.reload());
     yield call(() => firebaseUser.getIdToken(true));
-    const newUser = firebase.auth().currentUser!;
+    const newUser = getAuth(getApp() as any).currentUser!;
     yield put(
       actions.setLoggedUser({
         emailVerified: true,
@@ -75,9 +82,7 @@ function* executeEmailVerification(action: ReturnType<typeof actions.verifyEmail
 }
 
 function* executeLogin({ payload: { email, password } }: ReturnType<typeof actions.login>) {
-  const { user }: firebase.auth.UserCredential = yield call(() =>
-    firebase.auth().signInWithEmailAndPassword(email, password),
-  );
+  const { user } = yield call(() => signInWithEmailAndPassword(getAuth(getApp() as any), email, password));
   if (user) {
     const crmInfo = { email: user?.email!, id: user?.uid };
     yield put(analyticsActions.identify(crmInfo));
@@ -92,7 +97,7 @@ function* executeLogin({ payload: { email, password } }: ReturnType<typeof actio
 }
 
 function* executeLogout() {
-  yield call(() => firebase.auth().signOut());
+  yield call(() => signOut(getAuth(getApp() as any)));
   yield put(actions.setLoggedUser(null));
 }
 

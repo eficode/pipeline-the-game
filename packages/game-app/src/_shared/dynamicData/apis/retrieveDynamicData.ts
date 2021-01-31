@@ -1,13 +1,11 @@
-import firebase from 'firebase/app';
 import { DevOpsMaturitiesDoc, FirebaseCollection, FirebaseDoc, GameRolesDoc } from '@pipeline/common';
-
-import 'firebase/firestore';
+import { getApp } from 'firebase/app';
+import { getFirestore, collection, doc, getDoc, serverTimestamp, Timestamp } from 'firebase/firestore/lite';
 
 export async function executeRetrieveGameRoles(): Promise<GameRolesDoc> {
-  const gameRolesDoc = await firebase
-    .firestore()
-    .doc(`${FirebaseCollection.DynamicData}/${FirebaseDoc.GameRoles}`)
-    .get();
+  const gameRolesDoc = await getDoc(
+    doc(collection(getFirestore(getApp() as any), FirebaseCollection.DynamicData), FirebaseDoc.GameRoles),
+  );
   if (!gameRolesDoc.exists) {
     //TODO handle this
   }
@@ -15,10 +13,9 @@ export async function executeRetrieveGameRoles(): Promise<GameRolesDoc> {
 }
 
 export async function executeRetrieveDevOpsMaturities(): Promise<DevOpsMaturitiesDoc> {
-  const devOpsMaturitiesDoc = await firebase
-    .firestore()
-    .doc(`${FirebaseCollection.DynamicData}/${FirebaseDoc.DevOpsMaturities}`)
-    .get();
+  const devOpsMaturitiesDoc = await getDoc(
+    doc(collection(getFirestore(getApp() as any), FirebaseCollection.DynamicData), FirebaseDoc.DevOpsMaturities),
+  );
   if (!devOpsMaturitiesDoc.exists) {
     //TODO handle this
   }
