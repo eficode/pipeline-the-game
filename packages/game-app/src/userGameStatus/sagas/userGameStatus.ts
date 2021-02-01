@@ -2,11 +2,7 @@ import { call, put, select, takeEvery, take } from 'redux-saga/effects';
 import { channel } from 'redux-saga';
 import { actions } from '../slice';
 import { actions as loadGameActions, selectors as gameSelectors } from '../../gameView/slice';
-import {
-  startListenToOnlineStatus,
-  stopListenToOnlineStatus,
-  initializeRTDB as callInitializeRTDB,
-} from '../apis/callUpdateConnections';
+import { startListenToOnlineStatus, stopListenToOnlineStatus } from '../apis/callUpdateConnections';
 import { AuthUser, selectors as authSelectors } from '@pipeline/auth';
 import { GameEntity } from '@pipeline/models';
 
@@ -51,7 +47,6 @@ export function* watchStatusChannel() {
 
 function* executeInitializeRTDB(action: ReturnType<typeof loadGameActions.saveGame>) {
   if (action.payload.rtdbInstance) {
-    yield call(callInitializeRTDB, action.payload.rtdbInstance, action.payload.id);
     yield put(actions.startListenToOnlineStatus());
   }
 }
