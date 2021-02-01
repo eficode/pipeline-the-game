@@ -6,6 +6,7 @@ import { CardEntity, CardTypes } from '@pipeline/common';
 import loadGame from '../apis/callLoadGame';
 import loadCardsForDeck from '../apis/callLoadCardsForDeck';
 import { Game } from '@pipeline/models';
+import { initializeRTDB } from '../apis/initializeRTDBInstance';
 
 /*
 function firebaseGameChannel(gameId: string) {
@@ -27,12 +28,14 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   yield put(actions.saveCards(cards));
   // TODO load actual game state from firestore
 
-  if (game.rtdbInstance) {
-    yield put(actions.saveGame({ ...game, id: gameId }));
-  } else {
-    const bestRTDBInstance = yield call(selectBestRTDBInstance, gameId);
-    yield put(actions.saveGame({ ...game, rtdbInstance: bestRTDBInstance, id: gameId }));
+  if (!game.rtdbInstance) {
+    game.rtdbInstance = yield call(selectBestRTDBInstance, gameId);
   }
+
+  //keep initialization before game saving
+  initializeRTDB(game.rtdbInstance!, gameId);
+
+  yield put(actions.saveGame({ ...game, id: action.payload }));
 
   const gameState: GameState = {
     boardCards: [],
