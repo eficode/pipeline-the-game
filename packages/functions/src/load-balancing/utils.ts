@@ -3,7 +3,6 @@ import {FirebaseCollection, CardState, RTDBPaths} from "@pipeline/common";
 import {Game} from "../models/Game";
 import {RTDBGame} from "../models/RTDBGame";
 import * as functions from "firebase-functions";
-import {PROJECT_ID} from "../utils/rtdb";
 
 const logger = functions.logger;
 
@@ -31,9 +30,8 @@ const moveGameFromRTDBToFirestore = async (gameId: string, db: FirebaseFirestore
 }
 
 async function handleMoveGame(gameId: string, db: FirebaseFirestore.Firestore, rtdb: admin.database.Database) {
-  const snap = await rtdb.ref(`/${RTDBPaths.Connections}/${gameId}`).orderByChild(`updatedAt`).get();
-  console.log('handleMoveGame snap', snap);
-  const onlineCount = snap.numChildren();
+  const snap = await rtdb.ref(`/${RTDBPaths.Connections}/${gameId}`).get();
+  const onlineCount = snap.exists() ? snap.numChildren() : 0;
   logger.log(`Online user for game ${gameId}: ${onlineCount}`);
   if (onlineCount <= 1) {
     await moveGameFromRTDBToFirestore(gameId, db, rtdb);
@@ -43,18 +41,20 @@ async function handleMoveGame(gameId: string, db: FirebaseFirestore.Firestore, r
 }
 
 async function handleLockedCards(gameId: string, rtdb: admin.database.Database, userId: string) {
-  const snap = await rtdb.ref(`/${RTDBPaths.Cards}/${gameId}`).orderByChild(`lockedBy`).equalTo(userId).get();
+  const ref = rtdb.ref(RTDBPaths.Cards);
+  const ref1 = ref.child(gameId);
+  const snap = await ref1.get();
   const cardRefs = [] as admin.database.Reference[];
   snap.forEach(s => {
-    cardRefs.push(s.ref);
+    const card: CardState = s.val();
+    if (card && card.lockedBy === userId) {
+      cardRefs.push(s.ref);
+    }
   });
   logger.log(`${cardRefs.length} cards locked by ${userId} in game ${gameId}`);
-  for (const cardRef of cardRefs) {
-    await cardRef.update({lockedBy: null});
+  for (const card of cardRefs) {
+    await card.update({lockedBy: null});
   }
 }
 
-const INSTANCE_ID = `${PROJECT_ID}-default-rtdb`
-const INSTANCE_NAME = `${INSTANCE_ID}.europe-west1`
-
-export {moveGameFromRTDBToFirestore, handleMoveGame, handleLockedCards, INSTANCE_ID, INSTANCE_NAME};
+export {moveGameFromRTDBToFirestore, handleMoveGame, handleLockedCards};
