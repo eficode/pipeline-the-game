@@ -38,6 +38,14 @@ declare namespace Cypress {
     fill(value: string): Chainable<Subject>;
 
     /**
+     * Get element by html id selector or data-cy selector
+     */
+    getElementById(id: string, options?: Parameters<typeof cy.get>[1]): Chainable<JQuery<HTMLElement>>;
+    /**
+     * Set up a new game choosing a random scenario
+     */
+    initializeGame(options: { facilitatorId: string; }): Chainable<any>;
+    /**
      * Set un a new user with the provided info (both in auth and firestore)
      * Optional values are generated randomly.
      */
