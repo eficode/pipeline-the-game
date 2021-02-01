@@ -7,17 +7,31 @@ import loadGame from '../apis/callLoadGame';
 import loadCardsForDeck from '../apis/callLoadCardsForDeck';
 import { Game } from '@pipeline/models';
 
+/*
+function firebaseGameChannel(gameId: string) {
+  return eventChannel(emit => {
+    const subscription = firebase.app(gameId).database()
+      .ref(`${FirebaseCollection.Cards}/${gameId}`).on('value', snapshot => {
+        emit(snapshot.val())
+      })
+    return () => firebase.app(gameId).database()
+      .ref(`${FirebaseCollection.Cards}/${gameId}`).off("value", subscription)
+  })
+}
+*/
+
 function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
-  const game: Game = yield call(loadGame, action.payload);
+  const gameId = action.payload;
+  const game: Game = yield call(loadGame, gameId);
   const cards: CardEntity[] = yield call(loadCardsForDeck, game.deckId);
   yield put(actions.saveCards(cards));
   // TODO load actual game state from firestore
 
   if (game.rtdbInstance) {
-    yield put(actions.saveGame({ ...game, id: action.payload }));
+    yield put(actions.saveGame({ ...game, id: gameId }));
   } else {
-    const bestRTDBInstance = yield call(selectBestRTDBInstance, action.payload);
-    yield put(actions.saveGame({ ...game, rtdbInstance: bestRTDBInstance, id: action.payload }));
+    const bestRTDBInstance = yield call(selectBestRTDBInstance, gameId);
+    yield put(actions.saveGame({ ...game, rtdbInstance: bestRTDBInstance, id: gameId }));
   }
 
   const gameState: GameState = {

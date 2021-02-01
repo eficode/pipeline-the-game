@@ -9,13 +9,14 @@ export interface Game<T, F> extends CreatedAt<T, F> {
   facilitator: ShortUser;
   rtdbInstance: string | null;
   cards: { [key: string]: CardState } | null;
-  boardDimensions: {x: number, y: number} | null;
+  boardDimensions: { x: number, y: number } | null;
+  review: boolean;
 }
 
 export type RTDBGame<T, F> = Omit<Game<T, F>, 'rtdbInstance' | 'cards'>;
 
 export interface CardState {
-  parent: 'board'| 'panel';
+  parent: 'board' | 'panel';
   position?: {
     x: number,
     y: number
@@ -24,6 +25,6 @@ export interface CardState {
   estimation: string;
 }
 
-export type GameEntity<T, F> = Game<T, F> & {id:string};
+export type GameEntity<T, F> = Game<T, F> & { id: string };
 
-export const DEFAULT_BOARD_DIMENSIONS = { x: 3840, y: 2160 };
+export const DEFAULT_BOARD_DIMENSIONS = {x: 3840, y: 2160};

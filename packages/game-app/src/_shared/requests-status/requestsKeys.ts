@@ -9,6 +9,10 @@ export interface RequestsKeys {
   'auth.logout': null;
   'game.loadCards': null;
   'game.loadGame': null;
+  'game.saveCardPosition': null;
+  'game.saveEstimation': null;
+  'game.saveCardLock': null;
+  'game.saveReview': null;
   createGame: null;
   'loadBalancer.status': null;
 }
