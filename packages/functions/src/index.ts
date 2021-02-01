@@ -1,17 +1,20 @@
 import * as admin from "firebase-admin";
+import {exportEverythingFrom} from "./utils/exportFunctionsOnAllRTDBInstances";
 
 admin.initializeApp();
 
-if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'onOnlineGameStatusCreate') {
-  exports.onOnlineGameStatusCreate = require('./load-balancing/onOnlineGameStatusCreate').onOnlineGameStatusCreate;
+const functionName = process.env.FUNCTION_NAME;
+
+if (!functionName || functionName.startsWith('onOnlineGameStatusCreate')) {
+  exportEverythingFrom(exports, require('./load-balancing/onOnlineGameStatusCreate'))
 }
 
-if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'onOnlineGameStatusDelete') {
-  exports.onOnlineGameStatusDelete = require('./load-balancing/onOnlineGameStatusDelete').onOnlineGameStatusDelete;
+if (!functionName || functionName.startsWith('onOnlineGameStatusDelete')) {
+  exportEverythingFrom(exports, require('./load-balancing/onOnlineGameStatusDelete'))
 }
 
-if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'onOnlineGameStatusUpdate') {
-  exports.onOnlineGameStatusUpdate = require('./load-balancing/onOnlineGameStatusUpdate').onOnlineGameStatusUpdate;
+if (!functionName || functionName.startsWith('onOnlineGameStatusUpdate')) {
+  exportEverythingFrom(exports, require('./load-balancing/onOnlineGameStatusUpdate'))
 }
 
 if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'selectBestRTDBInstance') {

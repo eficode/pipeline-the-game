@@ -2,7 +2,7 @@ import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import {runTransactionWithRetry} from "../utils/db";
 import {FirebaseCollection, RTDBPaths} from '@pipeline/common';
-import {PROJECT_ID} from "../utils/rtdb";
+import {getAppForDB, PROJECT_ID} from "../utils/rtdb";
 import {Game} from "../models/Game";
 
 const db = admin.firestore();
@@ -85,7 +85,10 @@ export const selectBestRTDBInstance = functions.region(
   }
   */
 
-  const rtdb = admin.app().database(`https://${bestRTDBInstanceName}.firebasedatabase.app`);
+  const rtdb = getAppForDB(
+    bestRTDBInstanceDoc.id,
+    `https://${bestRTDBInstanceName}.firebasedatabase.app`
+  ).database();
 
   const gameRef = db.collection(FirebaseCollection.Games).doc(gameId);
 

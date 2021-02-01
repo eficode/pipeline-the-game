@@ -14,7 +14,7 @@
       "npx lerna run update-package-lock"
     ],
     "postdeploy": [
-      "node scripts/pre-deploy.js"
+      "node scripts/post-deploy.js"
     ],
     "source": "packages/functions"
   },

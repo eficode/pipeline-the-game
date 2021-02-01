@@ -1,14 +1,13 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
-import {PROJECT_ID} from "../utils/rtdb";
 import FieldValue = admin.firestore.FieldValue;
-import {handleLockedCards, handleMoveGame, INSTANCE_NAME} from "./utils";
+import {handleLockedCards, handleMoveGame} from "./utils";
+import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
+import {getAppForDB} from "../utils/rtdb";
 
 const db = admin.firestore();
 const logger = functions.logger;
-
-const INSTANCE_ID = `${PROJECT_ID}-default-rtdb`
 
 /**
  * It triggers when the path /connections/{gameId}/{userId} of that RTDB instance is deleted.
@@ -20,23 +19,34 @@ const INSTANCE_ID = `${PROJECT_ID}-default-rtdb`
  * Otherwise, we can move the game from RTDB back to Firestore, for each game.
  */
 
-export const onOnlineGameStatusDelete = functions.database.instance(INSTANCE_ID).ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
-  .onDelete(async (snapshot, context) => {
+async function handler(snapshot: functions.database.DataSnapshot, context: functions.EventContext, rtdbId:string, rtdbUrl:string) {
 
-    const instanceId = INSTANCE_ID;
-    const userId = context.params.userId;
-    const gameId = context.params.gameId;
+  const userId = context.params.userId;
+  const gameId = context.params.gameId;
+  // TODO snapshot.instance in emulator is always the default one
+  // const docInstanceId = parseRTDBInstanceId(snapshot.instance);
 
-    logger.log(`User ${userId} just closed all connections for game ${gameId}`);
-    const docInstanceId = instanceId.split(`${PROJECT_ID}-`)[1];
-    await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
-      .update({
-        connectionsCount: FieldValue.increment(-1) as any,
-      } as Partial<RTDBInstance>);
+  logger.log(`User ${userId} just closed all connections for game ${gameId} in instance ${rtdbId}`);
+  await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
+    .update({
+      connectionsCount: FieldValue.increment(-1) as any,
+    } as Partial<RTDBInstance>);
 
-    const rtdb = admin.app().database(`https://${INSTANCE_NAME}.firebasedatabase.app`);
-    await handleLockedCards(gameId, rtdb, userId);
-    logger.log('Locked cards handled');
-    await handleMoveGame(gameId, db, rtdb);
-    logger.log('Locked cards handled');
-  });
+  const rtdb = getAppForDB(
+    rtdbId,
+    rtdbUrl
+  ).database();
+
+  await handleLockedCards(gameId, rtdb, userId);
+  logger.log('Locked cards handled');
+  await handleMoveGame(gameId, db, rtdb);
+  logger.log('Locked cards handled');
+}
+
+
+exportFunctionsOnAllRTDBInstances(
+  'onOnlineGameStatusDelete',
+  (builder, rtdbId, rtdbUrl) => builder.ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
+    .onDelete((snapshot, context) => handler(snapshot, context, rtdbId, rtdbUrl)),
+  exports
+);

@@ -16,7 +16,7 @@ describe("SelectBestRTDBInstance", () => {
   after(() => {
     // Do cleanup tasks.
     test.cleanup();
-    return admin.app().delete();
+    return Promise.all(admin.apps.map(a => a?.delete()));
   });
 
   it("should throw if no gameId is provided", async () => {
@@ -48,7 +48,7 @@ describe("SelectBestRTDBInstance", () => {
   it("should return instance correctly", async () => {
 
     const gameData = {
-      scenarioTitle:'test'
+      scenarioTitle: 'test'
     };
     const gameDoc = await admin.firestore().collection(FirebaseCollection.Games).add(gameData);
     const wrapped = test.wrap(functions.selectBestRTDBInstance);
@@ -58,7 +58,7 @@ describe("SelectBestRTDBInstance", () => {
     });
     const snap = await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`)
       .ref(`${FirebaseCollection.Games}/${gameDoc.id}`).get();
-     expect(snap.exists()).to.eq(true);
+    expect(snap.exists()).to.eq(true);
     return expect(snap.val()).to.deep.eq(gameData);
   });
 

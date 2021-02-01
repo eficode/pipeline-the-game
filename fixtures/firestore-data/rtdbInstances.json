@@ -2,5 +2,9 @@
   "default-rtdb": {
     "connectionsCount": 0,
     "region": "europe-west1"
+  },
+  "instance-1": {
+    "connectionsCount": 0,
+    "region": "europe-west1"
   }
 }

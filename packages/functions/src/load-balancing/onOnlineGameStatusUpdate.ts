@@ -1,9 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
-import {PROJECT_ID} from "../utils/rtdb";
+import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
 import FieldValue = admin.firestore.FieldValue;
-import {INSTANCE_ID} from "./utils";
 
 const db = admin.firestore();
 const logger = functions.logger;
@@ -23,32 +22,39 @@ const logger = functions.logger;
  *
  */
 
-export const onOnlineGameStatusUpdate = functions.database.instance(INSTANCE_ID).ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
-  .onUpdate(async (snapshot, context) => {
+export async function handler(snapshot: functions.Change<functions.database.DataSnapshot>, context: functions.EventContext, rtdbId: string) {
+  logger.log('test', context.resource, context.params);
 
-    const instanceId = INSTANCE_ID;
-    const userId = context.params.userId;
-    const gameId = context.params.gameId;
+  const userId = context.params.userId;
+  const gameId = context.params.gameId;
+  // TODO snapshot.instance in emulator is always the default one
+  //const docInstanceId = parseRTDBInstanceId(snapshot.after.instance);
 
-    const previousConnections = snapshot.before.numChildren();
-    const afterConnections = snapshot.after.numChildren();
+  const previousConnections = snapshot.before.numChildren();
+  const afterConnections = snapshot.after.numChildren();
 
-    const docInstanceId = instanceId.split(`${PROJECT_ID}-`)[1];
+  const connectionsDiff = afterConnections - previousConnections;
 
-    const connectionsDiff = afterConnections - previousConnections;
+  if (connectionsDiff < 0) {
+    logger.log(`User ${userId} for game ${gameId} has closed one connection instance ${rtdbId}`);
+    await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
+      .update({
+        connectionsCount: FieldValue.increment(connectionsDiff) as any,
+      } as Partial<RTDBInstance>);
+  }
+  if (connectionsDiff > 0) {
+    logger.log(`User ${userId} for game ${gameId} has opened one connection`);
+    await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
+      .update({
+        connectionsCount: FieldValue.increment(connectionsDiff) as any,
+      } as Partial<RTDBInstance>);
+  }
+}
 
-    if (connectionsDiff < 0) {
-      logger.log(`User ${userId} for game ${gameId} has closed one connection`);
-      await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
-        .update({
-          connectionsCount: FieldValue.increment(connectionsDiff) as any,
-        } as Partial<RTDBInstance>);
-    }
-    if (connectionsDiff > 0) {
-      logger.log(`User ${userId} for game ${gameId} has opened one connection`);
-      await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
-        .update({
-          connectionsCount: FieldValue.increment(connectionsDiff) as any,
-        } as Partial<RTDBInstance>);
-    }
-  });
+
+exportFunctionsOnAllRTDBInstances(
+  'onOnlineGameStatusUpdate',
+  (builder, rtdbId) => builder.ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
+    .onUpdate((change, context) => handler(change, context, rtdbId)),
+  exports
+);

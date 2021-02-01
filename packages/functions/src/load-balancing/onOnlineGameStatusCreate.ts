@@ -1,13 +1,11 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
-import {PROJECT_ID} from "../utils/rtdb";
+import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
 import FieldValue = admin.firestore.FieldValue;
 
 const db = admin.firestore();
 const logger = functions.logger;
-
-const INSTANCE_ID = `${PROJECT_ID}-default-rtdb`
 
 /**
  * It triggers when the path /connections/{gameId}/{userId} of that RTDB instance is created.
@@ -15,18 +13,23 @@ const INSTANCE_ID = `${PROJECT_ID}-default-rtdb`
  * The proper document of Firestore, representing that RTDB instance, is updated incrementing by 1
  *
  */
+export async function handler(snapshot: functions.database.DataSnapshot, context: functions.EventContext, rtdbId: string) {
+  const userId = context.params.userId;
+  const gameId = context.params.gameId;
+  // TODO snapshot.instance in emulator is always the default one
+  // const docInstanceId = parseRTDBInstanceId(snapshot.instance);
 
-export const onOnlineGameStatusCreate = functions.database.instance(INSTANCE_ID).ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
-  .onCreate(async (snapshot, context) => {
+  logger.log(`User ${userId} just created connection for game ${gameId} in ${rtdbId} snapshotInstance ${snapshot.instance}`);
+  await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
+    .update({
+      connectionsCount: FieldValue.increment(1) as any,
+    } as Partial<RTDBInstance>);
+}
 
-    const instanceId = INSTANCE_ID;
-    const userId = context.params.userId;
-    const gameId = context.params.gameId;
 
-    logger.log(`User ${userId} just created connection for game ${gameId}`);
-    const docInstanceId = instanceId.split(`${PROJECT_ID}-`)[1];
-    await db.collection(FirebaseCollection.RTDBInstances).doc(docInstanceId)
-      .update({
-        connectionsCount: FieldValue.increment(1) as any,
-      } as Partial<RTDBInstance>);
-  });
+exportFunctionsOnAllRTDBInstances(
+  'onOnlineGameStatusCreate',
+  (builder, dbId) => builder.ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
+    .onCreate((snapshot, context) => handler(snapshot, context, dbId)),
+  exports
+);
