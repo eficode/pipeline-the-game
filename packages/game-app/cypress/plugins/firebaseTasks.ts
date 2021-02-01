@@ -3,7 +3,8 @@ import * as admin from 'firebase-admin';
 import fs from 'fs';
 import readline from 'readline';
 import {WhereFilterOp, Query} from '@google-cloud/firestore';
-import {CardEntity, CardTypes, FirebaseCollection} from "@pipeline/common";
+import {CardEntity, CardTypes, DEFAULT_BOARD_DIMENSIONS, FirebaseCollection} from "@pipeline/common";
+import {Game} from "../../../firestore/models/Game";
 
 export async function getFirebaseUserByEmail(adminInstance: admin.app.App, {email}: { email: string }): Promise<admin.auth.UserRecord> {
   return adminInstance.auth().getUserByEmail(email.toLocaleLowerCase());
@@ -107,13 +108,17 @@ export async function initializeGame(adminInstance: admin.app.App, {
 
   const scenario = scenarioCards[Math.floor(Math.random() * scenarioCards.length)] as CardEntity;
 
-  const newGame = {
+  const newGame: Game = {
     scenarioContent: scenario.content,
     scenarioTitle: scenario.title,
     scenarioCardId: scenario.id,
     facilitator: {
-      id: facilitatorId,
+      id: facilitatorId!,
     },
+    review: false,
+    boardDimensions: DEFAULT_BOARD_DIMENSIONS,
+    rtdbInstance: null,
+    cards: null,
     deckId: DEFAULT_DECK_ID,
     createdAt: admin.firestore.FieldValue.serverTimestamp(),
   }
