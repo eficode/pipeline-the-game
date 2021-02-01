@@ -22,3 +22,7 @@ Cypress.Commands.add('getEmailVerificationLink', (email: string) => {
 Cypress.Commands.add('initializeUser', (options: { email?: string; password?: string; emailVerified?: boolean; }) => {
   return cy.task('initializeUser', options);
 });
+
+Cypress.Commands.add('initializeGame', (options: { facilitatorId: string; }) => {
+  return cy.task('initializeGame', options);
+});

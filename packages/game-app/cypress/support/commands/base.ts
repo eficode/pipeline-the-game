@@ -64,3 +64,7 @@ Cypress.Commands.add('getInputByName', (name: string, options: Parameters<typeof
   cy.get(`input[name="${name}"],select[name="${name}"],textarea[name="${name}"]`, options);
 });
 
+Cypress.Commands.add('getElementById', (id: string, options: Parameters<typeof cy.get>[1]) => {
+  cy.get(`#${id},[data-cy="${id}"]`, options);
+});
+

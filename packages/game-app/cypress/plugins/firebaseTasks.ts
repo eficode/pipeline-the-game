@@ -3,6 +3,7 @@ import * as admin from 'firebase-admin';
 import fs from 'fs';
 import readline from 'readline';
 import {WhereFilterOp, Query} from '@google-cloud/firestore';
+import {CardEntity, CardTypes, FirebaseCollection} from "@pipeline/common";
 
 export async function getFirebaseUserByEmail(adminInstance: admin.app.App, {email}: { email: string }): Promise<admin.auth.UserRecord> {
   return adminInstance.auth().getUserByEmail(email.toLocaleLowerCase());
@@ -70,14 +71,60 @@ export async function initializeUser(adminInstance: admin.app.App, {
 }
 
 
+/**
+ * Generic firestore query on a specific collection.
+ *
+ * If data are passed you can also specify a where clause that will be applied on the
+ * collection query.
+ */
 export async function queryFirestore(adminInstance: admin.app.App, {
   collection,
   data
 }: { collection: string; data?: { field: string; condition: WhereFilterOp; value: any; } }) {
 
-  let query: Query = admin.firestore().collection(collection);
+  let query: Query = adminInstance.firestore().collection(collection);
   if (data) {
     query = query.where(data.field, data.condition, data.value);
   }
   return query.get().then(res => res.docs.map(d => ({id: d.id, ...d.data()})));
+}
+
+const DEFAULT_DECK_ID = '7p5qqvE8kCV9WWysVc2n';
+
+/**
+ * Initialize a random new game into firestore
+ */
+export async function initializeGame(adminInstance: admin.app.App, {
+  facilitatorId
+}: { facilitatorId?: string; }) {
+
+  const scenarioCardsDocs = await adminInstance.firestore().collection(FirebaseCollection.Cards)
+    .where('deckId', '==', DEFAULT_DECK_ID)
+    .where('type', '==', CardTypes.Scenario)
+    .get();
+
+  const scenarioCards = scenarioCardsDocs.docs.map(d => ({id: d.id, ...d.data()}));
+
+  const scenario = scenarioCards[Math.floor(Math.random() * scenarioCards.length)] as CardEntity;
+
+  const newGame = {
+    scenarioContent: scenario.content,
+    scenarioTitle: scenario.title,
+    scenarioCardId: scenario.id,
+    facilitator: {
+      id: facilitatorId,
+    },
+    deckId: DEFAULT_DECK_ID,
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
+  }
+
+  const gameRef = await adminInstance.firestore().collection(FirebaseCollection.Games)
+    .add(newGame)
+
+  const savedGameData = await gameRef.get();
+
+  return {
+    id: savedGameData.id,
+    ...savedGameData.data()
+  };
 }
