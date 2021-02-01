@@ -3,6 +3,7 @@ import { ButtonContent, NotHoverIconWrapper, StyledButton, Variants } from './Bu
 
 type Props = {
   id?: string;
+  testId?: string;
   label: string;
   variant?: Variants;
   onClick: () => void;
@@ -11,12 +12,12 @@ type Props = {
   color?: React.ComponentProps<typeof StyledButton>['color'];
 };
 
-const Button: React.FC<Props> = ({ variant = 'default', label, onClick, id, disabled, leftIcon, color }) => {
+const Button: React.FC<Props> = ({ variant = 'default', label, onClick, id, testId, disabled, leftIcon, color }) => {
   return (
     <StyledButton
       type="button"
       id={id}
-      data-cy={id}
+      data-cy={testId || id}
       disabled={disabled}
       onClick={onClick}
       variant={variant}

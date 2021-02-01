@@ -14,10 +14,10 @@ const ConfirmExitDialog: React.FC<Props> = ({ isOpen, close, exitGame }) => {
   return (
     <Dialog open={isOpen} title={t('game.confirmExit.title')}>
       <Box display="flex" justifyContent="center" mt={5}>
-        <Button label={t('general.exit')} onClick={exitGame} />
+        <Button testId="confirm-exit" label={t('general.exit')} onClick={exitGame} />
       </Box>
       <Box display="flex" justifyContent="center" mt={2}>
-        <Button variant="clear" color="buttonGrey" label={t('general.cancel')} onClick={close} />
+        <Button testId="cancel-exit" variant="clear" color="buttonGrey" label={t('general.cancel')} onClick={close} />
       </Box>
     </Dialog>
   );

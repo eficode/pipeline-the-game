@@ -45,7 +45,7 @@ const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
           <Logo />
         </LogoContainer>
         <ButtonsBar>
-          <IconButton variant="clear" onClick={confirmExitDialog.open}>
+          <IconButton testId="exit-game" variant="clear" onClick={confirmExitDialog.open}>
             <ExitIcon />
           </IconButton>
           <IconButton variant="clear" onClick={shareDialog.open}>

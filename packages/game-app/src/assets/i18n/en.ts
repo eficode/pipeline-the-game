@@ -37,6 +37,9 @@ const translations = {
         'You have unlocked the review, which can be found beside the scenario on your screen. Use it to reflect on your pipeline with your team.',
       understood: 'Understood',
     },
+    confirmExit: {
+      title: 'Do you really want to exit this game?',
+    },
   },
   login: {
     title: 'Sign in to play',
@@ -82,6 +85,7 @@ const translations = {
   general: {
     cancel: 'Cancel',
     done: 'Done',
+    exit: 'Exit',
     errors: {
       required: 'This field is required',
     },
