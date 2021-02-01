@@ -8,8 +8,8 @@
   },
   "functions": {
     "predeploy": [
-      "node scripts/pre-deploy.js",
       "npm --prefix packages/functions run lint",
+      "node scripts/pre-deploy.js",
       "npm --prefix packages/functions run build",
       "npx lerna run update-package-lock"
     ],
