@@ -6,19 +6,20 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { CardEntity } from '@pipeline/common';
+import { CardEntity, CardState } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
 import { GameEntity } from '@pipeline/models';
+import { selectors as authSelectors } from '@pipeline/auth';
 
 export interface AdditionalCardData {
   /**
    * if it is being moving
    */
-  held: boolean;
+  lockedBy: string | null;
   /**
    * absolute position inside the board
    */
-  position: {
+  position?: {
     x: number;
     y: number;
   };
@@ -130,7 +131,7 @@ const slice = createSlice({
         gameState.cardsState[cardId] = {
           ...(gameState.cardsState[cardId] || {}),
           position: position!,
-          held: false,
+          lockedBy: null,
           zIndex: gameState.maxZIndex++,
         };
       }
@@ -143,6 +144,34 @@ const slice = createSlice({
     },
     setReview(state, action: PayloadAction<boolean>) {
       state.gameState!.review = action.payload;
+    },
+    setCardState(state, action: PayloadAction<{ cardState: CardState; cardId: string }>) {
+      const gameState = state.gameState!;
+      const cardId = action.payload.cardId;
+      const cardState = action.payload.cardState;
+      if (cardState.parent === 'panel' && !gameState.deckCards.includes(cardId)) {
+        gameState.deckCards.push(cardId);
+        delete gameState.cardsState[cardId];
+        const index = gameState.boardCards.indexOf(cardId);
+        if (index > -1) {
+          gameState.boardCards.splice(index, 1);
+        }
+      } else if (cardState.parent === 'board') {
+        if (gameState.deckCards.includes(cardId)) {
+          const index = gameState.deckCards.indexOf(cardId);
+          if (index > -1) {
+            gameState.deckCards.splice(index, 1);
+          }
+          gameState.boardCards.push(cardId);
+        }
+        gameState.cardsState[cardId] = {
+          ...cardState,
+          zIndex: gameState.maxZIndex++,
+        };
+      }
+    },
+    stopListenOnGame(state, action: PayloadAction) {
+      return initialState;
     },
   },
 });
@@ -204,7 +233,13 @@ const getCardPosition = (cardId: string) =>
   createSelector(getGameState, gameState => gameState?.cardsState?.[cardId]?.position);
 
 const getCardAdditionalInfo = (cardId: string) =>
-  createSelector(getGameState, gameState => gameState?.cardsState?.[cardId] ?? ({} as AdditionalCardData));
+  createSelector(getGameState, authSelectors.getCurrentUser, (gameState, user) => {
+    const data = gameState?.cardsState?.[cardId] ?? ({} as AdditionalCardData);
+    return {
+      ...data,
+      heldBySomeoneElse: !!(data.lockedBy && data.lockedBy !== user?.id),
+    };
+  });
 
 const getCardById = (cardId: string) =>
   createSelector(getSlice, state => cardsEntitiesSelectors.selectById(state.cards, cardId));

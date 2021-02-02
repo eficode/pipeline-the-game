@@ -13,7 +13,7 @@ import { PanelMode } from '../DeckPanel/DeckPanel';
 import TopWidgetsRow from '../TopWidgetsRow';
 import ZoomPanContainer from '../ZoomPanContainer';
 import ZoomPanContext from '../ZoomPanContext';
-import useStopListenOnlineStatus from '../../hooks/useStopListenOnlineStatus';
+import useStopListenOnRtdb from '../../hooks/useStopListenOnRtdb';
 import LoadingOverlay from '../LoadingOverlay';
 
 type GameProps = {
@@ -44,7 +44,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
     setBackGround(s => !s);
   }, []);
 
-  useStopListenOnlineStatus();
+  useStopListenOnRtdb();
 
   return (
     <ZoomPanContext initialPan={initialPan}>
