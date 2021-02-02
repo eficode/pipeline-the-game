@@ -170,6 +170,9 @@ const slice = createSlice({
         };
       }
     },
+    stopListenOnGame(state, action: PayloadAction) {
+      return initialState;
+    },
   },
 });
 

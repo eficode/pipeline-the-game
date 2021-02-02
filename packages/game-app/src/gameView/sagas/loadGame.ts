@@ -1,14 +1,16 @@
-import { call, fork, put, spawn, take, takeEvery } from 'redux-saga/effects';
-import { actions, GameState } from '../slice';
-import selectBestRTDBInstance from '../../userGameStatus/apis/selectBestRTDBInstance';
+import { call, put, spawn, take, takeEvery } from 'redux-saga/effects';
+import { eventChannel } from 'redux-saga';
+
+import { Game } from '@pipeline/models';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
 import { CardEntity, CardState, CardTypes } from '@pipeline/common';
+
+import { actions, GameState } from '../slice';
+import selectBestRTDBInstance from '../../userGameStatus/apis/selectBestRTDBInstance';
 import loadGame from '../apis/callLoadGame';
 import loadCardsForDeck from '../apis/callLoadCardsForDeck';
-import { Game } from '@pipeline/models';
 import { initializeRTDB } from '../apis/initializeRTDBInstance';
 import listenToGameChanges from '../apis/listenToGameChanges';
-import { eventChannel } from 'redux-saga';
 
 function firebaseGameChannel(gameId: string) {
   return eventChannel<{ state: CardState; cardId: string }>(emit => {
@@ -25,6 +27,7 @@ function firebaseGameChannel(gameId: string) {
  * or use the lastDrag Timestamp to determine the zindex dynamically
  * (pay attention to rerender of each card on update if all zindex ar changed at once)
  *
+ * handle errors
  *
  *
  */
@@ -32,19 +35,13 @@ function firebaseGameChannel(gameId: string) {
 function* listenToCardState(gameId: string) {
   const channel = yield call(firebaseGameChannel, gameId);
 
-  yield fork(function* () {
-    yield take('CANCEL_WATCH');
-    channel.close();
+  yield takeEvery(channel, function* (value: any) {
+    const { state, cardId } = value;
+    yield put(actions.setCardState({ cardState: state, cardId }));
   });
 
-  try {
-    while (true) {
-      const { state, cardId } = yield take(channel);
-      yield put(actions.setCardState({ cardState: state, cardId }));
-    }
-  } catch (error) {
-    console.error(error);
-  }
+  yield take(actions.stopListenOnGame);
+  channel.close();
 }
 
 function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
