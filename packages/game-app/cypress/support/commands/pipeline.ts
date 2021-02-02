@@ -49,7 +49,7 @@ Cypress.Commands.add('fastLogin', (email: string, password: string) => {
   }, {log: false});
   cy.wait('@getUser', {log: false});
   // todo improve end login assertion
-  return cy.location('pathname', {timeout: 20000}).should('include', '/dashboard');
+  return cy.location('pathname', {timeout: 20000}).should('not.equal', '/login');
 
 });
 
