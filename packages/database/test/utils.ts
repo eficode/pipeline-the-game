@@ -1,21 +1,20 @@
 import * as fs from "fs";
 import * as firebase from "@firebase/rules-unit-testing";
-import fb from "firebase";
 import {DEFAULT_BOARD_DIMENSIONS, RTDBPaths} from "@pipeline/common";
 
-const rules = fs.readFileSync("database.rules.json", "utf8");
-const DATABASE = 'database';
 
-let adminDatabase: fb.database.Database;
+const rules = fs.readFileSync("database.rules.json", "utf8");
+export const DATABASE = 'database';
+
+type Database = ReturnType<typeof firebase.database>;
 
 /**
  * Create a test instance of firebase adding initial data
  * @param projectId
+ * @param adminDatabase
  */
-export async function reinitializeDatabase(projectId: string) {
+export async function reinitializeDatabase(projectId: string, adminDatabase: Database) {
   try {
-    const adminApp = firebase.initializeAdminApp({ databaseName: DATABASE });
-    adminDatabase = adminApp.database();
     await adminDatabase.ref().set(null);
     await firebase.loadDatabaseRules({databaseName: DATABASE, rules});
   } catch (e) {
@@ -32,16 +31,12 @@ export function getAuthedDatabase(projectId: string, auth: Auth) {
   return firebase.initializeTestApp({ projectId, databaseName: DATABASE, auth }).database();
 }
 
-export function getAdminDatabase() {
-  return adminDatabase;
-}
-
-export async function createConnection(gameId: string, userId: string) {
+export async function createConnection(gameId: string, userId: string, adminDatabase: Database) {
   const connectionRef = adminDatabase.ref(`/${RTDBPaths.Connections}/${gameId}/${userId}`).push();
-  await connectionRef.set({updatedAt: fb.database.ServerValue.TIMESTAMP});
+  await connectionRef.set({updatedAt: firebase.database.ServerValue.TIMESTAMP});
 }
 
-export async function createGame(gameId: string) {
+export async function createGame(gameId: string, adminDatabase: Database) {
   await adminDatabase.ref(`/${RTDBPaths.Games}/${gameId}`).set({
     scenarioTitle: 'Title',
     scenarioContent: 'Content',

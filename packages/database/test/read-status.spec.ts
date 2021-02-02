@@ -1,22 +1,34 @@
 import * as firebase from "@firebase/rules-unit-testing";
-import {getAdminDatabase, getAuthedDatabase, reinitializeDatabase} from "./utils";
+import {DATABASE, getAuthedDatabase, reinitializeDatabase} from "./utils";
 import {RTDBPaths} from "@pipeline/common";
-import fb from "firebase";
 
-const PROJECT_ID = "firestore-emulator-example-" + Math.floor(Math.random() * 1000);
+const PROJECT_ID = "database-emulator-example-" + Math.floor(Math.random() * 1000);
 
 const COVERAGE_URL = `http://${process.env.FIREBASE_DATABASE_EMULATOR_HOST}/emulator/v1/projects/${PROJECT_ID}:ruleCoverage.html`;
 
 const GAME_ID = 'randomGameId';
 
+type Database = ReturnType<typeof firebase.database>;
+let adminDatabase: Database;
+let adminApp: ReturnType<typeof firebase.initializeAdminApp>;
+
+before(async () => {
+  adminApp = firebase.initializeAdminApp({databaseName: DATABASE, projectId: PROJECT_ID});
+  adminDatabase = adminApp.database();
+});
 
 beforeEach(async () => {
-  await reinitializeDatabase(PROJECT_ID);
+  await reinitializeDatabase(PROJECT_ID, adminDatabase);
 });
 
 after(async () => {
-  await Promise.all(firebase.apps().map((app) => app.delete()));
-  console.log(`View firestore rule coverage information at ${COVERAGE_URL}\n`);
+  try {
+    await Promise.all(firebase.apps().map((app) => app.delete()));
+    await adminApp.delete();
+  } catch (e) {
+    console.error(e);
+  }
+  console.log(`View database rule coverage information at ${COVERAGE_URL}\n`);
 });
 
 describe("Status read", () => {
