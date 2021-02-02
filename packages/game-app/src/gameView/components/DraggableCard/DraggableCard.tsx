@@ -20,7 +20,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
     id,
   });
 
-  const { position, estimation, zIndex } = useSelector(selectors.getCardAdditionalInfo(id));
+  const { position, estimation, zIndex, heldBySomeoneElse } = useSelector(selectors.getCardAdditionalInfo(id));
   const [estimationOpen, setEstimationOpen] = useState(false);
 
   const dispatch = useDispatch();
@@ -32,6 +32,8 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
     },
     [dispatch, id],
   );
+
+  const isCardMoving = isDragging || heldBySomeoneElse;
 
   const style =
     position?.x || position?.y
@@ -70,7 +72,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
         {...listeners}
         onPointerDown={onPointerDown}
         {...attributes}
-        isDragging={isDragging}
+        isDragging={isCardMoving}
       >
         <ConnectedCard bigger={bigger} id={id} />
       </CardWrapper>
