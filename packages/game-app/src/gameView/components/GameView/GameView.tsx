@@ -14,6 +14,7 @@ import TopWidgetsRow from '../TopWidgetsRow';
 import ZoomPanContainer from '../ZoomPanContainer';
 import ZoomPanContext from '../ZoomPanContext';
 import useStopListenOnlineStatus from '../../hooks/useStopListenOnlineStatus';
+import LoadingOverlay from '../LoadingOverlay';
 
 type GameProps = {
   zoomIn: () => void;
@@ -31,7 +32,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
 
   const gameId = params.gameId;
 
-  const { placedCardsIds } = useGameState(gameId);
+  const { placedCardsIds, loading } = useGameState(gameId);
 
   const { onCardEvent } = useCardEventHandler();
 
@@ -61,6 +62,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
         </div>
         <DeckPanel panelModeRef={panelModeRef} />
       </CardsGameListeners>
+      <LoadingOverlay isOpen={loading} />
     </ZoomPanContext>
   );
 };

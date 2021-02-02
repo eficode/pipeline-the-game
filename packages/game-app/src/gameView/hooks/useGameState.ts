@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { selectors, actions } from '../slice';
+import { useSelector } from 'react-redux';
+import { selectors } from '../slice';
 import { useEffect } from 'react';
 import { GameEntity } from '@pipeline/models';
+import useLoadGame from './useLoadGame';
 
 export default function useGameState(currentGame: string) {
   const placedCardsIds = useSelector(selectors.getPlacedCards);
   const deckCardsIds = useSelector(selectors.getDeckCardsIds);
   const game: GameEntity | null = useSelector(selectors.getGame);
-
-  const dispatch = useDispatch();
+  const { call: loadGame, loading } = useLoadGame();
 
   useEffect(() => {
     if (
@@ -16,11 +16,12 @@ export default function useGameState(currentGame: string) {
       (game && game.rtdbInstance == null) ||
       (game && game.id !== currentGame)
     ) {
-      dispatch(actions.loadGame(currentGame));
+      loadGame(currentGame);
     }
-  }, [placedCardsIds, deckCardsIds, dispatch, currentGame, game]);
+  }, [placedCardsIds, deckCardsIds, loadGame, currentGame, game]);
 
   return {
+    loading,
     placedCardsIds: placedCardsIds || [],
     deckCardsIds: deckCardsIds || [],
   };

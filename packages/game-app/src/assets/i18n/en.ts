@@ -40,6 +40,7 @@ const translations = {
     confirmExit: {
       title: 'Do you really want to exit this game?',
     },
+    initializing: 'Initializing game board',
   },
   login: {
     title: 'Sign in to play',
