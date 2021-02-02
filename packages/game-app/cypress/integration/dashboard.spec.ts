@@ -10,8 +10,8 @@ context("Dashboard", () => {
     cy.clearIndexedDB();
     cy.visit(Cypress.config().baseUrl!);
     const {email, password} = generateRandomCredentials()
-    cy.initializeUser({email, password, emailVerified: true}).then(user => {
-      cy.fastLogin(email, password);
+    return cy.initializeUser({email, password, emailVerified: true}).then(user => {
+      return cy.fastLogin(email, password);
     });
   });
 

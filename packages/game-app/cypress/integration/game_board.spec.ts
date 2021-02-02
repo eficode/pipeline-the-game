@@ -17,16 +17,16 @@ context("Game board", () => {
     const {email: e, password: p} = generateRandomCredentials();
     email = e;
     password = p;
-    return cy.initializeUser({email, password, emailVerified: true}).then(user => {
+     cy.initializeUser({email, password, emailVerified: true}).then(user => {
 
       return cy.initializeGame({facilitatorId: user.uid}).then(gameData => {
         game = gameData;
       })
     });
+    return cy.fastLogin(email, password);
   });
 
   beforeEach(() => {
-    cy.fastLogin(email, password);
     cy.visit(`/game/${game.id}`);
   });
 

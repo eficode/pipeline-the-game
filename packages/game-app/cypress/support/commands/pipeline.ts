@@ -7,7 +7,7 @@ Cypress.Commands.add("containsTranslationOf", {prevSubject: 'optional'}, (subjec
   cy.window({log: false}).then((win) => {
     const translatedText = (win as any).i18n.t(key);
     const args = [translatedText];
-    if(selector){
+    if (selector) {
       args.unshift(selector);
     }
     if (subject) {
@@ -47,6 +47,9 @@ Cypress.Commands.add('fastLogin', (email: string, password: string) => {
       password: password
     }
   }, {log: false});
-  return cy.wait('@getUser', {log: false});
+  cy.wait('@getUser', {log: false});
+  // todo improve end login assertion
+  return cy.location('pathname', {timeout: 20000}).should('include', '/dashboard');
+
 });
 
