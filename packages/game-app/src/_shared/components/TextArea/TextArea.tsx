@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import ErrorMessage from '../ErrorMessage';
+import { Box } from '@pipeline/components';
+import Typography from '../Typography';
 
 type Props = {
   name: string;
@@ -16,15 +18,24 @@ const StyledTextArea = styled.textarea`
   border-radius: 10px;
   resize: none;
   width: 100%;
+  margin-top: 5px;
+
+  :active {
+    outline: none;
+  }
 `;
 
 const TextArea: React.FC<Props> = ({ name, value, errorMessage, label, onChange, disabled }) => {
   return (
-    <div className="column">
-      {label ? <label htmlFor={name}>{label}</label> : null}
+    <Box display="flex" flexDirection="column">
+      {label ? (
+        <Typography as="label" variant="label" htmlFor={name}>
+          {label}
+        </Typography>
+      ) : null}
       <StyledTextArea rows={4} disabled={disabled} value={value} name={name} id={name} onChange={onChange as any} />
       {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
-    </div>
+    </Box>
   );
 };
 

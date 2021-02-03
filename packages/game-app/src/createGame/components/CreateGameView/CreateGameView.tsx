@@ -86,7 +86,7 @@ const CreateGameView: React.FC<Props> = () => {
               <Typography variant="content" fontWeight="600">
                 {t('createGame.writeYours')}
               </Typography>
-              <FormTextField disabled={!!selectedScenarioCard} name="scenarioTitle" label=" " />
+              <FormTextField disabled={!!selectedScenarioCard} name="scenarioTitle" />
               <Box mt={2}>
                 <FormTextField
                   disabled={!!selectedScenarioCard}

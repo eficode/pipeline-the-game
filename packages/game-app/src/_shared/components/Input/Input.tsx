@@ -8,12 +8,14 @@ type Props = {
   variant?: InputVariants;
   iconLeft?: React.ReactElement;
   iconRight?: React.ReactElement;
+  WrapperComponent?: React.ComponentType;
 } & React.ComponentProps<typeof StyledInput>;
 
 const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>(
-  ({ variant = 'default', className, iconLeft, iconRight, ...rest }, ref) => {
+  ({ variant = 'default', className, iconLeft, iconRight, WrapperComponent, ...rest }, ref) => {
+    const Wrapper = WrapperComponent || Box;
     return (
-      <Box position="relative" width="100%">
+      <Wrapper position="relative" width="100%">
         <StyledInput
           ref={ref}
           data-cy={rest.id}
@@ -24,7 +26,7 @@ const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>(
         />
         {iconLeft ? <LeftInputIcon>{iconLeft}</LeftInputIcon> : null}
         {iconRight ? <RightInputIcon>{iconRight}</RightInputIcon> : null}
-      </Box>
+      </Wrapper>
     );
   },
 );

@@ -45,6 +45,7 @@ const translations = {
       title: 'Ops, you are offline',
       subtitle: 'Refresh the page to re-sync',
     },
+    estimationPlaceholder: 'Write time estimation',
   },
   login: {
     title: 'Sign in to play',

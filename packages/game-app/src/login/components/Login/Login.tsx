@@ -38,18 +38,20 @@ const Login: React.FC<Props> = () => {
           <Typography variant="title">{t('login.title')}</Typography>
           <Box mt={5}>
             <FormProvider {...methods}>
-              <FormTextField name="email" label={t('login.form.emailLabel')} />
-              <Box mt={3}>
-                <FormTextField CustomInput={PasswordInput} name="password" label={t('login.form.passwordLabel')} />
-              </Box>
-              <Box textAlign="center" mt={5}>
-                <Button label={t('login.form.buttonText')} loading={loginLoading} onClick={submit} />
-              </Box>
-              {loginTranslateError ? <ErrorMessage message={loginTranslateError} /> : null}
-              <Box display="flex" flexDirection="row" justifyContent="center" mt={4}>
-                <span>{t('login.notYetAccount')}</span>&nbsp;
-                <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
-              </Box>
+              <form onSubmit={submit}>
+                <FormTextField name="email" label={t('login.form.emailLabel')} />
+                <Box mt={3}>
+                  <FormTextField CustomInput={PasswordInput} name="password" label={t('login.form.passwordLabel')} />
+                </Box>
+                <Box textAlign="center" mt={5}>
+                  <Button type="submit" label={t('login.form.buttonText')} loading={loginLoading} onClick={submit} />
+                </Box>
+                {loginTranslateError ? <ErrorMessage message={loginTranslateError} /> : null}
+                <Box display="flex" flexDirection="row" justifyContent="center" mt={4}>
+                  <span>{t('login.notYetAccount')}</span>&nbsp;
+                  <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
+                </Box>
+              </form>
             </FormProvider>
           </Box>
         </LoginForm>
