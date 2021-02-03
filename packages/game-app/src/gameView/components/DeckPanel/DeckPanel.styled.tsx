@@ -9,6 +9,7 @@ export const DeckPanelContent = styled.div<{ mode: PanelMode }>`
   overflow-y: scroll;
   position: relative;
   transition: padding 0.5s;
+  scrollbar-width: none;
 
   ::-webkit-scrollbar {
     display: none;
