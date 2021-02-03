@@ -34,3 +34,11 @@ IconClear.args = {
   label: 'Back to game',
   leftIcon: <ArrowIcon />,
 };
+
+export const Loading = Template.bind({});
+
+Loading.args = {
+  variant: 'default',
+  label: 'Button',
+  loading: true,
+};
