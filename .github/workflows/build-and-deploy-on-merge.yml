@@ -35,14 +35,14 @@ jobs:
           REACT_APP_FIREBASE_CONFIG_APP_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_APP_ID }}
           REACT_APP_FUNCTIONS_BASE_URL: ${{ secrets.REACT_APP_FUNCTIONS_BASE_URL }}
 
+      - name: Setup database target
+        run: npm run scripts:deploy-database-instances-rules
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
+
       - name: Deploy
         run: npx firebase deploy --project $FIREBASE_PROJECT_ID --token "$FIREBASE_TOKEN" --force
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PIPELINE_GAME_DEV }}
-
-      - name: Upload database instances rules
-        run: npm run scripts:deploy-database-instances-rules
-        env:
-          GCLOUD_PROJECT: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
 
