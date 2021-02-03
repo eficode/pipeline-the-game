@@ -11,9 +11,10 @@ export interface Game<T, F> extends CreatedAt<T, F> {
   cards: { [key: string]: CardState } | null;
   boardDimensions: { x: number, y: number } | null;
   review: boolean;
+  movedAt: T | F;
 }
 
-export type RTDBGame<T, F> = Omit<Game<T, F>, 'rtdbInstance' | 'cards'>;
+export type RTDBGame<T, F> = Omit<Game<T, F>, 'rtdbInstance' | 'cards' | 'movedAt'>;
 
 export interface CardState {
   parent: 'board' | 'panel';
