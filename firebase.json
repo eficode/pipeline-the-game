@@ -1,7 +1,7 @@
 {
-  "database": {
-    "rules": "packages/database/database.rules.json"
-  },
+  "database": [
+    {"target": "main", "rules": "packages/database/database.rules.json"}
+  ],
   "firestore": {
     "rules": "packages/firestore/firestore.rules",
     "indexes": "packages/firestore/firestore.indexes.json"
