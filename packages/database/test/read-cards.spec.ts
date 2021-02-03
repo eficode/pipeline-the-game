@@ -78,6 +78,38 @@ describe("Card read", () => {
     await firebase.assertSucceeds(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).once('value'));
   });
 
+  it("should allow cards read if authenticated and connected and game exists", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await adminDatabase.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).set({
+      parent: 'board',
+      position: {
+        x: 20,
+        y: 26
+      },
+      lockedBy: null,
+      estimation: '',
+    });
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertSucceeds(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}`).once('value'));
+  });
 
+  it("should not allow cards read if authenticated but not connected", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await adminDatabase.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).set({
+      parent: 'board',
+      position: {
+        x: 20,
+        y: 26
+      },
+      lockedBy: null,
+      estimation: '',
+    });
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertFails(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}`).once('value'));
+  });
 
 });

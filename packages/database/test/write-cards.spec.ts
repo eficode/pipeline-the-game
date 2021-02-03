@@ -67,13 +67,45 @@ describe("Cards write", () => {
     }));
   });
 
-  it("should allow card write if authenticated, game exists, connected and with a valid payload", async () => {
+  it("should not allow estimation card write if authenticated, game exists, connected but card not placed", async () => {
     const userUID = 'id1';
     const email = 'test@email.com';
     await createGame(GAME_ID, adminDatabase);
     await createConnection(GAME_ID, userUID, adminDatabase);
     const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertFails(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
+      estimation: 'any string'
+    }));
+  });
+
+  it("should allow estimation card update if authenticated, game exists, connected and card placed", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    await adminDatabase.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).set({
+      position: {
+        x: 0,
+        y: 0
+      },
+      parent: 'board'
+    });
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
     await firebase.assertSucceeds(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
+      estimation: 'any string'
+    }));
+  });
+
+  it("should not allow estimation card update if authenticated, game exists, connected and with a valid payload but in panel", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    await adminDatabase.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).set({
+      parent: 'panel'
+    });
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertFails(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
       estimation: 'any string'
     }));
   });
