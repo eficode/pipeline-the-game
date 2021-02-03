@@ -4,8 +4,17 @@ import saveCardPosition from './saveCardPosition';
 import saveEstimation from './saveEstimation';
 import saveCardLock from './saveCardLock';
 import saveReview from './saveReview';
+import listenToCardStateSaga from './listenToGameState';
 import { loadGameSaga } from './loadGame';
 
 export default function* gameSaga() {
-  yield all([loadCards(), loadGameSaga(), saveCardPosition(), saveEstimation(), saveCardLock(), saveReview()]);
+  yield all([
+    loadCards(),
+    loadGameSaga(),
+    saveCardPosition(),
+    saveEstimation(),
+    saveCardLock(),
+    saveReview(),
+    listenToCardStateSaga(),
+  ]);
 }
