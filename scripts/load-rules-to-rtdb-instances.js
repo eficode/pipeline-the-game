@@ -4,9 +4,7 @@ const fetch = require('node-fetch');
 
 const databaseRules = fs.readFileSync("./packages/database/database.rules.json");
 
-const app = admin.initializeApp();
-
-async function loadRulesToRTDBInstances() {
+async function loadRulesToRTDBInstances(app) {
   const firestore = app.firestore();
   const rtdbInstancesCollectionQuery = await firestore.collection('rtdbInstances').get();
   for (const rtdbDoc of rtdbInstancesCollectionQuery.docs) {

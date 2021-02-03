@@ -18,7 +18,7 @@ async function loadData() {
   }
 
   await batch.commit();
-  await rules.loadRules();
+  await rules.loadRules(app);
 }
 
 async function createTestUser() {
