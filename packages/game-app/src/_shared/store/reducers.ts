@@ -4,6 +4,7 @@ import { name as requestsStatusName, reducer as requestsStatusReducer } from '@p
 import { name as dynamicDataName, reducer as dynamicDataReducer } from '@pipeline/dynamicData';
 import { name as gameName, reducer as gameReducer } from '../../gameView/slice';
 import { name as loadBalancerName, reducer as loadBalancerReducer } from '../../userGameStatus/slice';
+import { name as networkStatusName, reducer as networkStatusReducer } from '@pipeline/networkStatus';
 
 const reducers = {
   [i18nName]: i18nReducer,
@@ -12,6 +13,7 @@ const reducers = {
   [dynamicDataName]: dynamicDataReducer,
   [gameName]: gameReducer,
   [loadBalancerName]: loadBalancerReducer,
+  [networkStatusName]: networkStatusReducer,
 };
 
 export default reducers;

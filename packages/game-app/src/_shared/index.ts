@@ -9,6 +9,7 @@ import { initializeI18n } from './i18n';
 import { actions as authActions, selectors as authSelectors } from './auth';
 import { useSelector } from 'react-redux';
 import config from '@pipeline/app-config';
+import { actions as networkStatusActions, selectors as networkStatusSelectors } from '@pipeline/networkStatus';
 
 /**
  * Initialization function to call at the startup.
@@ -42,6 +43,7 @@ export function bootstrap() {
   const store = buildStore();
 
   store.dispatch(authActions.initialize());
+  store.dispatch(networkStatusActions.listenToNetwork());
 
   return store;
 }
@@ -52,5 +54,6 @@ export function bootstrap() {
  */
 export function useBootstrapIsFinished() {
   const isAuthInitialized = useSelector(authSelectors.isInitialized);
-  return isAuthInitialized;
+  const isNetworkInitialized = useSelector(networkStatusSelectors.getIsInitialized);
+  return isAuthInitialized && isNetworkInitialized;
 }

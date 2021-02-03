@@ -41,6 +41,7 @@ const translations = {
       title: 'Do you really want to exit this game?',
     },
     initializing: 'Initializing game board',
+    offline: 'You are offline.\nActions on the bord will not be saved.',
   },
   login: {
     title: 'Sign in to play',
