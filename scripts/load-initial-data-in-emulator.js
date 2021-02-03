@@ -1,6 +1,6 @@
 const admin = require('firebase-admin');
 const fs = require('fs');
-const loadRules = require("./load-rules-to-rtdb-instances");
+const rules = require("./load-rules-to-rtdb-instances");
 
 const files = fs.readdirSync("./fixtures/firestore-data");
 
@@ -18,7 +18,7 @@ async function loadData() {
   }
 
   await batch.commit();
-  await loadRules();
+  await rules.loadRules();
 }
 
 async function createTestUser() {

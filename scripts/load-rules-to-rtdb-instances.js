@@ -6,7 +6,7 @@ const databaseRules = fs.readFileSync("./packages/database/database.rules.json")
 
 const app = admin.initializeApp();
 
-export default async function loadRulesToRTDBInstances() {
+async function loadRulesToRTDBInstances() {
   const firestore = app.firestore();
   const rtdbInstancesCollectionQuery = await firestore.collection('rtdbInstances').get();
   for (const rtdbDoc of rtdbInstancesCollectionQuery.docs) {
@@ -22,3 +22,5 @@ export default async function loadRulesToRTDBInstances() {
     }
   }
 }
+
+exports.loadRules = loadRulesToRTDBInstances;
