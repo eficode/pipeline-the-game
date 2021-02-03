@@ -36,6 +36,12 @@ jobs:
       - name: Lint functions
         run: npm --prefix packages/functions run lint
 
+      - name: Load rules and setup database target
+        run: npm run scripts:deploy-database-instances-rules
+        env:
+          FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
+          FIREBASE_DATABASE_EMULATOR_HOST: localhost:9000
+
       - name: Start emulators
         run: npx firebase emulators:start &
         env:
@@ -46,7 +52,6 @@ jobs:
         env:
           FIRESTORE_EMULATOR_HOST: localhost:8080
           GCLOUD_PROJECT: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
-          FIREBASE_DATABASE_EMULATOR_HOST: localhost:9000
 
       - name: Firestore rules test
         run: npm run test:firestore
