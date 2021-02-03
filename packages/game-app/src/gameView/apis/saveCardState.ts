@@ -13,10 +13,8 @@ export default async function saveCardState(
   const cardState: Partial<CardState> = {
     parent: payload.target,
     lockedBy: null,
+    position: payload.position ?? (null as any),
   };
-  if (payload.position) {
-    cardState.position = payload.position;
-  }
 
   return firebase
     .app(gameId)

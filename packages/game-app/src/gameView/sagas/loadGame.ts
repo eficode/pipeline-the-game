@@ -56,7 +56,7 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   }
 
   //keep initialization before game saving
-  initializeRTDB(game.rtdbInstance!, gameId);
+  yield call(initializeRTDB, game.rtdbInstance!, gameId);
 
   yield put(actions.saveGame({ ...game, id: action.payload }));
 
