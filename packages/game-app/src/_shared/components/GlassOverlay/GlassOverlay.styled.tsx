@@ -25,8 +25,12 @@ export const Overlay = styled.div<{ isClosing: boolean; isOpening: boolean }>`
   left: 0;
   bottom: 0;
   z-index: 1000;
-  background-color: rgb(170, 180, 175, 0.4);
-  backdrop-filter: blur(15px);
+  background-color: rgb(170, 180, 175, 0.95);
+
+  @supports (backdrop-filter: blur(15px)) {
+    background-color: rgb(170, 180, 175, 0.4);
+    backdrop-filter: blur(15px);
+  }
 
   ${props =>
     props.isClosing &&

@@ -13,10 +13,14 @@ PanelHeader.displayName = 'PanelHeader';
 
 export const PanelWrapper = styled.div`
   width: 400px;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 4px;
-  backdrop-filter: blur(20px);
   cursor: pointer;
+
+  @supports (backdrop-filter: blur(20px)) {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+  }
 `;
 
 PanelWrapper.displayName = 'PanelWrapper';

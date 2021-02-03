@@ -18,7 +18,7 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode; isOver: boolea
   backdrop-filter: blur(30px);
   padding: 0px 40px 0 40px;
   box-sizing: border-box;
-  background-color: rgb(170, 180, 175, 0.4);
+  background-color: rgb(170, 180, 175, 0.95);
   display: flex;
   flex-direction: column;
   transition: transform 0.5s, width 0.5s, right 0.5s;
@@ -27,8 +27,7 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode; isOver: boolea
 
   @supports (backdrop-filter: blur(30px)) {
     background-color: rgb(170, 180, 175, 0.4);
-    -webkit-backdrop-filter: blur(2em);
-    backdrop-filter: blur(2em);
+    backdrop-filter: blur(30px);
   }
 
   ${props =>
