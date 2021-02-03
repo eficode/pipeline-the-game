@@ -10,6 +10,8 @@ import { CardEntity, CardState } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
 import { GameEntity } from '@pipeline/models';
 import { selectors as authSelectors } from '@pipeline/auth';
+import { createNetworkRequiringAction } from '@pipeline/networkStatus';
+import { Draft } from 'immer';
 
 export interface AdditionalCardData {
   /**
@@ -71,6 +73,21 @@ const adapter = createEntityAdapter<CardEntity>({
   sortComparer: (a, b) => a.number - b.number,
 });
 
+export const name = 'game' as const;
+
+const extraActions = {
+  loadCards: createAction(`${name}/loadCards`),
+  loadGame: createAction<string>(`${name}/loadGame`),
+  updateRTDBInstanceGame: createAction<string>(`${name}/updateRTDBInstanceGame`),
+  lockCard: createNetworkRequiringAction<string>(`${name}/lockCard`),
+  updateCardPosition: createNetworkRequiringAction<{
+    cardId: string;
+    position?: { x: number; y: number };
+    target: 'panel' | 'board';
+  }>(`${name}/updateCardPosition`),
+  setEstimation: createNetworkRequiringAction<{ cardId: string; estimation: string }>(`${name}/setEstimation`),
+};
+
 const initialState = {
   game: null,
   cards: adapter.getInitialState(),
@@ -78,19 +95,35 @@ const initialState = {
   searchText: null,
 } as State;
 
+function modifyCardState(cardState: CardState, gameState: Draft<GameState>, cardId: string) {
+  if (cardState.parent === 'panel' && !gameState.deckCards.includes(cardId)) {
+    gameState.deckCards.push(cardId);
+    delete gameState.cardsState[cardId];
+    const index = gameState.boardCards.indexOf(cardId);
+    if (index > -1) {
+      gameState.boardCards.splice(index, 1);
+    }
+  } else if (cardState.parent === 'board') {
+    if (gameState.deckCards.includes(cardId)) {
+      const index = gameState.deckCards.indexOf(cardId);
+      if (index > -1) {
+        gameState.deckCards.splice(index, 1);
+      }
+      gameState.boardCards.push(cardId);
+    }
+    gameState.cardsState[cardId] = {
+      ...cardState,
+      zIndex: gameState.maxZIndex++,
+    };
+  }
+}
+
 const slice = createSlice({
-  name: 'game',
+  name: name,
   initialState: initialState,
   reducers: {
     saveCards(state, action: PayloadAction<CardEntity[]>) {
       state.cards = adapter.addMany(state.cards, action.payload);
-    },
-    setEstimation(state, action: PayloadAction<{ cardId: string; estimation: string }>) {
-      const gameState = state.gameState!;
-      gameState.cardsState[action.payload.cardId] = {
-        ...(gameState.cardsState[action.payload.cardId] || {}),
-        estimation: action.payload.estimation,
-      };
     },
     setInitialGameState(
       state,
@@ -106,36 +139,6 @@ const slice = createSlice({
       state.gameState = action.payload.state;
       state.scenario = action.payload.scenario;
     },
-    updateCardPosition(
-      state,
-      {
-        payload: { position, target, cardId },
-      }: PayloadAction<{ cardId: string; position?: { x: number; y: number }; target: 'panel' | 'board' }>,
-    ) {
-      const gameState = state.gameState!;
-      if (target === 'panel' && !gameState.deckCards.includes(cardId)) {
-        gameState.deckCards.push(cardId);
-        delete gameState.cardsState[cardId];
-        const index = gameState.boardCards.indexOf(cardId);
-        if (index > -1) {
-          gameState.boardCards.splice(index, 1);
-        }
-      } else if (target === 'board') {
-        if (gameState.deckCards.includes(cardId)) {
-          const index = gameState.deckCards.indexOf(cardId);
-          if (index > -1) {
-            gameState.deckCards.splice(index, 1);
-          }
-          gameState.boardCards.push(cardId);
-        }
-        gameState.cardsState[cardId] = {
-          ...(gameState.cardsState[cardId] || {}),
-          position: position!,
-          lockedBy: null,
-          zIndex: gameState.maxZIndex++,
-        };
-      }
-    },
     saveGame(state, action: PayloadAction<GameEntity>) {
       state.game = action.payload;
     },
@@ -149,30 +152,33 @@ const slice = createSlice({
       const gameState = state.gameState!;
       const cardId = action.payload.cardId;
       const cardState = action.payload.cardState;
-      if (cardState.parent === 'panel' && !gameState.deckCards.includes(cardId)) {
-        gameState.deckCards.push(cardId);
-        delete gameState.cardsState[cardId];
-        const index = gameState.boardCards.indexOf(cardId);
-        if (index > -1) {
-          gameState.boardCards.splice(index, 1);
-        }
-      } else if (cardState.parent === 'board') {
-        if (gameState.deckCards.includes(cardId)) {
-          const index = gameState.deckCards.indexOf(cardId);
-          if (index > -1) {
-            gameState.deckCards.splice(index, 1);
-          }
-          gameState.boardCards.push(cardId);
-        }
-        gameState.cardsState[cardId] = {
-          ...cardState,
-          zIndex: gameState.maxZIndex++,
-        };
-      }
+      modifyCardState(cardState, gameState, cardId);
     },
     stopListenOnGame(state, action: PayloadAction) {
       return initialState;
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(extraActions.updateCardPosition, (state, { payload: { target, position, cardId } }) => {
+      const gameState = state.gameState!;
+      modifyCardState(
+        {
+          lockedBy: null,
+          parent: target,
+          position: position,
+          estimation: '',
+        },
+        gameState,
+        cardId,
+      );
+    });
+    builder.addCase(extraActions.setEstimation, (state, action) => {
+      const gameState = state.gameState!;
+      gameState.cardsState[action.payload.cardId] = {
+        ...(gameState.cardsState[action.payload.cardId] || {}),
+        estimation: action.payload.estimation,
+      };
+    });
   },
 });
 
@@ -272,14 +278,10 @@ const getFilteredDeckCardsIds = createSelector(
 const getReview = createSelector(getGameState, gameState => gameState?.review);
 
 export const reducer = slice.reducer;
-export const name = slice.name;
 
 export const actions = {
   ...slice.actions,
-  loadCards: createAction(`${name}/loadCards`),
-  loadGame: createAction<string>(`${name}/loadGame`),
-  updateRTDBInstanceGame: createAction<string>(`${name}/updateRTDBInstanceGame`),
-  lockCard: createAction<string>(`${name}/lockCard`),
+  ...extraActions,
 };
 
 export const selectors = {
