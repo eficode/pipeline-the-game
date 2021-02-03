@@ -46,6 +46,7 @@ jobs:
         env:
           FIRESTORE_EMULATOR_HOST: localhost:8080
           GCLOUD_PROJECT: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
+          FIREBASE_DATABASE_EMULATOR_HOST: localhost:9000
 
       - name: Firestore rules test
         run: npm run test:firestore
@@ -75,5 +76,3 @@ jobs:
           FIREBASE_AUTH_EMULATOR_HOST: localhost:9099
           FIRESTORE_EMULATOR_HOST: localhost:8080
           REACT_APP_FIREBASE_CONFIG_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
-
-

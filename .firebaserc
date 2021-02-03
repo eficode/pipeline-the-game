@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "pipeline-game-dev"
+  },
+  "targets": {
+    "pipeline-game-dev": {
+      "database": {
+        "main": [
+          "x"
+        ]
+      }
+    }
   }
 }
