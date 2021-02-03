@@ -86,6 +86,7 @@ const extraActions = {
     target: 'panel' | 'board';
   }>(`${name}/updateCardPosition`),
   setEstimation: createNetworkRequiringAction<{ cardId: string; estimation: string }>(`${name}/setEstimation`),
+  startListenToGameState: createAction<string>(`${name}/startListenToGameState`),
 };
 
 const initialState = {

@@ -1,6 +1,7 @@
 import { call, put, select, takeEvery, take } from 'redux-saga/effects';
 import { channel } from 'redux-saga';
 import { actions } from '../slice';
+import { actions as gameActions } from '../../gameView/slice';
 import { actions as loadGameActions, selectors as gameSelectors } from '../../gameView/slice';
 import { startListenToOnlineStatus, stopListenToOnlineStatus } from '../apis/callUpdateConnections';
 import { AuthUser, selectors as authSelectors } from '@pipeline/auth';
@@ -18,6 +19,7 @@ function* executeStartListenToOnlineStatus(action: ReturnType<typeof actions.sta
     game.id,
     () => {
       statusChannel.put(actions.updateOnlineStatusSuccess('online'));
+      statusChannel.put(gameActions.startListenToGameState(game.id));
     },
     () => {
       statusChannel.put(actions.updateOnlineStatusSuccess('offline'));
