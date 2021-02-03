@@ -3,6 +3,7 @@ import {FirebaseCollection, CardState, RTDBPaths} from "@pipeline/common";
 import {Game} from "../models/Game";
 import {RTDBGame} from "../models/RTDBGame";
 import * as functions from "firebase-functions";
+import FieldValue = admin.firestore.FieldValue;
 
 const logger = functions.logger;
 
@@ -15,9 +16,11 @@ const logger = functions.logger;
  * @param rtdb
  */
 const moveGameFromRTDBToFirestore = async (gameId: string, db: FirebaseFirestore.Firestore, rtdb: admin.database.Database) => {
-  const gameSnap = await rtdb.ref(`/${RTDBPaths.Games}/${gameId}`).get();
+  const gameRef = rtdb.ref(`/${RTDBPaths.Games}/${gameId}`);
+  const gameSnap = await gameRef.get();
   const game = gameSnap.val() as RTDBGame;
-  const cardsSnap = await rtdb.ref(`/${RTDBPaths.Cards}/${gameId}`).get();
+  const cardRef = rtdb.ref(`/${RTDBPaths.Cards}/${gameId}`);
+  const cardsSnap = await cardRef.get();
   let newCards = null;
   if (cardsSnap.exists()) {
     const cards = cardsSnap.val() as {[key: string]: CardState};
@@ -26,7 +29,9 @@ const moveGameFromRTDBToFirestore = async (gameId: string, db: FirebaseFirestore
       return acc;
     }, {} as {[key: string]: CardState});
   }
-  await db.collection(FirebaseCollection.Games).doc(gameId).update({...game, rtdbInstance: null, cards: newCards} as Game);
+  await db.collection(FirebaseCollection.Games).doc(gameId).update({...game, rtdbInstance: null, cards: newCards, movedAt: FieldValue.serverTimestamp()} as Game);
+  await gameRef.set(null);
+  await cardRef.set(null);
 }
 
 async function handleMoveGame(gameId: string, db: FirebaseFirestore.Firestore, rtdb: admin.database.Database) {
