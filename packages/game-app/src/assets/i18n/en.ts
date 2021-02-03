@@ -68,6 +68,8 @@ const translations = {
       resendSuccess: 'Resend success',
     },
     form: {
+      firstNameLabel: 'First name',
+      lastNameLabel: 'Last name',
       emailLabel: 'Email',
       passwordLabel: 'Password',
       repeatPasswordLabel: 'Repeat password',
