@@ -11,9 +11,12 @@ export async function executeSignup(signupInfo: SignupInfo): Promise<AuthUser> {
     const user = credentials.user;
     try {
       await firebase.firestore().doc(`${FirebaseCollection.Users}/${user?.uid}`).set({
+        firstName: signupInfo.firstName,
+        lastName: signupInfo.lastName,
         email: signupInfo.email,
         role: signupInfo.role,
         devOpsMaturity: signupInfo.devOpsMaturity,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       });
 
       const emailVerified = user.emailVerified;

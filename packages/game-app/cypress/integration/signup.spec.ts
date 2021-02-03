@@ -42,6 +42,8 @@ context('Signup', () => {
   it('should signup correctly and go to email verification required', () => {
     const { email, password } = generateRandomCredentials();
     usedEmails.push(email);
+    cy.getInputByName('firstName').fill('John');
+    cy.getInputByName('lastName').fill('Doe');
     cy.getInputByName('email').fill(email);
     cy.getInputByName('password').fill(password);
     cy.getInputByName('repeatPassword').fill(password);
@@ -60,7 +62,9 @@ context('Signup', () => {
       .its('uid')
       .then(uid => {
         // check firestore data
-        cy.getFirestoreDocument(`users/${uid}`).should('deep.eq', {
+        cy.getFirestoreDocument(`users/${uid}`).should('contain', {
+          firstName:'John',
+          lastName:'Doe',
           devOpsMaturity: 'veryImmature',
           role: 'endUser',
           email: email,
@@ -72,6 +76,8 @@ context('Signup', () => {
     const { email, password } = generateRandomCredentials();
     cy.initializeUser({ email });
     const alreadyUsedEmail = email;
+    cy.getInputByName('firstName').fill('John');
+    cy.getInputByName('lastName').fill('Doe');
     cy.getInputByName('email').fill(alreadyUsedEmail);
     cy.getInputByName('password').fill(password);
     cy.getInputByName('repeatPassword').fill(password);

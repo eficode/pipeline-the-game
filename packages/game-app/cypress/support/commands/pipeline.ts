@@ -22,6 +22,8 @@ Cypress.Commands.add("containsTranslationOf", {prevSubject: 'optional'}, (subjec
 Cypress.Commands.add('fastSignup', (email: string, password: string) => {
   cy.window({log: false}).its('store').invoke('dispatch', {
     type: 'signup/start', payload: {
+      firstName: 'John',
+      lastName: 'Doe',
       email: email,
       password: password,
       repeatPassword: password,

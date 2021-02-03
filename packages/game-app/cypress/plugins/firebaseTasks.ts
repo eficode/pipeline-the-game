@@ -63,9 +63,12 @@ export async function initializeUser(adminInstance: admin.app.App, {
   });
 
   await adminInstance.firestore().doc(`users/${user.uid}`).set({
+    firstName: 'John',
+    lastName: 'Doe',
     email: email || randomEmail,
     role: 'endUser',
-    devOpsMaturity: 'veryImmature'
+    devOpsMaturity: 'veryImmature',
+    createdAt: admin.firestore.FieldValue.serverTimestamp(),
   })
 
   return user;

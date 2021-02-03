@@ -20,6 +20,8 @@ const Signup: React.FC<Props> = () => {
 
   const methods = useForm<SignupInfo>({
     defaultValues: {
+      firstName: '',
+      lastName: '',
       role: '',
       email: '',
       password: '',
@@ -65,7 +67,17 @@ const Signup: React.FC<Props> = () => {
           <Box mt={5}>
             <FormProvider {...methods}>
               <form>
-                <FormTextField type="email" name="email" label={t('signup.form.emailLabel')} />
+                <Box display="flex" flexDirection="row">
+                  <Box flex={1}>
+                    <FormTextField name="firstName" label={t('signup.form.firstNameLabel')} />
+                  </Box>
+                  <Box flex={1} ml={3}>
+                    <FormTextField name="lastName" label={t('signup.form.lastNameLabel')} />
+                  </Box>
+                </Box>
+                <Box mt={3}>
+                  <FormTextField type="email" name="email" label={t('signup.form.emailLabel')} />
+                </Box>
                 <Box mt={3}>
                   <FormTextField CustomInput={PasswordInput} name="password" label={t('signup.form.passwordLabel')} />
                 </Box>

@@ -63,10 +63,13 @@ service cloud.firestore {
       let allowedRoles = getDocumentData(/dynamicData/gameRoles).roles;
       let allowedMaturities = getDocumentData(/dynamicData/devOpsMaturities).maturities;
 
-      return userData.keys().hasOnly(['role', 'devOpsMaturity', 'email'])
+      return userData.keys().hasOnly(['role', 'devOpsMaturity', 'email', 'firstName', 'lastName', 'createdAt'])
         && userData.email == request.auth.token.email
+        && isStringShorterThan(userData.firstName, 100)
+        && isStringShorterThan(userData.lastName, 100)
         && allowedRoles.hasAny([userData.role])
-        && allowedMaturities.hasAny([userData.devOpsMaturity]);
+        && allowedMaturities.hasAny([userData.devOpsMaturity])
+        && isServerCreationTime(userData.createdAt);
     }
 
     function isMapBigAs(val, size) {

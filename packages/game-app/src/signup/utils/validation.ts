@@ -3,6 +3,8 @@ import * as yup from 'yup';
 const requiredError = 'general.errors.required';
 
 export const signupValidationSchema = yup.object().shape({
+  firstName: yup.string().required(requiredError),
+  lastName: yup.string().required(requiredError),
   email: yup.string().required(requiredError).email('signup.errors.invalidEmail'),
   password: yup
     .string()
