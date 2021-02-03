@@ -41,4 +41,8 @@ jobs:
           FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PIPELINE_GAME_DEV }}
 
+      - name: Upload database instances rules
+        run: npm run scripts:deploy-database-instances-rules
+        env:
+          GCLOUD_PROJECT: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
 

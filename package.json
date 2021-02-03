@@ -10,6 +10,7 @@
     "test:database": "npm run test --prefix packages/database",
     "test:functions": "npm run test --prefix packages/functions",
     "scripts:initialize-firestore-emulator": "node scripts/load-initial-data-in-emulator.js",
+    "scripts:deploy-database-instances-rules": "node scripts/deploy-rules-to-rtdb-instances.js",
     "scripts:initialize-firestore-emulator:local": "npx env-cmd -f .env node scripts/load-initial-data-in-emulator.js"
   },
   "devDependencies": {
