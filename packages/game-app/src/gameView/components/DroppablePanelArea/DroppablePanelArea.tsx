@@ -25,6 +25,12 @@ const FixedPanel = styled.div<{ closed: boolean; mode: PanelMode; isOver: boolea
   border: 2px solid transparent;
   ${props => props.isOver && 'border-color: #00867c;'}
 
+  @supports (backdrop-filter: blur(30px)) {
+    background-color: rgb(170, 180, 175, 0.4);
+    -webkit-backdrop-filter: blur(2em);
+    backdrop-filter: blur(2em);
+  }
+
   ${props =>
     props.closed
       ? `right: -${(props.mode === 'stacked' ? PANEL_ONE_COLUMNS_WIDTH : PANEL_TWO_COLUMNS_WIDTH) - 40}px;`
