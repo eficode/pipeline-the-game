@@ -35,7 +35,7 @@ jobs:
 
       - name: Lint functions
         run: npm --prefix packages/functions run lint
-        
+
       - name: Start emulators
         run: npx firebase emulators:start &
         env:
@@ -51,6 +51,11 @@ jobs:
         run: npm run test:firestore
         env:
           FIRESTORE_EMULATOR_HOST: localhost:8080
+
+      - name: Database rules test
+        run: npm run test:database
+        env:
+          FIREBASE_DATABASE_EMULATOR_HOST: localhost:9000
 
       - name: Firestore run functions test
         run: npm run test:functions

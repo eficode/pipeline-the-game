@@ -1,23 +1,60 @@
 {
   "rules": {
     "statuses": {
-      "$uid": {
-        ".read": "auth !== null",
-        ".write": "auth.uid === $uid"
+      "$gameId": {
+        "$uid": {
+          ".read": false,
+          ".write": "auth.uid == $uid && root.child('games').child($gameId).exists()",
+          ".validate": "newData.child('lastOnline').val() === now"
+        }
       }
     },
     "games": {
       "$gameId": {
-        ".read": "auth !== null && root.child('statuses').child(auth.uid).child('state').val() === 'online'",
-        ".write": false
+        ".read": "auth.uid !== null && root.child('connections').child($gameId).child(auth.uid).exists()",
+        ".write": "auth.uid !== null && data.child('facilitator').child('id').val() == auth.uid",
+        "review": {
+          ".validate": "newData.isBoolean() && root.child('connections').child($gameId).child(auth.uid).exists()"
+        },
+        "$other": { ".validate": false }
       }
     },
     "cards": {
       "$gameId": {
+        ".read": "auth.uid !== null && root.child('games').child($gameId).exists() && root.child('connections').child($gameId).child(auth.uid).exists()",
         "$cardId": {
-          ".indexOn": [
-            "lockedBy"
-          ]
+          ".read": "auth.uid !== null && root.child('games').child($gameId).exists() && root.child('connections').child($gameId).child(auth.uid).exists()",
+          ".write": "auth.uid !== null && root.child('games').child($gameId).exists() && root.child('connections').child($gameId).child(auth.uid).exists() && ((data.child('lockedBy').isString() && data.child('lockedBy').val() === auth.uid && newData.child('lockedBy').val() === null) || (data.child('lockedBy').val() === newData.child('lockedBy').val() && data.child('lockedBy').val() === auth.uid) || (data.child('lockedBy').val() === null && newData.child('lockedBy').val() === auth.uid) || (newData.child('estimation').exists() && newData.child('lockedBy').val() == null && newData.child('position').exists() && newData.child('parent').exists())) && (!newData.child('parent').exists() || newData.child('parent').val() == data.child('parent').val() || (newData.child('parent').val() != data.child('parent').val() && ((newData.child('parent').val() == 'board' && newData.child('position').child('x').isNumber() && newData.child('position').child('y').isNumber()) || (newData.child('parent').val() == 'panel' && !newData.child('position').exists()))))",
+          "lockedBy": {
+            ".validate": "(data.isString() && data.val() === auth.uid && newData.val() === null) || (data.val() === null && newData.val() === auth.uid)"
+          },
+          "estimation": {
+            ".validate": "!newData.exists() || newData.isString()"
+          },
+          "parent": {
+            ".validate": "!newData.exists() || newData.val() == 'board' || newData.val() == 'panel'"
+          },
+          "position": {
+            ".validate": "!newData.exists() || newData.hasChildren(['x', 'y'])",
+            "x": {
+              ".validate": "!newData.exists() || (newData.isNumber() && newData.val() >= 0 && newData.val() <= root.child('games').child($gameId).child('boardDimensions').child('x').val())"
+            },
+            "y": {
+              ".validate": "!newData.exists() || (newData.isNumber() && newData.val() >= 0 && newData.val() <= root.child('games').child($gameId).child('boardDimensions').child('y').val())"
+            }
+          },
+          "$other": { ".validate": false }
+        }
+      }
+    },
+    "connections": {
+      "$gameId": {
+        "$uid": {
+          "$connectionId": {
+            ".read": false,
+            ".write": "!newData.exists() || (auth.uid == $uid && root.child('games').child($gameId).exists())",
+            ".validate": "!newData.exists() || newData.child('updatedAt').val() === now"
+          }
         }
       }
     }

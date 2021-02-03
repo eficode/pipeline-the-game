@@ -9,7 +9,7 @@ export async function startListenToOnlineStatus(
 ) {
   const rtdb: firebase.database.Database = firebase.app(gameId).database();
   const connectionsRef = rtdb.ref(`/${RTDBPaths.Connections}/${gameId}/${uid}`);
-  const lastOnlineRef = rtdb.ref(`/${RTDBPaths.Statuses}/${uid}/lastOnline`);
+  const lastOnlineRef = rtdb.ref(`/${RTDBPaths.Statuses}/${gameId}/${uid}/lastOnline`);
 
   rtdb.ref('.info/connected').on('value', async snapshot => {
     if (snapshot.val() === true) {

@@ -7,6 +7,7 @@
     "start:emulators": "npx firebase emulators:start",
     "start:app": "npm run start --prefix packages/game-app",
     "test:firestore": "npm run test --prefix packages/firestore",
+    "test:database": "npm run test --prefix packages/database",
     "test:functions": "npm run test --prefix packages/functions",
     "scripts:initialize-firestore-emulator": "node scripts/load-initial-data-in-emulator.js",
     "scripts:initialize-firestore-emulator:local": "npx env-cmd -f .env node scripts/load-initial-data-in-emulator.js"
