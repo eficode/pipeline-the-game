@@ -147,7 +147,7 @@ describe("Cards write", () => {
     }));
   });
 
-  it("should allow card write if authenticated, game exists, connected and with parent == board, specifying valid card position but with uncorrect lockedBy", async () => {
+  it("should not allow card write if authenticated, game exists, connected and with parent == board, specifying valid card position but with uncorrect lockedBy", async () => {
     const userUID = 'id1';
     const email = 'test@email.com';
     await createGame(GAME_ID, adminDatabase);
@@ -163,7 +163,7 @@ describe("Cards write", () => {
     }));
   });
 
-  it("should allow card write if authenticated, game exists, connected and with parent == board and specifying valid card position and with correct lockedBy", async () => {
+  it("should allow card write if authenticated, game exists, connected and with parent == board and specifying valid card position and with correct lockedBy and zIndex", async () => {
     const userUID = 'id1';
     const email = 'test@email.com';
     await createGame(GAME_ID, adminDatabase);
@@ -175,7 +175,25 @@ describe("Cards write", () => {
         x: 0,
         y: 0
       },
-      lockedBy: userUID
+      lockedBy: userUID,
+      zIndex: 0,
+    }));
+  });
+
+  it("should allow card write if authenticated, game exists, connected and with parent == board and specifying valid card position, with correct lockedBy and valid zIndex", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertSucceeds(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
+      parent: 'board',
+      position: {
+        x: 0,
+        y: 0
+      },
+      lockedBy: userUID,
+      zIndex: 50
     }));
   });
 
@@ -206,6 +224,34 @@ describe("Cards write", () => {
         x: 0,
         y: 0,
       }
+    }));
+  });
+
+  it("should not allow card write if authenticated, game exists, connected and with parent == panel and specifying valid card zIndex", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertFails(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
+      parent: 'panel',
+      zIndex: 0
+    }));
+  });
+
+  it("should not allow card write if authenticated, game exists, connected and with parent == panel and specifying valid card position and zIndex", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertFails(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
+      parent: 'panel',
+      position: {
+        x: 0,
+        y: 0,
+      },
+      zIndex: 0
     }));
   });
 
@@ -342,7 +388,7 @@ describe("Cards write", () => {
     }));
   });
 
-  it("should update card position if authenticated, game exists, connected and the card was locked by me", async () => {
+  it("should update card position if authenticated, game exists, connected and the card was locked by me and valid zIndex", async () => {
     const userUID = 'id1';
     const email = 'test@email.com';
     await createGame(GAME_ID, adminDatabase);
@@ -356,7 +402,46 @@ describe("Cards write", () => {
         x: 0,
         y: 0
       },
-      parent: 'board'
+      parent: 'board',
+      zIndex: 0,
+    }));
+  });
+
+  it("should update card position and zIndex if authenticated, game exists, connected and the card was locked by me", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    await adminDatabase.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).set({
+      lockedBy: userUID
+    });
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertSucceeds(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
+      position: {
+        x: 0,
+        y: 0
+      },
+      parent: 'board',
+      zIndex: 0
+    }));
+  });
+
+  it("should not update card position if authenticated, game exists, connected and the card was locked by me but wrong zIndex", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    await adminDatabase.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).set({
+      lockedBy: userUID
+    });
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertFails(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
+      position: {
+        x: 0,
+        y: 0
+      },
+      parent: 'board',
+      zIndex: -1001
     }));
   });
 
