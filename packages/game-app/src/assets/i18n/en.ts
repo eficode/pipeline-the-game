@@ -76,7 +76,8 @@ const translations = {
     alreadyAccount: 'Already have an account?',
     goToSignIn: 'Sign in',
     verificationRequired: {
-      message: "You need to verify your email to start playing! If you don't find it, try in your spam",
+      title: 'Check your email',
+      message: 'We sent a mail to {{email}}. Click the link in the mail to confirm you email address.',
       resend: 'Resend email',
       resendSuccess: 'Resend success',
     },
