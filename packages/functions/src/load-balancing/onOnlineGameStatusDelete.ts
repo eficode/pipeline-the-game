@@ -2,10 +2,10 @@ import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
 import FieldValue = admin.firestore.FieldValue;
-import {handleLockedCards, handleMoveGame} from "./utils";
+import {handleLockedCards, handleUpdateLastPlayerDisconnectedAtGameField} from "./utils";
 import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
 import {getDatabase} from "../utils/rtdb";
-
+import * as retry from "async-retry";
 const db = admin.firestore();
 const logger = functions.logger;
 
@@ -27,10 +27,20 @@ async function handler(snapshot: functions.database.DataSnapshot, context: funct
   // const docInstanceId = parseRTDBInstanceId(snapshot.instance);
 
   logger.log(`User ${userId} just closed all connections for game ${gameId} in instance ${rtdbId}`);
-  await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
-    .update({
-      connectionsCount: FieldValue.increment(-1) as any,
-    } as Partial<RTDBInstance>);
+
+  try {
+    await retry(async () => {
+      await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
+        .update({
+          connectionsCount: FieldValue.increment(-1) as any,
+        } as Partial<RTDBInstance>);
+    }, {
+      retries: 3,
+    });
+  } catch (e) {
+    console.error('Error updating connections count');
+  }
+
 
   const rtdb = getDatabase(
     rtdbUrl
@@ -38,7 +48,7 @@ async function handler(snapshot: functions.database.DataSnapshot, context: funct
 
   await handleLockedCards(gameId, rtdb, userId);
   logger.log('Locked cards handled');
-  await handleMoveGame(gameId, db, rtdb);
+  await handleUpdateLastPlayerDisconnectedAtGameField(gameId, db, rtdb);
   logger.log('Locked cards handled');
 }
 

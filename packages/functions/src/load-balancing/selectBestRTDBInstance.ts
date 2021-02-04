@@ -109,7 +109,6 @@ export const selectBestRTDBInstance = functions.region(
       game.rtdbInstance = null;
       await rtdb.ref(`/${RTDBPaths.Games}/${gameId}`).set({
         ...game,
-        movedAt: FieldValue.serverTimestamp(),
       });
       if (cards) {
         await rtdb.ref(`/${RTDBPaths.Cards}/${gameId}`).set({
