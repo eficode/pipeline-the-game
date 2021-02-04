@@ -2,8 +2,9 @@ import { CardState, FirebaseCollection } from '@pipeline/common';
 import firebase from 'firebase/app';
 import 'firebase/database';
 
-export default async function saveCardState(userId: string, gameId: string, cardId: string) {
+export default async function saveCardLok(userId: string, gameId: string, cardId: string, parent: 'board' | 'panel') {
   const cardState: Partial<CardState> = {
+    parent,
     lockedBy: userId,
   };
 

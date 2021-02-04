@@ -56,7 +56,7 @@ const extraActions = {
   loadCards: createAction(`${name}/loadCards`),
   loadGame: createAction<string>(`${name}/loadGame`),
   updateRTDBInstanceGame: createAction<string>(`${name}/updateRTDBInstanceGame`),
-  lockCard: createNetworkRequiringAction<string>(`${name}/lockCard`),
+  lockCard: createNetworkRequiringAction<{ cardId: string; parent: 'panel' | 'board' }>(`${name}/lockCard`),
   updateCardPosition: createNetworkRequiringAction<{
     cardId: string;
     target: 'panel' | 'board';
@@ -76,7 +76,6 @@ const initialState = {
 function modifyCardState(cardState: CardState, gameState: Draft<GameState>, cardId: string) {
   if (cardState.parent === 'panel' && !gameState.deckCards.includes(cardId)) {
     gameState.deckCards.push(cardId);
-    delete gameState.cardsState[cardId];
     const index = gameState.boardCards.indexOf(cardId);
     if (index > -1) {
       gameState.boardCards.splice(index, 1);
@@ -89,10 +88,10 @@ function modifyCardState(cardState: CardState, gameState: Draft<GameState>, card
       }
       gameState.boardCards.push(cardId);
     }
-    gameState.cardsState[cardId] = {
-      ...cardState,
-    };
   }
+  gameState.cardsState[cardId] = {
+    ...cardState,
+  };
   const maxZIndex = gameState.boardCards.reduce((acc, val) => {
     acc =
       acc === undefined || (gameState.cardsState[val]?.zIndex || DEFAULT_Z_INDEX) > acc
@@ -132,7 +131,7 @@ const slice = createSlice({
       const gameState = state.gameState!;
       const cardId = action.payload.cardId;
       const cardState = action.payload.cardState;
-      modifyCardState(cardState, gameState, cardId);
+      return modifyCardState(cardState, gameState, cardId);
     },
     stopListenOnGame(state, action: PayloadAction) {
       return initialState;
@@ -232,6 +231,12 @@ const getCardAdditionalInfo = (cardId: string) =>
     };
   });
 
+const getIsUserTheFacilitator = createSelector(
+  getGame,
+  authSelectors.getCurrentUser,
+  (game, user) => game?.facilitator.id === user?.id,
+);
+
 const getCardById = (cardId: string) =>
   createSelector(getSlice, state => cardsEntitiesSelectors.selectById(state.cards, cardId));
 
@@ -283,4 +288,5 @@ export const selectors = {
   getFilteredDeckCardsIds,
   getSearchedText,
   getReview,
+  getIsUserTheFacilitator,
 };
