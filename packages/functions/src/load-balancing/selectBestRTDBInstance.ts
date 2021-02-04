@@ -4,8 +4,6 @@ import {runTransactionWithRetry} from "../utils/db";
 import {FirebaseCollection, RTDBPaths} from '@pipeline/common';
 import {getDatabase, PROJECT_ID} from "../utils/rtdb";
 import {Game} from "../models/Game";
-import FieldValue = admin.firestore.FieldValue;
-
 const db = admin.firestore();
 const logger = functions.logger;
 
@@ -109,7 +107,6 @@ export const selectBestRTDBInstance = functions.region(
       game.rtdbInstance = null;
       await rtdb.ref(`/${RTDBPaths.Games}/${gameId}`).set({
         ...game,
-        movedAt: FieldValue.serverTimestamp(),
       });
       if (cards) {
         await rtdb.ref(`/${RTDBPaths.Cards}/${gameId}`).set({

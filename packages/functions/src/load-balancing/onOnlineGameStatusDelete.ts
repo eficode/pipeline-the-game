@@ -1,11 +1,9 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
-import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
-import FieldValue = admin.firestore.FieldValue;
-import {handleLockedCards, handleMoveGame} from "./utils";
+import {RTDBPaths} from "@pipeline/common";
+import {handleLockedCards, handleUpdateConnectionsCount, handleUpdateLastPlayerDisconnectedAtGameField} from "./utils";
 import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
 import {getDatabase} from "../utils/rtdb";
-
 const db = admin.firestore();
 const logger = functions.logger;
 
@@ -27,10 +25,8 @@ async function handler(snapshot: functions.database.DataSnapshot, context: funct
   // const docInstanceId = parseRTDBInstanceId(snapshot.instance);
 
   logger.log(`User ${userId} just closed all connections for game ${gameId} in instance ${rtdbId}`);
-  await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
-    .update({
-      connectionsCount: FieldValue.increment(-1) as any,
-    } as Partial<RTDBInstance>);
+
+  await handleUpdateConnectionsCount(db, rtdbId, -1);
 
   const rtdb = getDatabase(
     rtdbUrl
@@ -38,7 +34,7 @@ async function handler(snapshot: functions.database.DataSnapshot, context: funct
 
   await handleLockedCards(gameId, rtdb, userId);
   logger.log('Locked cards handled');
-  await handleMoveGame(gameId, db, rtdb);
+  await handleUpdateLastPlayerDisconnectedAtGameField(gameId, db, rtdb);
   logger.log('Locked cards handled');
 }
 

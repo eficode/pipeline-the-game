@@ -1,12 +1,11 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
-import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
+import {RTDBPaths} from "@pipeline/common";
 import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
-import FieldValue = admin.firestore.FieldValue;
+import {handleUpdateConnectionsCount} from "./utils";
 
 const db = admin.firestore();
 const logger = functions.logger;
-
 
 /**
  * It triggers when the path /connections/{gameId}/{userId} of that RTDB instance is updated.
@@ -37,17 +36,11 @@ export async function handler(snapshot: functions.Change<functions.database.Data
 
   if (connectionsDiff < 0) {
     logger.log(`User ${userId} for game ${gameId} has closed one connection instance ${rtdbId}`);
-    await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
-      .update({
-        connectionsCount: FieldValue.increment(connectionsDiff) as any,
-      } as Partial<RTDBInstance>);
+    await handleUpdateConnectionsCount(db, rtdbId, connectionsDiff);
   }
   if (connectionsDiff > 0) {
     logger.log(`User ${userId} for game ${gameId} has opened one connection`);
-    await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
-      .update({
-        connectionsCount: FieldValue.increment(connectionsDiff) as any,
-      } as Partial<RTDBInstance>);
+    await handleUpdateConnectionsCount(db, rtdbId, connectionsDiff);
   }
 }
 
