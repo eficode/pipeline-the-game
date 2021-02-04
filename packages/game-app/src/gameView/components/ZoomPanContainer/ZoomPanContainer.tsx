@@ -10,6 +10,7 @@ const scaleFactor = 0.9;
 const boardSize = { width: DEFAULT_BOARD_DIMENSIONS.x, height: DEFAULT_BOARD_DIMENSIONS.y };
 
 const minScale = Math.max(window.innerWidth / boardSize.width, window.innerHeight / boardSize.height);
+const maxScale = 3;
 
 /**
  *
@@ -87,7 +88,7 @@ const ZoomPanContainer: React.FC<Props> = ({ children }) => {
 
   const zoom = useCallback(
     (factor: number) => {
-      const newScale = Math.max(scaleRef.current * factor, minScale);
+      const newScale = Math.min(Math.max(scaleRef.current * factor, minScale), maxScale);
       const newPan = calculateNewPan(
         newScale,
         scaleRef.current,
@@ -148,7 +149,7 @@ const ZoomPanContainer: React.FC<Props> = ({ children }) => {
         factor = 1 / factor;
       }
 
-      const newScale = Math.max(currentScale * factor, minScale);
+      const newScale = Math.min(Math.max(scaleRef.current * factor, minScale), maxScale);
       const newPan = calculateNewPan(newScale, currentScale, ev, currentPan);
 
       setZoomAndPanInternal({ pan: newPan, scale: newScale });
