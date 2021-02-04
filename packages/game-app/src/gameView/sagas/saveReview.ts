@@ -5,7 +5,10 @@ import saveReview from '../apis/saveReview';
 
 function* executeSaveEstimationSaga(action: ReturnType<typeof actions.setReview>) {
   const currentGameId = yield select(selectors.getGameId);
-  yield call(saveReview, currentGameId, action.payload);
+  const isFacilitator = yield select(selectors.getIsUserTheFacilitator);
+  if (isFacilitator) {
+    yield call(saveReview, currentGameId, action.payload);
+  }
 }
 
 export default function* saveEstimationSaga() {
