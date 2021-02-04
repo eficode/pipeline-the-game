@@ -42,11 +42,16 @@ function* listenToCardState(action: ReturnType<typeof actions.startListenToGameS
     })
     .map(c => c.id);
 
+  const maxZIndex = boardCardsIds.reduce((acc, val) => {
+    acc = acc === undefined || cardsState[val]?.zIndex > acc ? cardsState[val]?.zIndex : acc;
+    return acc;
+  }, -1000);
+
   const gameState: GameState = {
     boardCards: boardCardsIds,
     deckCards: deckCardsIds,
     cardsState: cardsState as any,
-    maxZIndex: -1000,
+    nextZIndex: maxZIndex + 1,
     review: false,
   };
   yield put(
