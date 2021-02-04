@@ -15,7 +15,7 @@ import ZoomPanContainer from '../ZoomPanContainer';
 import ZoomPanContext from '../ZoomPanContext';
 import useStopListenOnRtdb from '../../hooks/useStopListenOnRtdb';
 import LoadingOverlay from '../LoadingOverlay';
-import OfflineBanner from '../OfflineBanner';
+import OfflineOverlay from '../OfflineOverlay';
 
 type GameProps = {
   zoomIn: () => void;
@@ -64,7 +64,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
         <DeckPanel panelModeRef={panelModeRef} />
       </CardsGameListeners>
       <LoadingOverlay isOpen={loading} />
-      <OfflineBanner />
+      <OfflineOverlay />
     </ZoomPanContext>
   );
 };

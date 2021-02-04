@@ -41,7 +41,10 @@ const translations = {
       title: 'Do you really want to exit this game?',
     },
     initializing: 'Initializing game board',
-    offline: 'You are offline.\nActions on the bord will not be saved.',
+    offlineOverlay: {
+      title: 'Ops, you are offline',
+      subtitle: 'Refresh the page to re-sync',
+    },
   },
   login: {
     title: 'Sign in to play',
@@ -90,6 +93,7 @@ const translations = {
     cancel: 'Cancel',
     done: 'Done',
     exit: 'Exit',
+    refresh: 'Refresh',
     errors: {
       required: 'This field is required',
     },
