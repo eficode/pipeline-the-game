@@ -1,6 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { variant, color } from 'styled-system';
 import Icon from '../Icon';
+import Spinner from '../Spinner';
+import Typography from '../Typography';
 
 export type Variants = 'default' | 'clear';
 
@@ -69,3 +71,19 @@ export const NotHoverIconWrapper = styled(IconWrapper)`
 `;
 
 NotHoverIconWrapper.displayName = 'NotHoverIconWrapper';
+
+export const ButtonSpinner = styled(Spinner)`
+  position: absolute;
+`;
+
+ButtonSpinner.displayName = 'ButtonSpinner';
+
+export const ButtonLabel = styled(Typography)<{ loading?: boolean }>`
+  ${props =>
+    props.loading &&
+    css`
+      visibility: hidden;
+    `}
+`;
+
+ButtonLabel.displayName = 'ButtonLabel';

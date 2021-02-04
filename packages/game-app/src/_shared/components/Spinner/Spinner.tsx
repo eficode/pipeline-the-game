@@ -1,11 +1,13 @@
 import React from 'react';
 import { StyledSpinner } from './Spinner.styled';
 
-type Props = {};
+type Props = {
+  className?: string;
+};
 
-const Spinner: React.FC<Props> = ({}) => {
+const Spinner: React.FC<Props> = ({ className }) => {
   return (
-    <StyledSpinner>
+    <StyledSpinner className={className}>
       <div className="thumb"></div>
       <div className="placeholder"></div>
     </StyledSpinner>

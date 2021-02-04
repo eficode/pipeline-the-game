@@ -1,6 +1,12 @@
 import React from 'react';
-import { ButtonContent, NotHoverIconWrapper, StyledButton, Variants } from './Button.styled';
-import Spinner from '../Spinner';
+import {
+  ButtonContent,
+  ButtonLabel,
+  ButtonSpinner,
+  NotHoverIconWrapper,
+  StyledButton,
+  Variants,
+} from './Button.styled';
 
 type Props = {
   id?: string;
@@ -37,7 +43,8 @@ const Button: React.FC<Props> = ({
     >
       <ButtonContent>
         {leftIcon ? <NotHoverIconWrapper>{leftIcon}</NotHoverIconWrapper> : null}
-        {loading ? <Spinner /> : label}
+        {loading && <ButtonSpinner />}
+        <ButtonLabel loading={loading}>{label}</ButtonLabel>
       </ButtonContent>
     </StyledButton>
   );
