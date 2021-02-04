@@ -96,8 +96,7 @@ const CreateGameView: React.FC<Props> = () => {
                 />
               </Box>
               <Box textAlign="center" mt={4}>
-                <Button label={t('createGame.createButtonText')} onClick={submit} />
-                {loading && <span>Loading...</span>}
+                <Button label={t('createGame.createButtonText')} loading={loading} onClick={submit} />
                 {translatedError && <ErrorMessage message={translatedError} />}
               </Box>
               <Box textAlign="center" mt={2}>

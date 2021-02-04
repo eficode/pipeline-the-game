@@ -43,10 +43,9 @@ const Login: React.FC<Props> = () => {
                 <FormTextField CustomInput={PasswordInput} name="password" label={t('login.form.passwordLabel')} />
               </Box>
               <Box textAlign="center" mt={5}>
-                <Button label={t('login.form.buttonText')} onClick={submit} />
+                <Button label={t('login.form.buttonText')} loading={loginLoading} onClick={submit} />
               </Box>
               {loginTranslateError ? <ErrorMessage message={loginTranslateError} /> : null}
-              {loginLoading ? <span>Loading</span> : null}
               <Box display="flex" flexDirection="row" justifyContent="center" mt={4}>
                 <span>{t('login.notYetAccount')}</span>&nbsp;
                 <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>

@@ -95,10 +95,14 @@ const Signup: React.FC<Props> = () => {
                   <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
                 </Box>
                 <Box mt={5} textAlign="center">
-                  <Button id="signup-button" label={t('signup.form.buttonText')} onClick={submit} />
+                  <Button
+                    id="signup-button"
+                    label={t('signup.form.buttonText')}
+                    loading={signupLoading}
+                    onClick={submit}
+                  />
                 </Box>
 
-                {signupLoading ? <span>Loading</span> : null}
                 {signupTranslateError ? <ErrorMessage message={signupTranslateError} /> : null}
                 {signupSuccess ? <span>Success</span> : null}
                 <Box mt={4} display="flex" flexDirection="row" justifyContent="center">
