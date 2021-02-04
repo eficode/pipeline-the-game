@@ -1,11 +1,52 @@
 import * as admin from "firebase-admin";
-import {FirebaseCollection, CardState, RTDBPaths, RTDBInstance} from "@pipeline/common";
+import {FirebaseCollection, CardState, RTDBPaths, RTDBInstance, DEFAULT_Z_INDEX} from "@pipeline/common";
 import {Game} from "../models/Game";
 import {RTDBGame} from "../models/RTDBGame";
 import * as functions from "firebase-functions";
 import * as retry from "async-retry";
 
 const logger = functions.logger;
+
+type CardStateEntity = CardState & {id: string};
+
+function unlockAndZIndexNormalize(cardsSnap: admin.database.DataSnapshot) {
+  let newCards: {[key: string]: CardState} | null = null;
+
+  const cards = cardsSnap.val() as { [key: string]: CardState };
+  const cardsEntityArray = Object.keys(cards).map(cardId => {
+    return {
+      ...cards[cardId],
+      lockedBy: null,
+      id: cardId,
+    }
+  }) as CardStateEntity[];
+  let cardsEntityWithZIndex = cardsEntityArray.filter(c => c.zIndex != null);
+  const cardsEntityWithoutZIndex = cardsEntityArray.filter(c => c.zIndex == null);
+  cardsEntityWithZIndex.sort((a, b) => a.zIndex! - b.zIndex!);
+  let startZIndex = DEFAULT_Z_INDEX;
+  cardsEntityWithZIndex = cardsEntityWithZIndex.map(c => {
+    const newCard = {
+      ...c,
+      zIndex: startZIndex,
+    };
+    startZIndex++;
+    return newCard;
+  })
+  newCards = cardsEntityWithZIndex.reduce((acc, card) => {
+    const {id, ...cardState} = card;
+    acc[id] = {...cardState, lockedBy: null};
+    return acc;
+  }, {} as { [key: string]: CardState });
+  newCards = {
+    ...newCards,
+    ...cardsEntityWithoutZIndex.reduce((acc, card) => {
+      const {id, ...cardState} = card;
+      acc[id] = {...cardState, lockedBy: null};
+      return acc;
+    }, {} as { [key: string]: CardState }),
+  }
+  return newCards;
+}
 
 /**
  * It moves a game from a particular RTDB instance to Firestore.
@@ -25,14 +66,10 @@ const moveGameFromRTDBToFirestore = async (gameId: string, db: FirebaseFirestore
   const cardsSnap = await cardsRef.get();
   let newCards = null;
   if (cardsSnap.exists()) {
-    const cards = cardsSnap.val() as {[key: string]: CardState};
-    newCards = Object.keys(cards).reduce((acc, cardId) => {
-      acc[cardId] = {...cards[cardId], lockedBy: null};
-      return acc;
-    }, {} as {[key: string]: CardState});
+    newCards = unlockAndZIndexNormalize(cardsSnap);
   }
-  await db.collection(FirebaseCollection.Games).doc(gameId).update({...game, rtdbInstance: null,
-    cards: newCards, lastPlayerDisconnectedAt: null, movedAt: admin.firestore.FieldValue.serverTimestamp()} as Game);
+  await db.collection(FirebaseCollection.Games).doc(gameId).update({...game, rtdbInstance: null, cards: newCards,
+   lastPlayerDisconnectedAt: null, movedAt: admin.firestore.FieldValue.serverTimestamp()} as Game);
   await rtdb.ref().update({
     [gamePath]: null,
     [cardsPath]: null,
