@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions, selectors } from '../../slice';
@@ -25,6 +25,8 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
 
   const [estimationOpen, setEstimationOpen] = useState(false);
 
+  const [animating, setAnimating] = useState(heldBySomeoneElse);
+
   const dispatch = useDispatch();
 
   const saveEstimation = useCallback(
@@ -37,7 +39,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
 
   const isCardMoving = isDragging || heldBySomeoneElse;
 
-  const style =
+  const style: React.CSSProperties =
     position?.x || position?.y
       ? {
           zIndex,
@@ -46,6 +48,10 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
           position: 'absolute' as const,
         }
       : {};
+
+  if (animating) {
+    style.transition = 'top 0.3s ease-out, left 0.3s ease-out';
+  }
 
   const handler = useCallback(() => {
     setEstimationOpen(true);
@@ -65,8 +71,16 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
     [fire, dragOnPointer],
   );
 
+  useEffect(() => {
+    if (heldBySomeoneElse && !animating) {
+      setAnimating(true);
+    } else if (!heldBySomeoneElse && animating) {
+      setTimeout(() => setAnimating(false), 500);
+    }
+  }, [heldBySomeoneElse, animating]);
+
   return (
-    <div style={style}>
+    <div style={style} data-cy={`card-${id}`}>
       {estimationOpen && <EstimationEditor saveEstimation={saveEstimation} initialEstimation={estimation} />}
       {!estimationOpen && estimation && <EstimationInCard estimation={estimation} />}
       <CardWrapper
