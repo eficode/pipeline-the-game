@@ -33,7 +33,7 @@ async function handleMoveGame(gameId: string, db: FirebaseFirestore.Firestore, r
   const snap = await rtdb.ref(`/${RTDBPaths.Connections}/${gameId}`).get();
   const onlineCount = snap.exists() ? snap.numChildren() : 0;
   logger.log(`Online user for game ${gameId}: ${onlineCount}`);
-  if (onlineCount <= 1) {
+  if (onlineCount === 0) {
     await moveGameFromRTDBToFirestore(gameId, db, rtdb);
     logger.log(`Game ${gameId} moved from RTDB to Firestore`);
   }

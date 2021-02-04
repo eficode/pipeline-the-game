@@ -23,7 +23,7 @@ async function fillRtdbInstancesFile() {
     const listDatabases = firebaseTools.database.instances.list
     const databases = await listDatabases();
     const instanceList = databases.map(d => ({
-        url: `https://${d.instance}.firebasedatabase.app`,
+        url: `https://${d.instance}.europe-west1.firebasedatabase.app`,
         name: d.instance,
         id: d.instance.replace(`${process.env.FIREBASE_PROJECT_ID}-`, ''),
     }));

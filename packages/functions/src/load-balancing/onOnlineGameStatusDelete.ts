@@ -4,7 +4,7 @@ import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
 import FieldValue = admin.firestore.FieldValue;
 import {handleLockedCards, handleMoveGame} from "./utils";
 import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
-import {getAppForDB} from "../utils/rtdb";
+import {getDatabase} from "../utils/rtdb";
 
 const db = admin.firestore();
 const logger = functions.logger;
@@ -15,7 +15,7 @@ const logger = functions.logger;
  * The proper document of Firestore, representing that RTDB instance, is updated incrementing by -1
  *
  * Next, an RTDB query is performed to look for the online users for those games.
- * If more than one were found (because one is the one we were updating), it means there is still someone in the game
+ * If more than zero were found, it means there is still someone in the game
  * Otherwise, we can move the game from RTDB back to Firestore, for each game.
  */
 
@@ -32,10 +32,9 @@ async function handler(snapshot: functions.database.DataSnapshot, context: funct
       connectionsCount: FieldValue.increment(-1) as any,
     } as Partial<RTDBInstance>);
 
-  const rtdb = getAppForDB(
-    rtdbId,
+  const rtdb = getDatabase(
     rtdbUrl
-  ).database();
+  );
 
   await handleLockedCards(gameId, rtdb, userId);
   logger.log('Locked cards handled');

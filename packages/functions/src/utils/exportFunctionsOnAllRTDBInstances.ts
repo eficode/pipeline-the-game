@@ -16,7 +16,7 @@ export default function exportFunctionsOnAllRTDBInstances<T>(
   exportObj: any,
 ) {
   for (const db of rtdbInstancesUrl) {
-    exportObj[`${functionName}_${db.id.replace('-', '_')}`] = functionBuilder(
+    exportObj[`${functionName}_${db.id.split('-').join('_')}`] = functionBuilder(
       functions.region('europe-west1').database.instance(db.name),
       db.id,
       db.url
