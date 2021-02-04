@@ -19,12 +19,25 @@ export type RTDBGame<T, F> = Omit<Game<T, F>, 'rtdbInstance' | 'cards' | 'movedA
 
 export interface CardState {
   parent: 'board' | 'panel';
-  position?: {
-    x: number,
-    y: number
-  };
+  /**
+   * if it is being moving
+   */
   lockedBy: string | null;
-  estimation: string;
+  /**
+   * Card z-index to put it in front of all the others when drag finish
+   */
+  zIndex: number;
+  /**
+   * absolute position inside the board
+   */
+  position?: {
+    x: number;
+    y: number;
+  };
+  /**
+   * time estimation placed inside the card
+   */
+  estimation?: string;
 }
 
 export type GameEntity<T, F> = Game<T, F> & { id: string };
