@@ -57,7 +57,7 @@ export const ButtonContent = styled.div`
 ButtonContent.displayName = 'ButtonContent';
 
 export const IconWrapper = styled(Icon)`
-  ${StyledButton} > & {
+  ${StyledButton} & {
     margin-right: 4px;
   }
 `;
@@ -65,12 +65,20 @@ export const IconWrapper = styled(Icon)`
 IconWrapper.displayName = 'IconWrapper';
 
 export const NotHoverIconWrapper = styled(IconWrapper)`
-  ${StyledButton}:hover > & {
+  ${StyledButton}:hover & {
     display: none;
   }
 `;
 
 NotHoverIconWrapper.displayName = 'NotHoverIconWrapper';
+
+export const HoverIconWrapper = styled(IconWrapper)`
+  ${StyledButton}:not(:hover)   & {
+    display: none;
+  }
+`;
+
+HoverIconWrapper.displayName = 'HoverIconWrapper';
 
 export const ButtonSpinner = styled(Spinner)`
   position: absolute;

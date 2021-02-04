@@ -3,6 +3,7 @@ import {
   ButtonContent,
   ButtonLabel,
   ButtonSpinner,
+  HoverIconWrapper,
   NotHoverIconWrapper,
   StyledButton,
   Variants,
@@ -16,6 +17,7 @@ type Props = {
   onClick: () => void;
   disabled?: boolean;
   leftIcon?: React.ReactElement;
+  leftIconHover?: React.ReactElement;
   color?: React.ComponentProps<typeof StyledButton>['color'];
   loading?: boolean;
   type?: React.ComponentProps<typeof StyledButton>['type'];
@@ -29,6 +31,7 @@ const Button: React.FC<Props> = ({
   testId,
   disabled,
   leftIcon,
+  leftIconHover,
   color,
   type = 'button',
   loading,
@@ -44,7 +47,10 @@ const Button: React.FC<Props> = ({
       color={color}
     >
       <ButtonContent>
-        {leftIcon ? <NotHoverIconWrapper>{leftIcon}</NotHoverIconWrapper> : null}
+        {leftIcon ? <NotHoverIconWrapper variant="small">{leftIcon}</NotHoverIconWrapper> : null}
+        {leftIconHover || leftIcon ? (
+          <HoverIconWrapper variant="small">{leftIconHover || leftIcon!}</HoverIconWrapper>
+        ) : null}
         {loading && <ButtonSpinner />}
         <ButtonLabel loading={loading}>{label}</ButtonLabel>
       </ButtonContent>

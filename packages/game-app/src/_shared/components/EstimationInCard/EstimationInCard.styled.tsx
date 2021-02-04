@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const EstimationCardContent = styled.div`
+export const EstimationCardContent = styled.div<{ moving?: boolean }>`
   width: 80px;
   height: 32px;
   background: #096762;
@@ -12,7 +12,15 @@ export const EstimationCardContent = styled.div`
   line-height: 32px;
   color: white;
   padding-left: 16px;
-  z-index: 10001;
+  z-index: 100001;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  ${props =>
+    props.moving &&
+    css`
+      opacity: 0.5;
+    `}
 `;
 
 EstimationCardContent.displayName = 'EstimationCardContent';

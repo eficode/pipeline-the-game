@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import {
   ConfirmButton,
   EstimationInput,
@@ -21,6 +21,8 @@ const EstimationEditor: React.FC<Props> = ({ saveEstimation, initialEstimation }
 
   const t = useTranslate();
 
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const onChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     setEstimation(e.target.value);
   }, []);
@@ -38,11 +40,16 @@ const EstimationEditor: React.FC<Props> = ({ saveEstimation, initialEstimation }
     [onClick],
   );
 
+  useEffect(() => {
+    inputRef?.current?.focus();
+  }, []);
+
   return (
     <EstimationWrapper mb={2}>
       <EstimationInputContainer>
         <form onSubmit={submit}>
           <EstimationInput
+            ref={inputRef}
             WrapperComponent={EstimationInputWrapper}
             value={estimation}
             onChange={onChange}

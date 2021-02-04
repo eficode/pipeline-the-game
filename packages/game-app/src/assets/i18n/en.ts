@@ -46,6 +46,14 @@ const translations = {
       subtitle: 'Refresh the page to re-sync',
     },
     estimationPlaceholder: 'Write time estimation',
+    review: {
+      title1: 'Calculate the Deployment Lead Time',
+      content1:
+        '• “A Developer Commits Code” -> “Deploy to Production.”\n\n Add up the total time (times are written on sticky notes on each card). Add any waiting time between steps.',
+      title2: 'Compare with your Competitor Lead Time & Discuss',
+      content2:
+        '• If theirs is longer: Are you skipping important tests and risking quality problems?\n • If theirs is shorter: How do you think they achieve that?\n • Will you be able to out-compete them?',
+    },
   },
   login: {
     title: 'Sign in to play',

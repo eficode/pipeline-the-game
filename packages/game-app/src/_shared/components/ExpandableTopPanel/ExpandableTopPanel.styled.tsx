@@ -53,6 +53,11 @@ export const ExpandIcon = styled.div<{ collapsed: boolean }>`
   right: 24px;
   transition: transform 0.3s ease-in;
 
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
   ${({ collapsed }) =>
     !collapsed &&
     css`

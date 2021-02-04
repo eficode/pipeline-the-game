@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { ExpandIcon, PanelContent, PanelContentWrapper, PanelHeader, PanelWrapper } from './ExpandableTopPanel.styled';
 import Typography from '../Typography';
+import { ReactComponent as ArrowIcon } from '@assets/icons/expandable-box.svg';
 
 type Props = {
   className?: string;
@@ -31,7 +32,9 @@ const ExpandableTopPanel: React.FC<Props> = ({ className, label, children }) => 
         <Typography variant="content" fontWeight="600">
           {label}
         </Typography>
-        <ExpandIcon collapsed={collapsed}>^</ExpandIcon>
+        <ExpandIcon collapsed={collapsed}>
+          <ArrowIcon />
+        </ExpandIcon>
       </PanelHeader>
       <PanelContentWrapper collapsed={collapsed}>
         <PanelContent collapsed={collapsed}>{children}</PanelContent>

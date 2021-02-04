@@ -6,7 +6,8 @@ import { ReactComponent as TwoColumnsIcon } from '@assets/icons/two-column-view.
 import DroppablePanelArea from '../DroppablePanelArea';
 import { PANEL_CARD_SIZE, PANEL_ONE_COLUMNS_WIDTH, PANEL_TWO_COLUMNS_WIDTH } from '../../../dimensions';
 import { AnimatedChild, DeckPanelContent, PanelButtons, PanelTools } from './DeckPanel.styled';
-import { ReactComponent as SearchIcon, ReactComponent as ClearIcon } from '@assets/icons/zoom.svg';
+import { ReactComponent as SearchIcon } from '@assets/icons/zoom.svg';
+import { ReactComponent as ClearIcon } from '@assets/icons/clear-search.svg';
 import useDeckState from '../../hooks/useDeckState';
 
 export type PanelMode = 'stacked' | 'tow-columns';

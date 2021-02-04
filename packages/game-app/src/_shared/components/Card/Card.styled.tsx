@@ -1,4 +1,4 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import { CardTags, CardTypes } from '@pipeline/common';
 import { PANEL_CARD_SCALE } from '../../../dimensions';
 
@@ -28,26 +28,6 @@ const tagObj = {
   },
 } as { [key in CardTags]: { backgroundColor: string } };
 
-const dragAnimation = keyframes`
-  0%{
-    
-  }
-  100%{
-    transform: rotate(6deg);
-    box-shadow: 0px 80px 20px #10182026;
-  }
-`;
-
-const dragAnimationBig = keyframes`
-  0%{
-    
-  }
-  100%{
-    transform: rotate(6deg) scale(${PANEL_CARD_SCALE});
-    box-shadow: 0px 80px 20px #10182026;
-  }
-`;
-
 export const CardWrapper = styled.div<{ dragging?: boolean; bigger?: boolean }>`
   padding: 0 0 16px;
   width: 280px;
@@ -63,16 +43,6 @@ export const CardWrapper = styled.div<{ dragging?: boolean; bigger?: boolean }>`
           transform-origin: 0 0;
         `
       : ''}
-  ${props =>
-    props.dragging
-      ? css`
-          animation: ${props.bigger ? dragAnimationBig : dragAnimation} linear 0.1s;
-          animation-delay: 0.1s;
-          animation-fill-mode: forwards;
-        `
-      : css`
-          box-shadow: 0px 0px 6px #10182029;
-        `}
 `;
 
 CardWrapper.displayName = 'CardWrapper';
@@ -83,6 +53,7 @@ export const CardHeader = styled.header<CardHeaderProps>`
   height: 56px;
   background: ${props => props.theme.cardsTypes[props.type]};
   border-radius: 10px 10px 0px 0px;
+  position: relative;
 `;
 
 CardHeader.displayName = 'CardHeader';
@@ -150,3 +121,13 @@ export const CardContent = styled.div`
 `;
 
 CardContent.displayName = 'CardContent';
+
+export const PatternContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 108px;
+`;
+
+PatternContainer.displayName = 'PatternContainer';
