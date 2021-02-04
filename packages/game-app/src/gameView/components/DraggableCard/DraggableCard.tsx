@@ -16,11 +16,13 @@ type Props = {
  * A card enhanced with dragging capability
  */
 const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
+  const { position, estimation, zIndex, heldBySomeoneElse } = useSelector(selectors.getCardAdditionalInfo(id));
+
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
+    disabled: heldBySomeoneElse,
     id,
   });
 
-  const { position, estimation, zIndex, heldBySomeoneElse } = useSelector(selectors.getCardAdditionalInfo(id));
   const [estimationOpen, setEstimationOpen] = useState(false);
 
   const dispatch = useDispatch();
