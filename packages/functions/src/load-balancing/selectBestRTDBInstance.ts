@@ -5,6 +5,7 @@ import {FirebaseCollection, RTDBPaths} from '@pipeline/common';
 import {getDatabase, PROJECT_ID} from "../utils/rtdb";
 import {Game} from "../models/Game";
 import FieldValue = admin.firestore.FieldValue;
+
 const db = admin.firestore();
 const logger = functions.logger;
 
@@ -73,7 +74,7 @@ export const selectBestRTDBInstance = functions.region(
     .orderBy('connectionsCount', "asc").limit(1).get();
   const bestRTDBInstanceDoc = bestRTDBInstanceQuery.docs[0];
   const bestRTDBInstance = bestRTDBInstanceDoc.data();
-  const bestRTDBInstanceName = `${PROJECT_ID}-${bestRTDBInstanceDoc.id}.${bestRTDBInstance.region}`;
+  let bestRTDBInstanceName = `${PROJECT_ID}-${bestRTDBInstanceDoc.id}.${bestRTDBInstance.region}`;
 
   logger.log(`Selected instance ${bestRTDBInstanceName} with ${bestRTDBInstance.connectionsCount} game connections`);
 
@@ -93,7 +94,7 @@ export const selectBestRTDBInstance = functions.region(
 
   await runTransactionWithRetry(db, async transaction => {
     const gameDoc = await transaction.get(gameRef);
-    if(!gameDoc.exists) {
+    if (!gameDoc.exists) {
       throw new functions.https.HttpsError('failed-precondition', `The game with ${gameId} does not exists`);
     }
     const game = gameDoc.data() as Game
@@ -101,7 +102,7 @@ export const selectBestRTDBInstance = functions.region(
       transaction.update(gameRef, {
         rtdbInstance: bestRTDBInstanceName,
       } as Partial<Game>);
-      const cards = game.cards !== null ? {...game.cards}: null;
+      const cards = game.cards !== null ? {...game.cards} : null;
       game.cards = null;
       game.rtdbInstance = null;
       await rtdb.ref(`/${RTDBPaths.Games}/${gameId}`).set({
@@ -113,6 +114,8 @@ export const selectBestRTDBInstance = functions.region(
           ...cards,
         });
       }
+    } else {
+      bestRTDBInstanceName = game.rtdbInstance
     }
   });
 
