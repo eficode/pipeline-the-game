@@ -15,7 +15,7 @@ export default async function saveCardState(
     parent: payload.target,
     lockedBy: null,
     position: payload.position ?? (null as any),
-    zIndex: payload.target === 'panel' || !payload.zIndex ? (null as any) : payload.zIndex,
+    zIndex: payload.target === 'panel' || !payload.zIndex ? null : payload.zIndex,
   };
 
   return firebase
