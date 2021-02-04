@@ -2,7 +2,8 @@ import React from 'react';
 import { Box, Button, GlassOverlay, Typography } from '@pipeline/components';
 import { RulesContainer, RulesOverlayContent } from './RulesOverlay.styled';
 import { useTranslate } from '@pipeline/i18n';
-import { ReactComponent as ArrowIcon } from '@assets/icons/arrow.svg';
+import { ReactComponent as ArrowIcon } from '@assets/icons/back-arrow-default.svg';
+import { ReactComponent as ArrowHoverIcon } from '@assets/icons/back-arrow-hover.svg';
 import ExpandableRule from '../ExpandableRule';
 import useCards from '../../hooks/useCards';
 import { CardTypes } from '@pipeline/common';
@@ -23,7 +24,13 @@ const RulesOverlay: React.FC<Props> = ({ isOpen, close }) => {
     <GlassOverlay open={isOpen}>
       <RulesOverlayContent>
         <Box>
-          <Button variant="clear" onClick={close} leftIcon={<ArrowIcon />} label={t('game.backToGame')} />
+          <Button
+            variant="clear"
+            onClick={close}
+            leftIconHover={<ArrowHoverIcon />}
+            leftIcon={<ArrowIcon />}
+            label={t('game.backToGame')}
+          />
         </Box>
         <Typography as="h1" color="white" variant="bigTitle">
           {' '}

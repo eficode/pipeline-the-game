@@ -5,10 +5,10 @@ import { createPortal } from 'react-dom';
 import { Transform } from '@dnd-kit/utilities';
 import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { GameUIState } from '../../types/gameUIState';
-import ConnectedCard from '../ConnectedCard';
 import { PanelMode } from '../DeckPanel/DeckPanel';
 import { DEFAULT_CARD_SIZE, PANEL_CARD_SIZE } from '../../../dimensions';
 import { useZoomPanRefs } from '../ZoomPanContext';
+import MovingCard from '../MovingCard';
 
 const DEBUG_ENABLED = false;
 
@@ -345,9 +345,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
       {children}
       {createPortal(
         <DragOverlay adjustScale dropAnimation={null} modifiers={modifiers} className="transform-0">
-          {draggingCard ? (
-            <ConnectedCard bigger={draggingCard.parent === 'panel'} dragging={true} id={draggingCard.id} />
-          ) : null}
+          {draggingCard ? <MovingCard bigger={draggingCard.parent === 'panel'} id={draggingCard.id} /> : null}
         </DragOverlay>,
         document.body,
       )}

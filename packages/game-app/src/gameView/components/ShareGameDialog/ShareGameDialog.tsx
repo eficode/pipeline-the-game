@@ -3,7 +3,7 @@ import { useTranslate } from '@pipeline/i18n';
 import { Box, IconButton, Typography, Dialog, Button, Input } from '@pipeline/components';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
-import { ReactComponent as CopyIcon } from '@assets/icons/review.svg';
+import { ReactComponent as CopyIcon } from '@assets/icons/copy-link.svg';
 import { GameEntity } from '@pipeline/models';
 
 type Props = {
