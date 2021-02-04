@@ -22,6 +22,6 @@ if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'selectBestRTDBI
 }
 
 if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'scheduledMoveGamesJob') {
-  exports.scheduledMoveGamesJob = require('./load-balancing/scheduledMoveGamesJob').scheduledMoveGamesJob;
+  exports.scheduledMoveGamesJob = require('./load-balancing/scheduledMoveGame').scheduledMoveGamesJob;
 }
 
