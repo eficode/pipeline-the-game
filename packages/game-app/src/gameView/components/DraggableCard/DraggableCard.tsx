@@ -42,7 +42,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   const style: React.CSSProperties =
     position?.x || position?.y
       ? {
-          zIndex,
+          zIndex: zIndex || 0,
           top: position.y,
           left: position.x,
           position: 'absolute' as const,

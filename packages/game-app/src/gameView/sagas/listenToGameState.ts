@@ -5,6 +5,7 @@ import { CardEntity, CardState, CardTypes } from '@pipeline/common';
 import { actions, GameState, selectors } from '../slice';
 import listenToGameChanges from '../apis/listenToGameChanges';
 import callLoadInitialCardsState from '../apis/callLoadInitialCardsState';
+import { DEFAULT_Z_INDEX } from '@pipeline/common';
 
 function firebaseGameChannel(gameId: string) {
   return eventChannel<{ state: CardState; cardId: string }>(emit => {
@@ -42,11 +43,19 @@ function* listenToCardState(action: ReturnType<typeof actions.startListenToGameS
     })
     .map(c => c.id);
 
+  const maxZIndex = boardCardsIds.reduce((acc, val) => {
+    acc =
+      acc === undefined || (cardsState[val]?.zIndex || DEFAULT_Z_INDEX) > acc
+        ? cardsState[val]?.zIndex || DEFAULT_Z_INDEX
+        : acc;
+    return acc;
+  }, DEFAULT_Z_INDEX);
+
   const gameState: GameState = {
     boardCards: boardCardsIds,
     deckCards: deckCardsIds,
     cardsState: cardsState as any,
-    maxZIndex: -1000,
+    nextZIndex: maxZIndex + 1,
     review: false,
   };
   yield put(

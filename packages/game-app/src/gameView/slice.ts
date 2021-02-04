@@ -6,34 +6,12 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { CardEntity, CardState } from '@pipeline/common';
+import { CardEntity, CardState, DEFAULT_Z_INDEX } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
 import { GameEntity } from '@pipeline/models';
 import { selectors as authSelectors } from '@pipeline/auth';
 import { createNetworkRequiringAction } from '@pipeline/networkStatus';
 import { Draft } from 'immer';
-
-export interface AdditionalCardData {
-  /**
-   * if it is being moving
-   */
-  lockedBy: string | null;
-  /**
-   * absolute position inside the board
-   */
-  position?: {
-    x: number;
-    y: number;
-  };
-  /**
-   * time estimation placed inside the card
-   */
-  estimation?: string;
-  /**
-   * Card z-index to put it in front of all the others when drag finish
-   */
-  zIndex: number;
-}
 
 export interface GameState {
   /**
@@ -45,16 +23,19 @@ export interface GameState {
    */
   deckCards: string[];
   /**
-   * cards infomration
+   * cards information
    */
   cardsState: {
-    [cardId: string]: AdditionalCardData;
+    [cardId: string]: CardState;
   };
   /**
-   * max z-index, the z-index of the last placed cards inside the board
+   * next z-index, the z-index of the next placed cards inside the board
    */
-  maxZIndex: number;
+  nextZIndex: number;
 
+  /**
+   * flag to indicate if review is triggered
+   */
   review: boolean;
 }
 
@@ -78,8 +59,8 @@ const extraActions = {
   lockCard: createNetworkRequiringAction<string>(`${name}/lockCard`),
   updateCardPosition: createNetworkRequiringAction<{
     cardId: string;
-    position?: { x: number; y: number };
     target: 'panel' | 'board';
+    position?: { x: number; y: number };
   }>(`${name}/updateCardPosition`),
   setEstimation: createNetworkRequiringAction<{ cardId: string; estimation: string }>(`${name}/setEstimation`),
   startListenToGameState: createAction<string>(`${name}/startListenToGameState`),
@@ -110,9 +91,16 @@ function modifyCardState(cardState: CardState, gameState: Draft<GameState>, card
     }
     gameState.cardsState[cardId] = {
       ...cardState,
-      zIndex: gameState.maxZIndex++,
     };
   }
+  const maxZIndex = gameState.boardCards.reduce((acc, val) => {
+    acc =
+      acc === undefined || (gameState.cardsState[val]?.zIndex || DEFAULT_Z_INDEX) > acc
+        ? gameState.cardsState[val]?.zIndex || DEFAULT_Z_INDEX
+        : acc;
+    return acc;
+  }, DEFAULT_Z_INDEX);
+  gameState.nextZIndex = maxZIndex + 1;
 }
 
 const slice = createSlice({
@@ -159,6 +147,7 @@ const slice = createSlice({
           parent: target,
           position: position,
           estimation: '',
+          zIndex: gameState.nextZIndex,
         },
         gameState,
         cardId,
@@ -236,7 +225,7 @@ const getCardPosition = (cardId: string) =>
 
 const getCardAdditionalInfo = (cardId: string) =>
   createSelector(getGameState, authSelectors.getCurrentUser, (gameState, user) => {
-    const data = gameState?.cardsState?.[cardId] ?? ({} as AdditionalCardData);
+    const data = gameState?.cardsState?.[cardId] ?? ({} as CardState);
     return {
       ...data,
       heldBySomeoneElse: !!(data.lockedBy && data.lockedBy !== user?.id),

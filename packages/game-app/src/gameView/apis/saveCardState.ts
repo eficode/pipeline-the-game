@@ -7,6 +7,7 @@ export default async function saveCardState(
   payload: {
     cardId: string;
     position?: { x: number; y: number };
+    zIndex?: number | null;
     target: 'panel' | 'board';
   },
 ) {
@@ -14,6 +15,7 @@ export default async function saveCardState(
     parent: payload.target,
     lockedBy: null,
     position: payload.position ?? (null as any),
+    zIndex: payload.target === 'panel' || !payload.zIndex ? null : payload.zIndex,
   };
 
   return firebase
