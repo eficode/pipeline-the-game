@@ -1,9 +1,10 @@
-import { call, put, take, takeEvery } from 'redux-saga/effects';
+import { call, put, select, take, takeEvery } from 'redux-saga/effects';
 import { eventChannel } from 'redux-saga';
-import { CardState } from '@pipeline/common';
+import { CardEntity, CardState, CardTypes } from '@pipeline/common';
 
-import { actions } from '../slice';
+import { actions, GameState, selectors } from '../slice';
 import listenToGameChanges from '../apis/listenToGameChanges';
+import callLoadInitialCardsState from '../apis/callLoadInitialCardsState';
 
 function firebaseGameChannel(gameId: string) {
   return eventChannel<{ state: CardState; cardId: string }>(emit => {
@@ -26,6 +27,34 @@ function firebaseGameChannel(gameId: string) {
  */
 
 function* listenToCardState(action: ReturnType<typeof actions.startListenToGameState>) {
+  const cardsState: { [cardId: string]: CardState } = yield call(callLoadInitialCardsState, action.payload);
+  const cards: CardEntity[] = yield select(selectors.getAllCards);
+
+  const deckCardsIds = cards
+    .filter(c => {
+      return c.type === CardTypes.PipelineStep && (!(c.id in cardsState) || cardsState[c.id].parent === 'panel');
+    })
+    .map(c => c.id);
+
+  const boardCardsIds = cards
+    .filter(c => {
+      return c.type === CardTypes.PipelineStep && cardsState[c.id]?.parent === 'board';
+    })
+    .map(c => c.id);
+
+  const gameState: GameState = {
+    boardCards: boardCardsIds,
+    deckCards: deckCardsIds,
+    cardsState: cardsState as any,
+    maxZIndex: -1000,
+    review: false,
+  };
+  yield put(
+    actions.setInitialGameState({
+      state: gameState,
+      gameId: action.payload,
+    }),
+  );
   const channel = yield call(firebaseGameChannel, action.payload);
 
   yield takeEvery(channel, function* (value: any) {

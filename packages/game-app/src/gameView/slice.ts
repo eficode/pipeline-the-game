@@ -62,10 +62,6 @@ export interface State {
   game: GameEntity | null;
   cards: EntityState<CardEntity>;
   gameState: GameState | null;
-  scenario: {
-    title: string;
-    content: string;
-  };
   searchText: string | null;
 }
 
@@ -131,14 +127,9 @@ const slice = createSlice({
       action: PayloadAction<{
         state: GameState;
         gameId: string;
-        scenario: {
-          title: string;
-          content: string;
-        };
       }>,
     ) {
       state.gameState = action.payload.state;
-      state.scenario = action.payload.scenario;
     },
     saveGame(state, action: PayloadAction<GameEntity>) {
       state.game = action.payload;
@@ -206,8 +197,12 @@ const getDeckCardsIds = createSelector(getGameState, getAllCardsEntities, (getGa
   return copy;
 });
 const getPlacedCards = createSelector(getGameState, getGameState => getGameState?.boardCards);
-const getScenario = createSelector(getSlice, slice => slice.scenario);
 const getGame = createSelector(getSlice, slice => slice.game);
+
+const getScenario = createSelector(getGame, slice => ({
+  title: slice?.scenarioTitle,
+  content: slice?.scenarioContent,
+}));
 const getGameId = createSelector(getGame, slice => slice?.id);
 
 // TODO try to remove the listener

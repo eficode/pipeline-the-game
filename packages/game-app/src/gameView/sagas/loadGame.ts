@@ -1,10 +1,10 @@
-import { call, put, takeEvery } from 'redux-saga/effects';
+import { call, put, take, takeEvery } from 'redux-saga/effects';
 
 import { Game } from '@pipeline/models';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
-import { CardEntity, CardTypes } from '@pipeline/common';
+import { CardEntity } from '@pipeline/common';
 
-import { actions, GameState } from '../slice';
+import { actions } from '../slice';
 import selectBestRTDBInstance from '../../userGameStatus/apis/selectBestRTDBInstance';
 import loadGame from '../apis/callLoadGame';
 import loadCardsForDeck from '../apis/callLoadCardsForDeck';
@@ -26,23 +26,7 @@ function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
 
   yield put(actions.saveGame({ ...game, id: action.payload }));
 
-  const gameState: GameState = {
-    boardCards: [],
-    deckCards: cards.filter(c => c.type === CardTypes.PipelineStep).map(c => c.id),
-    cardsState: {},
-    maxZIndex: -1000,
-    review: false,
-  };
-  yield put(
-    actions.setInitialGameState({
-      state: gameState,
-      gameId: action.payload,
-      scenario: {
-        title: game.scenarioTitle,
-        content: game.scenarioContent,
-      },
-    }),
-  );
+  yield take(actions.setInitialGameState);
 }
 
 export function* loadGameSaga() {
