@@ -1,9 +1,8 @@
 import * as functions from 'firebase-functions';
 import * as admin from "firebase-admin";
-import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
+import {FirebaseCollection, RTDBPaths} from "@pipeline/common";
 import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
-import FieldValue = admin.firestore.FieldValue;
-import * as retry from "async-retry";
+import {handleUpdateConnectionsCount} from "./utils";
 
 const db = admin.firestore();
 const logger = functions.logger;
@@ -22,18 +21,7 @@ export async function handler(snapshot: functions.database.DataSnapshot, context
 
   logger.log(`User ${userId} just created connection for game ${gameId} in ${rtdbId} snapshotInstance ${snapshot.instance}`);
 
-  try {
-    await retry(async () => {
-      await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
-        .update({
-          connectionsCount: FieldValue.increment(1) as any,
-        } as Partial<RTDBInstance>);
-    }, {
-      retries: 3,
-    });
-  } catch (e) {
-    console.error('Error updating connections count');
-  }
+  await handleUpdateConnectionsCount(db, rtdbId, 1);
 
   await db.collection(FirebaseCollection.Games).doc(gameId).update({lastPlayerDisconnectedAt: null})
   logger.log(`Game ${gameId} lastPlayerDisconnectedAt updated`);

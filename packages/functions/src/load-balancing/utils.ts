@@ -1,9 +1,9 @@
 import * as admin from "firebase-admin";
-import {FirebaseCollection, CardState, RTDBPaths} from "@pipeline/common";
+import {FirebaseCollection, CardState, RTDBPaths, RTDBInstance} from "@pipeline/common";
 import {Game} from "../models/Game";
 import {RTDBGame} from "../models/RTDBGame";
 import * as functions from "firebase-functions";
-import FieldValue = admin.firestore.FieldValue;
+import * as retry from "async-retry";
 
 const logger = functions.logger;
 
@@ -32,7 +32,7 @@ const moveGameFromRTDBToFirestore = async (gameId: string, db: FirebaseFirestore
     }, {} as {[key: string]: CardState});
   }
   await db.collection(FirebaseCollection.Games).doc(gameId).update({...game, rtdbInstance: null,
-    cards: newCards, lastPlayerDisconnectedAt: null, movedAt: FieldValue.serverTimestamp()} as Game);
+    cards: newCards, lastPlayerDisconnectedAt: null, movedAt: admin.firestore.FieldValue.serverTimestamp()} as Game);
   await rtdb.ref().update({
     [gamePath]: null,
     [cardsPath]: null,
@@ -44,7 +44,7 @@ async function handleUpdateLastPlayerDisconnectedAtGameField(gameId: string, db:
   const onlineCount = snap.exists() ? snap.numChildren() : 0;
   logger.log(`Online user for game ${gameId}: ${onlineCount}`);
   if (onlineCount === 0) {
-    await db.collection(FirebaseCollection.Games).doc(gameId).update({lastPlayerDisconnectedAt: FieldValue.serverTimestamp()})
+    await db.collection(FirebaseCollection.Games).doc(gameId).update({lastPlayerDisconnectedAt: admin.firestore.FieldValue.serverTimestamp()})
     logger.log(`Game ${gameId} lastPlayerDisconnectedAt updated`);
   }
 
@@ -67,4 +67,19 @@ async function handleLockedCards(gameId: string, rtdb: admin.database.Database, 
   }
 }
 
-export {moveGameFromRTDBToFirestore, handleUpdateLastPlayerDisconnectedAtGameField, handleLockedCards};
+async function handleUpdateConnectionsCount(db: FirebaseFirestore.Firestore, rtdbId: string, increment: number) {
+  try {
+    await retry(async () => {
+      await db.collection(FirebaseCollection.RTDBInstances).doc(rtdbId)
+        .update({
+          connectionsCount: admin.firestore.FieldValue.increment(increment) as any,
+        } as Partial<RTDBInstance>);
+    }, {
+      retries: 3,
+    });
+  } catch (e) {
+    logger.error('Error updating connections count');
+  }
+}
+
+export {moveGameFromRTDBToFirestore, handleUpdateLastPlayerDisconnectedAtGameField, handleLockedCards, handleUpdateConnectionsCount};

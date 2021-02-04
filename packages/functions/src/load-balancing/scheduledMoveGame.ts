@@ -15,6 +15,7 @@ const moveGamesJob = async () => {
   const oldActiveGamesQuery = db.collection(FirebaseCollection.Games)
       .where(`lastPlayerDisconnectedAt`, '<=', lastActiveGamesDate);
 
+  //pagination should not be necessary
   const oldActiveGamesSnap = await oldActiveGamesQuery.get();
   logger.log(`Found ${oldActiveGamesSnap.docs.length} old active games`);
 
