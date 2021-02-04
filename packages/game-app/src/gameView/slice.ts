@@ -6,7 +6,7 @@ import {
   EntityState,
   PayloadAction,
 } from '@reduxjs/toolkit';
-import { CardEntity, CardState } from '@pipeline/common';
+import { CardEntity, CardState, DEFAULT_Z_INDEX } from '@pipeline/common';
 import { GameUIState } from './types/gameUIState';
 import { GameEntity } from '@pipeline/models';
 import { selectors as authSelectors } from '@pipeline/auth';
@@ -91,13 +91,15 @@ function modifyCardState(cardState: CardState, gameState: Draft<GameState>, card
     }
     gameState.cardsState[cardId] = {
       ...cardState,
-      zIndex: cardState.zIndex,
     };
   }
   const maxZIndex = gameState.boardCards.reduce((acc, val) => {
-    acc = acc === undefined || gameState.cardsState[val]?.zIndex > acc ? gameState.cardsState[val]?.zIndex : acc;
+    acc =
+      acc === undefined || (gameState.cardsState[val]?.zIndex || DEFAULT_Z_INDEX) > acc
+        ? gameState.cardsState[val]?.zIndex || DEFAULT_Z_INDEX
+        : acc;
     return acc;
-  }, -1000);
+  }, DEFAULT_Z_INDEX);
   gameState.nextZIndex = maxZIndex + 1;
 }
 

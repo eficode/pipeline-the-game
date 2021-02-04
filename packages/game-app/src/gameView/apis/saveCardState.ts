@@ -7,7 +7,7 @@ export default async function saveCardState(
   payload: {
     cardId: string;
     position?: { x: number; y: number };
-    zIndex?: number;
+    zIndex?: number | null;
     target: 'panel' | 'board';
   },
 ) {
