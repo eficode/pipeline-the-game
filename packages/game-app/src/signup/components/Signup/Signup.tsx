@@ -66,7 +66,7 @@ const Signup: React.FC<Props> = () => {
           <Typography variant="title">{t('signup.title')}</Typography>
           <Box mt={5}>
             <FormProvider {...methods}>
-              <form>
+              <form onSubmit={submit}>
                 <Box display="flex" flexDirection="row">
                   <Box flex={1}>
                     <FormTextField name="firstName" label={t('signup.form.firstNameLabel')} />
@@ -95,8 +95,7 @@ const Signup: React.FC<Props> = () => {
                   <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
                 </Box>
                 <Box mt={5} textAlign="center">
-                  <Button
-                    id="signup-button"
+                  <Button type="submit" id="signup-button"
                     label={t('signup.form.buttonText')}
                     loading={signupLoading}
                     onClick={submit}

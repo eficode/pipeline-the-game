@@ -18,6 +18,7 @@ type Props = {
   leftIcon?: React.ReactElement;
   color?: React.ComponentProps<typeof StyledButton>['color'];
   loading?: boolean;
+  type?: React.ComponentProps<typeof StyledButton>['type'];
 };
 
 const Button: React.FC<Props> = ({
@@ -29,11 +30,12 @@ const Button: React.FC<Props> = ({
   disabled,
   leftIcon,
   color,
+  type = 'button',
   loading,
 }) => {
   return (
     <StyledButton
-      type="button"
+      type={type}
       id={id}
       data-cy={testId || id}
       disabled={disabled || loading}

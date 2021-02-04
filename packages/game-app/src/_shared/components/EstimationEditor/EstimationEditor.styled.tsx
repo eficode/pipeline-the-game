@@ -92,6 +92,31 @@ const estimationDefinition = keyframes`
   animation-fill-mode: forwards;
 `;
 */
+
+export const EstimationInput = styled(Input)`
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 3px #d7d2cb80;
+  border-radius: 20px;
+  opacity: 1;
+  padding-left: 16px;
+  font-family: Montserrat;
+
+  :focus {
+    border: none;
+  }
+
+  ::placeholder {
+    color: #d7d2cb;
+    opacity: 1; /* Firefox */
+  }
+`;
+
+EstimationInput.displayName = 'EstimationInput';
+
+export const EstimationInputWrapper = styled.div``;
+
+EstimationInputWrapper.displayName = 'EstimationInputWrapper';
+
 export const ConfirmButton = styled.button`
   border: none;
   background: #96d5d2;
@@ -116,33 +141,13 @@ export const ConfirmButton = styled.button`
   :focus {
     outline: none;
   }
-`;
 
-ConfirmButton.displayName = 'ConfirmButton';
-
-export const EstimationInput = styled(Input)`
-  background: #ffffff 0% 0% no-repeat padding-box;
-  box-shadow: 0px 3px 3px #d7d2cb80;
-  border-radius: 20px;
-  opacity: 1;
-  padding-left: 16px;
-  font-family: Montserrat;
-
-  :focus {
-    border: none;
-  }
-
-  ::placeholder {
-    color: #d7d2cb;
-    opacity: 1; /* Firefox */
-  }
-
-  :focus + ${ConfirmButton} {
+  ${EstimationInputWrapper}:focus-within + & {
     background: #096762;
   }
 `;
 
-EstimationInput.displayName = 'EstimationInput';
+ConfirmButton.displayName = 'ConfirmButton';
 
 export const EstimationInputContainer = styled.div`
   border-radius: 20px;
