@@ -11,6 +11,7 @@ export interface Game<T, F> extends CreatedAt<T, F> {
   cards: { [key: string]: CardState } | null;
   boardDimensions: { x: number, y: number } | null;
   review: boolean;
+  lastPlayerDisconnectedAt?: T | F | null;
   movedAt?: T | F;
 }
 
