@@ -18,6 +18,7 @@ export const RulesContainer = styled.div`
   margin: auto;
   margin-top: 100px;
   overflow-y: scroll;
+  scrollbar-width: none;
 
   ::-webkit-scrollbar {
     display: none;

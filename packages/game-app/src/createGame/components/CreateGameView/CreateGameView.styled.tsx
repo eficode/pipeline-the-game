@@ -1,14 +1,18 @@
 import styled from 'styled-components';
 
 export const CreateGameContainer = styled.div`
-  background-color: rgb(170, 180, 175, 0.4);
-  backdrop-filter: blur(15px);
+  background-color: rgb(170, 180, 175, 0.95);
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @supports (backdrop-filter: blur(15px)) {
+    background-color: rgb(170, 180, 175, 0.4);
+    backdrop-filter: blur(15px);
+  }
 `;
 
 CreateGameContainer.displayName = 'CreateGameContainer';
