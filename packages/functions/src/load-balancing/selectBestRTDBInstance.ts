@@ -74,7 +74,8 @@ export const selectBestRTDBInstance = functions.region(
     .orderBy('connectionsCount', "asc").limit(1).get();
   const bestRTDBInstanceDoc = bestRTDBInstanceQuery.docs[0];
   const bestRTDBInstance = bestRTDBInstanceDoc.data();
-  let bestRTDBInstanceName = `${PROJECT_ID}-${bestRTDBInstanceDoc.id}.${bestRTDBInstance.region}`;
+  const bestRTDBInstanceName = `${PROJECT_ID}-${bestRTDBInstanceDoc.id}.${bestRTDBInstance.region}`;
+  let returningRTDBInstance = bestRTDBInstanceName;
 
   logger.log(`Selected instance ${bestRTDBInstanceName} with ${bestRTDBInstance.connectionsCount} game connections`);
 
@@ -93,6 +94,7 @@ export const selectBestRTDBInstance = functions.region(
   const gameRef = db.collection(FirebaseCollection.Games).doc(gameId);
 
   await runTransactionWithRetry(db, async transaction => {
+    returningRTDBInstance = bestRTDBInstanceName
     const gameDoc = await transaction.get(gameRef);
     if (!gameDoc.exists) {
       throw new functions.https.HttpsError('failed-precondition', `The game with ${gameId} does not exists`);
@@ -115,10 +117,10 @@ export const selectBestRTDBInstance = functions.region(
         });
       }
     } else {
-      bestRTDBInstanceName = game.rtdbInstance
+      returningRTDBInstance = game.rtdbInstance
     }
   });
 
-  return {bestRTDBInstanceName};
+  return {bestRTDBInstanceName: returningRTDBInstance};
 
 });
