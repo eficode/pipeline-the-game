@@ -1,1 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161 84"><defs><style>.cls-1{fill:#2a8468;}.cls-2{fill:#3b9a80;}.cls-3{fill:#1e704e;}.cls-4{fill:#88c6b7;}.cls-5{fill:#a0d2c6;}</style></defs><g id="Lag_2" data-name="Lag 2"><g id="Lag_1-2" data-name="Lag 1"><rect class="cls-1" x="63.72" y="36.12" width="4.04" height="4.34"/><polygon class="cls-2" points="63.72 40.57 63.72 40.46 59.11 40.46 59.11 44.57 72.37 44.57 72.37 40.46 67.76 40.46 67.76 40.57 63.72 40.57"/><rect class="cls-3" x="148.24" width="10.86" height="42.72"/><rect class="cls-3" x="96.46" y="44.55" width="10.7" height="10.86"/><rect class="cls-3" x="118.02" y="44.55" width="28.25" height="10.86"/><path class="cls-1" d="M159.1,42.72H146.27V57.24h.2A14.54,14.54,0,0,0,161,42.72Z"/><rect class="cls-3" x="83.62" y="56.65" width="10.86" height="27.35"/><path class="cls-1" d="M96.26,42.13A14.53,14.53,0,0,0,81.73,56.65H96.46V42.13Z"/><rect class="cls-1" x="46.84" y="22.39" width="14.32" height="10.86"/><rect class="cls-1" y="22.39" width="13.47" height="10.86"/><rect class="cls-1" x="70.41" y="22.39" width="34.91" height="10.86"/><rect class="cls-1" x="22.72" y="22.39" width="13.26" height="10.86"/><rect class="cls-1" x="107.16" y="55.41" width="10.86" height="28.59"/><rect class="cls-1" x="107.16" y="35.23" width="10.86" height="9.32"/><rect class="cls-1" x="107.16" y="44.55" width="10.86" height="10.86"/><path class="cls-2" d="M105.33,20.5h0V35.23h14.52V35A14.52,14.52,0,0,0,105.33,20.5Z"/><rect class="cls-2" x="63.72" y="40.46" width="4.04" height="0.11"/><polygon class="cls-2" points="61.16 19.52 61.16 22.39 61.16 33.25 61.16 36.12 63.72 36.12 67.76 36.12 70.41 36.12 70.41 33.25 70.41 22.39 70.41 19.52 61.16 19.52"/><polygon class="cls-2" points="13.47 19.52 13.47 22.39 13.47 33.25 13.47 36.12 22.72 36.12 22.72 33.25 22.72 22.39 22.72 19.52 13.47 19.52"/><rect class="cls-4" x="35.98" y="57.31" width="10.86" height="26.69"/><polygon class="cls-4" points="35.98 0 35.98 22.39 35.98 33.25 35.98 45.33 46.84 45.33 46.84 33.25 46.84 22.39 46.84 0 35.98 0"/><path class="cls-4" d="M27.63,48.71a3.16,3.16,0,0,1,.16,5.09h5.48V48.71Z"/><path class="cls-5" d="M25.83,48.07A3.18,3.18,0,0,0,29,44.88v0a3.15,3.15,0,0,0-3.18-3.14h0a3.18,3.18,0,1,0,0,6.36Z"/><path class="cls-5" d="M27,48.71h.64a3.14,3.14,0,0,0-1.81-.57h0a3.18,3.18,0,0,0-.09,6.35h.2a3.15,3.15,0,0,0,1.87-.69H27Z"/><path class="cls-5" d="M29,51.31a3.17,3.17,0,0,0-1.37-2.6H27V53.8h.8A3.18,3.18,0,0,0,29,51.31Z"/><path class="cls-5" d="M25.72,54.49A3.18,3.18,0,1,0,29,57.66v0a3.16,3.16,0,0,0-3.08-3.15h-.2Z"/><path class="cls-5" d="M25.72,54.49h0Z"/><polygon class="cls-5" points="46.84 45.33 35.98 45.33 33.27 45.33 33.27 48.71 33.27 53.8 33.27 57.31 35.98 57.31 46.84 57.31 49.71 57.31 49.71 45.33 46.84 45.33"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 161 84">
+    <defs>
+        <style>
+            .pipe-cls-1{fill:#2a8468;}.pipe-cls-2{fill:#3b9a80;}.pipe-cls-3{fill:#1e704e;}.pipe-cls-4{fill:#88c6b7;}.pipe-cls-5{fill:#a0d2c6;}
+        </style>
+    </defs>
+    <g id="Lag_2" data-name="Lag 2">
+        <g id="Lag_1-2" data-name="Lag 1">
+            <rect class="pipe-cls-1" x="63.72" y="36.12" width="4.04" height="4.34"/>
+            <polygon class="pipe-cls-2"
+                     points="63.72 40.57 63.72 40.46 59.11 40.46 59.11 44.57 72.37 44.57 72.37 40.46 67.76 40.46 67.76 40.57 63.72 40.57"/>
+            <rect class="pipe-cls-3" x="148.24" width="10.86" height="42.72"/>
+            <rect class="pipe-cls-3" x="96.46" y="44.55" width="10.7" height="10.86"/>
+            <rect class="pipe-cls-3" x="118.02" y="44.55" width="28.25" height="10.86"/>
+            <path class="pipe-cls-1" d="M159.1,42.72H146.27V57.24h.2A14.54,14.54,0,0,0,161,42.72Z"/>
+            <rect class="pipe-cls-3" x="83.62" y="56.65" width="10.86" height="27.35"/>
+            <path class="pipe-cls-1" d="M96.26,42.13A14.53,14.53,0,0,0,81.73,56.65H96.46V42.13Z"/>
+            <rect class="pipe-cls-1" x="46.84" y="22.39" width="14.32" height="10.86"/>
+            <rect class="pipe-cls-1" y="22.39" width="13.47" height="10.86"/>
+            <rect class="pipe-cls-1" x="70.41" y="22.39" width="34.91" height="10.86"/>
+            <rect class="pipe-cls-1" x="22.72" y="22.39" width="13.26" height="10.86"/>
+            <rect class="pipe-cls-1" x="107.16" y="55.41" width="10.86" height="28.59"/>
+            <rect class="pipe-cls-1" x="107.16" y="35.23" width="10.86" height="9.32"/>
+            <rect class="pipe-cls-1" x="107.16" y="44.55" width="10.86" height="10.86"/>
+            <path class="pipe-cls-2" d="M105.33,20.5h0V35.23h14.52V35A14.52,14.52,0,0,0,105.33,20.5Z"/>
+            <rect class="pipe-cls-2" x="63.72" y="40.46" width="4.04" height="0.11"/>
+            <polygon class="pipe-cls-2"
+                     points="61.16 19.52 61.16 22.39 61.16 33.25 61.16 36.12 63.72 36.12 67.76 36.12 70.41 36.12 70.41 33.25 70.41 22.39 70.41 19.52 61.16 19.52"/>
+            <polygon class="pipe-cls-2"
+                     points="13.47 19.52 13.47 22.39 13.47 33.25 13.47 36.12 22.72 36.12 22.72 33.25 22.72 22.39 22.72 19.52 13.47 19.52"/>
+            <rect class="pipe-cls-4" x="35.98" y="57.31" width="10.86" height="26.69"/>
+            <polygon class="pipe-cls-4"
+                     points="35.98 0 35.98 22.39 35.98 33.25 35.98 45.33 46.84 45.33 46.84 33.25 46.84 22.39 46.84 0 35.98 0"/>
+            <path class="pipe-cls-4" d="M27.63,48.71a3.16,3.16,0,0,1,.16,5.09h5.48V48.71Z"/>
+            <path class="pipe-cls-5"
+                  d="M25.83,48.07A3.18,3.18,0,0,0,29,44.88v0a3.15,3.15,0,0,0-3.18-3.14h0a3.18,3.18,0,1,0,0,6.36Z"/>
+            <path class="pipe-cls-5"
+                  d="M27,48.71h.64a3.14,3.14,0,0,0-1.81-.57h0a3.18,3.18,0,0,0-.09,6.35h.2a3.15,3.15,0,0,0,1.87-.69H27Z"/>
+            <path class="pipe-cls-5" d="M29,51.31a3.17,3.17,0,0,0-1.37-2.6H27V53.8h.8A3.18,3.18,0,0,0,29,51.31Z"/>
+            <path class="pipe-cls-5" d="M25.72,54.49A3.18,3.18,0,1,0,29,57.66v0a3.16,3.16,0,0,0-3.08-3.15h-.2Z"/>
+            <path class="pipe-cls-5" d="M25.72,54.49h0Z"/>
+            <polygon class="pipe-cls-5"
+                     points="46.84 45.33 35.98 45.33 33.27 45.33 33.27 48.71 33.27 53.8 33.27 57.31 35.98 57.31 46.84 57.31 49.71 57.31 49.71 45.33 46.84 45.33"/>
+        </g>
+    </g>
+</svg>

@@ -14,7 +14,7 @@ context("Email verification", () => {
   it("should show verification email required message", () => {
     const {email, password} = generateRandomCredentials()
     cy.fastSignup(email, password);
-    cy.get('body').should('contain.translationOf', 'signup.verificationRequired.message');
+    cy.get('body').should('contain.translationOf', 'signup.verificationRequired.message', {email});
   });
 
   it("should resend verification email correctly", () => {
@@ -27,7 +27,7 @@ context("Email verification", () => {
   it("should verify email correctly", () => {
     const {email, password} = generateRandomCredentials()
     cy.fastSignup(email, password);
-    cy.containsTranslationOf('signup.verificationRequired.message')
+    cy.containsTranslationOf('signup.verificationRequired.message', {email});
     cy.intercept('**/setAccountInfo?**').as('verify');
     cy.getEmailVerificationLink(email).then(url => {
       const path = `/verify-email?${url.split('?')[1]}`
@@ -47,7 +47,7 @@ context("Email verification", () => {
       cy.visit(Cypress.config().baseUrl!);
       const {email, password} = generateRandomCredentials()
       cy.fastSignup(email, password);
-      cy.containsTranslationOf('signup.verificationRequired.message')
+      cy.containsTranslationOf('signup.verificationRequired.message', {email});
       cy.getEmailVerificationLink(email).then(url => {
         verificationLink = `/verify-email?${url.split('?')[1]}`;
       });
@@ -71,7 +71,7 @@ context("Email verification", () => {
 
       const {email, password} = generateRandomCredentials()
       cy.fastSignup(email, password);
-      cy.containsTranslationOf('signup.verificationRequired.message')
+      cy.containsTranslationOf('signup.verificationRequired.message', {email});
 
       cy.intercept('**/setAccountInfo?**').as('verify');
       cy.getEmailVerificationLink(email).then(url => {
