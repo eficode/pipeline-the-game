@@ -8,6 +8,7 @@ export type Variants = 'default' | 'clear';
 
 export const StyledButton = styled('button')<{ variant: Variants }>`
   height: 40px;
+  min-width: 200px;
   border-radius: 4px;
   padding: 2px 40px;
   cursor: pointer;
