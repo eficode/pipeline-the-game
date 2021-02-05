@@ -10,9 +10,7 @@ import {
   CardHeadingTag,
   CardHeadingTags,
   CardWrapper,
-  PatternContainer,
 } from './Card.styled';
-import { ReactComponent as PipePattern } from '@assets/icons/card-pipe-pattern.svg';
 
 type CardProps = Card & {
   headerTitle?: string;
@@ -32,7 +30,6 @@ const CardComponent: React.FC<CardProps> = ({
   tags,
   dragging,
   bigger,
-  ...other
 }) => {
   return (
     <CardWrapper dragging={dragging} bigger={bigger}>
