@@ -1,6 +1,4 @@
 import { useCallback } from 'react';
-import { useHistory } from 'react-router-dom';
-import { RoutingPath } from './routingPath';
 
 /**
  *
