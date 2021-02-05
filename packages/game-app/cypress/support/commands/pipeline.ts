@@ -1,11 +1,12 @@
 /// <reference types="Cypress" />
 
 // @ts-ignore
-Cypress.Commands.add("containsTranslationOf", {prevSubject: 'optional'}, (subject, first: string, second: string) => {
-  let selector = second ? first : undefined;
-  let key = second ? second : first;
+Cypress.Commands.add("containsTranslationOf", {prevSubject: 'optional'}, (subject, first: string, second: string |object, params?:object) => {
+  let selector = (second && typeof second ==='string') ? first : undefined;
+  let key = selector ? second : first;
+  let actualParams = selector ? params : second;
   cy.window({log: false}).then((win) => {
-    const translatedText = (win as any).i18n.t(key);
+    const translatedText = (win as any).i18n.t(key, actualParams);
     const args = [translatedText];
     if (selector) {
       args.unshift(selector);
