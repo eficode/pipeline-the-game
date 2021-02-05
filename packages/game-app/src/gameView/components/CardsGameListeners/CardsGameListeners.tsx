@@ -81,6 +81,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
       onEvent({
         type: GameEventType.CardMovingStart,
         cardId: active.id,
+        parent,
       });
     },
     [onEvent],

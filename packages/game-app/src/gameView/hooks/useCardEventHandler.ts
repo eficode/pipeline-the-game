@@ -13,8 +13,8 @@ export default function useCardEventHandler() {
         dispatch(actions.updateCardPosition({ cardId, position, target }));
       }
       if (event.type === GameEventType.CardMovingStart) {
-        const { cardId } = event;
-        dispatch(actions.lockCard(cardId));
+        const { cardId, parent } = event;
+        dispatch(actions.lockCard({ cardId, parent }));
       }
     },
     [dispatch],

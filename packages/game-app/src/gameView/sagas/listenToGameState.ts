@@ -1,14 +1,23 @@
 import { call, put, select, take, takeEvery } from 'redux-saga/effects';
-import { eventChannel } from 'redux-saga';
+import { EventChannel, eventChannel } from 'redux-saga';
 import { CardEntity, CardState, CardTypes } from '@pipeline/common';
 
 import { actions, GameState, selectors } from '../slice';
+import listenToCardsChanges from '../apis/listenToCardsChanges';
 import listenToGameChanges from '../apis/listenToGameChanges';
 import callLoadInitialCardsState from '../apis/callLoadInitialCardsState';
 import { DEFAULT_Z_INDEX } from '@pipeline/common';
+import callLoadGameFromRTDB from '../apis/callLoadGameFromRTDB';
+import { RTDBGame } from '@pipeline/models';
+
+function firebaseCardsChannel(gameId: string) {
+  return eventChannel<{ state: CardState; cardId: string }>(emit => {
+    return listenToCardsChanges(gameId, data => emit(data));
+  });
+}
 
 function firebaseGameChannel(gameId: string) {
-  return eventChannel<{ state: CardState; cardId: string }>(emit => {
+  return eventChannel<RTDBGame>(emit => {
     return listenToGameChanges(gameId, data => emit(data));
   });
 }
@@ -29,6 +38,7 @@ function firebaseGameChannel(gameId: string) {
 
 function* listenToCardState(action: ReturnType<typeof actions.startListenToGameState>) {
   const cardsState: { [cardId: string]: CardState } = yield call(callLoadInitialCardsState, action.payload);
+  const rtdbGame: RTDBGame = yield call(callLoadGameFromRTDB, action.payload);
   const cards: CardEntity[] = yield select(selectors.getAllCards);
 
   const deckCardsIds = cards
@@ -56,7 +66,7 @@ function* listenToCardState(action: ReturnType<typeof actions.startListenToGameS
     deckCards: deckCardsIds,
     cardsState: cardsState as any,
     nextZIndex: maxZIndex + 1,
-    review: false,
+    review: rtdbGame.review,
   };
   yield put(
     actions.setInitialGameState({
@@ -64,15 +74,26 @@ function* listenToCardState(action: ReturnType<typeof actions.startListenToGameS
       gameId: action.payload,
     }),
   );
-  const channel = yield call(firebaseGameChannel, action.payload);
+  const cardsChannel: EventChannel<{ state: CardState; cardId: string }> = yield call(
+    firebaseCardsChannel,
+    action.payload,
+  );
 
-  yield takeEvery(channel, function* (value: any) {
+  yield takeEvery(cardsChannel, function* (value) {
     const { state, cardId } = value;
-    yield put(actions.setCardState({ cardState: state, cardId }));
+    yield put(actions.setCardState({ cardState: { ...state, parent: state.parent || 'panel' }, cardId }));
+  });
+
+  const gameChannel: EventChannel<RTDBGame> = yield call(firebaseGameChannel, action.payload);
+
+  yield takeEvery(gameChannel, function* (value) {
+    const { review } = value;
+    yield put(actions.setReview(review));
   });
 
   yield take(actions.stopListenOnGame);
-  channel.close();
+  cardsChannel.close();
+  gameChannel.close();
 }
 
 export default function* listenToCardStateSaga() {

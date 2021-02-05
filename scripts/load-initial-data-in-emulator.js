@@ -21,20 +21,25 @@ async function loadData() {
   await rules.loadRules(app);
 }
 
+async function createUser(email){
+    const user = await admin.auth().createUser({
+        email,
+        emailVerified: true,
+        password: 'Test123'
+    });
+    await admin.firestore().doc(`users/${user.uid}`).set({
+        email,
+        role: 'budgetOwner',
+        devOpsMaturity: 'veryImmature'
+    });
+}
+
 async function createTestUser() {
   if (process.env.CREATE_TEST_USER === 'true') {
 
       try {
-          const user = await admin.auth().createUser({
-              email: 'test@test.com',
-              emailVerified: true,
-              password: 'Test123'
-          });
-          await admin.firestore().doc(`users/${user.uid}`).set({
-              email: 'test@test.com',
-              role: 'budgetOwner',
-              devOpsMaturity: 'veryImmature'
-          });
+          await createUser('test@test.com')
+          await createUser('test1@test.com')
       } catch (e) {
 
       }

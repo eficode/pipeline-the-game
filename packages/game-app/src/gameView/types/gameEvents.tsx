@@ -6,6 +6,7 @@ export enum GameEventType {
 type CardMovingStart = {
   type: GameEventType.CardMovingStart;
   cardId: string;
+  parent: 'board' | 'panel';
 };
 
 type CardMovingEnd = {
