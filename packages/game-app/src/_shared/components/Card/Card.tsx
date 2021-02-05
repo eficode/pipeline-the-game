@@ -37,9 +37,6 @@ const CardComponent: React.FC<CardProps> = ({
   return (
     <CardWrapper dragging={dragging} bigger={bigger}>
       <CardHeader type={type}>
-        <PatternContainer>
-          <PipePattern />
-        </PatternContainer>
         <CardHeading>{type}</CardHeading>
         <CardHeadingTags>
           {tags?.map(t => (

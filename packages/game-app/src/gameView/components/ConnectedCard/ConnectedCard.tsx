@@ -17,4 +17,4 @@ const ConnectedCard: React.FC<Props> = ({ id, dragging, bigger }) => {
 
 ConnectedCard.displayName = 'ConnectedCard';
 
-export default ConnectedCard;
+export default React.memo(ConnectedCard);
