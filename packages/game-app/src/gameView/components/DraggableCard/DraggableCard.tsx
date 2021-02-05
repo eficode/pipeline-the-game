@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDraggable } from '@dnd-kit/core';
 import { useDispatch, useSelector } from 'react-redux';
 import { actions, selectors } from '../../slice';
@@ -79,10 +79,22 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
     }
   }, [heldBySomeoneElse, animating]);
 
+  const card = useMemo(() => {
+    return <ConnectedCard bigger={bigger} id={id} />;
+  }, [bigger, id]);
+
+  const estimations = useMemo(() => {
+    return (
+      <>
+        {estimationOpen && <EstimationEditor saveEstimation={saveEstimation} initialEstimation={estimation} />}
+        {!estimationOpen && estimation && <EstimationInCard moving={isCardMoving} estimation={estimation} />}
+      </>
+    );
+  }, [estimation, estimationOpen, isCardMoving, saveEstimation]);
+
   return (
     <div style={style} data-cy={`card-${id}`}>
-      {estimationOpen && <EstimationEditor saveEstimation={saveEstimation} initialEstimation={estimation} />}
-      {!estimationOpen && estimation && <EstimationInCard moving={isCardMoving} estimation={estimation} />}
+      {estimations}
       <CardWrapper
         ref={setNodeRef}
         {...listeners}
@@ -90,7 +102,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
         {...attributes}
         isDragging={isCardMoving}
       >
-        <ConnectedCard bigger={bigger} id={id} />
+        {card}
       </CardWrapper>
     </div>
   );
