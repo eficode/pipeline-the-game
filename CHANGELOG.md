@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.1](https://github.com/eficode/pipeline-the-game/compare/v0.3.0...v0.3.1) (2021-02-08)
+
+
+### Bug Fixes
+
+* **all-general:** fix rtdb instances list command ([9a9e2cf](https://github.com/eficode/pipeline-the-game/commit/9a9e2cf15069d7d39c2df45b7b2ef4ddbb78ba8e))
+
+
+
+
+
 # [0.3.0](https://github.com/eficode/pipeline-the-game/compare/v0.2.0...v0.3.0) (2021-02-08)
 
 
