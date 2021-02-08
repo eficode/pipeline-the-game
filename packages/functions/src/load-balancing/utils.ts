@@ -69,8 +69,11 @@ const moveGameFromRTDBToFirestore = async (gameId: string, db: FirebaseFirestore
   if (cardsSnap.exists()) {
     newCards = unlockAndZIndexNormalize(cardsSnap);
   }
-  await db.collection(FirebaseCollection.Games).doc(gameId).update({...game, rtdbInstance: null, cards: newCards,
-   lastPlayerDisconnectedAt: null, movedAt: admin.firestore.FieldValue.serverTimestamp()} as Game);
+  await db.collection(FirebaseCollection.Games).doc(gameId).update({...game,
+    createdAt: new admin.firestore.Timestamp((game.createdAt as any)._seconds, (game.createdAt as any)._nanoseconds,),
+    rtdbInstance: null, cards: newCards,
+    lastPlayerDisconnectedAt: null,
+    movedAt: admin.firestore.FieldValue.serverTimestamp()} as Game);
   await rtdb.ref().update({
     [gamePath]: null,
     [cardsPath]: null,
