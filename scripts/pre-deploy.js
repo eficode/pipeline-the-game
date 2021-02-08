@@ -20,11 +20,11 @@ async function copyPackages() {
 }
 
 async function fillRtdbInstancesFile() {
-    const locations = ['europe-west1', 'us-central1'];
+    const locations = ['europe-west1'];
     let instancesList = [];
     for (const location of locations) {
         const listDatabases = firebaseTools.database.instances.list
-        const databases = await listDatabases({location});
+        const databases = await listDatabases({location, project: process.env.FIREBASE_PROJECT_ID});
         instancesList = [...instancesList, ...databases.map(d => ({
             url: `https://${d.instance}.${location}.firebasedatabase.app`,
             name: d.instance,

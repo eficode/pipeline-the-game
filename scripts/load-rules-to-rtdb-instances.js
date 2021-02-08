@@ -25,11 +25,11 @@ async function loadRulesToRTDBInstances(app) {
       await fetch(databaseURL, {method: 'PUT', body: databaseRules})
     }
   } else {
-    const locations = ['europe-west1', 'us-central1'];
+    const locations = ['europe-west1'];
     let instancesList = [];
     for (const location of locations) {
       const listDatabases = firebaseTools.database.instances.list
-      const databases = await listDatabases({location});
+      const databases = await listDatabases({location, project: process.env.FIREBASE_PROJECT_ID});
       instancesList = [...instancesList, ...databases];
     }
     await run(`firebase target:clear database main --project $FIREBASE_PROJECT_ID`);
