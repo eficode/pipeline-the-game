@@ -20,16 +20,20 @@ async function copyPackages() {
 }
 
 async function fillRtdbInstancesFile() {
-    const listDatabases = firebaseTools.database.instances.list
-    const databases = await listDatabases();
-    const instanceList = databases.map(d => ({
-        url: `https://${d.instance}.europe-west1.firebasedatabase.app`,
-        name: d.instance,
-        id: d.instance.replace(`${process.env.FIREBASE_PROJECT_ID}-`, ''),
-    }));
-    console.log('Found these instances of rtdb on witch functions will be deployed', instanceList);
+    const locations = ['europe-west1', 'us-central1'];
+    let instancesList = [];
+    for (const location of locations) {
+        const listDatabases = firebaseTools.database.instances.list
+        const databases = await listDatabases({location});
+        instancesList = [...instancesList, ...databases.map(d => ({
+            url: `https://${d.instance}.${location}.firebasedatabase.app`,
+            name: d.instance,
+            id: d.instance.replace(`${process.env.FIREBASE_PROJECT_ID}-`, ''),
+        }))];
+    }
+    console.log('Found these instances of rtdb on witch functions will be deployed', instancesList);
     const sourceFile = `
-    const rtdbInstancesUrl =  ${ JSON.stringify(instanceList, null, 2)};
+    const rtdbInstancesUrl =  ${ JSON.stringify(instancesList, null, 2)};
 
     export default rtdbInstancesUrl;
 
