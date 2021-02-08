@@ -5,9 +5,8 @@ import { Box, Button, ErrorMessage, Link, PasswordInput, TowColumnPage, Typograp
 import { useTranslate } from '@pipeline/i18n';
 import { useLogin } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
-import { RoutingPath, useNavigateTo } from '@pipeline/routing';
+import { RoutingPath, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
 import { LoginForm, PrivacySpan, Separator } from './Login.styled';
-import useNavigateOutsideTo from '../../../_shared/routing/useNavigateOutsideTo';
 
 type Props = {};
 
@@ -61,7 +60,7 @@ const Login: React.FC<Props> = () => {
                     name="password"
                     label={t('login.form.password.label')}
                     placeholder={t('login.form.password.placeholder')}
-                    others={passwordProps}
+                    {...passwordProps}
                   />
                 </Box>
                 <Box textAlign="center" mt={5}>
@@ -70,7 +69,7 @@ const Login: React.FC<Props> = () => {
                 {loginTranslateError ? <ErrorMessage message={loginTranslateError} /> : null}
                 <Box mt={4} textAlign="center">
                   <PrivacySpan>{t('login.privacy.text')}</PrivacySpan>
-                  <Link onClick={openPrivacyPolicy} fontSize="12px">
+                  <Link onClick={openPrivacyPolicy} variant="tinyBlue">
                     {t('login.privacy.link')}
                   </Link>
                 </Box>

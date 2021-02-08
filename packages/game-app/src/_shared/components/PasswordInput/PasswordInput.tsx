@@ -4,7 +4,7 @@ import ErrorMessage from '../ErrorMessage';
 import Typography from '../Typography';
 import { InputContainer, LabelContainer } from './PasswordInput.styled';
 import Input from '../Input';
-import { ReactComponent as EyeIcon } from '../../../assets/icons/eye.svg';
+import { ReactComponent as EyeIcon } from '@assets/icons/eye.svg';
 import { Link } from '@pipeline/components';
 
 type Props = {
@@ -31,7 +31,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
             {label}
           </Typography>
           {forgotPasswordLabel && onForgotPassword && (
-            <Link color="gray" fontSize="14px" onClick={onForgotPassword}>
+            <Link variant="smallGray" onClick={onForgotPassword}>
               {forgotPasswordLabel}
             </Link>
           )}
@@ -41,7 +41,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
           variant="default"
           iconRight={
             <IconButton variant="clearSmall" onClick={toggleType}>
-              <EyeIcon className="gg-eye" />
+              <EyeIcon />
             </IconButton>
           }
           placeholder={placeholder}

@@ -19,14 +19,13 @@ type Props = {
   type?: string;
   CustomInput?: React.ComponentType<React.ComponentProps<typeof TextInput>>;
   disabled?: boolean;
-  others?: object;
 };
 
 /**
  * Input directly connected to the parent form that includes error message
  * visualization. Its value can be found under the {name} key in the form
  */
-const FormTextField: React.FC<Props> = ({ name, label, placeholder, type, CustomInput, disabled, others }) => {
+const FormTextField: React.FC<Props> = ({ name, label, placeholder, type, CustomInput, disabled, ...others }) => {
   const data = useFormContext();
 
   const error = data.errors[name];

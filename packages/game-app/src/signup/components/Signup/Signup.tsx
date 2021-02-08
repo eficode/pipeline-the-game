@@ -113,7 +113,7 @@ const Signup: React.FC<Props> = () => {
                     name="password"
                     label={t('signup.form.password.label')}
                     placeholder={t('signup.form.password.placeholder')}
-                    others={passwordProps}
+                    {...passwordProps}
                   />
                 </Box>
                 <Box mt={3}>
@@ -144,7 +144,7 @@ const Signup: React.FC<Props> = () => {
                 {signupSuccess ? <span>Success</span> : null}
                 <Box mt={4} textAlign="center">
                   <PrivacySpan>{t('signup.privacy.text')}</PrivacySpan>
-                  <Link onClick={openPrivacyPolicy} fontSize="12px">
+                  <Link onClick={openPrivacyPolicy} variant="tinyBlue">
                     {t('signup.privacy.link')}
                   </Link>
                 </Box>
