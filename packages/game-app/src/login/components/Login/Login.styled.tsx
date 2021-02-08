@@ -5,4 +5,17 @@ export const LoginForm = styled.div<{ error?: boolean }>`
   ${props => props.error && animations.shake()}
 `;
 
+export const Separator = styled.div`
+  width: 80px;
+  height: 0;
+  border: 1px solid #d7d2cb;
+  opacity: 1;
+`;
+
+export const PrivacySpan = styled.span`
+  font-size: 12px;
+`;
+
 LoginForm.displayName = 'LoginForm';
+Separator.displayName = 'Separator';
+PrivacySpan.displayName = 'PrivacySpan';

@@ -7,6 +7,7 @@ import Input from '../Input';
 type Props = {
   name: string;
   label?: string;
+  placeholder?: string;
   value: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   errorMessage?: string | null;
@@ -15,7 +16,7 @@ type Props = {
 };
 
 const TextInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ name, value, errorMessage, label, onChange, type = 'text', disabled }, ref) => {
+  ({ name, value, errorMessage, label, placeholder, onChange, type = 'text', disabled }, ref) => {
     return (
       <InputContainer>
         {label ? (
@@ -27,6 +28,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>(
           ref={ref}
           variant="default"
           disabled={disabled}
+          placeholder={placeholder}
           type={type}
           value={value}
           name={name}

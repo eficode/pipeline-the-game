@@ -60,9 +60,20 @@ const translations = {
     notYetAccount: "Haven't played yet?",
     goToSignup: 'Create account',
     form: {
-      emailLabel: 'Email',
-      passwordLabel: 'Password',
+      email: {
+        label: 'Email',
+        placeholder: 'james.smith@eficode.com',
+      },
+      password: {
+        label: 'Password',
+        placeholder: 'Test1234',
+        forgot: 'Forgot?',
+      },
       buttonText: 'Sign in',
+    },
+    privacy: {
+      text: "By signing in I agree to Eficode's",
+      link: 'Privacy Policy',
     },
     errors: {
       'auth/invalid-email': 'Email not valid',
@@ -82,14 +93,35 @@ const translations = {
       resendSuccess: 'Resend success',
     },
     form: {
-      firstNameLabel: 'First name',
-      lastNameLabel: 'Last name',
-      emailLabel: 'Email',
-      passwordLabel: 'Password',
-      repeatPasswordLabel: 'Repeat password',
+      firstName: {
+        label: 'First name',
+        placeholder: 'James',
+      },
+      lastName: {
+        label: 'Last name',
+        placeholder: 'Smith',
+      },
+      email: {
+        label: 'Email',
+        placeholder: 'james.smith@eficode.com',
+      },
+      password: {
+        label: 'Password',
+        placeholder: 'Test1234',
+        forgot: 'Forgot?',
+      },
+      repeatPassword: {
+        label: 'Repeat password',
+        placeholder: 'Test1234',
+      },
       roleLabel: 'Role',
       maturityLabel: 'DevOps maturity',
-      buttonText: 'Signup',
+      buttonText: 'Sign up',
+    },
+    privacy: {
+      text:
+        'Eficode needs the contact information you provide to us to contact you about our products and services. You may unsubscribe from these communications at any time. For information on how to unsubscribe, as well as our privacy practices and commitment to protecting your privacy, please review our',
+      link: 'Privacy Policy',
     },
     errors: {
       invalidEmail: 'Invalid email',
