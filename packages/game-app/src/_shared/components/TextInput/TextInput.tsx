@@ -3,10 +3,13 @@ import Typography from '../Typography';
 import ErrorMessage from '../ErrorMessage';
 import { InputContainer } from './TextInput.styled';
 import Input from '../Input';
+import { Box, PopoverDetails } from '@pipeline/components';
+import { LabelContainer } from '../PasswordInput/PasswordInput.styled';
 
 type Props = {
   name: string;
   label?: string;
+  labelDetails?: string;
   placeholder?: string;
   value: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
@@ -16,13 +19,16 @@ type Props = {
 };
 
 const TextInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ name, value, errorMessage, label, placeholder, onChange, type = 'text', disabled }, ref) => {
+  ({ name, value, errorMessage, label, labelDetails, placeholder, onChange, type = 'text', disabled }, ref) => {
     return (
       <InputContainer>
         {label ? (
-          <Typography as="label" variant="label" htmlFor={name}>
-            {label}
-          </Typography>
+          <Box display="flex" flexDirection="row">
+            <Typography mb={1} as="label" variant="label" htmlFor={name}>
+              {label}
+            </Typography>
+            {labelDetails && <PopoverDetails details={labelDetails} />}
+          </Box>
         ) : null}
         <Input
           ref={ref}

@@ -112,6 +112,7 @@ const Signup: React.FC<Props> = () => {
                     CustomInput={PasswordInput}
                     name="password"
                     label={t('signup.form.password.label')}
+                    labelDetails={t('signup.errors.passwordRequirements')}
                     placeholder={t('signup.form.password.placeholder')}
                     {...passwordProps}
                   />
