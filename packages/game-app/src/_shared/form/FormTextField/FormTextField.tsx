@@ -73,7 +73,7 @@ const FormTextField: React.FC<Props> = ({
         />
       );
     },
-    [CustomInput, label, placeholder, translatedError, type, disabled, others],
+    [CustomInput, label, placeholder, translatedError, type, disabled, others, labelDetails],
   );
 
   return (
