@@ -78,7 +78,9 @@ const Login: React.FC<Props> = () => {
                 </Box>
                 <Box mt={4} textAlign="center">
                   <span>{t('login.notYetAccount')}</span>&nbsp;
-                  <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
+                  <Link id="go-to-signup" onClick={goToSignUp}>
+                    {t('login.goToSignup')}
+                  </Link>
                 </Box>
               </form>
             </FormProvider>

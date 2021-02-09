@@ -21,6 +21,7 @@ const EmailVerificationRequired: React.FC<Props> = () => {
       </Box>
       <Box mt={3} textAlign="center">
         <Button
+          id="resend-email-button"
           label={t('signup.verificationRequired.resend')}
           disabled={loading}
           loading={loading}
