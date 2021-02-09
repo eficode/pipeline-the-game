@@ -31,7 +31,6 @@ jobs:
           REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_MESSAGING_SENDER_ID }}
           REACT_APP_FIREBASE_CONFIG_APP_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_APP_ID }}
           REACT_APP_FIREBASE_USE_EMULATORS: true
-          REACT_APP_FUNCTIONS_BASE_URL: 'http://localhost:5001/pipeline-game-dev/europe-west1'
 
       - name: Lint functions
         run: npm --prefix packages/functions run lint
