@@ -9,6 +9,7 @@ import { ReactComponent as HideIcon } from '../../../assets/icons/hide-password.
 import Box from '../Box';
 import Link from '../Link';
 import PopoverDetails from '../PopoverDetails';
+import StyledIcon from '../Icon';
 
 type Props = {
   name: string;
@@ -51,7 +52,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
           variant="default"
           iconRight={
             <IconButton variant="clearSmall" onClick={toggleType}>
-              {type === 'password' ? <EyeIcon /> : <HideIcon />}
+              <StyledIcon variant="small">{type === 'password' ? <EyeIcon /> : <HideIcon />}</StyledIcon>
             </IconButton>
           }
           placeholder={placeholder}

@@ -3,6 +3,7 @@ import { ReactComponent as QuestionIcon } from '../../../assets/icons/question.s
 import { Popover, ArrowContainer, PopoverProps } from 'react-tiny-popover';
 import Typography from '../Typography';
 import styled from 'styled-components';
+import StyledIcon from '../Icon';
 
 type Props = {
   details: string;
@@ -39,12 +40,9 @@ const PopoverDetails: React.FC<Props> = ({ details }) => {
     return ['right'] as PopoverProps['positions'];
   }, []);
 
-  return (
-    <Popover
-      padding={10}
-      positions={position}
-      isOpen={isOpen}
-      content={({ position, childRect, popoverRect }) => (
+  const popoverContent = useCallback(
+    ({ position, childRect, popoverRect }) => {
+      return (
         <ArrowContainer // if you'd like an arrow, you can import the ArrowContainer!
           position={position}
           childRect={childRect}
@@ -56,10 +54,17 @@ const PopoverDetails: React.FC<Props> = ({ details }) => {
             <Typography fontSize="13px">{details}</Typography>
           </PopoverContent>
         </ArrowContainer>
-      )}
-    >
+      );
+    },
+    [details],
+  );
+
+  return (
+    <Popover padding={10} positions={position} isOpen={isOpen} content={popoverContent}>
       <PopoverContainer onMouseEnter={openPopover} onMouseLeave={closePopover}>
-        <QuestionIcon />
+        <StyledIcon variant="small" color="#7a7a7a">
+          <QuestionIcon />
+        </StyledIcon>
       </PopoverContainer>
     </Popover>
   );
