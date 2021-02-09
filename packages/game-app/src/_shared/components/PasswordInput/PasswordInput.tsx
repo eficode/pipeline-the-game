@@ -4,9 +4,11 @@ import ErrorMessage from '../ErrorMessage';
 import Typography from '../Typography';
 import { InputContainer, LabelContainer } from './PasswordInput.styled';
 import Input from '../Input';
-import { ReactComponent as EyeIcon } from '@assets/icons/eye.svg';
-import { ReactComponent as HideIcon } from '@assets/icons/hide-password.svg';
-import { Box, Link, PopoverDetails } from '@pipeline/components';
+import { ReactComponent as EyeIcon } from '../../../assets/icons/eye.svg';
+import { ReactComponent as HideIcon } from '../../../assets/icons/hide-password.svg';
+import Box from '../Box';
+import Link from '../Link';
+import PopoverDetails from '../PopoverDetails';
 
 type Props = {
   name: string;

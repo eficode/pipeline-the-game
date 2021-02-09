@@ -3,8 +3,8 @@ import Typography from '../Typography';
 import ErrorMessage from '../ErrorMessage';
 import { InputContainer } from './TextInput.styled';
 import Input from '../Input';
-import { Box, PopoverDetails } from '@pipeline/components';
-import { LabelContainer } from '../PasswordInput/PasswordInput.styled';
+import Box from '../Box';
+import PopoverDetails from '../PopoverDetails';
 
 type Props = {
   name: string;

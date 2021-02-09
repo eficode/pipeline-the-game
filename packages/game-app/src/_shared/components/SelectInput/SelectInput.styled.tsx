@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Box from '../Box';
 import React from 'react';
-import dropdownArrow from '@assets/icons/dropdown-arrow.svg';
+import dropdownArrow from '../../../assets/icons/dropdown-arrow.svg';
 
 export const Select = styled.select`
   width: 100%;

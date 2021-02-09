@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import { ReactComponent as QuestionIcon } from '@assets/icons/question.svg';
+import { ReactComponent as QuestionIcon } from '../../../assets/icons/question.svg';
 import { Popover, ArrowContainer, PopoverProps } from 'react-tiny-popover';
-import { Typography } from '@pipeline/components';
+import Typography from '../Typography';
 import styled from 'styled-components';
 
 type Props = {
@@ -20,6 +20,8 @@ const PopoverContent = styled.div`
   padding: 12px;
   max-width: 140px;
   border-radius: 8px;
+  -webkit-box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.1);
 `;
 
 const PopoverDetails: React.FC<Props> = ({ details }) => {
