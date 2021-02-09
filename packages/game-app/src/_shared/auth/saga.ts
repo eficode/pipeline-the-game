@@ -46,8 +46,8 @@ function* executeResetPassword(action: ReturnType<typeof actions.resetPassword>)
   yield call(() => firebase.auth().confirmPasswordReset(action.payload.code, action.payload.password));
 }
 
-function* executeVerifyActionCode(action: ReturnType<typeof actions.verifyActionCode>) {
-  yield call(() => firebase.auth().applyActionCode(action.payload));
+function* executeVerifyPasswordResetCode(action: ReturnType<typeof actions.verifyPasswordResetCode>) {
+  yield call(() => firebase.auth().verifyPasswordResetCode(action.payload));
 }
 
 function* executeEmailVerification(action: ReturnType<typeof actions.verifyEmail>) {
@@ -104,7 +104,7 @@ export default function* authSaga() {
   );
   yield takeEvery(actions.resetPassword, addRequestStatusManagement(executeResetPassword, 'auth.resetPassword'));
   yield takeEvery(
-    actions.verifyActionCode,
-    addRequestStatusManagement(executeVerifyActionCode, 'auth.verifyActionCode'),
+    actions.verifyPasswordResetCode,
+    addRequestStatusManagement(executeVerifyPasswordResetCode, 'auth.verifyPasswordResetCode'),
   );
 }

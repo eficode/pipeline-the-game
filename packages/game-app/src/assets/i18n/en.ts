@@ -105,11 +105,11 @@ const translations = {
     goToLink: 'Login',
     form: {
       password: {
-        label: 'Password',
+        label: 'New password',
         placeholder: 'Test1234',
       },
       repeatPassword: {
-        label: 'Repeat password',
+        label: 'Repeat new password',
         placeholder: 'Test1234',
       },
       buttonText: 'Reset password',

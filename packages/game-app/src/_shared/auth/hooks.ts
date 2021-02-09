@@ -30,6 +30,6 @@ export const useResetPassword = createRequestHook('auth.resetPassword', actions.
   errorMessagesScope: 'auth.errors',
 });
 
-export const useVerifyActionCode = createRequestHook('auth.verifyActionCode', actions.verifyActionCode, {
+export const useVerifyActionCode = createRequestHook('auth.verifyPasswordResetCode', actions.verifyPasswordResetCode, {
   errorMessagesScope: 'auth.errors',
 });

@@ -6,7 +6,7 @@ import { useTranslate } from '@pipeline/i18n';
 import { useLogin } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
 import { RoutingPath, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
-import { LoginForm, PrivacySpan, Separator } from './Login.styled';
+import { GoToSpan, LoginForm, PrivacySpan, Separator } from './Login.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginValidationSchema } from '../../utils/validation';
 
@@ -80,10 +80,8 @@ const Login: React.FC<Props> = () => {
                   <Separator />
                 </Box>
                 <Box mt={4} textAlign="center">
-                  <span>{t('login.notYetAccount')}</span>&nbsp;
-                  <Link id="go-to-signup" onClick={goToSignUp}>
-                    {t('login.goToSignup')}
-                  </Link>
+                  <GoToSpan>{t('login.notYetAccount')}</GoToSpan>&nbsp;
+                  <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
                 </Box>
               </form>
             </FormProvider>

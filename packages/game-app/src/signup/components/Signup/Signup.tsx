@@ -18,6 +18,11 @@ import styled from 'styled-components';
 const PrivacySpan = styled.span`
   font-size: 12px;
 `;
+const GoToSpan = styled.span`
+  font-size: 16px;
+`;
+
+GoToSpan.displayName = 'GoToSpan';
 PrivacySpan.displayName = 'PrivacySpan';
 
 type Props = {};
@@ -141,7 +146,7 @@ const Signup: React.FC<Props> = () => {
                   </Link>
                 </Box>
                 <Box mt={4} textAlign="center">
-                  <span>{t('signup.alreadyAccount')}</span>&nbsp;
+                  <GoToSpan>{t('signup.alreadyAccount')}</GoToSpan>&nbsp;
                   <Link onClick={goToSignIn}>{t('signup.goToSignIn')}</Link>
                 </Box>
               </form>

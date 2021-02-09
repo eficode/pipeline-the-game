@@ -15,7 +15,11 @@ export const Separator = styled.div`
 export const PrivacySpan = styled.span`
   font-size: 12px;
 `;
+export const GoToSpan = styled.span`
+  font-size: 16px;
+`;
 
 LoginForm.displayName = 'LoginForm';
 Separator.displayName = 'Separator';
 PrivacySpan.displayName = 'PrivacySpan';
+GoToSpan.displayName = 'GoToSpan';

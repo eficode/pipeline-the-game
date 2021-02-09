@@ -8,7 +8,7 @@ export interface RequestsKeys {
   'auth.login': null;
   'auth.sendResetPasswordEmail': null;
   'auth.resetPassword': null;
-  'auth.verifyActionCode': null;
+  'auth.verifyPasswordResetCode': null;
   'auth.logout': null;
   'game.loadCards': null;
   'game.loadGame': null;
