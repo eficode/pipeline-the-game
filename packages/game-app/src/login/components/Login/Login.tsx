@@ -49,7 +49,9 @@ const Login: React.FC<Props> = () => {
                 {loginTranslateError ? <ErrorMessage message={loginTranslateError} /> : null}
                 <Box display="flex" flexDirection="row" justifyContent="center" mt={4}>
                   <span>{t('login.notYetAccount')}</span>&nbsp;
-                  <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
+                  <Link id="go-to-signup" onClick={goToSignUp}>
+                    {t('login.goToSignup')}
+                  </Link>
                 </Box>
               </form>
             </FormProvider>
