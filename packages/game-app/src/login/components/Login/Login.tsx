@@ -7,6 +7,8 @@ import { useLogin } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
 import { RoutingPath, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
 import { LoginForm, PrivacySpan, Separator } from './Login.styled';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { loginValidationSchema } from '../../utils/validation';
 
 type Props = {};
 
@@ -19,6 +21,7 @@ const Login: React.FC<Props> = () => {
       email: '',
       password: '',
     },
+    resolver: yupResolver(loginValidationSchema),
   });
 
   const { handleSubmit } = methods;

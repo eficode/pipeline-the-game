@@ -2,10 +2,7 @@ import * as yup from 'yup';
 
 const requiredError = 'general.errors.required';
 
-export const signupValidationSchema = yup.object().shape({
-  firstName: yup.string().required(requiredError),
-  lastName: yup.string().required(requiredError),
-  email: yup.string().required(requiredError).email('auth.errors.invalidEmail'),
+export const resetPasswordValidationSchema = yup.object().shape({
   password: yup
     .string()
     .required(requiredError)
@@ -14,6 +11,4 @@ export const signupValidationSchema = yup.object().shape({
     .string()
     .required(requiredError)
     .oneOf([yup.ref('password')], 'auth.errors.passwordMatch'),
-  role: yup.string().required(requiredError),
-  devOpsMaturity: yup.string().required(requiredError),
 });

@@ -3,6 +3,7 @@ import { actions, AuthUser, selectors } from './slice';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
+import { RoutingPath } from '@pipeline/routing';
 
 function getCurrentUser(): Promise<AuthUser | null> {
   return new Promise<AuthUser | null>(resolve => {
@@ -31,6 +32,22 @@ function* initializeAuthSaga() {
 
 function* resendVerificationEmail() {
   yield call(() => firebase.auth().currentUser?.sendEmailVerification());
+}
+
+function* sendResetPasswordEmail(action: ReturnType<typeof actions.sendResetPasswordEmail>) {
+  yield call(() =>
+    firebase.auth().sendPasswordResetEmail(action.payload, {
+      url: `${window.location.origin}${RoutingPath.ResetPassword}`,
+    }),
+  );
+}
+
+function* executeResetPassword(action: ReturnType<typeof actions.resetPassword>) {
+  yield call(() => firebase.auth().confirmPasswordReset(action.payload.code, action.payload.password));
+}
+
+function* executeVerifyActionCode(action: ReturnType<typeof actions.verifyActionCode>) {
+  yield call(() => firebase.auth().applyActionCode(action.payload));
 }
 
 function* executeEmailVerification(action: ReturnType<typeof actions.verifyEmail>) {
@@ -81,4 +98,13 @@ export default function* authSaga() {
   yield takeEvery(actions.verifyEmail, addRequestStatusManagement(executeEmailVerification, 'auth.emailVerification'));
   yield takeEvery(actions.login, addRequestStatusManagement(executeLogin, 'auth.login'));
   yield takeEvery(actions.logout, addRequestStatusManagement(executeLogout, 'auth.logout'));
+  yield takeEvery(
+    actions.sendResetPasswordEmail,
+    addRequestStatusManagement(sendResetPasswordEmail, 'auth.sendResetPasswordEmail'),
+  );
+  yield takeEvery(actions.resetPassword, addRequestStatusManagement(executeResetPassword, 'auth.resetPassword'));
+  yield takeEvery(
+    actions.verifyActionCode,
+    addRequestStatusManagement(executeVerifyActionCode, 'auth.verifyActionCode'),
+  );
 }

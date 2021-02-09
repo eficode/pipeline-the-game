@@ -17,3 +17,19 @@ export const useLogin = createRequestHook('auth.login', actions.login, {
 export const useLogout = createRequestHook('auth.logout', actions.logout, {
   errorMessagesScope: 'auth.errors',
 });
+
+export const useSendResetPasswordEmail = createRequestHook(
+  'auth.sendResetPasswordEmail',
+  actions.sendResetPasswordEmail,
+  {
+    errorMessagesScope: 'auth.errors',
+  },
+);
+
+export const useResetPassword = createRequestHook('auth.resetPassword', actions.resetPassword, {
+  errorMessagesScope: 'auth.errors',
+});
+
+export const useVerifyActionCode = createRequestHook('auth.verifyActionCode', actions.verifyActionCode, {
+  errorMessagesScope: 'auth.errors',
+});

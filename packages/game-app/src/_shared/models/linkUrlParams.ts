@@ -1,4 +1,4 @@
-export interface VerifyEmailParams {
+export interface LinkUrlParams {
   mode: string;
   lang: string;
   oobCode: string;

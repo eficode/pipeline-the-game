@@ -1,7 +1,16 @@
 const translations = {
   auth: {
     errors: {
+      'auth/invalid-email': 'Email not valid',
+      'auth/user-disabled': 'User disabled',
+      'auth/user-not-found': 'Email or password invalid',
+      'auth/wrong-password': 'Email or password invalid',
       'auth/invalid-action-code': 'Verification link invalid or already used',
+      'auth/email-already-in-use': 'Ops, it seams that this email is not allowed',
+      invalidEmail: 'Invalid email',
+      passwordRequirements:
+        'The password must be 8 chars long and should contain at least a lowercase letter, an uppercase letter and a number',
+      passwordMatch: 'The two password must match',
     },
     logout: 'Sign out',
   },
@@ -75,11 +84,35 @@ const translations = {
       text: "By signing in I agree to Eficode's",
       link: 'Privacy Policy',
     },
-    errors: {
-      'auth/invalid-email': 'Email not valid',
-      'auth/user-disabled': 'User disabled',
-      'auth/user-not-found': 'Email or password invalid',
-      'auth/wrong-password': 'Email or password invalid',
+  },
+  forgotPassword: {
+    title: "Let's reset your password",
+    subTitle:
+      'Enter your email and we will send you a link to reset your password if the address is connected to an account.',
+    backTo: 'Back to',
+    backToLink: 'Sign In',
+    form: {
+      email: {
+        label: 'Email',
+        placeholder: 'james.smith@eficode.com',
+      },
+      buttonText: 'Send email',
+    },
+  },
+  resetPassword: {
+    title: 'Create new password',
+    goTo: 'Go to',
+    goToLink: 'Login',
+    form: {
+      password: {
+        label: 'Password',
+        placeholder: 'Test1234',
+      },
+      repeatPassword: {
+        label: 'Repeat password',
+        placeholder: 'Test1234',
+      },
+      buttonText: 'Reset password',
     },
   },
   signup: {
@@ -122,13 +155,6 @@ const translations = {
       text:
         'Eficode needs the contact information you provide to us to contact you about our products and services. You may unsubscribe from these communications at any time. For information on how to unsubscribe, as well as our privacy practices and commitment to protecting your privacy, please review our',
       link: 'Privacy Policy',
-    },
-    errors: {
-      invalidEmail: 'Invalid email',
-      passwordRequirements:
-        'The password must be 8 chars long and should contain at least a lowercase letter, an uppercase letter and a number',
-      passwordMatch: 'The two password must match',
-      'auth/email-already-in-use': 'Ops, it seams that this email is not allowed',
     },
   },
   general: {

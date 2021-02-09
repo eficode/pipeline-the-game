@@ -63,15 +63,7 @@ const Signup: React.FC<Props> = () => {
   );
 
   const goToSignIn = useNavigateTo(RoutingPath.Login, location.state);
-  const goToForgotPassword = useNavigateTo(RoutingPath.ForgotPassword);
   const openPrivacyPolicy = useNavigateOutsideTo('https://www.eficode.com');
-
-  const passwordProps = useMemo(() => {
-    return {
-      onForgotPassword: goToForgotPassword,
-      forgotPasswordLabel: t('signup.form.password.forgot'),
-    };
-  }, [t, goToForgotPassword]);
 
   useNavigateOnCondition(signupSuccess, RoutingPath.EmailVerificationRequired);
 
@@ -112,9 +104,8 @@ const Signup: React.FC<Props> = () => {
                     CustomInput={PasswordInput}
                     name="password"
                     label={t('signup.form.password.label')}
-                    labelDetails={t('signup.errors.passwordRequirements')}
+                    labelDetails={t('auth.errors.passwordRequirements')}
                     placeholder={t('signup.form.password.placeholder')}
-                    {...passwordProps}
                   />
                 </Box>
                 <Box mt={3}>
