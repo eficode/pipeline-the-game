@@ -34,7 +34,7 @@ const Dashboard: React.FC<Props> = () => {
             {t('dashboard.message')}
           </Typography>
           <Box mt={4} display="flex" flexDirection="row">
-            <Button onClick={goToCreateGame} label={t('dashboard.newGameLabel')} />
+            <Button id="go-to-create-game-button" onClick={goToCreateGame} label={t('dashboard.newGameLabel')} />
             <JoinGameButton />
           </Box>
         </Box>
