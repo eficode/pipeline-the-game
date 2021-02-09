@@ -22,6 +22,10 @@ function getCurrentUser(): Promise<AuthUser | null> {
 
 function* initializeAuthSaga() {
   const user: AuthUser | null = yield call(getCurrentUser);
+  // todo do it only in dev and uat
+  if (user) {
+    yield call(() => firebase.auth().currentUser?.getIdToken(true));
+  }
   yield put(actions.setLoggedUser(user));
 }
 
