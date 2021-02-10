@@ -37,7 +37,7 @@ const ResetPassword: React.FC<Props> = () => {
   useEffect(() => {
     verifyActionCode(params.oobCode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params]);
+  }, []);
 
   const submit = useMemo(() => {
     return handleSubmit((info: { password: string; repeatPassword: string }) => {

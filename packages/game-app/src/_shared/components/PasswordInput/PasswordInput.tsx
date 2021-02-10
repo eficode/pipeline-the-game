@@ -42,7 +42,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
             {labelDetails && <PopoverDetails details={labelDetails} />}
           </Box>
           {forgotPasswordLabel && onForgotPassword && (
-            <Link variant="smallGray" onClick={onForgotPassword}>
+            <Link id="forgot-password-button" variant="smallGray" onClick={onForgotPassword}>
               {forgotPasswordLabel}
             </Link>
           )}

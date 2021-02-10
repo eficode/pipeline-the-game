@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { variant, color } from 'styled-system';
+import { variant, color, width, height, WidthProps, HeightProps } from 'styled-system';
 
-export const StyledIcon = styled.div<{ variant?: 'default' | 'small' }>`
+export const StyledIcon = styled.div<WidthProps & HeightProps & { variant?: 'default' | 'small' }>`
   width: 24px;
   height: 24px;
 
@@ -20,6 +20,8 @@ export const StyledIcon = styled.div<{ variant?: 'default' | 'small' }>`
     },
   })}
   ${color}
+  ${width}
+  ${height}
 `;
 
 StyledIcon.displayName = 'StyledIcon';
