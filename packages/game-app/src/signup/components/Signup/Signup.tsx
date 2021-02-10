@@ -7,23 +7,11 @@ import { FormSelect, FormTextField } from '@pipeline/form';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
 import { Box, Button, ErrorMessage, Link, PasswordInput, TowColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
-import { RoutingPath, useNavigateOnCondition, useNavigateTo } from '@pipeline/routing';
+import { RoutingPath, useNavigateOnCondition, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
 
 import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
 import { signupValidationSchema } from '../../utils/validation';
-import useNavigateOutsideTo from '../../../_shared/routing/useNavigateOutsideTo';
-import styled from 'styled-components';
-
-const PrivacySpan = styled.span`
-  font-size: 12px;
-`;
-const GoToSpan = styled.span`
-  font-size: 16px;
-`;
-
-GoToSpan.displayName = 'GoToSpan';
-PrivacySpan.displayName = 'PrivacySpan';
 
 type Props = {};
 
@@ -140,13 +128,18 @@ const Signup: React.FC<Props> = () => {
                 {signupTranslateError ? <ErrorMessage message={signupTranslateError} /> : null}
                 {signupSuccess ? <span>Success</span> : null}
                 <Box mt={4} textAlign="center">
-                  <PrivacySpan>{t('signup.privacy.text')}</PrivacySpan>
+                  <Typography fontSize="12px" as="span">
+                    {t('signup.privacy.text')}
+                  </Typography>
                   <Link onClick={openPrivacyPolicy} variant="tinyBlue">
                     {t('signup.privacy.link')}
                   </Link>
                 </Box>
                 <Box mt={4} textAlign="center">
-                  <GoToSpan>{t('signup.alreadyAccount')}</GoToSpan>&nbsp;
+                  <Typography variant="content" as="span">
+                    {t('signup.alreadyAccount')}
+                  </Typography>
+                  &nbsp;
                   <Link onClick={goToSignIn}>{t('signup.goToSignIn')}</Link>
                 </Box>
               </form>

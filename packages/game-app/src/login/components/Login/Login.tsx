@@ -6,7 +6,7 @@ import { useTranslate } from '@pipeline/i18n';
 import { useLogin } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
 import { RoutingPath, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
-import { GoToSpan, LoginForm, PrivacySpan, Separator } from './Login.styled';
+import { LoginForm, Separator } from './Login.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginValidationSchema } from '../../utils/validation';
 
@@ -71,7 +71,9 @@ const Login: React.FC<Props> = () => {
                 </Box>
                 {loginTranslateError ? <ErrorMessage message={loginTranslateError} /> : null}
                 <Box mt={4} textAlign="center">
-                  <PrivacySpan>{t('login.privacy.text')}</PrivacySpan>
+                  <Typography fontSize="12px" as="span">
+                    {t('login.privacy.text')}
+                  </Typography>
                   <Link onClick={openPrivacyPolicy} variant="tinyBlue">
                     {t('login.privacy.link')}
                   </Link>
@@ -80,7 +82,10 @@ const Login: React.FC<Props> = () => {
                   <Separator />
                 </Box>
                 <Box mt={4} textAlign="center">
-                  <GoToSpan>{t('login.notYetAccount')}</GoToSpan>&nbsp;
+                  <Typography variant="content" as="span">
+                    {t('login.notYetAccount')}
+                  </Typography>
+                  &nbsp;
                   <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
                 </Box>
               </form>

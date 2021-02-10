@@ -6,14 +6,8 @@ import { useTranslate } from '@pipeline/i18n';
 import { useSendResetPasswordEmail } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
 import { RoutingPath, useNavigateTo } from '@pipeline/routing';
-import styled from 'styled-components';
 
 type Props = {};
-
-const GoToSpan = styled.span`
-  font-size: 16px;
-`;
-GoToSpan.displayName = 'GoToSpan';
 
 const ForgotPassword: React.FC<Props> = () => {
   const t = useTranslate();
@@ -68,7 +62,10 @@ const ForgotPassword: React.FC<Props> = () => {
                 </Box>
                 {sendTranslateError ? <ErrorMessage message={sendTranslateError} /> : null}
                 <Box mt={4} textAlign="center">
-                  <GoToSpan>{t('forgotPassword.backTo')}</GoToSpan>&nbsp;
+                  <Typography variant="content" as="span">
+                    {t('forgotPassword.backTo')}
+                  </Typography>
+                  &nbsp;
                   <Link onClick={goToSignIn}>{t('forgotPassword.backToLink')}</Link>
                 </Box>
               </form>
@@ -80,6 +77,6 @@ const ForgotPassword: React.FC<Props> = () => {
   );
 };
 
-ForgotPassword.displayName = 'Login';
+ForgotPassword.displayName = 'ForgotPassword';
 
 export default ForgotPassword;

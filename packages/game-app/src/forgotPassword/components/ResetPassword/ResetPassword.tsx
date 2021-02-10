@@ -9,14 +9,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { resetPasswordValidationSchema } from '../../utils/validation';
 import { LinkUrlParams } from '@pipeline/models';
 import { useResetPassword, useVerifyActionCode } from '@pipeline/auth';
-import styled from 'styled-components';
 
 type Props = {};
-
-const GoToSpan = styled.span`
-  font-size: 16px;
-`;
-GoToSpan.displayName = 'GoToSpan';
 
 const ResetPassword: React.FC<Props> = () => {
   const params = useQueryParams<LinkUrlParams>();
@@ -92,7 +86,10 @@ const ResetPassword: React.FC<Props> = () => {
                   <ErrorMessage message={(resetTranslateError || verifyTranslateError) as string} />
                 ) : null}
                 <Box mt={4} textAlign="center">
-                  <GoToSpan>{t('resetPassword.goTo')}</GoToSpan>&nbsp;
+                  <Typography variant="content" as="span">
+                    {t('resetPassword.goTo')}
+                  </Typography>
+                  &nbsp;
                   <Link onClick={goToLogin}>{t('resetPassword.goToLink')}</Link>
                 </Box>
               </form>
@@ -104,6 +101,6 @@ const ResetPassword: React.FC<Props> = () => {
   );
 };
 
-ResetPassword.displayName = 'Login';
+ResetPassword.displayName = 'ResetPassword';
 
 export default ResetPassword;
