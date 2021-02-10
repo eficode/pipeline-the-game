@@ -77,7 +77,7 @@ const ShareGameDialog: React.FC<Props> = ({ isOpen, close }) => {
     setTimeout(() => {
       closePopover();
     }, 1500);
-  }, [openPopover, closePopover, url]);
+  }, [openPopover, closePopover, url, startClosePopover]);
 
   return (
     <Dialog open={isOpen} title={t('game.share.title')}>
