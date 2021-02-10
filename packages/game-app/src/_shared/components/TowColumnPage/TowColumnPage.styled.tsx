@@ -33,7 +33,7 @@ LeftColumn.displayName = 'LeftColumn';
 export const Logo = styled.div`
   width: 100px;
   position: absolute;
-  top: 16px;
+  top: 8px;
   left: 8%;
 
   svg {

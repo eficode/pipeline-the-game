@@ -12,6 +12,7 @@ import { RoutingPath, useNavigateOnCondition, useNavigateTo, useNavigateOutsideT
 import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
 import { signupValidationSchema } from '../../utils/validation';
+import { SignupContent } from './Signup.styled';
 
 type Props = {};
 
@@ -63,7 +64,7 @@ const Signup: React.FC<Props> = () => {
   return (
     <TowColumnPage
       left={
-        <Box>
+        <SignupContent>
           <Typography variant="title">{t('signup.title')}</Typography>
           <Box mt={5}>
             <FormProvider {...methods}>
@@ -92,23 +93,26 @@ const Signup: React.FC<Props> = () => {
                     placeholder={t('signup.form.email.placeholder')}
                   />
                 </Box>
-                <Box mt={3}>
-                  <FormTextField
-                    CustomInput={PasswordInput}
-                    name="password"
-                    label={t('signup.form.password.label')}
-                    labelDetails={t('auth.errors.passwordRequirements')}
-                    placeholder={t('signup.form.password.placeholder')}
-                  />
+                <Box mt={3} display="flex" flexDirection="row">
+                  <Box flex={1}>
+                    <FormTextField
+                      CustomInput={PasswordInput}
+                      name="password"
+                      label={t('signup.form.password.label')}
+                      labelDetails={t('auth.errors.passwordRequirements')}
+                      placeholder={t('signup.form.password.placeholder')}
+                    />
+                  </Box>
+                  <Box flex={1} ml={3}>
+                    <FormTextField
+                      CustomInput={PasswordInput}
+                      name="repeatPassword"
+                      label={t('signup.form.repeatPassword.label')}
+                      placeholder={t('signup.form.repeatPassword.placeholder')}
+                    />
+                  </Box>
                 </Box>
-                <Box mt={3}>
-                  <FormTextField
-                    CustomInput={PasswordInput}
-                    name="repeatPassword"
-                    label={t('signup.form.repeatPassword.label')}
-                    placeholder={t('signup.form.repeatPassword.placeholder')}
-                  />
-                </Box>
+
                 <Box mt={3}>
                   <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
                 </Box>
@@ -145,7 +149,7 @@ const Signup: React.FC<Props> = () => {
               </form>
             </FormProvider>
           </Box>
-        </Box>
+        </SignupContent>
       }
     />
   );
