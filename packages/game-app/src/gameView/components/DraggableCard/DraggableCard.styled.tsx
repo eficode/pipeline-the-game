@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const CardWrapper = styled.div<{ isDragging?: boolean }>`
-  cursor: pointer;
+  cursor: grab;
   transition: all 0.3s ease-out;
 
   ${props =>

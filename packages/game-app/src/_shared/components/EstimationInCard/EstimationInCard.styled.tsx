@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 export const EstimationCardContent = styled.div<{ moving?: boolean }>`
   width: 80px;
   height: 32px;
-  background: #096762;
+  background: #2c3644;
   border-radius: 10px 20px 20px 10px;
   opacity: 1;
   position: absolute;
@@ -15,6 +15,7 @@ export const EstimationCardContent = styled.div<{ moving?: boolean }>`
   z-index: 100001;
   overflow: hidden;
   text-overflow: ellipsis;
+  cursor: pointer;
 
   ${props =>
     props.moving &&
