@@ -119,6 +119,10 @@ const translations = {
       },
       buttonText: 'Reset password',
     },
+    success: {
+      title: 'Password reset successfully',
+      buttonText: 'Go to login',
+    },
   },
   signup: {
     title: 'Signup to play',
