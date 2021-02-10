@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { flex, FlexProps } from 'styled-system';
+import { flex, FlexProps, FlexboxProps, flexbox, LayoutProps, layout } from 'styled-system';
 
 export const TowColumnsContainer = styled.div`
   width: 100vw;
@@ -9,10 +9,12 @@ export const TowColumnsContainer = styled.div`
   flex-direction: row;
 `;
 
-TowColumnsContainer.displayName = 'TowColumnsContainer';
+TowColumnsContainer.displayName = 'TwoColumnsContainer';
 
-export const Column = styled.div<FlexProps>`
+export const Column = styled.div<FlexProps & FlexboxProps & LayoutProps>`
   ${flex}
+  ${flexbox}
+  ${layout}
 `;
 
 Column.displayName = 'Column';

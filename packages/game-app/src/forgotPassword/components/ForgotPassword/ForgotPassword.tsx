@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormTextField } from '@pipeline/form';
-import { Box, Button, Dialog, ErrorMessage, Link, TowColumnPage, Typography } from '@pipeline/components';
+import { Box, Button, Dialog, ErrorMessage, Link, TwoColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { useSendResetPasswordEmail } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
@@ -42,7 +42,7 @@ const ForgotPassword: React.FC<Props> = () => {
 
   return (
     <>
-      <TowColumnPage
+      <TwoColumnPage
         left={
           <>
             <Typography variant="title">{t('forgotPassword.title')}</Typography>

@@ -20,9 +20,10 @@ import EstimationInCard from './EstimationInCard';
 import Input from './Input';
 import GlassOverlay from './GlassOverlay';
 import Icon from './Icon';
-import TowColumnPage from './TowColumnPage';
+import TwoColumnPage from './TwoColumnPage';
 import TextLogo from './TextLogo';
 import PopoverDetails from './PopoverDetails';
+import { getFromTheme } from './utils';
 
 export {
   TextInput,
@@ -47,7 +48,8 @@ export {
   EstimationInCard,
   GlassOverlay,
   Icon,
-  TowColumnPage,
+  TwoColumnPage,
   TextLogo,
   PopoverDetails,
+  getFromTheme,
 };

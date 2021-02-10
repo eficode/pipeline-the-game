@@ -8,7 +8,7 @@ import {
   ErrorMessage,
   Link,
   PasswordInput,
-  TowColumnPage,
+  TwoColumnPage,
   Typography,
 } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
@@ -65,7 +65,7 @@ const ResetPassword: React.FC<Props> = () => {
 
   return (
     <>
-      <TowColumnPage
+      <TwoColumnPage
         left={
           <>
             <Typography variant="title">{t('resetPassword.title')}</Typography>
