@@ -56,6 +56,7 @@ declare namespace Cypress {
     getFirebaseUserByEmail(email: string): Chainable<any>;
     getFirestoreDocument(path: string): Chainable<any>;
     getEmailVerificationLink(email: string): Chainable<any>;
+    getRestPasswordLink(email: string): Chainable<any>;
     queryFirestore(collection: string, data: { field: string; condition: import("firebase").default.firestore.WhereFilterOp; value: any; });
   }
 

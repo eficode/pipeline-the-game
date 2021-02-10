@@ -98,6 +98,11 @@ const translations = {
       },
       buttonText: 'Send email',
     },
+    success: {
+      title: 'Check your email',
+      message: 'We sent a mail to {{email}}. Click the link in the mail to create a new password.',
+      resend: 'Resend',
+    },
   },
   resetPassword: {
     title: 'Create new password',
@@ -113,6 +118,10 @@ const translations = {
         placeholder: 'Test1234',
       },
       buttonText: 'Reset password',
+    },
+    success: {
+      title: 'Password reset successfully',
+      buttonText: 'Go to login',
     },
   },
   signup: {
@@ -158,6 +167,7 @@ const translations = {
     },
   },
   general: {
+    goTo: 'Go to',
     cancel: 'Cancel',
     done: 'Done',
     exit: 'Exit',

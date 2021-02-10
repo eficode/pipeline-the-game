@@ -28,7 +28,7 @@ const theme: DefaultTheme = {
     textColor: '#101820',
     buttonGrey: '#B4AEA9',
   },
-  space: [0, 4, 8, 16, 24, 32],
+  space: [0, 4, 8, 16, 24, 32, 40],
   cardsTypes: {
     'game-rule': 'linear-gradient(90deg, #b685ab 0%, #711d60 100%)',
     'pipeline-step': 'linear-gradient(90deg, #52c2b0 0%, #009778 100%)',
