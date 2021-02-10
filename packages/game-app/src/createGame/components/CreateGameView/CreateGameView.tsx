@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { GameCreationData } from '../../types/gameCreationData';
 import { useTranslate } from '@pipeline/i18n';
 import useCards from '../../../gameView/hooks/useCards';
-import { CardTypes } from '@pipeline/common';
+import { CardType } from '@pipeline/common';
 import ScenariosList from '../ScenariosList';
 import { FormTextField } from '@pipeline/form';
 import { Button, Link, Box, TextArea, Typography, ErrorMessage } from '@pipeline/components';
@@ -46,7 +46,7 @@ const CreateGameView: React.FC<Props> = () => {
 
   const { call, success, loading, translatedError, newCreatedId } = useCreateGame();
 
-  const { cards } = useCards(CardTypes.Scenario);
+  const { cards } = useCards(CardType.Scenario);
 
   const submit = useMemo(() => {
     if (selectedScenarioCard) {

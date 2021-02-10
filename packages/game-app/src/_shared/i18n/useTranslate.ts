@@ -30,3 +30,5 @@ export function translateFactory(language: string) {
     });
   };
 }
+
+export type TranslationKeys = Path<typeof enTranslations>;
