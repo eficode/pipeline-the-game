@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import { ExpandIcon, PanelContent, PanelContentWrapper, PanelHeader, PanelWrapper } from './ExpandableTopPanel.styled';
 import Typography from '../Typography';
-import { ReactComponent as ArrowIcon } from '@assets/icons/expandable-box.svg';
+import { ReactComponent as ArrowIcon } from '../../../assets/icons/expandable-box.svg';
 
 type Props = {
   className?: string;

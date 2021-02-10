@@ -114,7 +114,7 @@ const translations = {
         label: 'Repeat password',
         placeholder: 'Test1234',
       },
-      roleLabel: 'Role',
+      roleLabel: 'Your role',
       maturityLabel: 'DevOps maturity',
       buttonText: 'Sign up',
     },
@@ -139,7 +139,7 @@ const translations = {
     errors: {
       required: 'This field is required',
     },
-    emptyOptionLabel: 'Select an option',
+    emptyOptionLabel: 'None selected',
   },
 };
 

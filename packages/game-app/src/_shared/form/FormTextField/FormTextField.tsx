@@ -12,6 +12,12 @@ type Props = {
    * Label to show over the input
    */
   label?: string;
+
+  /**
+   * Label details shown on a popover
+   */
+  labelDetails?: string;
+
   /**
    * Placeholder to show inside the input
    */
@@ -25,7 +31,16 @@ type Props = {
  * Input directly connected to the parent form that includes error message
  * visualization. Its value can be found under the {name} key in the form
  */
-const FormTextField: React.FC<Props> = ({ name, label, placeholder, type, CustomInput, disabled, ...others }) => {
+const FormTextField: React.FC<Props> = ({
+  name,
+  label,
+  labelDetails,
+  placeholder,
+  type,
+  CustomInput,
+  disabled,
+  ...others
+}) => {
   const data = useFormContext();
 
   const error = data.errors[name];
@@ -47,6 +62,7 @@ const FormTextField: React.FC<Props> = ({ name, label, placeholder, type, Custom
         <Input
           name={props.name}
           label={label}
+          labelDetails={labelDetails}
           placeholder={placeholder}
           value={props.value}
           onChange={props.onChange}
@@ -57,7 +73,7 @@ const FormTextField: React.FC<Props> = ({ name, label, placeholder, type, Custom
         />
       );
     },
-    [CustomInput, label, placeholder, translatedError, type, disabled, others],
+    [CustomInput, label, placeholder, translatedError, type, disabled, others, labelDetails],
   );
 
   return (
