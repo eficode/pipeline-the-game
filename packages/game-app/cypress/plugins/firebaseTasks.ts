@@ -17,13 +17,7 @@ export async function getFirestoreDocument<T>(adminInstance: admin.app.App, {pat
   return doc.data() as T;
 }
 
-/**
- * Retrieves verification email link from emulator logs
- */
-export async function getEmailVerificationLink(adminInstance: admin.app.App, {email}: { email: string }) {
-
-  const stringToSearch = `To verify the email address ${email}, follow this link:`;
-
+async function searchLinkInLogs(stringToSearch: string, email: string) {
   const rl = readline.createInterface({
     input: fs.createReadStream('../../firebase-debug.log'),
     crlfDelay: Infinity
@@ -43,7 +37,16 @@ export async function getEmailVerificationLink(adminInstance: admin.app.App, {em
   } else {
     throw new Error(`email verification link for ${email} not found`);
   }
+}
 
+/**
+ * Retrieves verification email link from emulator logs
+ */
+export async function getEmailVerificationLink(adminInstance: admin.app.App, {email}: { email: string }) {
+
+  const stringToSearch = `To verify the email address ${email}, follow this link:`;
+
+  return searchLinkInLogs(stringToSearch, email);
 }
 
 /**
@@ -135,4 +138,14 @@ export async function initializeGame(adminInstance: admin.app.App, {
     id: savedGameData.id,
     ...savedGameData.data()
   };
+}
+
+/**
+ * Retrieves the link to reset the password in the logs
+ */
+export async function getRestPasswordLink(adminInstance: admin.app.App, {email}: { email: string }) {
+
+  const stringToSearch = `To reset the password for ${email}, follow this link:`;
+
+  return searchLinkInLogs(stringToSearch, email);
 }

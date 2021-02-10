@@ -26,3 +26,8 @@ Cypress.Commands.add('initializeUser', (options: { email?: string; password?: st
 Cypress.Commands.add('initializeGame', (options: { facilitatorId: string; }) => {
   return cy.task('initializeGame', options);
 });
+
+
+Cypress.Commands.add('getRestPasswordLink', (email: string) => {
+  return cy.task('getRestPasswordLink', {email});
+});
