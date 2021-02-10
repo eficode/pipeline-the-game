@@ -64,6 +64,9 @@ export const actions = {
   resendEmailVerification: createAction(`${name}/resendEmailVerification`),
   verifyEmail: createAction<{ code: string }>(`${name}/verifyEmail`),
   login: createAction<{ email: string; password: string }>(`${name}/login`),
+  resetPassword: createAction<{ code: string; password: string }>(`${name}/resetPassword`),
+  sendResetPasswordEmail: createAction<string>(`${name}/sendResetPasswordEmail`),
+  verifyPasswordResetCode: createAction<string>(`${name}/verifyPasswordResetCode`),
   logout: createAction(`${name}/logout`),
   getToken: createAction(`${name}/getToken`),
 };

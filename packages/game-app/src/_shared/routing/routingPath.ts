@@ -5,6 +5,7 @@ export enum RoutingPath {
   EmailVerificationRequired = '/email-verification-required',
   VerifyEmail = '/verify-email',
   ForgotPassword = '/forgot-password',
+  ResetPassword = '/reset-password',
   Game = '/game',
   CreateGame = '/create-game',
 }

@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
-import { VerifyEmailParams } from '../../types/emailValidationParams';
 import { RoutingPath, useNavigateOnCondition, useQueryParams } from '@pipeline/routing';
 import { useEmailVerification } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
 import { ErrorMessage } from '@pipeline/components';
+import { LinkUrlParams } from '@pipeline/models';
 
 type Props = {};
 
 const VerifyEmail: React.FC<Props> = () => {
-  let params = useQueryParams<VerifyEmailParams>();
+  let params = useQueryParams<LinkUrlParams>();
 
   const { call, success, translatedError } = useEmailVerification();
 
