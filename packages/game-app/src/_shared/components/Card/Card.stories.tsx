@@ -2,7 +2,7 @@ import React from 'react';
 import { Meta, Story } from '@storybook/react';
 
 import Card from './Card';
-import { CardTags, CardTypes } from '@pipeline/common';
+import { CardTag, CardType } from '@pipeline/common';
 
 export default {
   title: 'Components/Card',
@@ -11,13 +11,13 @@ export default {
     type: {
       control: {
         type: 'select',
-        options: Object.keys(CardTypes).map(k => CardTypes[k as keyof typeof CardTypes]),
+        options: Object.keys(CardType).map(k => CardType[k as keyof typeof CardType]),
       },
     },
     tags: {
       control: {
         type: 'multi-select',
-        options: Object.keys(CardTags).map(k => CardTags[k as keyof typeof CardTags]),
+        options: Object.keys(CardTag).map(k => CardTag[k as keyof typeof CardTag]),
       },
     },
   },
@@ -28,8 +28,8 @@ const Template: Story<React.ComponentProps<typeof Card>> = args => <Card {...arg
 export const PipelineStep = Template.bind({});
 
 PipelineStep.args = {
-  type: CardTypes.PipelineStep,
-  tags: [CardTags.DeliveryStep, CardTags.ManualStep],
+  type: CardType.PipelineStep,
+  tags: [CardTag.DeliveryStep, CardTag.ManualStep],
   title: 'A Developer Commits Code',
   subtitle: 'delivery-step',
   content:
