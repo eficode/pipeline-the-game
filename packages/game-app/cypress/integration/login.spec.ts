@@ -14,9 +14,9 @@ context("Login", () => {
   it("should show error on user not present", () => {
     const randomEmail = generateRandomEmail();
     cy.getInputByName('email').fill(randomEmail);
-    cy.getInputByName('password').fill('anyPassword');
+    cy.getInputByName('password').fill('anyPassword1');
     cy.containsTranslationOf('button', 'login.form.buttonText').click();
-    cy.get('body').should('contain.translationOf', 'login.errors.auth/user-not-found');
+    cy.get('body').should('contain.translationOf', 'auth.errors.auth/user-not-found');
   });
 
   it("should show error on invalid password", () => {
@@ -25,7 +25,7 @@ context("Login", () => {
       cy.getInputByName('email').fill(email);
       cy.getInputByName('password').fill('invalidPassword');
       cy.containsTranslationOf('button', 'login.form.buttonText').click();
-      cy.get('body').should('contain.translationOf', 'login.errors.auth/wrong-password');
+      cy.get('body').should('contain.translationOf', 'auth.errors.passwordRequirements');
     });
   });
 

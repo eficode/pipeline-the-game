@@ -11,7 +11,7 @@ export const useEmailVerification = createRequestHook('auth.emailVerification', 
 });
 
 export const useLogin = createRequestHook('auth.login', actions.login, {
-  errorMessagesScope: 'login.errors',
+  errorMessagesScope: 'auth.errors',
 });
 
 export const useLogout = createRequestHook('auth.logout', actions.logout, {

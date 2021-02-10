@@ -6,7 +6,7 @@ const translations = {
       'auth/user-not-found': 'Email or password invalid',
       'auth/wrong-password': 'Email or password invalid',
       'auth/invalid-action-code': 'Verification link invalid or already used',
-      'auth/email-already-in-use': 'Ops, it seams that this email is not allowed',
+      'auth/email-already-in-use': 'Ops, it seems that this email is not allowed',
       invalidEmail: 'Invalid email',
       passwordRequirements:
         'The password must be 8 chars long and should contain at least a lowercase letter, an uppercase letter and a number',
@@ -40,7 +40,7 @@ const translations = {
     triggerReview: {
       title: 'Trigger reivew',
       subtitle: 'If you continue, the players will be asked to review their pipeline.',
-      buttonText: 'Trigger reivew',
+      buttonText: 'Trigger review',
       reviewTime: "It's review-time!",
       reviewUnlocked:
         'You have unlocked the review, which can be found beside the scenario on your screen. Use it to reflect on your pipeline with your team.',
