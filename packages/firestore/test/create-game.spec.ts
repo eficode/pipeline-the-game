@@ -45,6 +45,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertSucceeds(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioContent: 'Content',
       scenarioCardId: null,
@@ -66,6 +67,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioContent: 'Content',
       scenarioCardId: null,
@@ -87,6 +89,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioCardId: null,
       facilitator: {
@@ -106,6 +109,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioContent: 'Content',
       scenarioCardId: null,
@@ -127,6 +131,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioContent: 'Content',
       scenarioCardId: null,
@@ -148,6 +153,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'x'.repeat(100),
       scenarioContent: 'Content',
       scenarioCardId: null,
@@ -169,6 +175,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioContent: 'x'.repeat(3000),
       scenarioCardId: null,
@@ -193,6 +200,7 @@ describe("Game create", () => {
     const scenarioCard = scenarioCardDoc.data() as Card;
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertSucceeds(gameRef.set({
+      name: 'testName',
       scenarioTitle: scenarioCard.title,
       scenarioContent: scenarioCard.content,
       scenarioCardId: scenarioId,
@@ -217,6 +225,7 @@ describe("Game create", () => {
     const scenarioCard = scenarioCardDoc.data() as Card;
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: scenarioCard.title,
       scenarioContent: 'random',
       scenarioCardId: scenarioId,
@@ -238,6 +247,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioContent: 'Content',
       scenarioCardId: null,
@@ -259,6 +269,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioContent: 'Content',
       scenarioCardId: null,
@@ -280,6 +291,7 @@ describe("Game create", () => {
     const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
+      name: 'testName',
       scenarioTitle: 'Title',
       scenarioContent: 'Content',
       scenarioCardId: null,
@@ -292,6 +304,30 @@ describe("Game create", () => {
       cards: null,
       review: false,
       boardDimensions: null,
+    } as Game));
+  });
+
+  it("should not allow game creation if no name is provided", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    const scenarioId = 'G5JfGVoM7SZ6jOsdjWWp';
+    const db = getAuthedFirestore(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    const scenarioCardDoc = await db.doc(`${FirebaseCollection.Cards}/${scenarioId}`).get();
+    const scenarioCard = scenarioCardDoc.data() as Card;
+    const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
+    await firebase.assertFails(gameRef.set({
+      scenarioTitle: scenarioCard.title,
+      scenarioContent: scenarioCard.content,
+      scenarioCardId: scenarioId,
+      facilitator: {
+        id: userUID
+      },
+      createdAt: fb.firestore.FieldValue.serverTimestamp(),
+      deckId: '7p5qqvE8kCV9WWysVc2n',
+      rtdbInstance: null,
+      cards: null,
+      review: false,
+      boardDimensions: DEFAULT_BOARD_DIMENSIONS
     } as Game));
   });
 
