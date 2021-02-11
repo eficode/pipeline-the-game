@@ -2,6 +2,7 @@ import {CreatedAt} from "./CreatedAt";
 import {ShortUser} from "./user";
 
 export interface Game<T, F> extends CreatedAt<T, F> {
+  name: string;
   scenarioTitle: string;
   scenarioContent: string;
   scenarioCardId: string | null;

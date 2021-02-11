@@ -36,7 +36,7 @@ service cloud.firestore {
       let scenarioCard = getDocumentData(/cards/$(gameData.scenarioCardId));
 
       return gameData.keys().hasOnly(['scenarioTitle', 'scenarioContent',
-        'scenarioCardId', 'deckId', 'facilitator', 'createdAt', 'boardDimensions', 'cards', 'rtdbInstance', 'review']) &&
+        'scenarioCardId', 'deckId', 'facilitator', 'createdAt', 'boardDimensions', 'cards', 'rtdbInstance', 'review', 'name']) &&
       (
         (gameData.scenarioCardId != null && exists(/databases/$(database)/documents/cards/$(gameData.scenarioCardId)) &&
           scenarioCard.title == gameData.scenarioTitle &&
@@ -55,7 +55,8 @@ service cloud.firestore {
       isMapBigAs(gameData.boardDimensions, 2) &&
       gameData.review == false &&
       gameData.boardDimensions.x == 3840 &&
-      gameData.boardDimensions.y == 2160;
+      gameData.boardDimensions.y == 2160 &&
+      isStringShorterThan(gameData.name, 100);
     }
 
     function isValidUserCreate() {

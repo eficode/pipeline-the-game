@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ButtonsBar, LogoContainer, TopRowContainer } from './TopWidgetsRow.styled';
+import { ButtonsBar, GameName, LogoContainer, TopRowContainer } from './TopWidgetsRow.styled';
 import { ReactComponent as Logo } from '@assets/images/eficode-logo.svg';
 import { ReactComponent as ExitIcon } from '@assets/icons/exit.svg';
 import { ReactComponent as ShareIcon } from '@assets/icons/share.svg';
 import { ReactComponent as RulesIcon } from '@assets/icons/rules.svg';
 import { ReactComponent as TriggerReviewIcon } from '@assets/icons/review.svg';
-import { Button, IconButton, useDialog } from '@pipeline/components';
+import { Button, IconButton, Typography, useDialog } from '@pipeline/components';
 import { useHistory } from 'react-router-dom';
 import { RoutingPath } from '@pipeline/routing';
 import { useTranslate } from '@pipeline/i18n';
@@ -22,6 +22,7 @@ type Props = {
 
 const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
   const history = useHistory();
+  const game = useSelector(selectors.getGame);
 
   const shareDialog = useDialog();
   const rulesOverlay = useDialog();
@@ -81,6 +82,9 @@ const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
             </IconButton>
           )}
         </ButtonsBar>
+        <GameName>
+          <Typography color="white">{game?.name}</Typography>
+        </GameName>
         <Button onClick={contactUs} label={t('game.contactUs')} />
       </TopRowContainer>
       <ShareGameDialog isOpen={shareDialog.isOpen} close={shareDialog.close} />
