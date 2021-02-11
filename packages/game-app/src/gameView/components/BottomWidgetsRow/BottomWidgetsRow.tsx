@@ -12,12 +12,14 @@ import { calculatePanAndZoomToFitWindow } from '../../utils/fitToWindow';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 import ReviewPanel from '../ReviewPanel';
+import { useTranslate } from '@pipeline/i18n';
 
 type Props = {};
 
 const BottomWidgetsRowStyled: React.FC<Props> = () => {
   const state = useSelector(selectors.getCardStateForUI);
   const review = useSelector(selectors.getReview);
+  const t = useTranslate();
 
   const { setScaleAndPanRef, zoomRef } = useZoomPanRefs();
 
@@ -46,18 +48,21 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
       {
         icon: <ZoomInIcon />,
         onClick: zoomIn,
+        tooltipLabel: t('game.dial.zoomInTooltip'),
       },
       {
         icon: <ZoomOutIcon />,
         onClick: zoomOut,
+        tooltipLabel: t('game.dial.zoomOutTooltip'),
       },
       {
         icon: <FitScreenIcon />,
         onClick: fitWindow,
         autoClose: true,
+        tooltipLabel: t('game.dial.fitTooltip'),
       },
     ],
-    [fitWindow, zoomIn, zoomOut],
+    [fitWindow, t, zoomIn, zoomOut],
   );
 
   return (

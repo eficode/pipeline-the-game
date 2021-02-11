@@ -37,7 +37,7 @@ export const PanelButtons = styled.div`
   justify-content: flex-end;
   margin-top: 8px;
 
-  ${IconButton} + ${IconButton} {
+  & > * {
     margin-left: 8px;
   }
 `;

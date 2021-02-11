@@ -30,6 +30,21 @@ const translations = {
     contactUs: 'Contact us',
   },
   game: {
+    panel: {
+      stackTooltip: 'Stacked View',
+      verticalTooltip: 'Vertical view',
+    },
+    toolbar: {
+      exitTooltip: 'Exit game',
+      shareTooltip: 'Share game',
+      rulesTooltip: 'Game rules',
+      reviewTooltip: 'Trigger Review',
+    },
+    dial: {
+      zoomInTooltip: 'Zoom in',
+      zoomOutTooltip: 'Zoom out',
+      fitTooltip: 'Fit to screen',
+    },
     contactUs: 'Contact us',
     share: {
       title: 'Share the game',

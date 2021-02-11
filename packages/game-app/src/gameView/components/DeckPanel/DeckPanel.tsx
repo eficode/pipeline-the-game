@@ -9,6 +9,7 @@ import { AnimatedChild, DeckPanelContent, PanelButtons, PanelTools } from './Dec
 import { ReactComponent as SearchIcon } from '@assets/icons/zoom.svg';
 import { ReactComponent as ClearIcon } from '@assets/icons/clear-search.svg';
 import useDeckState from '../../hooks/useDeckState';
+import { useTranslate } from '@pipeline/i18n';
 
 export type PanelMode = 'stacked' | 'tow-columns';
 
@@ -19,6 +20,7 @@ type Props = {
 const DeckPanel: React.FC<Props> = ({ panelModeRef }) => {
   const [panelMode, setPanelMode] = useState<PanelMode>('stacked');
   const { searchedText, setSearchedText, deckCardsIds } = useDeckState();
+  const t = useTranslate();
 
   useEffect(() => {
     panelModeRef.current = panelMode;
@@ -80,10 +82,14 @@ const DeckPanel: React.FC<Props> = ({ panelModeRef }) => {
           }
         />
         <PanelButtons>
-          <IconButton active={panelMode === 'stacked'} onClick={setStacked}>
+          <IconButton active={panelMode === 'stacked'} onClick={setStacked} tooltipLabel={t('game.panel.stackTooltip')}>
             <StackedIcon />
           </IconButton>
-          <IconButton active={panelMode === 'tow-columns'} onClick={setTowColumns}>
+          <IconButton
+            active={panelMode === 'tow-columns'}
+            onClick={setTowColumns}
+            tooltipLabel={t('game.panel.verticalTooltip')}
+          >
             <TwoColumnsIcon />
           </IconButton>
         </PanelButtons>
