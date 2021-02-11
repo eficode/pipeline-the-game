@@ -1,8 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import { useDroppable } from '@dnd-kit/core';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { PanelMode } from '../DeckPanel/DeckPanel';
 import { PANEL_ONE_COLUMNS_WIDTH, PANEL_TWO_COLUMNS_WIDTH } from '../../../dimensions';
+import { IconButton } from '@pipeline/components';
+import { ReactComponent as ArrowIcon } from '@assets/icons/arrow.svg';
 
 type Props = {
   mode: PanelMode;
@@ -47,28 +49,25 @@ const ToggleWrapper = styled.div`
   justify-content: center;
 `;
 
-const ToggleButton = styled.button`
-  min-width: 20px;
-  height: 40px;
-  padding: 0;
-  margin: 0;
-  background: transparent;
-  border: none;
-  border-radius: 9px;
-  cursor: pointer;
+export const ArrowIconDiv = styled.div<{ collapsed: boolean }>`
+  position: absolute;
+  right: 4px;
+  transition: transform 0.3s ease-in;
+  transform: rotate(180deg);
+
+  svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  ${({ collapsed }) =>
+    !collapsed &&
+    css`
+      transform: rotate(0deg);
+    `}
 `;
 
-const ToggleIndicator = styled.div`
-  width: 3px;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-  background: #b4aea9;
-  border: none;
-  border-radius: 9px;
-  position: relative;
-  left: 8px;
-`;
+ArrowIconDiv.displayName = 'ArrowIconDiv';
 
 /**
  * The right game panel, where the deck is placed at the start of the game
@@ -89,9 +88,11 @@ const DroppablePanelArea: React.FC<Props> = ({ children, mode }) => {
   return (
     <FixedPanel ref={setNodeRef} closed={closed} mode={mode} isOver={isOver}>
       <ToggleWrapper>
-        <ToggleButton onClick={toggle}>
-          <ToggleIndicator />
-        </ToggleButton>
+        <IconButton onClick={toggle} variant="clear">
+          <ArrowIconDiv collapsed={closed}>
+            <ArrowIcon />
+          </ArrowIconDiv>
+        </IconButton>
       </ToggleWrapper>
       {children}
     </FixedPanel>
