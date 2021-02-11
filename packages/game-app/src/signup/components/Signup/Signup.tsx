@@ -7,7 +7,7 @@ import { FormSelect, FormTextField } from '@pipeline/form';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
 import { Box, Button, ErrorMessage, Link, PasswordInput, TwoColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
-import { RoutingPath, useNavigateOnCondition, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
+import { RoutingPath, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
 
 import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
