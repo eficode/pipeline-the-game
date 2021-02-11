@@ -1,23 +1,31 @@
 import React from 'react';
 import { useTranslate } from '@pipeline/i18n';
 import { selectors, useLogout, useResendVerificationEmail } from '@pipeline/auth';
-import { Box, Button, Dialog, ErrorMessage, Link, Typography } from '@pipeline/components';
+import { Box, Button, Dialog, DialogForEmailContainer, ErrorMessage, Link, Typography } from '@pipeline/components';
 import { useSelector } from 'react-redux';
 
 type Props = {};
 
-const EmailVerificationRequired: React.FC<Props> = () => {
+const EmailVerificationRequiredDialog: React.FC<Props> = () => {
   const t = useTranslate();
 
-  const { email } = useSelector(selectors.getCurrentUser)!;
+  const user = useSelector(selectors.getCurrentUser);
 
   const { call: resendEmail, success, loading, translatedError } = useResendVerificationEmail();
   const { call: executeLogout } = useLogout();
 
+  if (!user) {
+    return null;
+  }
+
   return (
-    <Dialog open title={t('signup.verificationRequired.title')}>
+    <Dialog
+      open={!user.emailVerified}
+      DialogContainerComponent={DialogForEmailContainer}
+      title={t('signup.verificationRequired.title')}
+    >
       <Box maxWidth="400px" mt={3}>
-        <Typography>{t('signup.verificationRequired.message', { data: { email } })}</Typography>
+        <Typography>{t('signup.verificationRequired.message', { data: { email: user.email } })}</Typography>
       </Box>
       <Box mt={3} textAlign="center">
         <Button
@@ -37,6 +45,6 @@ const EmailVerificationRequired: React.FC<Props> = () => {
   );
 };
 
-EmailVerificationRequired.displayName = 'EmailVerificationRequired';
+EmailVerificationRequiredDialog.displayName = 'EmailVerificationRequiredDialog';
 
-export default EmailVerificationRequired;
+export default EmailVerificationRequiredDialog;

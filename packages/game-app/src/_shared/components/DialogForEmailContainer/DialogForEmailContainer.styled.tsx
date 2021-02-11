@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Dialog } from '@pipeline/components';
+import Dialog from '../Dialog';
 
 export const DialogEmailHeader = styled.div`
   height: 120px;

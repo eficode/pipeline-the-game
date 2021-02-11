@@ -8,7 +8,6 @@ import { Box, Link, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 
 const Signup = React.lazy(() => import('./signup/components/Signup'));
-const EmailVerificationRequired = React.lazy(() => import('./signup/components/EmailVerificationRequired'));
 const VerifyEmail = React.lazy(() => import('./signup/components/VerifyEmail'));
 const ForgotPassword = React.lazy(() => import('./forgotPassword/components/ForgotPassword'));
 const ResetPassword = React.lazy(() => import('./forgotPassword/components/ResetPassword/ResetPassword'));
@@ -41,10 +40,10 @@ function renderAuthRoutes(user: AuthUser | null) {
   }
   if (user && !user.emailVerified) {
     return [
-      <Route path={RoutingPath.EmailVerificationRequired} component={EmailVerificationRequired} />,
+      <Route path={RoutingPath.Signup} component={Signup} />,
       <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
       <Route path="*">
-        <Redirect to={RoutingPath.EmailVerificationRequired} />
+        <Redirect to={RoutingPath.Signup} />
       </Route>,
     ];
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { DialogEmailContainer, DialogEmailContent, DialogEmailHeader } from './DialogForEmailContainer.styled';
-import { Icon } from '@pipeline/components';
+import Icon from '../Icon';
 import { ReactComponent as EmailIcon } from '@assets/icons/mail.svg';
 
 type Props = {};

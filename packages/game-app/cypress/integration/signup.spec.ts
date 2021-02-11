@@ -50,7 +50,7 @@ context('Signup', () => {
     cy.getInputByName('role').select('endUser');
     cy.getInputByName('devOpsMaturity').select('veryImmature');
     cy.containsTranslationOf('button', 'signup.form.buttonText').click();
-    cy.location('pathname').should('equal', '/email-verification-required');
+    cy.get('body').should('contain.translationOf', 'signup.verificationRequired.title');
 
     // check auth presence
     cy.getFirebaseUserByEmail(email)
