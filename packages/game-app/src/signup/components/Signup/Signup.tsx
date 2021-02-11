@@ -13,6 +13,7 @@ import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
 import { signupValidationSchema } from '../../utils/validation';
 import { SignupContent } from './Signup.styled';
+import EmailVerificationRequiredDialog from '../EmailVerificationRequiredDialog';
 
 type Props = {};
 
@@ -59,99 +60,104 @@ const Signup: React.FC<Props> = () => {
   const goToSignIn = useNavigateTo(RoutingPath.Login, location.state);
   const openPrivacyPolicy = useNavigateOutsideTo('https://www.eficode.com');
 
-  useNavigateOnCondition(signupSuccess, RoutingPath.EmailVerificationRequired);
-
   return (
-    <TwoColumnPage
-      left={
-        <SignupContent>
-          <Typography variant="title">{t('signup.title')}</Typography>
-          <Box mt={5}>
-            <FormProvider {...methods}>
-              <form onSubmit={submit}>
-                <Box display="flex" flexDirection="row">
-                  <Box flex={1}>
+    <>
+      <TwoColumnPage
+        left={
+          <SignupContent>
+            <Typography variant="title">{t('signup.title')}</Typography>
+            <Box mt={5}>
+              <FormProvider {...methods}>
+                <form onSubmit={submit}>
+                  <Box display="flex" flexDirection="row">
+                    <Box flex={1}>
+                      <FormTextField
+                        name="firstName"
+                        label={t('signup.form.firstName.label')}
+                        placeholder={t('signup.form.firstName.placeholder')}
+                      />
+                    </Box>
+                    <Box flex={1} ml={3}>
+                      <FormTextField
+                        name="lastName"
+                        label={t('signup.form.lastName.label')}
+                        placeholder={t('signup.form.lastName.placeholder')}
+                      />
+                    </Box>
+                  </Box>
+                  <Box mt={3}>
                     <FormTextField
-                      name="firstName"
-                      label={t('signup.form.firstName.label')}
-                      placeholder={t('signup.form.firstName.placeholder')}
+                      type="email"
+                      name="email"
+                      label={t('signup.form.email.label')}
+                      placeholder={t('signup.form.email.placeholder')}
                     />
                   </Box>
-                  <Box flex={1} ml={3}>
-                    <FormTextField
-                      name="lastName"
-                      label={t('signup.form.lastName.label')}
-                      placeholder={t('signup.form.lastName.placeholder')}
-                    />
+                  <Box mt={3} display="flex" flexDirection="row">
+                    <Box flex={1}>
+                      <FormTextField
+                        CustomInput={PasswordInput}
+                        name="password"
+                        label={t('signup.form.password.label')}
+                        labelDetails={t('auth.errors.passwordRequirements')}
+                        placeholder={t('signup.form.password.placeholder')}
+                      />
+                    </Box>
+                    <Box flex={1} ml={3}>
+                      <FormTextField
+                        CustomInput={PasswordInput}
+                        name="repeatPassword"
+                        label={t('signup.form.repeatPassword.label')}
+                        placeholder={t('signup.form.repeatPassword.placeholder')}
+                      />
+                    </Box>
                   </Box>
-                </Box>
-                <Box mt={3}>
-                  <FormTextField
-                    type="email"
-                    name="email"
-                    label={t('signup.form.email.label')}
-                    placeholder={t('signup.form.email.placeholder')}
-                  />
-                </Box>
-                <Box mt={3} display="flex" flexDirection="row">
-                  <Box flex={1}>
-                    <FormTextField
-                      CustomInput={PasswordInput}
-                      name="password"
-                      label={t('signup.form.password.label')}
-                      labelDetails={t('auth.errors.passwordRequirements')}
-                      placeholder={t('signup.form.password.placeholder')}
-                    />
-                  </Box>
-                  <Box flex={1} ml={3}>
-                    <FormTextField
-                      CustomInput={PasswordInput}
-                      name="repeatPassword"
-                      label={t('signup.form.repeatPassword.label')}
-                      placeholder={t('signup.form.repeatPassword.placeholder')}
-                    />
-                  </Box>
-                </Box>
 
-                <Box mt={3}>
-                  <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
-                </Box>
-                <Box mt={3}>
-                  <FormSelect name="devOpsMaturity" label={t('signup.form.maturityLabel')} options={devOpsMaturities} />
-                </Box>
-                <Box mt={5} textAlign="center">
-                  <Button
-                    type="submit"
-                    id="signup-button"
-                    label={t('signup.form.buttonText')}
-                    loading={signupLoading}
-                    onClick={submit}
-                  />
-                </Box>
+                  <Box mt={3}>
+                    <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
+                  </Box>
+                  <Box mt={3}>
+                    <FormSelect
+                      name="devOpsMaturity"
+                      label={t('signup.form.maturityLabel')}
+                      options={devOpsMaturities}
+                    />
+                  </Box>
+                  <Box mt={5} textAlign="center">
+                    <Button
+                      type="submit"
+                      id="signup-button"
+                      label={t('signup.form.buttonText')}
+                      loading={signupLoading}
+                      onClick={submit}
+                    />
+                  </Box>
 
-                {signupTranslateError ? <ErrorMessage message={signupTranslateError} /> : null}
-                {signupSuccess ? <span>Success</span> : null}
-                <Box mt={4} textAlign="center">
-                  <Typography fontSize="12px" as="span">
-                    {t('signup.privacy.text')}
-                  </Typography>
-                  <Link onClick={openPrivacyPolicy} variant="tinyBlue">
-                    {t('signup.privacy.link')}
-                  </Link>
-                </Box>
-                <Box mt={4} textAlign="center">
-                  <Typography variant="content" as="span">
-                    {t('signup.alreadyAccount')}
-                  </Typography>
-                  &nbsp;
-                  <Link onClick={goToSignIn}>{t('signup.goToSignIn')}</Link>
-                </Box>
-              </form>
-            </FormProvider>
-          </Box>
-        </SignupContent>
-      }
-    />
+                  {signupTranslateError ? <ErrorMessage message={signupTranslateError} /> : null}
+                  {signupSuccess ? <span>Success</span> : null}
+                  <Box mt={4} textAlign="center">
+                    <Typography fontSize="12px" as="span">
+                      {t('signup.privacy.text')}
+                    </Typography>
+                    <Link onClick={openPrivacyPolicy} variant="tinyBlue">
+                      {t('signup.privacy.link')}
+                    </Link>
+                  </Box>
+                  <Box mt={4} textAlign="center">
+                    <Typography variant="content" as="span">
+                      {t('signup.alreadyAccount')}
+                    </Typography>
+                    &nbsp;
+                    <Link onClick={goToSignIn}>{t('signup.goToSignIn')}</Link>
+                  </Box>
+                </form>
+              </FormProvider>
+            </Box>
+          </SignupContent>
+        }
+      />
+      <EmailVerificationRequiredDialog />
+    </>
   );
 };
 

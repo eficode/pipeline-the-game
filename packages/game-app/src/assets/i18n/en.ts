@@ -131,7 +131,7 @@ const translations = {
     goToSignIn: 'Sign in',
     verificationRequired: {
       title: 'Check your email',
-      message: 'We sent a mail to {{email}}. Click the link in the mail to confirm you email address.',
+      message: 'We sent a mail to {{email}}. Click the link in the mail to confirm your email address.',
       resend: 'Resend email',
       resendSuccess: 'Resend success',
     },

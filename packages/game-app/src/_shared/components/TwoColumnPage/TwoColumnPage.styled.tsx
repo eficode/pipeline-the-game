@@ -12,9 +12,7 @@ export const TowColumnsContainer = styled.div`
 TowColumnsContainer.displayName = 'TwoColumnsContainer';
 
 export const Column = styled.div<FlexProps & FlexboxProps & LayoutProps>`
-  ${flex}
-  ${flexbox}
-  ${layout}
+  ${flex} ${flexbox} ${layout}
 `;
 
 Column.displayName = 'Column';
@@ -44,3 +42,15 @@ export const Logo = styled.div`
 `;
 
 Logo.displayName = 'Logo';
+
+export const RightIllustration = styled.div`
+  width: 100%;
+  height: 100%;
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+`;
+
+RightIllustration.displayName = 'RightIllustration';

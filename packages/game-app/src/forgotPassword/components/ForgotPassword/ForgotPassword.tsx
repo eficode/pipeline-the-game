@@ -1,12 +1,20 @@
 import React, { useMemo } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { FormTextField } from '@pipeline/form';
-import { Box, Button, Dialog, ErrorMessage, Link, TwoColumnPage, Typography } from '@pipeline/components';
+import {
+  Box,
+  Button,
+  Dialog,
+  ErrorMessage,
+  Link,
+  TwoColumnPage,
+  Typography,
+  DialogForEmailContainer,
+} from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { useSendResetPasswordEmail } from '@pipeline/auth';
 import { useLocation } from 'react-router-dom';
 import { RoutingPath, useNavigateTo } from '@pipeline/routing';
-import DialogForEmailContainer from '../DialogForEmailContainer';
 
 type Props = {};
 

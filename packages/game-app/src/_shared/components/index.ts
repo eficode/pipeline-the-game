@@ -23,6 +23,7 @@ import Icon from './Icon';
 import TwoColumnPage from './TwoColumnPage';
 import TextLogo from './TextLogo';
 import PopoverDetails from './PopoverDetails';
+import DialogForEmailContainer from './DialogForEmailContainer';
 import { getFromTheme } from './utils';
 
 export {
@@ -52,4 +53,5 @@ export {
   TextLogo,
   PopoverDetails,
   getFromTheme,
+  DialogForEmailContainer,
 };
