@@ -52,6 +52,14 @@ function renderAuthRoutes(user: AuthUser | null) {
   }
 }
 
+const Loader: React.FC = () => {
+  useEffect(() => {
+    return () => document.getElementById('initial-loading-overlay')?.remove();
+  }, []);
+
+  return null;
+};
+
 function App() {
   const bootstrapIsFinished = useBootstrapIsFinished();
 
@@ -70,7 +78,7 @@ function App() {
   }, [location, user, history, state]);
 
   return bootstrapIsFinished ? (
-    <Suspense fallback={null}>
+    <Suspense fallback={<Loader />}>
       <Switch>
         <PrivateRoute path={RoutingPath.Dashboard} component={Dashboard} />
         <PrivateRoute path={`${RoutingPath.Game}/:gameId`} component={GameView} />
@@ -78,9 +86,7 @@ function App() {
         {renderAuthRoutes(user)}
       </Switch>
     </Suspense>
-  ) : (
-    <div>LOADING ...</div>
-  );
+  ) : null;
 }
 
 export default App;

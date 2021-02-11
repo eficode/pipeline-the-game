@@ -30,7 +30,59 @@
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <style>
+      #initial-loading-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          width: 100vw;
+          height: 100vh;
+          min-width: 100vw;
+          max-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+      }
+
+      @-webkit-keyframes rotate {
+          0% {
+              -webkit-transform: rotateY(0deg);
+          }
+          50% {
+              -webkit-transform: rotateY(180deg);
+          }
+          100% {
+              -webkit-transform: rotateY(0deg);
+          }
+      }
+
+      @keyframes rotate {
+          0% {
+              transform: rotateY(0deg);
+          }
+          50% {
+              transform: rotateY(180deg);
+          }
+          100% {
+              transform: rotateY(0deg);
+          }
+      }
+
+      #initial-loading-overlay img{
+          width: 20%;
+          height: 20%;
+          -webkit-animation: rotate 1s linear infinite;
+          /* Safari */
+          animation: rotate 1s linear infinite;
+      }
+    </style>
     <div id="root"></div>
+    <div id="initial-loading-overlay">
+      <img src="eficode-logo.svg">
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
