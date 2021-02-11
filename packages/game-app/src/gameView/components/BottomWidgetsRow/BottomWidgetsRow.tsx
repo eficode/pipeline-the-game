@@ -19,7 +19,7 @@ type Props = {};
 const BottomWidgetsRowStyled: React.FC<Props> = () => {
   const state = useSelector(selectors.getCardStateForUI);
   const review = useSelector(selectors.getReview);
-  const t = useTranslate();
+  const translate = useTranslate();
 
   const { setScaleAndPanRef, zoomRef } = useZoomPanRefs();
 
@@ -48,21 +48,21 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
       {
         icon: <ZoomInIcon />,
         onClick: zoomIn,
-        tooltipLabel: t('game.dial.zoomInTooltip'),
+        tooltipLabel: translate('game.dial.zoomInTooltip'),
       },
       {
         icon: <ZoomOutIcon />,
         onClick: zoomOut,
-        tooltipLabel: t('game.dial.zoomOutTooltip'),
+        tooltipLabel: translate('game.dial.zoomOutTooltip'),
       },
       {
         icon: <FitScreenIcon />,
         onClick: fitWindow,
         autoClose: true,
-        tooltipLabel: t('game.dial.fitTooltip'),
+        tooltipLabel: translate('game.dial.fitTooltip'),
       },
     ],
-    [fitWindow, t, zoomIn, zoomOut],
+    [fitWindow, translate, zoomIn, zoomOut],
   );
 
   return (
