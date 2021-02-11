@@ -64,19 +64,28 @@ const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
           <Logo />
         </LogoContainer>
         <ButtonsBar>
-          <IconButton testId="exit-game" variant="clear" onClick={confirmExitDialog.open}>
+          <IconButton
+            testId="exit-game"
+            variant="clear"
+            onClick={confirmExitDialog.open}
+            tooltipLabel={t('game.toolbar.exitTooltip')}
+          >
             <ExitIcon />
           </IconButton>
-          <IconButton variant="clear" onClick={shareDialog.open}>
+          <IconButton variant="clear" onClick={shareDialog.open} tooltipLabel={t('game.toolbar.shareTooltip')}>
             <ShareIcon />
           </IconButton>
 
-          <IconButton variant="clear" onClick={rulesOverlay.toggle}>
+          <IconButton variant="clear" onClick={rulesOverlay.toggle} tooltipLabel={t('game.toolbar.rulesTooltip')}>
             <RulesIcon />
           </IconButton>
 
           {isUserTheFacilitator && (
-            <IconButton variant="clear" onClick={triggerReviewOverlay.open}>
+            <IconButton
+              variant="clear"
+              onClick={triggerReviewOverlay.open}
+              tooltipLabel={t('game.toolbar.reviewTooltip')}
+            >
               <TriggerReviewIcon />
             </IconButton>
           )}

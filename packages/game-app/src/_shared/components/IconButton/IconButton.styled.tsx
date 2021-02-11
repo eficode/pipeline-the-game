@@ -28,9 +28,7 @@ export const StyledButton = styled.button<{ active?: boolean; variant: IconButto
     css`
       background: #eeeeee;
       color: #00867c;
-    `}
-
-  ${variant({
+    `} ${variant({
     variants: {
       default: {
         '&:active': {
@@ -62,3 +60,14 @@ export const StyledButton = styled.button<{ active?: boolean; variant: IconButto
 `;
 
 StyledButton.displayName = 'StyledButton';
+
+export const IconTooltip = styled.span`
+  padding: 3px 8px;
+  height: 24px;
+  background: #2c3644;
+  border-radius: 10px;
+  color: white;
+  font-size: 14px;
+`;
+
+IconTooltip.displayName = 'IconTooltip';

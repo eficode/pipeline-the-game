@@ -76,3 +76,11 @@ ClearSmall.args = {
   variant: 'clearSmall',
   children: icon,
 };
+
+export const WithTooltip = Template.bind({});
+
+WithTooltip.args = {
+  variant: 'default',
+  children: icon,
+  tooltipLabel: 'Helper text',
+};

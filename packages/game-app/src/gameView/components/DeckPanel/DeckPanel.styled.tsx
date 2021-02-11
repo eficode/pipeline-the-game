@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { IconButton } from '@pipeline/components';
 import { CardWrapper } from '../DraggableCard/DraggableCard.styled';
 
 export type PanelMode = 'stacked' | 'tow-columns';
@@ -37,7 +36,7 @@ export const PanelButtons = styled.div`
   justify-content: flex-end;
   margin-top: 8px;
 
-  ${IconButton} + ${IconButton} {
+  & > * {
     margin-left: 8px;
   }
 `;

@@ -72,7 +72,7 @@ If you want to skip signup and email verification you can add
 CREATE_TEST_USER=true
 ```
 
-This will create a test user with email test@test.com and password Test123
+This will create a test user with email test@test.com and password Test1234
 #### Running
 Run the following script in the **root** folder to initialize the local emulators:
 ```shell

@@ -25,7 +25,7 @@ async function createUser(email){
     const user = await admin.auth().createUser({
         email,
         emailVerified: true,
-        password: 'Test123'
+        password: 'Test1234'
     });
     await admin.firestore().doc(`users/${user.uid}`).set({
         email,
