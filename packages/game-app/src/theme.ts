@@ -17,7 +17,7 @@ const theme: DefaultTheme = {
   iconButton: {
     variants: {
       default: {
-        background: '#b4aea9',
+        background: '#1A1818',
       },
     },
   },

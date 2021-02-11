@@ -16,11 +16,9 @@ import ConfirmExitDialog from '../ConfirmExitDialog';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 
-type Props = {
-  toggleBackGround: () => void;
-};
+type Props = {};
 
-const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
+const TopWidgetsRow: React.FC<Props> = () => {
   const history = useHistory();
   const game = useSelector(selectors.getGame);
 
@@ -65,6 +63,9 @@ const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
           <Logo />
         </LogoContainer>
         <ButtonsBar>
+          <GameName>
+            <Typography>{game?.name}</Typography>
+          </GameName>
           <IconButton
             testId="exit-game"
             variant="clear"
@@ -91,9 +92,6 @@ const TopWidgetsRow: React.FC<Props> = ({ toggleBackGround }) => {
             </IconButton>
           )}
         </ButtonsBar>
-        <GameName>
-          <Typography color="white">{game?.name}</Typography>
-        </GameName>
         <Button onClick={contactUs} label={t('game.contactUs')} />
       </TopRowContainer>
       <ShareGameDialog isOpen={shareDialog.isOpen} close={shareDialog.close} />

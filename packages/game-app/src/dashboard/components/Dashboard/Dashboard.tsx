@@ -4,7 +4,14 @@ import { useLogout } from '@pipeline/auth';
 import { RoutingPath, useNavigateTo } from '@pipeline/routing';
 import { Box, Button, Link, TextLogo, Typography } from '@pipeline/components';
 import JoinGameButton from '../JoinGameButton';
-import { DashboardContainer, DashboardHeader } from './Dashboard.styled';
+import {
+  CardsIllustration,
+  DashboardContainer,
+  DashboardHeader,
+  DashboardLeftSide,
+  Triangle,
+} from './Dashboard.styled';
+import { ReactComponent as FloatingCardsImg } from '@assets/images/dashboard-floating-cards-reference.svg';
 
 type Props = {};
 
@@ -26,17 +33,23 @@ const Dashboard: React.FC<Props> = () => {
             <Button label={t('dashboard.contactUs')} onClick={() => ({})} />
           </Box>
         </DashboardHeader>
-        <Box maxWidth="40vw">
-          <Typography variant="title" fontFamily="Merriweather">
-            {t('dashboard.title')}
-          </Typography>
-          <Typography mt={3} variant="dialogHead" fontWeight="normal">
-            {t('dashboard.message')}
-          </Typography>
-          <Box mt={4} display="flex" flexDirection="row">
-            <Button id="go-to-create-game-button" onClick={goToCreateGame} label={t('dashboard.newGameLabel')} />
-            <JoinGameButton />
-          </Box>
+        <Box flex={1} display="flex" flexDirection="row">
+          <DashboardLeftSide>
+            <Typography variant="title" fontFamily="Merriweather">
+              {t('dashboard.title')}
+            </Typography>
+            <Typography mt={3} variant="dialogHead" fontWeight="normal">
+              {t('dashboard.message')}
+            </Typography>
+            <Box mt={4} display="flex" flexDirection="row">
+              <Button id="go-to-create-game-button" onClick={goToCreateGame} label={t('dashboard.newGameLabel')} />
+              <JoinGameButton />
+            </Box>
+          </DashboardLeftSide>
+          <Triangle />
+          <CardsIllustration flex={1}>
+            <FloatingCardsImg />
+          </CardsIllustration>
         </Box>
       </Box>
     </DashboardContainer>

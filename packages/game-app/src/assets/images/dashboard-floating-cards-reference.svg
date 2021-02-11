@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1139.73 928.3">
     <defs>
         <style>
-            .dashboard-cls-1{fill:none;}.dashboard-cls-2{fill:#9f998f;opacity:0.5;}.dashboard-cls-17,.dashboard-cls-2,.dashboard-cls-27,.dashboard-cls-32,.dashboard-cls-43,.dashboard-cls-5,.dashboard-cls-6{isolation:isolate;}.dashboard-cls-3{fill:#fff;}.dashboard-cls-4{fill:url(#Ikke-navngivet_forløb_3);}.dashboard-cls-43,.dashboard-cls-6{font-size:24.01px;}.dashboard-cls-17,.dashboard-cls-27,.dashboard-cls-32,.dashboard-cls-43,.dashboard-cls-6{fill:#eee;font-family:Montserrat-Medium,
-            Montserrat;font-weight:500;}.dashboard-cls-6{letter-spacing:0.02em;}.dashboard-cls-7{clip-path:url(#clip-path);}.dashboard-cls-8{fill:#2a8468;}.dashboard-cls-9{fill:#3b9a80;}.dashboard-cls-10{fill:#1e704e;}.dashboard-cls-11{clip-path:url(#clip-path-2);}.dashboard-cls-12{fill:#88c6b7;}.dashboard-cls-13{fill:#a0d2c6;}.dashboard-cls-14{clip-path:url(#clip-path-6);}.dashboard-cls-15{fill:#2b3644;}.dashboard-cls-16{fill:url(#Ikke-navngivet_forløb_2);}.dashboard-cls-17{font-size:15.07px;letter-spacing:0.02em;}.dashboard-cls-18{clip-path:url(#clip-path-7);}.dashboard-cls-19{fill:#e7511d;}.dashboard-cls-20{fill:#ea622d;}.dashboard-cls-21{fill:#cf3a17;}.dashboard-cls-22{clip-path:url(#clip-path-8);}.dashboard-cls-23{fill:#f2a889;}.dashboard-cls-24{fill:#f4996c;}.dashboard-cls-25{clip-path:url(#clip-path-12);}.dashboard-cls-26{fill:url(#Ikke-navngivet_forløb_3-2);}.dashboard-cls-27{font-size:23.9px;letter-spacing:0.02em;}.dashboard-cls-28{clip-path:url(#clip-path-13);}.dashboard-cls-29{clip-path:url(#clip-path-14);}.dashboard-cls-30{clip-path:url(#clip-path-18);}.dashboard-cls-31{fill:url(#Ikke-navngivet_forløb_4);}.dashboard-cls-32{font-size:22.13px;letter-spacing:0.02em;}.dashboard-cls-33{clip-path:url(#clip-path-19);}.dashboard-cls-34{fill:#7a3375;}.dashboard-cls-35{fill:#864783;}.dashboard-cls-36{fill:#572051;}.dashboard-cls-37{clip-path:url(#clip-path-20);}.dashboard-cls-38{fill:#6d2166;}.dashboard-cls-39{fill:#ad7faa;}.dashboard-cls-40{fill:#be99bc;}.dashboard-cls-41{clip-path:url(#clip-path-24);}.dashboard-cls-42{fill:url(#Ikke-navngivet_forløb_5);}.dashboard-cls-43{letter-spacing:0.02em;}.dashboard-cls-44{clip-path:url(#clip-path-25);}.dashboard-cls-45{fill:#4ebad6;}.dashboard-cls-46{fill:#21aed1;}.dashboard-cls-47{fill:#0083b1;}.dashboard-cls-48{clip-path:url(#clip-path-26);}.dashboard-cls-49{fill:#0d92bb;}.dashboard-cls-50{fill:#38b5d4;}.dashboard-cls-51{fill:#99d4e2;}.dashboard-cls-52{fill:#53bcd7;}.dashboard-cls-53{clip-path:url(#clip-path-30);}
+            .dashboard-cls-1{fill:none;}.dashboard-cls-2{fill:#9f998f;opacity:0.5;}.dashboard-cls-17,.dashboard-cls-2,.dashboard-cls-27,.dashboard-cls-32,.dashboard-cls-43,.dashboard-cls-5,.dashboard-cls-6{isolation:isolate;}.dashboard-cls-3{fill:#fff;}.dashboard-cls-4{fill:url(#Ikke-navngivet_3);}.dashboard-cls-43,.dashboard-cls-6{font-size:24.01px;}.dashboard-cls-17,.dashboard-cls-27,.dashboard-cls-32,.dashboard-cls-43,.dashboard-cls-6{fill:#eee;font-family:Montserrat-Medium,
+            Montserrat;font-weight:500;}.dashboard-cls-6{letter-spacing:0.02em;}.dashboard-cls-7{clip-path:url(#clip-path);}.dashboard-cls-8{fill:#2a8468;}.dashboard-cls-9{fill:#3b9a80;}.dashboard-cls-10{fill:#1e704e;}.dashboard-cls-11{clip-path:url(#clip-path-2);}.dashboard-cls-12{fill:#88c6b7;}.dashboard-cls-13{fill:#a0d2c6;}.dashboard-cls-14{clip-path:url(#clip-path-6);}.dashboard-cls-15{fill:#2b3644;}.dashboard-cls-16{fill:url(#Ikke-navngivet_2);}.dashboard-cls-17{font-size:15.07px;letter-spacing:0.02em;}.dashboard-cls-18{clip-path:url(#clip-path-7);}.dashboard-cls-19{fill:#e7511d;}.dashboard-cls-20{fill:#ea622d;}.dashboard-cls-21{fill:#cf3a17;}.dashboard-cls-22{clip-path:url(#clip-path-8);}.dashboard-cls-23{fill:#f2a889;}.dashboard-cls-24{fill:#f4996c;}.dashboard-cls-25{clip-path:url(#clip-path-12);}.dashboard-cls-26{fill:url(#Ikke-navngivet_3-2);}.dashboard-cls-27{font-size:23.9px;letter-spacing:0.02em;}.dashboard-cls-28{clip-path:url(#clip-path-13);}.dashboard-cls-29{clip-path:url(#clip-path-14);}.dashboard-cls-30{clip-path:url(#clip-path-18);}.dashboard-cls-31{fill:url(#Ikke-navngivet_4);}.dashboard-cls-32{font-size:22.13px;letter-spacing:0.02em;}.dashboard-cls-33{clip-path:url(#clip-path-19);}.dashboard-cls-34{fill:#7a3375;}.dashboard-cls-35{fill:#864783;}.dashboard-cls-36{fill:#572051;}.dashboard-cls-37{clip-path:url(#clip-path-20);}.dashboard-cls-38{fill:#6d2166;}.dashboard-cls-39{fill:#ad7faa;}.dashboard-cls-40{fill:#be99bc;}.dashboard-cls-41{clip-path:url(#clip-path-24);}.dashboard-cls-42{fill:url(#Ikke-navngivet_5);}.dashboard-cls-43{letter-spacing:0.02em;}.dashboard-cls-44{clip-path:url(#clip-path-25);}.dashboard-cls-45{fill:#4ebad6;}.dashboard-cls-46{fill:#21aed1;}.dashboard-cls-47{fill:#0083b1;}.dashboard-cls-48{clip-path:url(#clip-path-26);}.dashboard-cls-49{fill:#0d92bb;}.dashboard-cls-50{fill:#38b5d4;}.dashboard-cls-51{fill:#99d4e2;}.dashboard-cls-52{fill:#53bcd7;}.dashboard-cls-53{clip-path:url(#clip-path-30);}
         </style>
-        <linearGradient id="Ikke-navngivet_forløb_3" x1="-3728.58" y1="-1209.93" x2="-3729.58" y2="-1209.89"
+        <linearGradient id="Ikke-navngivet_3" x1="-3728.58" y1="-1209.93" x2="-3729.58" y2="-1209.89"
                         gradientTransform="matrix(270.35, -28.53, -5.77, -54.73, 1001368.81, -172521.13)"
                         gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#00867d"/>
@@ -22,7 +22,7 @@
             <rect class="dashboard-cls-1" x="288.54" y="221.38" width="36.27" height="9.13"
                   transform="translate(-22.02 33.43) rotate(-6.02)"/>
         </clipPath>
-        <linearGradient id="Ikke-navngivet_forløb_2" x1="-3722.36" y1="-1218.79" x2="-3723.36" y2="-1218.75"
+        <linearGradient id="Ikke-navngivet_2" x1="-3722.36" y1="-1218.79" x2="-3723.36" y2="-1218.75"
                         gradientTransform="matrix(201.16, 0, 5.17, -39.23, 755991.18, -47790.07)"
                         gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#de6411"/>
@@ -38,9 +38,9 @@
         <clipPath id="clip-path-12" transform="translate(0 36.1)">
             <polygon class="dashboard-cls-1" points="851.71 121.09 878.61 121.09 877.74 127.68 850.84 127.68 851.71 121.09"/>
         </clipPath>
-        <linearGradient id="Ikke-navngivet_forløb_3-2" x1="-3730.61" y1="-1198.34" x2="-3731.61" y2="-1198.3"
+        <linearGradient id="Ikke-navngivet_3-2" x1="-3730.61" y1="-1198.34" x2="-3731.61" y2="-1198.3"
                         gradientTransform="matrix(350.81, -18.41, -2.98, -70.65, 1305540.62, -152815.46)"
-                        xlink:href="#Ikke-navngivet_forløb_3"/>
+                        xlink:href="#Ikke-navngivet_3"/>
         <clipPath id="clip-path-13" transform="translate(0 36.1)">
             <path class="dashboard-cls-1"
                   d="M26.27,495.38l321.09-16.85a14.72,14.72,0,0,1,15.49,14.14l2.36,55.72h0L14.39,566.8h0L12,511.08A15.1,15.1,0,0,1,26.27,495.38Z"/>
@@ -51,7 +51,7 @@
         <clipPath id="clip-path-18" transform="translate(0 36.1)">
             <polygon class="dashboard-cls-1" points="303.36 702.96 350.13 700.51 350.62 712.1 303.85 714.55 303.36 702.96"/>
         </clipPath>
-        <linearGradient id="Ikke-navngivet_forløb_4" x1="-3730.37" y1="-1211.58" x2="-3731.37" y2="-1211.54"
+        <linearGradient id="Ikke-navngivet_4" x1="-3730.37" y1="-1211.58" x2="-3731.37" y2="-1211.54"
                         gradientTransform="matrix(298.22, -41.95, -10.92, -54.24, 1099954.9, -221965.39)"
                         gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#592059"/>
@@ -67,7 +67,7 @@
         <clipPath id="clip-path-24" transform="translate(0 36.1)">
             <polygon class="dashboard-cls-1" points="668.72 399.33 708.44 393.74 710.26 402.77 670.54 408.36 668.72 399.33"/>
         </clipPath>
-        <linearGradient id="Ikke-navngivet_forløb_5" x1="-3728.84" y1="-1192.9" x2="-3729.84" y2="-1192.86"
+        <linearGradient id="Ikke-navngivet_5" x1="-3728.84" y1="-1192.9" x2="-3729.84" y2="-1192.86"
                         gradientTransform="matrix(317.13, 33.33, 6.93, -65.67, 1191933.23, 46385.32)"
                         gradientUnits="userSpaceOnUse">
             <stop offset="0" stop-color="#148ab4"/>
@@ -96,9 +96,7 @@
                 <path id="Rectangle_19" data-name="Rectangle 19" class="dashboard-cls-4"
                       d="M68.6,70.66,309.68,45.22A14.87,14.87,0,0,1,325.89,58.6l4.2,39.8h0L59.74,126.93h0l-4.2-39.8A14.87,14.87,0,0,1,68.6,70.66Z"
                       transform="translate(0 36.1)"/>
-                <g id="pipeline" class="dashboard-cls-5">
-                    <text class="dashboard-cls-6" transform="matrix(0.98, -0.1, 0.1, 0.99, 66.66, 148.68)">pipeline</text>
-                </g>
+
                 <g class="dashboard-cls-7">
                     <g id="Mask_Group_137" data-name="Mask Group 137">
                         <g id="Group_211" data-name="Group 211">
@@ -171,6 +169,9 @@
                         </g>
                     </g>
                 </g>
+                <g id="pipeline" class="dashboard-cls-5">
+                    <text class="dashboard-cls-6" transform="matrix(0.98, -0.1, 0.1, 0.99, 66.66, 148.68)">pipeline</text>
+                </g>
                 <g id="Group_72" data-name="Group 72">
                     <g class="dashboard-cls-14">
                         <g id="Group_71" data-name="Group 71">
@@ -207,9 +208,6 @@
                 <path id="Rectangle_19-2" data-name="Rectangle 19-2" class="dashboard-cls-16"
                       d="M721.13,0h173a12.05,12.05,0,0,1,12.26,14L903,39.23H701.87L705.19,14A16.54,16.54,0,0,1,721.13,0Z"
                       transform="translate(0 36.1)"/>
-                <g id="pipeline-2" class="dashboard-cls-5">
-                    <text class="dashboard-cls-17" transform="matrix(1, 0, -0.13, 0.99, 720.04, 63.17)">pipeline</text>
-                </g>
                 <g class="dashboard-cls-18">
                     <g id="Mask_Group_137-2" data-name="Mask Group 137-2">
                         <g id="Group_288" data-name="Group 288">
@@ -282,6 +280,9 @@
                         </g>
                     </g>
                 </g>
+                <g id="pipeline-2" class="dashboard-cls-5">
+                    <text class="dashboard-cls-17" transform="matrix(1, 0, -0.13, 0.99, 720.04, 63.17)">pipeline</text>
+                </g>
                 <g id="Group_72-2" data-name="Group 72-2">
                     <g class="dashboard-cls-25">
                         <g id="Group_71-2" data-name="Group 71-2">
@@ -317,9 +318,6 @@
                 <path id="Rectangle_19-3" data-name="Rectangle 19-3" class="dashboard-cls-26"
                       d="M26.27,495.38l321.09-16.85a14.72,14.72,0,0,1,15.49,14.14l2.36,55.72h0L14.39,566.8h0L12,511.08A15.1,15.1,0,0,1,26.27,495.38Z"
                       transform="translate(0 36.1)"/>
-                <g id="pipeline-3" class="dashboard-cls-5">
-                    <text class="dashboard-cls-27" transform="matrix(1, -0.05, 0.04, 1, 52.28, 576.7)">pipeline</text>
-                </g>
                 <g class="dashboard-cls-28">
                     <g id="Mask_Group_137-3" data-name="Mask Group 137-3">
                         <g id="Group_211-2" data-name="Group 211-2">
@@ -392,6 +390,9 @@
                         </g>
                     </g>
                 </g>
+                <g id="pipeline-3" class="dashboard-cls-5">
+                    <text class="dashboard-cls-27" transform="matrix(1, -0.05, 0.04, 1, 52.28, 576.7)">pipeline</text>
+                </g>
                 <g id="Group_72-3" data-name="Group 72-3">
                     <g class="dashboard-cls-30">
                         <g id="Group_71-3" data-name="Group 71-3">
@@ -427,9 +428,6 @@
                 <path id="Rectangle_19-4" data-name="Rectangle 19-4" class="dashboard-cls-31"
                       d="M409.47,258.75l268.8-37.81c8.13-1.14,15.94,4,17.44,11.49l8.19,40.68h0L405.68,315.06h0l-8.19-40.68C396,266.89,401.35,259.9,409.47,258.75Z"
                       transform="translate(0 36.1)"/>
-                <g id="pipeline-4" class="dashboard-cls-5">
-                    <text class="dashboard-cls-32" transform="matrix(1.06, -0.15, 0.2, 0.98, 421.41, 333.43)">pipeline</text>
-                </g>
                 <g class="dashboard-cls-33">
                     <g id="Mask_Group_137-4" data-name="Mask Group 137-4">
                         <g id="Group_270" data-name="Group 270">
@@ -502,6 +500,9 @@
                         </g>
                     </g>
                 </g>
+                <g id="pipeline-4" class="dashboard-cls-5">
+                    <text class="dashboard-cls-32" transform="matrix(1.06, -0.15, 0.2, 0.98, 421.41, 333.43)">pipeline</text>
+                </g>
                 <g id="Group_72-4" data-name="Group 72-4">
                     <g class="dashboard-cls-41">
                         <g id="Group_71-4" data-name="Group 71-4">
@@ -540,9 +541,6 @@
                 <path id="Rectangle_19-5" data-name="Rectangle 19-5" class="dashboard-cls-42"
                       d="M838.5,374.5l288.3,30.3a14.74,14.74,0,0,1,12.84,16.44L1134.29,472h0L817.16,438.65h0l5.35-50.74A14.76,14.76,0,0,1,838.5,374.5Z"
                       transform="translate(0 36.1)"/>
-                <g id="pipeline-5" class="dashboard-cls-5">
-                    <text class="dashboard-cls-43" transform="matrix(0.96, 0.1, -0.1, 0.99, 847.69, 457.32)">pipeline</text>
-                </g>
                 <g class="dashboard-cls-44">
                     <g id="Mask_Group_137-5" data-name="Mask Group 137-5">
                         <g id="Group_279" data-name="Group 279">
@@ -615,6 +613,9 @@
                                   transform="matrix(0.1, -0.99, 0.99, 0.1, 348.08, 1256.78)"/>
                         </g>
                     </g>
+                </g>
+                <g id="pipeline-5" class="dashboard-cls-5">
+                    <text class="dashboard-cls-43" transform="matrix(0.96, 0.1, -0.1, 0.99, 847.69, 457.32)">pipeline</text>
                 </g>
                 <g id="Group_72-5" data-name="Group 72-5">
                     <g class="dashboard-cls-53">

@@ -37,15 +37,13 @@ export const ButtonsBar = styled(Box)`
 ButtonsBar.displayName = 'ButtonsBar';
 
 export const GameName = styled(Box)`
-  background: #2c3644;
-  box-shadow: 0px 0px 6px #d7d2cb80;
-  border-radius: 15px;
-  padding: 0 12px;
+  margin: 8px 0px;
+  padding: 0px 8px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 40px;
+  border-right: 1px solid #1a1818;
 `;
 
 GameName.displayName = 'GameName';
