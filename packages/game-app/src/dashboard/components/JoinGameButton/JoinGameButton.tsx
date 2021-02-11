@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Input } from '@pipeline/components';
+import { Box, Button, Input, Link } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { ReactComponent as KeyboardIcon } from '@assets/icons/keyboard.svg';
 import useJoinGame from '../../hooks/useJoinGame';
@@ -17,7 +17,9 @@ const JoinGameButton: React.FC<Props> = () => {
         <Input id="join-link-field" iconLeft={<KeyboardIcon />} variant="default" value={text} onChange={onChange} />
       ) : null}
       {showInput && text ? (
-        <Button variant="clear" onClick={join} color="activeAccent" label={t('dashboard.joinButton')} />
+        <Link variant="activeAccent" onClick={join}>
+          {t('dashboard.joinButton')}
+        </Link>
       ) : null}
     </Box>
   );

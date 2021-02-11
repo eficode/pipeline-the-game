@@ -7,51 +7,56 @@ type Props = {
   id?: string;
 };
 
-type LinkVariants = 'tinyBlue' | 'tinyGray' | 'smallBlue' | 'smallGray' | 'gray' | 'blue';
+type LinkVariants = 'tinyBlue' | 'tinyGray' | 'smallBlue' | 'smallGray' | 'gray' | 'blue' | 'activeAccent';
 
 type CustomLinkProps = { variant?: LinkVariants } & Props;
 
 export const LinkButton = styled.button<CustomLinkProps>`
-  ${variant({
-    variants: {
-      tinyBlue: {
-        fontSize: '12px',
-        color: '#148AB3',
-        marginTop: '-2px',
-        fontWeight: '600',
+  ${({ theme }) =>
+    variant({
+      variants: {
+        tinyBlue: {
+          fontSize: '12px',
+          color: '#148AB3',
+          marginTop: '-2px',
+          fontWeight: '600',
+        },
+        tinyGray: {
+          fontSize: '12px',
+          color: '#9F998F',
+          marginTop: '-2px',
+          textDecoration: 'underline',
+        },
+        smallBlue: {
+          fontSize: '14px',
+          color: '#148AB3',
+          marginTop: '-2px',
+          fontWeight: '600',
+        },
+        smallGray: {
+          fontSize: '14px',
+          color: '#9F998F',
+          marginTop: '-2px',
+          textDecoration: 'underline',
+        },
+        gray: {
+          fontSize: '16px',
+          color: '#9F998F',
+          marginTop: '-4px',
+          textDecoration: 'underline',
+        },
+        blue: {
+          fontSize: '16px',
+          color: '#148AB3',
+          marginTop: '-4px',
+          fontWeight: '600',
+        },
+        activeAccent: {
+          fontSize: '16px',
+          color: theme.colors.activeAccent,
+        },
       },
-      tinyGray: {
-        fontSize: '12px',
-        color: '#9F998F',
-        marginTop: '-2px',
-        textDecoration: 'underline',
-      },
-      smallBlue: {
-        fontSize: '14px',
-        color: '#148AB3',
-        marginTop: '-2px',
-        fontWeight: '600',
-      },
-      smallGray: {
-        fontSize: '14px',
-        color: '#9F998F',
-        marginTop: '-2px',
-        textDecoration: 'underline',
-      },
-      gray: {
-        fontSize: '16px',
-        color: '#9F998F',
-        marginTop: '-4px',
-        textDecoration: 'underline',
-      },
-      blue: {
-        fontSize: '16px',
-        color: '#148AB3',
-        marginTop: '-4px',
-        fontWeight: '600',
-      },
-    },
-  })}
+    })}
   background-color: transparent;
   border: 0;
   font-family: 'Montserrat';
