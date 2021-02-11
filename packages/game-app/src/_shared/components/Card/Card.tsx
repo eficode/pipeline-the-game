@@ -13,6 +13,8 @@ import {
 } from './Card.styled';
 
 type CardProps = Card & {
+  typeLabel: string;
+  tagsLabels: string[];
   headerTitle?: string;
   readOnly?: boolean;
   imgURL?: string;
@@ -23,22 +25,24 @@ type CardProps = Card & {
 const CardComponent: React.FC<CardProps> = ({
   headerTitle,
   type,
+  typeLabel,
   title,
   subtitle,
   content,
   readOnly = true,
   tags,
+  tagsLabels,
   dragging,
   bigger,
 }) => {
   return (
     <CardWrapper dragging={dragging} bigger={bigger}>
       <CardHeader type={type}>
-        <CardHeading>{type}</CardHeading>
+        <CardHeading>{typeLabel}</CardHeading>
         <CardHeadingTags>
-          {tags?.map(t => (
+          {tags?.map((t, index) => (
             <CardHeadingTag key={t} tag={t}>
-              {t}
+              {tagsLabels[index]}
             </CardHeadingTag>
           ))}
         </CardHeadingTags>

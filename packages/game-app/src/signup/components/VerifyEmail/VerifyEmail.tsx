@@ -14,8 +14,7 @@ const VerifyEmail: React.FC<Props> = () => {
 
   useEffect(() => {
     call({ code: params.oobCode });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [call, params]);
 
   let redirectUrl: string;
   if (params.continueUrl) {

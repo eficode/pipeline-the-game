@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 import fs from 'fs';
 import readline from 'readline';
 import {WhereFilterOp, Query} from '@google-cloud/firestore';
-import {CardEntity, CardTypes, DEFAULT_BOARD_DIMENSIONS, FirebaseCollection} from "@pipeline/common";
+import {CardEntity, CardType, DEFAULT_BOARD_DIMENSIONS, FirebaseCollection} from "@pipeline/common";
 import {Game} from "../../../firestore/models/Game";
 
 export async function getFirebaseUserByEmail(adminInstance: admin.app.App, {email}: { email: string }): Promise<admin.auth.UserRecord> {
@@ -107,7 +107,7 @@ export async function initializeGame(adminInstance: admin.app.App, {
 
   const scenarioCardsDocs = await adminInstance.firestore().collection(FirebaseCollection.Cards)
     .where('deckId', '==', DEFAULT_DECK_ID)
-    .where('type', '==', CardTypes.Scenario)
+    .where('type', '==', CardType.Scenario)
     .get();
 
   const scenarioCards = scenarioCardsDocs.docs.map(d => ({id: d.id, ...d.data()}));

@@ -34,6 +34,7 @@ const translations = {
     share: {
       title: 'Share the game',
       subtitle: 'Copy the link below and share it with your colleagues.',
+      copied: 'Link copied!',
     },
     backToGame: 'Back to game',
     rules: 'Game Rules',
@@ -176,6 +177,21 @@ const translations = {
       required: 'This field is required',
     },
     emptyOptionLabel: 'None selected',
+  },
+  card: {
+    type: {
+      scenario: 'Scenario',
+      'pipeline-step': 'Pipeline Step',
+      'game-rule': 'Game Rule',
+      review: 'Review',
+    },
+    tag: {
+      'delivery-step': 'Delivery Step',
+      'manual-step': 'Manual Step',
+      'deploy-step': 'Deploy Step',
+      'system-test': 'System Test',
+      package: 'Package',
+    },
   },
 };
 

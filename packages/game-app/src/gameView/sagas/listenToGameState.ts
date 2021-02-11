@@ -1,6 +1,6 @@
 import { call, put, select, take, takeEvery } from 'redux-saga/effects';
 import { EventChannel, eventChannel } from 'redux-saga';
-import { CardEntity, CardState, CardTypes } from '@pipeline/common';
+import { CardEntity, CardState, CardType } from '@pipeline/common';
 
 import { actions, GameState, selectors } from '../slice';
 import listenToCardsChanges from '../apis/listenToCardsChanges';
@@ -43,13 +43,13 @@ function* listenToCardState(action: ReturnType<typeof actions.startListenToGameS
 
   const deckCardsIds = cards
     .filter(c => {
-      return c.type === CardTypes.PipelineStep && (!(c.id in cardsState) || cardsState[c.id].parent === 'panel');
+      return c.type === CardType.PipelineStep && (!(c.id in cardsState) || cardsState[c.id].parent === 'panel');
     })
     .map(c => c.id);
 
   const boardCardsIds = cards
     .filter(c => {
-      return c.type === CardTypes.PipelineStep && cardsState[c.id]?.parent === 'board';
+      return c.type === CardType.PipelineStep && cardsState[c.id]?.parent === 'board';
     })
     .map(c => c.id);
 

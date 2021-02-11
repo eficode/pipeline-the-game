@@ -6,7 +6,7 @@ import { ReactComponent as ArrowIcon } from '@assets/icons/back-arrow-default.sv
 import { ReactComponent as ArrowHoverIcon } from '@assets/icons/back-arrow-hover.svg';
 import ExpandableRule from '../ExpandableRule';
 import useCards from '../../hooks/useCards';
-import { CardTypes } from '@pipeline/common';
+import { CardType } from '@pipeline/common';
 
 type Props = {
   isOpen: boolean;
@@ -16,7 +16,7 @@ type Props = {
 const RulesOverlay: React.FC<Props> = ({ isOpen, close }) => {
   const t = useTranslate();
 
-  const { cards: ruleCards } = useCards(CardTypes.GameRule);
+  const { cards: ruleCards } = useCards(CardType.GameRule);
   const firstGroup = ruleCards.slice(0, Math.floor(ruleCards.length / 2));
   const secondGroup = ruleCards.slice(Math.floor(ruleCards.length / 2));
 

@@ -102,7 +102,7 @@
     "type": "pipeline-step",
     "tags": ["delivery-step", "manual-step"],
     "title": "A Developer Commits Code",
-    "subtitle": "delivery-step",
+    "subtitle": "Delivery Step",
     "content": "A developer shares their code\nby pushing a commit to a\nversion control server, such\nas Git.\nIf you include steps before\nthis, they do not count\ntowards your deployment\nlead time.",
     "number": 13,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
@@ -111,7 +111,7 @@
     "type": "pipeline-step",
     "tags": ["delivery-step", "deploy-step"],
     "title": "Deploy to Production Environment",
-    "subtitle": "delivery-step",
+    "subtitle": "Delivery Step",
     "content": "A Release Candidate is deployed to\nproduction where there are actual\nusers and live data.\nYou cannot complete this step\nuntil you have built the Release\nCandidate.\nIf you include steps after this,\nthey do not count towards your\ndeployment lead time.",
     "number": 14,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
@@ -201,7 +201,7 @@
     "type": "pipeline-step",
     "tags": [],
     "title": "Code is Merged to Trunk (Master)",
-    "subtitle": "delivery-step",
+    "subtitle": "Delivery Step",
     "content": "All developers can now see,\nuse, and build on this code.\nYou cannot build the Release\nCandidate before this pipeline\nstep has completed.",
     "number": 24,
     "deckId": "7p5qqvE8kCV9WWysVc2n"

@@ -1,32 +1,32 @@
 import styled, { css } from 'styled-components';
-import { CardTags, CardTypes } from '@pipeline/common';
+import { CardTag, CardType } from '@pipeline/common';
 import { PANEL_CARD_SCALE } from '../../../dimensions';
 
 interface CardHeaderProps {
-  type: CardTypes;
+  type: CardType;
 }
 
 interface CardTagProps {
-  tag: CardTags;
+  tag: CardTag;
 }
 
 const tagObj = {
-  [CardTags.ManualStep]: {
+  [CardTag.ManualStep]: {
     backgroundColor: '#ffd100',
   },
-  [CardTags.DeliveryStep]: {
+  [CardTag.DeliveryStep]: {
     backgroundColor: '#f7951c',
   },
-  [CardTags.DeployStep]: {
+  [CardTag.DeployStep]: {
     backgroundColor: '#3fc7f4',
   },
-  [CardTags.Package]: {
+  [CardTag.Package]: {
     backgroundColor: '#e6accd',
   },
-  [CardTags.SystemTest]: {
+  [CardTag.SystemTest]: {
     backgroundColor: '#6e3695',
   },
-} as { [key in CardTags]: { backgroundColor: string } };
+} as { [key in CardTag]: { backgroundColor: string } };
 
 export const CardWrapper = styled.div<{ dragging?: boolean; bigger?: boolean }>`
   padding: 0 0 16px;
@@ -52,7 +52,7 @@ export const CardHeader = styled.header<CardHeaderProps>`
   box-sizing: border-box;
   height: 56px;
   background: ${props => props.theme.cardsTypes[props.type]};
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px 10px 0 0;
   position: relative;
 `;
 
@@ -69,7 +69,7 @@ CardHeadingTags.displayName = 'CardHeadingTags';
 export const CardHeadingTag = styled.span<CardTagProps>`
   font-size: 8px;
   font-weight: 600;
-  color: ${(props: CardTagProps) => (props.tag === CardTags.ManualStep ? 'black' : 'white')};
+  color: ${(props: CardTagProps) => (props.tag === CardTag.ManualStep ? 'black' : 'white')};
   background-color: ${(props: CardTagProps) => tagObj[props.tag].backgroundColor};
   border-radius: 10px;
   padding: 4px 6px;

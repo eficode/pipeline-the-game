@@ -1,22 +1,23 @@
 
-export enum CardTypes {
+// Attention: these are linked to translations
+export enum CardType {
   Scenario = 'scenario',
   PipelineStep = 'pipeline-step',
   GameRule = 'game-rule',
   Review = 'review'
 }
-
-export enum CardTags {
-  DeliveryStep= 'delivery-step',
-  ManualStep= 'manual-step',
-  DeployStep= 'deploy-step',
-  SystemTest= 'system-test',
-  Package= 'package',
+// Attention: these are linked to translations
+export enum CardTag {
+  DeliveryStep = 'delivery-step',
+  ManualStep = 'manual-step',
+  DeployStep = 'deploy-step',
+  SystemTest = 'system-test',
+  Package = 'package',
 }
 
 export interface Card {
-  type: CardTypes,
-  tags: CardTags[] | null,
+  type: CardType,
+  tags: CardTag[] | null,
   title: string,
   subtitle: string | null
   content: string,

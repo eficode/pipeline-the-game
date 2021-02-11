@@ -8,7 +8,7 @@ import {
   ErrorMessage,
   Link,
   PasswordInput,
-  TowColumnPage,
+  TwoColumnPage,
   Typography,
 } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
@@ -51,8 +51,7 @@ const ResetPassword: React.FC<Props> = () => {
 
   useEffect(() => {
     verifyActionCode(params.oobCode);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [verifyActionCode, params]);
 
   const submit = useMemo(() => {
     return handleSubmit((info: { password: string; repeatPassword: string }) => {
@@ -66,7 +65,7 @@ const ResetPassword: React.FC<Props> = () => {
 
   return (
     <>
-      <TowColumnPage
+      <TwoColumnPage
         left={
           <>
             <Typography variant="title">{t('resetPassword.title')}</Typography>

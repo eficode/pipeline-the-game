@@ -7,7 +7,7 @@
 import I18n from 'i18n-js';
 import enTranslations from '@assets/i18n/en';
 import { reducer, actions, name } from './slice';
-import { useTranslate } from './useTranslate';
+import { useTranslate, TranslationKeys } from './useTranslate';
 import translateError from './translateError';
 
 export function initializeI18n() {
@@ -20,3 +20,5 @@ export function initializeI18n() {
 }
 
 export { reducer, actions, name, useTranslate, translateError };
+
+export type { TranslationKeys };

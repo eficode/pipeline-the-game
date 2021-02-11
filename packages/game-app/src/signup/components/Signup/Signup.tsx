@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
-import { Box, Button, ErrorMessage, Link, PasswordInput, TowColumnPage, Typography } from '@pipeline/components';
+import { Box, Button, ErrorMessage, Link, PasswordInput, TwoColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { RoutingPath, useNavigateOnCondition, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
 
@@ -62,7 +62,7 @@ const Signup: React.FC<Props> = () => {
   useNavigateOnCondition(signupSuccess, RoutingPath.EmailVerificationRequired);
 
   return (
-    <TowColumnPage
+    <TwoColumnPage
       left={
         <SignupContent>
           <Typography variant="title">{t('signup.title')}</Typography>

@@ -1,12 +1,12 @@
 import { createRequestHook } from '@pipeline/requests-status';
 import { actions, selectors } from '../slice';
 import { useSelector } from 'react-redux';
-import { CardTypes } from '@pipeline/common';
+import { CardType } from '@pipeline/common';
 import { useEffect, useMemo } from 'react';
 
 const useLoadCards = createRequestHook('game.loadCards', actions.loadCards);
 
-export default function useCards(cardType?: CardTypes) {
+export default function useCards(cardType?: CardType) {
   const cards = useSelector(selectors.getAllCards);
 
   const { call, ...requestData } = useLoadCards();
