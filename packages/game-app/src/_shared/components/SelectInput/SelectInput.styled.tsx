@@ -3,13 +3,13 @@ import Box from '../Box';
 import React from 'react';
 import dropdownArrow from '../../../assets/icons/dropdown-arrow.svg';
 
-export const Select = styled.select`
+export const Select = styled.select<{ error?: boolean }>`
   width: 100%;
   height: 40px;
   padding: 5px 10px;
   box-sizing: border-box;
-  border-radius: 4px;
-  border: 1px solid #d7d2cb;
+  border-radius: 8px;
+  border: 1px solid ${props => (props.error ? 'red' : '#d7d2cb')};
 
   &:focus {
     outline: none;

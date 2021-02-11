@@ -7,6 +7,7 @@ declare module 'styled-components' {
     input: {
       variants: {
         default: object;
+        defaultError: object;
         clear: object;
       };
     };

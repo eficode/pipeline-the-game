@@ -6,6 +6,9 @@ const theme: DefaultTheme = {
       default: {
         border: '1px solid #D7D2CB',
       },
+      defaultError: {
+        border: '1px solid red',
+      },
       clear: {
         border: 'none',
       },

@@ -39,7 +39,14 @@ const SelectInput: React.FC<Props> = ({
         {label}
       </Typography>
       <SelectLoadingWrapper>
-        <Select disabled={disabled || options.length === 0} name={name} id={name} value={value} onChange={onChange}>
+        <Select
+          disabled={disabled || options.length === 0}
+          name={name}
+          id={name}
+          value={value}
+          onChange={onChange}
+          error={!!errorMessage}
+        >
           {emptyOption && emptyOptionLabel ? (
             <option key="" value="">
               {emptyOptionLabel}

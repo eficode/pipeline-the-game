@@ -32,7 +32,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>(
         ) : null}
         <Input
           ref={ref}
-          variant="default"
+          variant={!!errorMessage ? 'defaultError' : 'default'}
           disabled={disabled}
           placeholder={placeholder}
           type={type}

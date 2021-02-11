@@ -49,7 +49,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
         </LabelContainer>
         <Input
           ref={ref}
-          variant="default"
+          variant={!!errorMessage ? 'defaultError' : 'default'}
           iconRight={
             <IconButton variant="clearSmall" onClick={toggleType}>
               <StyledIcon variant="small">{type === 'password' ? <EyeIcon /> : <HideIcon />}</StyledIcon>

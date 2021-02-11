@@ -2,14 +2,14 @@ import styled, { css } from 'styled-components';
 import { color, ColorProps, variant } from 'styled-system';
 import Icon from '../Icon';
 
-export type InputVariants = 'default' | 'clear' | 'clearRound';
+export type InputVariants = 'default' | 'defaultError' | 'clear' | 'clearRound';
 
 export const StyledInput = styled.input<{ variant: InputVariants; withIcon?: boolean } & ColorProps>`
   width: 100%;
   height: 40px;
   padding: 5px 10px;
   box-sizing: border-box;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
 
   &:focus {
@@ -31,6 +31,7 @@ export const StyledInput = styled.input<{ variant: InputVariants; withIcon?: boo
     variant({
       variants: {
         default: theme.input.variants.default,
+        defaultError: theme.input.variants.defaultError,
         clear: theme.input.variants.clear,
         clearRound: {
           ...theme.input.variants.clear,
