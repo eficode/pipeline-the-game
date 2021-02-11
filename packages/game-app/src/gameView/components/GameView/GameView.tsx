@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
 import Board from '../Board';
 import DraggableCard from '../DraggableCard';
@@ -16,7 +16,6 @@ import ZoomPanContext from '../ZoomPanContext';
 import useStopListenOnRtdb from '../../hooks/useStopListenOnRtdb';
 import LoadingOverlay from '../LoadingOverlay';
 import OfflineOverlay from '../OfflineOverlay';
-import { ZoomPanValuesContext } from '../ZoomPanContext/ZoomPanContext';
 
 type GameProps = {
   zoomIn: () => void;
