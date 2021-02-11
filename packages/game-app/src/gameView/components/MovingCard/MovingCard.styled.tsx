@@ -7,7 +7,7 @@ const dragAnimation = keyframes`
   }
   100% {
     transform: rotate(6deg);
-    box-shadow: 0px 80px 20px #10182026;
+    box-shadow: 0 80px 20px #10182026;
   }
 `;
 
@@ -17,7 +17,7 @@ const dragAnimationBig = keyframes`
   }
   100% {
     transform: rotate(6deg) scale(${PANEL_CARD_SCALE});
-    box-shadow: 0px 80px 20px #10182026;
+    box-shadow: 0 80px 20px #10182026;
   }
 `;
 
@@ -33,9 +33,10 @@ export const MovingCardWrapper = styled.div<{ dragging?: boolean; bigger: boolea
           animation: ${props.bigger ? dragAnimationBig : dragAnimation} linear 0.1s;
           animation-delay: 0.1s;
           animation-fill-mode: forwards;
+          cursor: grabbing;
         `
       : css`
-          box-shadow: 0px 0px 6px #10182029;
+          box-shadow: 0 0 6px #10182029;
         `}
 `;
 
