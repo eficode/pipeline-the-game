@@ -177,6 +177,8 @@ const translations = {
       required: 'This field is required',
     },
     emptyOptionLabel: 'None selected',
+    chromeBanner: 'To get the best experience, we recommend that you view this service in',
+    chrome: 'Google Chrome',
   },
   card: {
     type: {
