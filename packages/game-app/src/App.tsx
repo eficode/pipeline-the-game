@@ -1,8 +1,11 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { Redirect, Route, Switch, useLocation, useHistory } from 'react-router-dom';
-import { PrivateRoute, RoutingPath } from '@pipeline/routing';
+import { PrivateRoute, RoutingPath, useNavigateOutsideTo } from '@pipeline/routing';
 import { useBootstrapIsFinished } from './_shared';
 import { AuthUser, useLoggedUser } from '@pipeline/auth';
+import PersistentBanner from './_shared/components/PersistentBanner';
+import { Box, Link, Typography } from '@pipeline/components';
+import { useTranslate } from '@pipeline/i18n';
 
 const Signup = React.lazy(() => import('./signup/components/Signup'));
 const EmailVerificationRequired = React.lazy(() => import('./signup/components/EmailVerificationRequired'));
@@ -13,6 +16,8 @@ const Dashboard = React.lazy(() => import('./dashboard/components/Dashboard'));
 const Login = React.lazy(() => import('./login/components/Login'));
 const GameView = React.lazy(() => import('./gameView/components/GameView'));
 const CreateGameView = React.lazy(() => import('./createGame/components/CreateGameView'));
+
+const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
 
 /**
  * Returns route and default redirect according to auth condition:
@@ -60,6 +65,7 @@ function App() {
 
   const location = useLocation<{ desiredUrl: string }>();
   const history = useHistory();
+  const t = useTranslate();
 
   useEffect(() => {
     if (!state && user?.emailVerified && location.state?.desiredUrl) {
@@ -69,6 +75,8 @@ function App() {
     }
   }, [location, user, history, state]);
 
+  const goToChrome = useNavigateOutsideTo('https://www.google.com/chrome/', true);
+
   return bootstrapIsFinished ? (
     <Suspense fallback={null}>
       <Switch>
@@ -77,6 +85,18 @@ function App() {
         <PrivateRoute path={RoutingPath.CreateGame} component={CreateGameView} />
         {renderAuthRoutes(user)}
       </Switch>
+      {!isChrome && (
+        <PersistentBanner key="googleChrome">
+          <Box>
+            <Typography as="span" fontSize="18px">
+              {t('general.chromeBanner')}
+            </Typography>
+            <Link onClick={goToChrome} variant="blue">
+              {t('general.chrome')}
+            </Link>
+          </Box>
+        </PersistentBanner>
+      )}
     </Suspense>
   ) : (
     <div>LOADING ...</div>
