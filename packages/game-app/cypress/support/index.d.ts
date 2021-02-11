@@ -18,7 +18,7 @@ declare namespace Cypress {
      * @param keyOrParams only if you specify selector as a first argument or as params
      * @param params
      */
-    containsTranslationOf(keyOrSelector:string, keyOrParams?:  | object, params?:object): Chainable<Subject>;
+    containsTranslationOf(keyOrSelector:string, keyOrParams?:  string| object, params?:object): Chainable<Subject>;
 
     drag: (position: { x: number; y: number }) => Chainable;
 

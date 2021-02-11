@@ -46,7 +46,8 @@ context("Login", () => {
       cy.getInputByName('email').fill(email);
       cy.getInputByName('password').fill(password);
       cy.containsTranslationOf('button', 'login.form.buttonText').click();
-      cy.location('pathname').should('equal', '/email-verification-required');
+      cy.location('pathname').should('equal', '/signup');
+      cy.get('body').should('contain.translationOf', 'signup.verificationRequired.title');
     });
   });
 
