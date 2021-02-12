@@ -26,11 +26,15 @@ const Dashboard: React.FC<Props> = () => {
       <Box flex={1} ml="10vw" justifyContent="center" display="flex" flexDirection="column" position="relative">
         <DashboardHeader>
           <TextLogo />
-          <Box>
-            <Link onClick={executeLogout} id="logout-button">
-              {t('auth.logout')}
-            </Link>
-            <Button label={t('dashboard.contactUs')} onClick={() => ({})} />
+          <Box display="flex" flexDirection="row">
+            <Box display="flex" flexDirection="row" justifyContent="flex-end" mr={4}>
+              <Link onClick={executeLogout} id="logout-button">
+                {t('auth.logout')}
+              </Link>
+            </Box>
+            <Box>
+              <Button label={t('dashboard.contactUs')} onClick={() => ({})} />
+            </Box>
           </Box>
         </DashboardHeader>
         <Box flex={1} display="flex" flexDirection="row">
