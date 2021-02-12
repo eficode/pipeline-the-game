@@ -86,7 +86,9 @@ const Login: React.FC<Props> = () => {
                     {t('login.notYetAccount')}
                   </Typography>
                   &nbsp;
-                  <Link onClick={goToSignUp}>{t('login.goToSignup')}</Link>
+                  <Link id="go-to-signup" onClick={goToSignUp}>
+                    {t('login.goToSignup')}
+                  </Link>
                 </Box>
               </form>
             </FormProvider>
