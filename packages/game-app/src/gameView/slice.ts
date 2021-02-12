@@ -145,7 +145,7 @@ const slice = createSlice({
           lockedBy: null,
           parent: target,
           position: position,
-          estimation: '',
+          estimation: null,
           zIndex: gameState.nextZIndex,
         },
         gameState,

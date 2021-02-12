@@ -10,7 +10,7 @@ import { useTranslate } from '@pipeline/i18n';
 
 type Props = {
   saveEstimation: (estimation: string) => void;
-  initialEstimation?: string;
+  initialEstimation?: string | null;
 };
 
 /**

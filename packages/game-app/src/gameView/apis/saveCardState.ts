@@ -11,12 +11,17 @@ export default async function saveCardState(
     target: 'panel' | 'board';
   },
 ) {
-  const cardState: Partial<CardState> = {
+  let cardState: Partial<CardState> = {
     parent: payload.target,
     lockedBy: null,
     position: payload.position ?? (null as any),
-    zIndex: payload.target === 'panel' || !payload.zIndex ? null : payload.zIndex,
+    zIndex: !payload.zIndex ? null : payload.zIndex,
   };
+
+  if (payload.target === 'panel') {
+    cardState.estimation = null;
+    cardState.zIndex = null;
+  }
 
   return firebase
     .app(gameId)
