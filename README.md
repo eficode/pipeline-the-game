@@ -76,7 +76,7 @@ This will create a test user with email test@test.com and password Test1234
 #### Running
 Run the following script in the **root** folder to initialize the local emulators:
 ```shell
-npm run scripts:initialize-firestore-emulator:local
+npm run scripts:load-initial-data:local
 ```
 This will fill the emulators with some initial data needed to load the application.  
 
@@ -134,7 +134,7 @@ GOOGLE_APPLICATION_CREDENTIALS=
 and then run again
 
 ```shell
-npm run scripts:initialize-firestore-emulator:local
+npm run scripts:load-initial-data:local
 ```
 
 ## :office: General project structure

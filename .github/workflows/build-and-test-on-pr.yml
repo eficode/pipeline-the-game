@@ -38,10 +38,10 @@ jobs:
       - name: Start emulators
         run: npx firebase emulators:start &
         env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_PIPELINE_GAME_DEV }}
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
       - name: Load initial data
-        run: npm run scripts:initialize-firestore-emulator
+        run: npm run scripts:load-initial-data
         env:
           FIRESTORE_EMULATOR_HOST: localhost:8080
           GCLOUD_PROJECT: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
