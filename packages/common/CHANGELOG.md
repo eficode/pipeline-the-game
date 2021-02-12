@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/eficode/pipeline-the-game/compare/v0.3.1...v0.3.2) (2021-02-12)
+
+
+### Features
+
+* **all-general:** add random game name ([dd85800](https://github.com/eficode/pipeline-the-game/commit/dd858005432494e405b4b10e54e286f5440f3970))
+
+
+
+
+
+
 ## [0.3.1](https://github.com/eficode/pipeline-the-game/compare/v0.3.0...v0.3.1) (2021-02-08)
 
 **Note:** Version bump only for package @pipeline/common

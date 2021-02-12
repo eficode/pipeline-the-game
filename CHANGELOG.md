@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.2](https://github.com/eficode/pipeline-the-game/compare/v0.3.1...v0.3.2) (2021-02-12)
+
+
+### Bug Fixes
+
+* **all-general:** fix delivery step subtitle ([fa3a8ec](https://github.com/eficode/pipeline-the-game/commit/fa3a8ecbd0237e0a68e76c5544c0e360e464d5ea))
+* **all-general:** update test password ([5e87985](https://github.com/eficode/pipeline-the-game/commit/5e87985c4255a6eb15a616adc82f08b5bf4e0913))
+* **app-auth:** fix cypress broken tests ([76121d4](https://github.com/eficode/pipeline-the-game/commit/76121d4f9907976a1173655370b2e5badff3ecc6))
+* **app-general:** add missing hooks dep ([72f01b7](https://github.com/eficode/pipeline-the-game/commit/72f01b78122c080225f3781105e3813d16e84e11))
+* **app-general:** fix components import for storybook ([a9f7f16](https://github.com/eficode/pipeline-the-game/commit/a9f7f163da5f89b55e76a2d1b1c54b0d5acf3f2e))
+* **app-general:** fix join game link button ([72eeac5](https://github.com/eficode/pipeline-the-game/commit/72eeac5d850fda1f60a80b86ff62bfbde8871629))
+* **app-general:** fix missing hook dep ([8c3c9d1](https://github.com/eficode/pipeline-the-game/commit/8c3c9d102bdadb898d0a2dbe2d1a17487a7460fc))
+* **app-general:** fix svg ([e65cf4a](https://github.com/eficode/pipeline-the-game/commit/e65cf4a83a513a75439afd827d69a69d55326bfe))
+* **app-general:** fix useParams ([d7fc564](https://github.com/eficode/pipeline-the-game/commit/d7fc564855ece77530ab9f1d17b3c6e4b57894ac))
+* **app-general:** fix verify reset password code ([7699ca5](https://github.com/eficode/pipeline-the-game/commit/7699ca58bb08dacb75a674bd310d8dfefde18e1e))
+* **app-signup:** sdd scroll to signup form ([9839476](https://github.com/eficode/pipeline-the-game/commit/9839476e10b0ba8cf3e14aa1cf9a49d2ca965000))
+
+
+### Features
+
+* **all-general:** add random game name ([dd85800](https://github.com/eficode/pipeline-the-game/commit/dd858005432494e405b4b10e54e286f5440f3970))
+* **app-auth:** add reset password success dialog ([73f6ce5](https://github.com/eficode/pipeline-the-game/commit/73f6ce591d64c2e5403b843ab6ea4d9cc58c8d8e))
+* **app-auth:** improve forgot password success page ([7583c25](https://github.com/eficode/pipeline-the-game/commit/7583c25e774322285c228ec369a92950384b5e02))
+* **app-board:** add arrow to panel ([bbb20a5](https://github.com/eficode/pipeline-the-game/commit/bbb20a553651ebc2590601a45a89e9680cca4446))
+* **app-board:** add copied popup to share dialog ([d16b86b](https://github.com/eficode/pipeline-the-game/commit/d16b86b50637bb2ad14bbe782c5f96c479f28483))
+* **app-board:** add type and tags card translations ([8b9810d](https://github.com/eficode/pipeline-the-game/commit/8b9810dba58814d5c3a6882fb2438be0fd445260))
+* **app-board:** improve cursor ([6af4d23](https://github.com/eficode/pipeline-the-game/commit/6af4d23a44737926b5286082b4e7f1b0d7764ed3))
+* **app-board:** make estimation clickable ([5ffc88c](https://github.com/eficode/pipeline-the-game/commit/5ffc88c8987cf7b815a52318f30ee1553145a8a6))
+* **app-general:** add forgot and reset pwd feature ([a48f38c](https://github.com/eficode/pipeline-the-game/commit/a48f38c5c83ab23dd4159ff13ddf8ce0bac02d64))
+* **app-general:** add google chrome suggestion banner ([25f571d](https://github.com/eficode/pipeline-the-game/commit/25f571d6158b2dc85db795ec5f89f66ba1748c94))
+* **app-general:** add input error border ui ([78f0bfa](https://github.com/eficode/pipeline-the-game/commit/78f0bfa7dba49483376d86112d74919a6a445726))
+* **app-general:** add popover and improve signup ui ([777ec3f](https://github.com/eficode/pipeline-the-game/commit/777ec3fe6a7e953c3f6f384d5a73c24b9554fc48))
+* **app-general:** add rotating diamond logo as initial loading ([6132a52](https://github.com/eficode/pipeline-the-game/commit/6132a52ce210ee452855224dbf0055369027e035))
+* **app-general:** add temporary dashboard image and game name ([35c6068](https://github.com/eficode/pipeline-the-game/commit/35c6068893753596bd317cc8100efd064916a038))
+* **app-general:** add test id to dashboard button ([e03d889](https://github.com/eficode/pipeline-the-game/commit/e03d8894a2b08e63238e40ececfa2330fab00d2c))
+* **app-general:** add test ids to buttons ([2eaaef4](https://github.com/eficode/pipeline-the-game/commit/2eaaef42c799184b41ff9afd2aafd15d4d7f5313))
+* **app-general:** add tooltips to icons ([5c21c64](https://github.com/eficode/pipeline-the-game/commit/5c21c6424500822de3c45ddbebe600d087214f62))
+* **app-general:** improve icon and two column page components ([a7787d1](https://github.com/eficode/pipeline-the-game/commit/a7787d1300937d61771503a33ae5683125719ef9))
+* **app-general:** refresh token every time ([b3588ee](https://github.com/eficode/pipeline-the-game/commit/b3588eef272989371680c14b631dbcffc9b665a5))
+* **app-signup:** move email verification required to dialog ([3f40ba5](https://github.com/eficode/pipeline-the-game/commit/3f40ba568ebefa8773303a2b17954e1d029dd47b))
+
+
+
+
+
+
 ## [0.3.1](https://github.com/eficode/pipeline-the-game/compare/v0.3.0...v0.3.1) (2021-02-08)
 
 
