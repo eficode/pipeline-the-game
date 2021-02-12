@@ -74,7 +74,7 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
       {review && <ReviewPanel />}
       <PoweredByContainer>
         <Typography variant="label" color="#9F998F" as="span">
-          Powered By
+          Powered by
         </Typography>
         <TextLogoWrapper>
           <EficodeTextLogo />

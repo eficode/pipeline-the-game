@@ -16,7 +16,7 @@ const translations = {
   },
   createGame: {
     title: 'Choose a scenario',
-    subtitle: 'Premade ({{cardsCount}})',
+    subtitle: 'Pick one of the {{cardsCount}} pre-made scenarios or create your own',
     writeYours: 'Make your own',
     createButtonText: 'Start Game',
   },
@@ -30,6 +30,7 @@ const translations = {
     contactUs: 'Contact us',
   },
   game: {
+    id: 'ID: ',
     panel: {
       stackTooltip: 'Stacked View',
       verticalTooltip: 'Vertical view',

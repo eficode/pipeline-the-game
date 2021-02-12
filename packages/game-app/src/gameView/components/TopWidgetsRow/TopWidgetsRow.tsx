@@ -63,9 +63,14 @@ const TopWidgetsRow: React.FC<Props> = () => {
           <Logo />
         </LogoContainer>
         <ButtonsBar>
-          <GameName>
-            <Typography>{game?.name}</Typography>
-          </GameName>
+          {game && (
+            <GameName>
+              <Typography>
+                {t('game.id')}
+                {game.name}
+              </Typography>
+            </GameName>
+          )}
           <IconButton
             testId="exit-game"
             variant="clear"
