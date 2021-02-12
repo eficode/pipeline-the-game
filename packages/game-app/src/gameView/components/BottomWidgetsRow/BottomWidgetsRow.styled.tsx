@@ -16,6 +16,7 @@ export const PoweredByContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  height: 40px;
 `;
 
 export const TextLogoWrapper = styled.div`

@@ -49,17 +49,20 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
         icon: <ZoomInIcon />,
         onClick: zoomIn,
         tooltipLabel: translate('game.dial.zoomInTooltip'),
+        id: 'zoom-in-button',
       },
       {
         icon: <ZoomOutIcon />,
         onClick: zoomOut,
         tooltipLabel: translate('game.dial.zoomOutTooltip'),
+        id: 'zoom-out-button',
       },
       {
         icon: <FitScreenIcon />,
         onClick: fitWindow,
         autoClose: true,
         tooltipLabel: translate('game.dial.fitTooltip'),
+        id: 'fit-window-button',
       },
     ],
     [fitWindow, translate, zoomIn, zoomOut],
@@ -77,7 +80,7 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
           <EficodeTextLogo />
         </TextLogoWrapper>
       </PoweredByContainer>
-      <FabDial icon={<LensIcon />} buttons={buttons} />
+      <FabDial icon={<LensIcon />} buttons={buttons} id="zoom-dial" />
     </BottomWidgetsRowContainer>
   );
 };
