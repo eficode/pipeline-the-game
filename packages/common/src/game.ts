@@ -38,7 +38,7 @@ export interface CardState {
   /**
    * time estimation placed inside the card
    */
-  estimation?: string;
+  estimation?: string | null;
 }
 
 export type GameEntity<T, F> = Game<T, F> & { id: string };

@@ -445,4 +445,28 @@ describe("Cards write", () => {
     }));
   });
 
+  it("should not update card parent if authenticated, game exists, connected and the card was locked by me but parent is panel and I'm not clearing the old estimation", async () => {
+    const userUID = 'id1';
+    const email = 'test@email.com';
+    await createGame(GAME_ID, adminDatabase);
+    await createConnection(GAME_ID, userUID, adminDatabase);
+    await adminDatabase.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).set({
+      lockedBy: userUID,
+      position: {
+        x: 0,
+        y: 0
+      },
+      parent: 'board',
+      zIndex: 0,
+      estimation: 'something'
+    });
+    const db = getAuthedDatabase(PROJECT_ID, {uid: userUID, email, email_verified: true});
+    await firebase.assertFails(db.ref(`/${RTDBPaths.Cards}/${GAME_ID}/${CARD_ID}`).update({
+      parent: 'panel',
+      zIndex: null,
+      lockedBy: null,
+      position: null,
+    }));
+  });
+
 });
