@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import CardsGameListeners from '../CardsGameListeners';
 import Board from '../Board';
 import DraggableCard from '../DraggableCard';
@@ -39,21 +39,15 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
 
   const panelModeRef = useRef<PanelMode>('stacked');
 
-  const [background, setBackGround] = useState(true);
-
-  const toggleBackground = useCallback(() => {
-    setBackGround(s => !s);
-  }, []);
-
   useStopListenOnRtdb();
 
   return (
     <ZoomPanContext initialPan={initialPan}>
       <CardsGameListeners panelModeRef={panelModeRef} onEvent={onCardEvent} currentGameState={state}>
         <div className="board-wrapper">
-          <TopWidgetsRow toggleBackGround={toggleBackground} />
+          <TopWidgetsRow />
           <ZoomPanContainer>
-            <Board scale={background ? 3 : -1}>
+            <Board>
               {placedCardsIds.map(id => (
                 <DraggableCard key={id} id={id} />
               ))}

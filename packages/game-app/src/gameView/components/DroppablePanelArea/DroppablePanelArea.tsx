@@ -51,13 +51,13 @@ const ToggleWrapper = styled.div`
 
 export const ArrowIconDiv = styled.div<{ collapsed: boolean }>`
   position: absolute;
-  right: 4px;
+  right: 16px;
   transition: transform 0.3s ease-in;
   transform: rotate(180deg);
 
   svg {
-    width: 36px;
-    height: 36px;
+    width: 24px;
+    height: 24px;
   }
 
   ${({ collapsed }) =>
