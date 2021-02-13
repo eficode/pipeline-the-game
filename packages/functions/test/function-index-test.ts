@@ -2,7 +2,7 @@ import * as admin from "firebase-admin";
 admin.initializeApp();
 
 import * as functions from "firebase-functions";
-import {handler} from "../src/load-balancing/onOnlineGameStatusUpdate";
+import {handler} from "../src/load-balancing/onConnectionUpdate";
 import {selectBestRTDBInstance} from "../src/load-balancing/selectBestRTDBInstance";
 import {RTDBPaths} from "@pipeline/common";
 import rtdbInstances from "../src/rtdbInstances";

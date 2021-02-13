@@ -40,7 +40,7 @@ async function handler(snapshot: functions.database.DataSnapshot, context: funct
 
 
 exportFunctionsOnAllRTDBInstances(
-  'onOnlineGameStatusDelete',
+  'onConnectionDelete',
   (builder, rtdbId, rtdbUrl) => builder.ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
     .onDelete((snapshot, context) => handler(snapshot, context, rtdbId, rtdbUrl)),
   exports

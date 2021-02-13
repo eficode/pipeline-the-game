@@ -29,7 +29,7 @@ export async function handler(snapshot: functions.database.DataSnapshot, context
 
 
 exportFunctionsOnAllRTDBInstances(
-  'onOnlineGameStatusCreate',
+  'onConnectionCreate',
   (builder, dbId) => builder.ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
     .onCreate((snapshot, context) => handler(snapshot, context, dbId)),
   exports
