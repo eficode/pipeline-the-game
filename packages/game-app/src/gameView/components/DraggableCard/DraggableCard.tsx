@@ -88,11 +88,16 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
       <>
         {estimationOpen && <EstimationEditor saveEstimation={saveEstimation} initialEstimation={estimation} />}
         {!estimationOpen && estimation && (
-          <EstimationInCard onClick={handler} moving={isCardMoving} estimation={estimation} />
+          <EstimationInCard
+            id={`card-estimation-${id}`}
+            onClick={handler}
+            moving={isCardMoving}
+            estimation={estimation}
+          />
         )}
       </>
     );
-  }, [estimation, estimationOpen, isCardMoving, saveEstimation, handler]);
+  }, [estimation, estimationOpen, isCardMoving, saveEstimation, handler, id]);
 
   return (
     <div style={style} data-cy={`card-${id}`}>
