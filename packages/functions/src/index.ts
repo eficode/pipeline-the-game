@@ -5,16 +5,16 @@ admin.initializeApp();
 
 const functionName = process.env.FUNCTION_NAME;
 
-if (!functionName || functionName.startsWith('onOnlineGameStatusCreate')) {
-  exportEverythingFrom(exports, require('./load-balancing/onOnlineGameStatusCreate'))
+if (!functionName || functionName.startsWith('onConnectionCreate')) {
+  exportEverythingFrom(exports, require('./load-balancing/onConnectionCreate'))
 }
 
-if (!functionName || functionName.startsWith('onOnlineGameStatusDelete')) {
-  exportEverythingFrom(exports, require('./load-balancing/onOnlineGameStatusDelete'))
+if (!functionName || functionName.startsWith('onConnectionDelete')) {
+  exportEverythingFrom(exports, require('./load-balancing/onConnectionDelete'))
 }
 
-if (!functionName || functionName.startsWith('onOnlineGameStatusUpdate')) {
-  exportEverythingFrom(exports, require('./load-balancing/onOnlineGameStatusUpdate'))
+if (!functionName || functionName.startsWith('onConnectionUpdate')) {
+  exportEverythingFrom(exports, require('./load-balancing/onConnectionUpdate'))
 }
 
 if (!process.env.FUNCTION_NAME || process.env.FUNCTION_NAME === 'selectBestRTDBInstance') {

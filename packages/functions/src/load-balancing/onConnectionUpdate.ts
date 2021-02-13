@@ -46,7 +46,7 @@ export async function handler(snapshot: functions.Change<functions.database.Data
 
 
 exportFunctionsOnAllRTDBInstances(
-  'onOnlineGameStatusUpdate',
+  'onConnectionUpdate',
   (builder, rtdbId) => builder.ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
     .onUpdate((change, context) => handler(change, context, rtdbId)),
   exports
