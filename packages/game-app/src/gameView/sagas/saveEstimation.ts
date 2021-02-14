@@ -5,6 +5,11 @@ import saveCardEstimation from '../apis/saveCardEstimation';
 
 function* executeSaveEstimationSaga(action: ReturnType<typeof actions.setEstimation>) {
   const currentGameId = yield select(selectors.getGameId);
+  // for performance test measurement
+  if (window.logFacilitatorEvent) {
+    const state = yield select(selectors.getCardAdditionalInfo(action.payload.cardId));
+    window.logFacilitatorEvent(action.payload.cardId, state);
+  }
   yield call(saveCardEstimation, currentGameId, action.payload);
 }
 

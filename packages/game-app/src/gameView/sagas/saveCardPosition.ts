@@ -7,6 +7,10 @@ import { CardState } from '@pipeline/common';
 function* executeSaveCardPosition(action: ReturnType<typeof actions.updateCardPosition>) {
   const currentGameId: string = yield select(selectors.getGameId);
   const cardState: CardState = yield select(selectors.getCardAdditionalInfo(action.payload.cardId));
+  // for performance test measurement
+  if (window.logFacilitatorEvent) {
+    window.logFacilitatorEvent(action.payload.cardId, cardState);
+  }
   yield call(saveCardState, currentGameId, { ...action.payload, zIndex: cardState.zIndex });
 }
 

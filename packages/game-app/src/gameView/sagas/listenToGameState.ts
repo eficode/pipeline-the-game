@@ -81,7 +81,8 @@ function* listenToCardState(action: ReturnType<typeof actions.startListenToGameS
 
   yield takeEvery(cardsChannel, function* (value) {
     const { state, cardId } = value;
-    (window as any).logEvent && (window as any).logEvent(cardId, state);
+    // for performance test measurement
+    window.logEvent && window.logEvent(cardId, state);
     yield put(actions.setCardState({ cardState: { ...state, parent: state.parent || 'panel' }, cardId }));
   });
 
