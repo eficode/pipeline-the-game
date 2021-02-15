@@ -54,5 +54,21 @@ context("Game board", () => {
 
   });
 
+  describe('Game not found', () => {
+
+    it("it should show error when accessing to not present game", () => {
+      cy.visit(`/game/non-existing-id`);
+      cy.get('body').should('contain.translationOf', 'game.notFound');
+    });
+
+    it("it should return to dashboard pressing exit", () => {
+      cy.visit(`/game/non-existing-id`);
+      cy.containsTranslationOf( 'button', 'general.exit').click();
+      cy.location('pathname').should('eq', '/dashboard');
+
+    });
+
+  });
+
 
 });
