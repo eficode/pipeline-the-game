@@ -67,6 +67,7 @@ const translations = {
       title: 'Do you really want to exit this game?',
     },
     initializing: 'Initializing game board',
+    notFound: 'The Game selected was not found',
     offlineOverlay: {
       title: 'Ops, you are offline',
       subtitle: 'Refresh the page to re-sync',

@@ -8,7 +8,7 @@ export default function useGameState(currentGame: string) {
   const placedCardsIds = useSelector(selectors.getPlacedCards);
   const deckCardsIds = useSelector(selectors.getDeckCardsIds);
   const game: GameEntity | null = useSelector(selectors.getGame);
-  const { call: loadGame, loading } = useLoadGame();
+  const { call: loadGame, loading, error } = useLoadGame();
 
   useEffect(() => {
     if (
@@ -24,5 +24,6 @@ export default function useGameState(currentGame: string) {
     loading,
     placedCardsIds: placedCardsIds || [],
     deckCardsIds: deckCardsIds || [],
+    notFound: !!(error && error.code === 'not-found'),
   };
 }

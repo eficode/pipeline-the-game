@@ -13,6 +13,10 @@ import { initializeRTDB } from '../apis/initializeRTDBInstance';
 function* executeLoadGame(action: ReturnType<typeof actions.loadGame>) {
   const gameId = action.payload;
   const game: Game = yield call(loadGame, gameId);
+  if (!game) {
+    // eslint-disable-next-line no-throw-literal
+    throw { code: 'not-found', message: 'Game not found' };
+  }
   const cards: CardEntity[] = yield call(loadCardsForDeck, game.deckId);
   yield put(actions.saveCards(cards));
   // TODO load actual game state from firestore
