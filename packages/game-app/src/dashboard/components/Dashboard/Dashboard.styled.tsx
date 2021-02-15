@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Box } from '@pipeline/components';
+import { Box, EmptyCard, animations } from '@pipeline/components';
 
 export const DashboardContainer = styled.div`
   display: flex;
@@ -26,16 +26,23 @@ export const CardsIllustration = styled(Box)`
   top: 10vh;
   bottom: 0;
   width: 50vw;
-  z-index: -1;
-  background: #eeeeee;
-
-  svg {
-    width: 100%;
-    height: 100%;
-  }
+  z-index: 100;
+  overflow: hidden;
 `;
 
 CardsIllustration.displayName = 'CardsIllustration';
+
+export const CardsIllustrationBackGround = styled(Box)`
+  position: absolute;
+  right: 0;
+  top: 10vh;
+  bottom: 0;
+  width: 50vw;
+  z-index: -1;
+  background: #eeeeee;
+`;
+
+CardsIllustrationBackGround.displayName = 'CardsIllustrationBackGround';
 
 export const DashboardLeftSide = styled(Box)`
   max-width: 40vw;
@@ -57,3 +64,10 @@ export const Triangle = styled(Box)`
 `;
 
 Triangle.displayName = 'Triangle';
+
+export const AnimatedEmptyCard = styled(EmptyCard)<{ delay?: number }>`
+  :not(:hover) {
+    animation: ${animations.bounceDefinition(25)} 0.75s infinite alternate;
+    animation-delay: ${props => props.delay || 0}s;
+  }
+`;

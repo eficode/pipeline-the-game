@@ -5,13 +5,16 @@ import { RoutingPath, useNavigateTo } from '@pipeline/routing';
 import { Box, Button, Link, TextLogo, Typography } from '@pipeline/components';
 import JoinGameButton from '../JoinGameButton';
 import {
+  AnimatedEmptyCard,
   CardsIllustration,
+  CardsIllustrationBackGround,
   DashboardContainer,
   DashboardHeader,
   DashboardLeftSide,
   Triangle,
 } from './Dashboard.styled';
-import { ReactComponent as FloatingCardsImg } from '@assets/images/dashboard-floating-cards-reference.svg';
+import { CardType } from '@pipeline/common';
+import Tilt from 'react-parallax-tilt';
 
 type Props = {};
 
@@ -51,8 +54,42 @@ const Dashboard: React.FC<Props> = () => {
             </Box>
           </DashboardLeftSide>
           <Triangle />
+          <CardsIllustrationBackGround />
           <CardsIllustration flex={1}>
-            <FloatingCardsImg />
+            <div style={{ position: 'absolute', left: '0px', top: '20px', zIndex: -2, transform: 'scale(.7)' }}>
+              <Tilt scale={1.1} perspective={1500}>
+                <AnimatedEmptyCard type={CardType.PipelineStep} delay={0.1} />
+              </Tilt>
+            </div>
+            <div style={{ position: 'absolute', left: '0px', bottom: '20px', zIndex: 1, transform: 'scale(.7)' }}>
+              <Tilt scale={1.1} perspective={1500}>
+                <AnimatedEmptyCard type={CardType.PipelineStep} delay={0.25} />
+              </Tilt>
+            </div>
+            <div
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '25px',
+                zIndex: 1,
+                transform: 'scale(.5)',
+                transformOrigin: 'top right',
+              }}
+            >
+              <Tilt scale={1.1} perspective={1500}>
+                <AnimatedEmptyCard type={CardType.Review} delay={0.5} />
+              </Tilt>
+            </div>
+            <div style={{ position: 'absolute', top: '23%', right: '23%', zIndex: 1, transform: 'scale(.7)' }}>
+              <Tilt scale={1.1} perspective={1500}>
+                <AnimatedEmptyCard type={CardType.GameRule} delay={0.75} />
+              </Tilt>
+            </div>
+            <div style={{ position: 'absolute', bottom: '20%', right: '-100px', zIndex: 1, transform: 'scale(.6)' }}>
+              <Tilt scale={1.1} perspective={1500}>
+                <AnimatedEmptyCard type={CardType.Scenario} delay={1} />
+              </Tilt>
+            </div>
           </CardsIllustration>
         </Box>
       </Box>
