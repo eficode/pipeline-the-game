@@ -5,6 +5,7 @@ import readline from 'readline';
 import {WhereFilterOp, Query} from '@google-cloud/firestore';
 import {CardEntity, CardType, DEFAULT_BOARD_DIMENSIONS, FirebaseCollection} from "@pipeline/common";
 import {Game} from "../../../firestore/models/Game";
+import generateName from "../../src/createGame/utils/generateName";
 
 export async function getFirebaseUserByEmail(adminInstance: admin.app.App, {email}: { email: string }): Promise<admin.auth.UserRecord> {
   return adminInstance.auth().getUserByEmail(email.toLocaleLowerCase());
@@ -115,6 +116,7 @@ export async function initializeGame(adminInstance: admin.app.App, {
   const scenario = scenarioCards[Math.floor(Math.random() * scenarioCards.length)] as CardEntity;
 
   const newGame: Game = {
+    name : generateName(),
     scenarioContent: scenario.content,
     scenarioTitle: scenario.title,
     scenarioCardId: scenario.id,

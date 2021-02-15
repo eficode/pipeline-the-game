@@ -16,6 +16,7 @@ import ZoomPanContext from '../ZoomPanContext';
 import useStopListenOnRtdb from '../../hooks/useStopListenOnRtdb';
 import LoadingOverlay from '../LoadingOverlay';
 import OfflineOverlay from '../OfflineOverlay';
+import ErrorOverlay from '../ErrorOverlay';
 
 type GameProps = {
   zoomIn: () => void;
@@ -33,7 +34,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
 
   const gameId = params.gameId;
 
-  const { placedCardsIds, loading } = useGameState(gameId);
+  const { placedCardsIds, loading, notFound } = useGameState(gameId);
 
   const { onCardEvent } = useCardEventHandler();
 
@@ -58,6 +59,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
         <DeckPanel panelModeRef={panelModeRef} />
       </CardsGameListeners>
       <LoadingOverlay isOpen={loading} />
+      <ErrorOverlay isOpen={notFound} />
       <OfflineOverlay />
     </ZoomPanContext>
   );
