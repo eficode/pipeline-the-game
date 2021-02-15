@@ -111,7 +111,6 @@ Every user authenticated can create a game if these rules are respected:
 * rtdbInstance is null
 * boardDimensions.x is 3840
 * boardDimensions.y is 2160
-* boardDimensions.y is 2160
 * name is a string less than 100 chars long
 
 Every authenticated user can access a single game having the id.
