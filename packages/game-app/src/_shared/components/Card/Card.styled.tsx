@@ -54,6 +54,7 @@ export const CardHeader = styled.header<CardHeaderProps>`
   background: ${props => props.theme.cardsTypes[props.type]};
   border-radius: 10px 10px 0 0;
   position: relative;
+  overflow: hidden;
 `;
 
 CardHeader.displayName = 'CardHeader';
@@ -81,12 +82,13 @@ export const CardHeadingTag = styled.span<CardTagProps>`
 
 CardHeadingTag.displayName = 'CardHeadingTag';
 
-export const CardHeading = styled.h1`
-  font-size: 16px;
+export const CardHeading = styled.h1<{ mt?: boolean }>`
+  font-size: ${props => (props.mt ? '18px' : '16px')};
   font-weight: bolder;
   text-align: right;
   color: white;
-  margin-bottom: 6px;
+  margin-bottom: ${props => (props.mt ? 0 : '6px')};
+  margin-top: ${props => (props.mt ? '10px' : 0)};
 `;
 
 CardHeading.displayName = 'CardHeading';
@@ -94,6 +96,7 @@ CardHeading.displayName = 'CardHeading';
 export const CardBody = styled.div`
   padding: 12px 16px 32px 16px;
   border-radius: 0px 0px 10px 10px;
+  height: calc(100% - 48px);
 `;
 
 CardBody.displayName = 'CardBody';

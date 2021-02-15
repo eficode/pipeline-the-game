@@ -11,6 +11,11 @@ import {
   DashboardContainer,
   DashboardHeader,
   DashboardLeftSide,
+  GameRuleContainer,
+  Pipeline1Container,
+  Pipeline2Container,
+  ReviewContainer,
+  ScenarioContainer,
   Triangle,
 } from './Dashboard.styled';
 import { CardType } from '@pipeline/common';
@@ -56,40 +61,31 @@ const Dashboard: React.FC<Props> = () => {
           <Triangle />
           <CardsIllustrationBackGround />
           <CardsIllustration flex={1}>
-            <div style={{ position: 'absolute', left: '0px', top: '20px', zIndex: -2, transform: 'scale(.7)' }}>
+            <Pipeline1Container>
               <Tilt scale={1.1} perspective={1500}>
                 <AnimatedEmptyCard type={CardType.PipelineStep} delay={0.1} />
               </Tilt>
-            </div>
-            <div style={{ position: 'absolute', left: '0px', bottom: '20px', zIndex: 1, transform: 'scale(.7)' }}>
+            </Pipeline1Container>
+            <Pipeline2Container>
               <Tilt scale={1.1} perspective={1500}>
                 <AnimatedEmptyCard type={CardType.PipelineStep} delay={0.25} />
               </Tilt>
-            </div>
-            <div
-              style={{
-                position: 'absolute',
-                top: '20px',
-                right: '25px',
-                zIndex: 1,
-                transform: 'scale(.5)',
-                transformOrigin: 'top right',
-              }}
-            >
+            </Pipeline2Container>
+            <ReviewContainer>
               <Tilt scale={1.1} perspective={1500}>
                 <AnimatedEmptyCard type={CardType.Review} delay={0.5} />
               </Tilt>
-            </div>
-            <div style={{ position: 'absolute', top: '23%', right: '23%', zIndex: 1, transform: 'scale(.7)' }}>
+            </ReviewContainer>
+            <GameRuleContainer>
               <Tilt scale={1.1} perspective={1500}>
                 <AnimatedEmptyCard type={CardType.GameRule} delay={0.75} />
               </Tilt>
-            </div>
-            <div style={{ position: 'absolute', bottom: '20%', right: '-100px', zIndex: 1, transform: 'scale(.6)' }}>
+            </GameRuleContainer>
+            <ScenarioContainer>
               <Tilt scale={1.1} perspective={1500}>
                 <AnimatedEmptyCard type={CardType.Scenario} delay={1} />
               </Tilt>
-            </div>
+            </ScenarioContainer>
           </CardsIllustration>
         </Box>
       </Box>
