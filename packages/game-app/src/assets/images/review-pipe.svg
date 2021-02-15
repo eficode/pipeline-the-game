@@ -1,0 +1,48 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 115.77 168.56">
+    <defs>
+        <style>
+            .clsc-1{fill:none;}.clsc-2{clip-path:url(#clip-path);}.clsc-3{clip-path:url(#clip-path-2);}.clsc-4{fill:#57c4f2;}.clsc-5{fill:#ec682c;}.clsc-6{fill:#ef7a3f;}.clsc-7{fill:#d94f14;}.clsc-8{clip-path:url(#clip-path-3);}.clsc-9{fill:#f4b89c;}.clsc-10{fill:#f6ac80;}
+        </style>
+        <clipPath id="clip-path">
+            <rect class="clsc-1" x="452.48" y="194.48" width="114.64" height="147.24"
+                  transform="translate(156.31 722.87) rotate(-79.88)"/>
+        </clipPath>
+        <clipPath id="clip-path-2">
+            <rect class="clsc-1" x="113.02" y="127.9" width="125.24" height="10.73"/>
+        </clipPath>
+        <clipPath id="clip-path-3">
+            <rect class="clsc-1" width="117.04" height="168.56"/>
+        </clipPath>
+    </defs>
+    <g class="clsc-2">
+        <g class="clsc-3">
+            <rect class="clsc-4" x="113.02" y="127.9" width="34.03" height="10.73" rx="2.11"/>
+        </g>
+    </g>
+    <rect class="clsc-5" x="51.61" y="73.6" width="2.72" height="4.55"/>
+    <rect class="clsc-6" x="48.51" y="78.08" width="8.92" height="2.76"/>
+    <rect class="clsc-7" x="108.46" width="7.31" height="81.18"/>
+    <rect class="clsc-7" x="69.84" y="80.83" width="38.73" height="7.31"/>
+    <g class="clsc-8">
+        <path class="clsc-5" d="M107.14,89.36h.13A9.77,9.77,0,0,0,117,79.59h-9.9Z"/>
+    </g>
+    <rect class="clsc-7" x="64.99" y="87.38" width="7.31" height="81.18"/>
+    <g class="clsc-8">
+        <path class="clsc-5" d="M73.63,79.2h-.14A9.78,9.78,0,0,0,63.72,89h9.91Z"/>
+    </g>
+    <rect class="clsc-5" y="65.92" width="81.18" height="7.31"/>
+    <rect class="clsc-5" x="80.83" y="73.12" width="7.31" height="38.73"/>
+    <g class="clsc-8">
+        <path class="clsc-6" d="M89.36,74.55s0-.09,0-.13a9.77,9.77,0,0,0-9.78-9.77v9.9Z"/>
+    </g>
+    <rect class="clsc-9" x="32.95" y="40.66" width="7.31" height="81.18"/>
+    <rect class="clsc-6" x="49.88" y="63.99" width="6.22" height="11.17"/>
+    <rect class="clsc-6" x="17.81" y="63.99" width="6.22" height="11.17"/>
+    <rect class="clsc-6" x="26.9" y="83.63" width="6.15" height="3.42"/>
+    <g class="clsc-8">
+        <path class="clsc-10" d="M28.25,81.05a2.14,2.14,0,1,1-2.13-2.13,2.14,2.14,0,0,1,2.13,2.13"/>
+        <path class="clsc-10" d="M28.25,85.38a2.14,2.14,0,1,1-2.13-2.14,2.13,2.13,0,0,1,2.13,2.14"/>
+        <path class="clsc-10" d="M28.25,89.65a2.14,2.14,0,1,1-2.13-2.14,2.14,2.14,0,0,1,2.13,2.14"/>
+    </g>
+    <rect class="clsc-10" x="31.13" y="81.35" width="11.06" height="8.06"/>
+</svg>

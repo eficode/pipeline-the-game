@@ -1,0 +1,36 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 117.04 168.56">
+    <defs>
+        <style>
+            .clsa-1{fill:none;}.clsa-2{fill:#924686;}.clsa-3{fill:#9e5b93;}.clsa-4{fill:#6e2f64;}.clsa-5{clip-path:url(#clip-path);}.clsa-6{fill:#853178;}.clsa-7{fill:#c094b9;}.clsa-8{fill:#cdabc8;}
+        </style>
+        <clipPath id="clip-path">
+            <rect class="clsa-1" width="117.04" height="168.56"/>
+        </clipPath>
+    </defs>
+    <rect class="clsa-2" x="51.61" y="73.6" width="2.72" height="4.55"/>
+    <rect class="clsa-3" x="48.51" y="78.08" width="8.92" height="2.76"/>
+    <rect class="clsa-4" x="108.46" width="7.31" height="81.18"/>
+    <rect class="clsa-4" x="69.84" y="80.83" width="38.73" height="7.31"/>
+    <g class="clsa-5">
+        <path class="clsa-6" d="M107.14,89.36h.13A9.77,9.77,0,0,0,117,79.59h-9.9Z"/>
+    </g>
+    <rect class="clsa-4" x="64.99" y="87.38" width="7.31" height="81.18"/>
+    <g class="clsa-5">
+        <path class="clsa-6" d="M73.63,79.2h-.14A9.78,9.78,0,0,0,63.72,89h9.91Z"/>
+    </g>
+    <rect class="clsa-2" y="65.92" width="81.18" height="7.31"/>
+    <rect class="clsa-2" x="80.83" y="73.12" width="7.31" height="38.73"/>
+    <g class="clsa-5">
+        <path class="clsa-3" d="M89.36,74.55s0-.09,0-.13a9.77,9.77,0,0,0-9.78-9.77v9.9Z"/>
+    </g>
+    <rect class="clsa-7" x="32.95" y="40.66" width="7.31" height="81.18"/>
+    <rect class="clsa-3" x="49.88" y="63.99" width="6.22" height="11.17"/>
+    <rect class="clsa-3" x="17.81" y="63.99" width="6.22" height="11.17"/>
+    <rect class="clsa-7" x="26.9" y="83.63" width="6.15" height="3.42"/>
+    <g class="clsa-5">
+        <path class="clsa-8" d="M28.25,81.05a2.14,2.14,0,1,1-2.13-2.13,2.14,2.14,0,0,1,2.13,2.13"/>
+        <path class="clsa-8" d="M28.25,85.38a2.14,2.14,0,1,1-2.13-2.14,2.13,2.13,0,0,1,2.13,2.14"/>
+        <path class="clsa-8" d="M28.25,89.65a2.14,2.14,0,1,1-2.13-2.14,2.14,2.14,0,0,1,2.13,2.14"/>
+    </g>
+    <rect class="clsa-8" x="31.13" y="81.35" width="11.06" height="8.06"/>
+</svg>
