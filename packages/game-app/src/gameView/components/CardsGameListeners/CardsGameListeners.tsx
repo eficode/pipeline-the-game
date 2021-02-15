@@ -1,5 +1,16 @@
 import React, { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { DndContext, DragEndEvent, DragMoveEvent, DragOverlay, DragStartEvent, Modifiers } from '@dnd-kit/core';
+import {
+  DndContext,
+  DragEndEvent,
+  DragMoveEvent,
+  DragOverlay,
+  DragStartEvent,
+  Modifiers,
+  MouseSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from '@dnd-kit/core';
 import { RectEntry, ViewRect } from '@dnd-kit/core/dist/types';
 import { createPortal } from 'react-dom';
 import { Transform } from '@dnd-kit/utilities';
@@ -125,6 +136,10 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
       } = ev;
       const newParent = over?.id;
       setDraggingCard(null);
+
+      if (delta?.x === 0 && delta.y === 0) {
+        return;
+      }
 
       if (newParent === 'panel') {
         onEvent({
@@ -335,9 +350,13 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
     },
     [boardScaleRef, draggingCard, panAmountRef],
   );
+  const mouseSensor = useSensor(MouseSensor, { activationConstraint: { delay: 150, tolerance: 0 } });
+  const touchSensor = useSensor(PointerSensor, { activationConstraint: { delay: 150, tolerance: 0 } });
+  const sensors = useSensors(mouseSensor, touchSensor);
 
   return (
     <DndContext
+      sensors={sensors}
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDragMove={handleDragMove}
