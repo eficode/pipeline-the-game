@@ -128,7 +128,7 @@ export const Pipeline1Container = styled(EmptyCardContainer)`
   left: 45vw;
   top: 15vh;
   z-index: -2;
-  transform: scale(${scaleAtResolution(0.7)});
+  transform: scale(${scaleAtResolution(0.7)}) rotateZ(-5deg);
 `;
 
 export const Pipeline2Container = styled(EmptyCardContainer)`
