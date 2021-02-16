@@ -143,7 +143,7 @@ const translations = {
     },
   },
   signup: {
-    title: 'Signup to play',
+    title: 'Sign up to play',
     alreadyAccount: 'Already have an account?',
     goToSignIn: 'Sign in',
     verificationRequired: {
@@ -174,8 +174,8 @@ const translations = {
         label: 'Repeat password',
         placeholder: 'Test1234',
       },
-      roleLabel: 'Your role',
-      maturityLabel: 'DevOps maturity',
+      roleLabel: 'What is your role in your company?',
+      maturityLabel: 'How mature are your DevOps practices?',
       buttonText: 'Sign up',
     },
     privacy: {

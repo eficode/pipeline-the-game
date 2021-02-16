@@ -18,7 +18,7 @@ export const Column = styled.div<FlexProps & FlexboxProps & LayoutProps>`
 Column.displayName = 'Column';
 
 export const LeftColumn = styled(Column)`
-  padding: 40px 8%;
+  padding: 55px 6%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -34,7 +34,7 @@ export const Logo = styled.div`
   width: 100px;
   position: absolute;
   top: 8px;
-  left: 8%;
+  left: 6%;
 
   svg {
     max-width: 100%;
