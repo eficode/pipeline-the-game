@@ -54,7 +54,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   }
 
   const handler = useCallback(() => {
-    setEstimationOpen(true);
+    setEstimationOpen(o => !o);
   }, []);
 
   const fire = useDoubleClick(handler);
