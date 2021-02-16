@@ -60,6 +60,7 @@ DashboardLeftSide.displayName = 'DashboardLeftSide';
 export const Triangle = styled(Box)`
   width: 0;
   height: 0;
+  z-index: 1;
   border-top: 90vh solid white;
   border-right: 15vw solid transparent;
   filter: drop-shadow(0px 0px 0px rgba(0, 0, 0, 0.5));
@@ -127,8 +128,12 @@ export const ScenarioContainer = styled(EmptyCardContainer)`
 export const Pipeline1Container = styled(EmptyCardContainer)`
   left: 45vw;
   top: 15vh;
-  z-index: -2;
+  z-index: 0;
   transform: scale(${scaleAtResolution(0.7)}) rotateZ(-5deg);
+
+  :hover {
+    transform: scale(${scaleAtResolution(0.7)});
+  }
 `;
 
 export const Pipeline2Container = styled(EmptyCardContainer)`
