@@ -16,7 +16,7 @@ type Props = {
  * A card enhanced with dragging capability
  */
 const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
-  const { position, estimation, zIndex, heldBySomeoneElse } = useSelector(selectors.getCardAdditionalInfo(id));
+  const { position, estimation, zIndex, parent, heldBySomeoneElse } = useSelector(selectors.getCardAdditionalInfo(id));
 
   const { attributes, listeners, setNodeRef, isDragging } = useDraggable({
     disabled: heldBySomeoneElse,
@@ -54,8 +54,10 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   }
 
   const handler = useCallback(() => {
-    setEstimationOpen(o => !o);
-  }, []);
+    if (parent === 'board') {
+      setEstimationOpen(o => !o);
+    }
+  }, [parent]);
 
   const fire = useDoubleClick(handler);
 
@@ -78,6 +80,12 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
       setTimeout(() => setAnimating(false), 500);
     }
   }, [heldBySomeoneElse, animating]);
+
+  useEffect(() => {
+    if (isCardMoving && estimationOpen) {
+      setEstimationOpen(false);
+    }
+  }, [isCardMoving, estimationOpen]);
 
   const card = useMemo(() => {
     return <ConnectedCard bigger={bigger} id={id} />;
