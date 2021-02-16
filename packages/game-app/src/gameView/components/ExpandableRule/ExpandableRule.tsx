@@ -24,9 +24,7 @@ const ExpandableRule: React.FC<Props> = ({ title, children }) => {
         </Typography>
       </RuleHeader>
       <CollapsibleRuleContent collapsed={collapsed}>
-        <RuleContent>
-          <Typography variant="contentHead">{children}</Typography>
-        </RuleContent>
+        <RuleContent>{children}</RuleContent>
       </CollapsibleRuleContent>
     </RuleWrapper>
   );
