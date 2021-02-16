@@ -20,13 +20,9 @@ const maxScale = 3;
  * @param {number} scale current scale
  */
 function constrainPan(pan: Pan, scale: number): Pan {
-  const panXConstrained = Math.max(Math.min(pan.x, 0), -boardSize.width * scale + window.innerWidth);
-
-  const panYConstrained = Math.max(Math.min(pan.y, 0), -boardSize.height * scale + window.innerHeight);
-
   return {
-    x: panXConstrained,
-    y: panYConstrained,
+    x: pan.x,
+    y: pan.y,
   };
 }
 
@@ -182,14 +178,15 @@ const ZoomPanContainer: React.FC<Props> = ({ children }) => {
   }, [panRef, scaleRef, setDivTransformation]);
 
   return (
-    <div key="zoom-container" ref={setRef} style={containerStyle}>
-      <div
-        ref={contentRef}
-        onPointerDown={onPointerDown}
-        onPointerUp={onPointerUp}
-        onPointerCancel={onPointerUp}
-        style={contentStyle}
-      >
+    <div
+      key="zoom-container"
+      ref={setRef}
+      style={containerStyle}
+      onPointerDown={onPointerDown}
+      onPointerUp={onPointerUp}
+      onPointerCancel={onPointerUp}
+    >
+      <div ref={contentRef} style={contentStyle}>
         {children}
       </div>
     </div>
