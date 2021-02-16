@@ -6,7 +6,6 @@ import { Box, Button, Link, TextLogo, Typography } from '@pipeline/components';
 import JoinGameButton from '../JoinGameButton';
 import {
   AnimatedEmptyCard,
-  CardsIllustration,
   CardsIllustrationBackGround,
   DashboardContainer,
   DashboardHeader,
@@ -60,33 +59,31 @@ const Dashboard: React.FC<Props> = () => {
           </DashboardLeftSide>
           <Triangle />
           <CardsIllustrationBackGround />
-          <CardsIllustration flex={1}>
-            <Pipeline1Container>
-              <Tilt scale={1.1} perspective={1500}>
-                <AnimatedEmptyCard type={CardType.PipelineStep} delay={0.1} />
-              </Tilt>
-            </Pipeline1Container>
-            <Pipeline2Container>
-              <Tilt scale={1.1} perspective={1500}>
-                <AnimatedEmptyCard type={CardType.PipelineStep} delay={0.25} />
-              </Tilt>
-            </Pipeline2Container>
-            <ReviewContainer>
-              <Tilt scale={1.1} perspective={1500}>
-                <AnimatedEmptyCard type={CardType.Review} delay={0.5} />
-              </Tilt>
-            </ReviewContainer>
-            <GameRuleContainer>
-              <Tilt scale={1.1} perspective={1500}>
-                <AnimatedEmptyCard type={CardType.GameRule} delay={0.75} />
-              </Tilt>
-            </GameRuleContainer>
-            <ScenarioContainer>
-              <Tilt scale={1.1} perspective={1500}>
-                <AnimatedEmptyCard type={CardType.Scenario} delay={1} />
-              </Tilt>
-            </ScenarioContainer>
-          </CardsIllustration>
+          <Pipeline1Container>
+            <Tilt scale={1.1} perspective={1500}>
+              <AnimatedEmptyCard type={CardType.PipelineStep} delay={0.1} />
+            </Tilt>
+          </Pipeline1Container>
+          <Pipeline2Container>
+            <Tilt scale={1.1} perspective={1500}>
+              <AnimatedEmptyCard type={CardType.PipelineStep} delay={0.25} />
+            </Tilt>
+          </Pipeline2Container>
+          <ReviewContainer>
+            <Tilt scale={1.1} perspective={1500}>
+              <AnimatedEmptyCard type={CardType.Review} delay={0.5} />
+            </Tilt>
+          </ReviewContainer>
+          <GameRuleContainer>
+            <Tilt scale={1.1} perspective={1500}>
+              <AnimatedEmptyCard type={CardType.GameRule} delay={0.75} />
+            </Tilt>
+          </GameRuleContainer>
+          <ScenarioContainer>
+            <Tilt scale={1.1} perspective={1500}>
+              <AnimatedEmptyCard type={CardType.Scenario} delay={1} />
+            </Tilt>
+          </ScenarioContainer>
         </Box>
       </Box>
     </DashboardContainer>

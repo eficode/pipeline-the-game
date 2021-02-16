@@ -5,6 +5,8 @@ export const DashboardContainer = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
+  width: 100vw;
+  overflow: hidden;
 `;
 
 DashboardContainer.displayName = 'DashboardContainer';
@@ -38,7 +40,7 @@ export const CardsIllustrationBackGround = styled(Box)`
   top: 10vh;
   bottom: 0;
   width: 50vw;
-  z-index: -1;
+  z-index: -3;
   background: #eeeeee;
 `;
 
@@ -65,56 +67,77 @@ export const Triangle = styled(Box)`
 
 Triangle.displayName = 'Triangle';
 
+function scaleAtResolution(scale: number) {
+  if (window.matchMedia('(min-width: 1600px)').matches) {
+    return scale * 1.2;
+  } else {
+    return scale;
+  }
+}
+
 export const AnimatedEmptyCard = styled(EmptyCard)<{ delay?: number }>`
   background-color: #fff;
+
   :not(:hover) {
     animation: ${animations.bounceDefinition(25)} 2s ease-in-out infinite alternate;
     animation-delay: ${props => props.delay || 0}s;
   }
 `;
 
-export const ReviewContainer = styled.div`
+export const EmptyCardContainer = styled.div`
   position: absolute;
-  top: 20px;
+  z-index: 1;
+  box-shadow: 0 210px 80px -60px #a0a0a0;
+  will-change: transform;
+  transition: transform 0.5s linear;
+`;
+EmptyCardContainer.displayName = 'EmptyCardContainer';
+
+export const ReviewContainer = styled(EmptyCardContainer)`
+  top: calc(20px + 10vh);
   right: 25px;
-  z-index: 1;
-  transform: scale(0.5) perspective(1500px) rotate3d(-1, 1, 0, -25deg);
   transform-origin: top right;
-  box-shadow: 0 210px 80px -60px #a0a0a0;
+  transform: scale(${scaleAtResolution(0.5)}) perspective(1500px) rotate3d(-1, 1, 0, -25deg);
+
+  :hover {
+    transform: scale(${scaleAtResolution(0.5)});
+  }
 `;
 
-export const GameRuleContainer = styled.div`
-  position: absolute;
-  top: 23%;
-  right: 23%;
-  z-index: 1;
-  box-shadow: 0 210px 80px -60px #a0a0a0;
-  transform: scale(0.7) perspective(1500px) rotate3d(1, 2, -1, 15deg);
+export const GameRuleContainer = styled(EmptyCardContainer)`
+  top: 43vh;
+  right: calc(11vw);
+  transform: scale(${scaleAtResolution(0.7)}) perspective(1500px) rotate3d(1, 2, -1, 15deg);
+
+  :hover {
+    transform: scale(${scaleAtResolution(0.7)});
+  }
 `;
 
-export const ScenarioContainer = styled.div`
-  position: absolute;
+export const ScenarioContainer = styled(EmptyCardContainer)`
   bottom: 20%;
   right: -120px;
-  z-index: 1;
-  box-shadow: 0 210px 80px -60px #a0a0a0;
-  transform: scale(0.6) perspective(1500px) rotate3d(0, -1, -1, 5deg);
+  transform: scale(${scaleAtResolution(0.6)}) perspective(1500px) rotate3d(0, -1, -1, 5deg);
+
+  :hover {
+    transform: scale(${scaleAtResolution(0.6)});
+  }
 `;
 
-export const Pipeline1Container = styled.div`
-  position: absolute;
-  left: 0;
-  top: 20px;
+export const Pipeline1Container = styled(EmptyCardContainer)`
+  left: 45vw;
+  top: 15vh;
   z-index: -2;
-  box-shadow: 0 210px 80px -60px #a0a0a0;
-  transform: scale(0.7);
+  transform: scale(${scaleAtResolution(0.7)});
 `;
 
-export const Pipeline2Container = styled.div`
-  position: absolute;
-  left: 0;
-  bottom: 20px;
+export const Pipeline2Container = styled(EmptyCardContainer)`
+  left: 40vw;
+  bottom: 15vh;
   z-index: 2;
-  box-shadow: 0 210px 80px -60px #a0a0a0;
-  transform: scale(0.7) perspective(1500px) rotate3d(0, -1, -1, 5deg);
+  transform: scale(${scaleAtResolution(0.8)}) perspective(1500px) rotate3d(0, -1, -1, 5deg);
+
+  :hover {
+    transform: scale(${scaleAtResolution(0.8)});
+  }
 `;
