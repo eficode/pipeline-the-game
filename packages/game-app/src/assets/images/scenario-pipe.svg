@@ -1,0 +1,44 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 116.03 168.56">
+    <defs>
+        <style>
+            .clsd-1{fill:none;}.clsd-2{clip-path:url(#clip-path);}.clsd-3{clip-path:url(#clip-path-2);}.clsd-4{opacity:0.55;}.clsd-5{fill:#63c4dd;}.clsd-6{fill:#38bad9;}.clsd-7{fill:#0294bd;}.clsd-8{clip-path:url(#clip-path-3);}.clsd-9{fill:#25a2c6;}.clsd-10{fill:#4fc0db;}.clsd-11{fill:#a9dae7;}.clsd-12{fill:#67c5de;}
+        </style>
+        <clipPath id="clip-path">
+            <rect class="clsd-1" x="32.09" y="193.36" width="114.64" height="147.24"
+                  transform="translate(-189.13 308.1) rotate(-79.88)"/>
+        </clipPath>
+        <clipPath id="clip-path-2">
+            <path class="clsd-1"
+                  d="M153,220.11a4.9,4.9,0,0,0-.77-.06L27.59,218.7a5.13,5.13,0,0,0-5.18,5.07l-.15,13.6,134.92,1.46.15-13.61a5.13,5.13,0,0,0-4.14-5.08Z"/>
+        </clipPath>
+        <clipPath id="clip-path-3">
+            <rect class="clsd-1" x="0.26" width="117.04" height="168.56"/>
+        </clipPath>
+    </defs>
+    <rect class="clsd-5" x="51.87" y="73.6" width="2.72" height="4.55"/>
+    <rect class="clsd-6" x="48.77" y="78.08" width="8.92" height="2.76"/>
+    <rect class="clsd-7" x="108.73" width="7.31" height="81.18"/>
+    <rect class="clsd-7" x="70.11" y="80.83" width="38.73" height="7.31"/>
+    <g class="clsd-8">
+        <path class="clsd-9" d="M107.4,89.36h.14a9.78,9.78,0,0,0,9.77-9.78H107.4Z"/>
+    </g>
+    <rect class="clsd-7" x="65.26" y="87.38" width="7.31" height="81.18"/>
+    <g class="clsd-8">
+        <path class="clsd-9" d="M73.89,79.2h-.13A9.78,9.78,0,0,0,64,89h9.91Z"/>
+    </g>
+    <rect class="clsd-10" x="0.26" y="65.92" width="81.18" height="7.31"/>
+    <rect class="clsd-10" x="81.09" y="73.12" width="7.31" height="38.73"/>
+    <g class="clsd-8">
+        <path class="clsd-6" d="M89.62,74.55a.57.57,0,0,0,0-.13,9.76,9.76,0,0,0-9.77-9.77v9.9Z"/>
+    </g>
+    <rect class="clsd-11" x="33.21" y="40.66" width="7.31" height="81.18"/>
+    <rect class="clsd-6" x="50.15" y="63.99" width="6.22" height="11.17"/>
+    <rect class="clsd-6" x="18.07" y="63.99" width="6.22" height="11.17"/>
+    <rect class="clsd-11" x="27.17" y="83.63" width="6.15" height="3.42"/>
+    <g class="clsd-8">
+        <path class="clsd-12" d="M28.52,81.05a2.14,2.14,0,1,1-2.14-2.13,2.14,2.14,0,0,1,2.14,2.13"/>
+        <path class="clsd-12" d="M28.52,85.38a2.14,2.14,0,1,1-2.14-2.14,2.13,2.13,0,0,1,2.14,2.14"/>
+        <path class="clsd-12" d="M28.52,89.65a2.14,2.14,0,1,1-2.14-2.14,2.14,2.14,0,0,1,2.14,2.14"/>
+    </g>
+    <rect class="clsd-12" x="31.39" y="81.35" width="11.06" height="8.06"/>
+</svg>

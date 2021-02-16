@@ -25,6 +25,7 @@ import TextLogo from './TextLogo';
 import PopoverDetails from './PopoverDetails';
 import DialogForEmailContainer from './DialogForEmailContainer';
 import { getFromTheme } from './utils';
+import EmptyCard from './Card/EmptyCard';
 
 export {
   TextInput,
@@ -54,4 +55,5 @@ export {
   PopoverDetails,
   getFromTheme,
   DialogForEmailContainer,
+  EmptyCard,
 };

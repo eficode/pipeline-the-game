@@ -1,4 +1,4 @@
-import { Card } from '@pipeline/common';
+import { Card, CardType } from '@pipeline/common';
 import React from 'react';
 import {
   CardBody,
@@ -11,6 +11,13 @@ import {
   CardHeadingTags,
   CardWrapper,
 } from './Card.styled';
+
+import { ReactComponent as PipelineStepPipeImage } from '@assets/images/pipeline-step-pipe.svg';
+import { ReactComponent as ReviewPipeImage } from '@assets/images/review-pipe.svg';
+import { ReactComponent as ScenarioPipeImage } from '@assets/images/scenario-pipe.svg';
+import { ReactComponent as GameRulePipeImage } from '@assets/images/game-rule-pipe.svg';
+
+import { Box } from '@pipeline/components';
 
 type CardProps = Card & {
   typeLabel: string;
@@ -35,9 +42,23 @@ const CardComponent: React.FC<CardProps> = ({
   dragging,
   bigger,
 }) => {
+  const image =
+    type === CardType.PipelineStep ? (
+      <PipelineStepPipeImage />
+    ) : type === CardType.GameRule ? (
+      <GameRulePipeImage />
+    ) : type === CardType.Scenario ? (
+      <ScenarioPipeImage />
+    ) : (
+      <ReviewPipeImage />
+    );
+
   return (
     <CardWrapper dragging={dragging} bigger={bigger}>
       <CardHeader type={type}>
+        <Box position="absolute" marginTop={-40} marginLeft={-20} width={90}>
+          {image}
+        </Box>
         <CardHeading>{typeLabel}</CardHeading>
         <CardHeadingTags>
           {tags?.map((t, index) => (
