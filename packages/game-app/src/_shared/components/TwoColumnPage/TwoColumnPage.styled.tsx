@@ -44,8 +44,8 @@ export const Logo = styled.div`
 Logo.displayName = 'Logo';
 
 export const RightIllustration = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 45%;
+  height: 45%;
 
   svg {
     max-width: 100%;
