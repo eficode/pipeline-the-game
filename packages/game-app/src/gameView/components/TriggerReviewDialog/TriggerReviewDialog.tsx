@@ -4,12 +4,21 @@ import { useTranslate } from '@pipeline/i18n';
 import { TriggerDialogContainer } from './TriggerReviewDialog.styled';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../slice';
+import ReviewPanel from '../ReviewPanel';
 
 type Props = {
   isOpen: boolean;
   close: () => void;
   straightToPosition?: boolean;
   inReview: boolean;
+};
+
+const ReviewContainer: React.FC = () => {
+  return (
+    <Box position="absolute" left={443} bottom={2}>
+      <ReviewPanel disabled />
+    </Box>
+  );
 };
 
 const TriggerReviewDialog: React.FC<Props> = ({ isOpen, close, straightToPosition = false, inReview }) => {
@@ -43,6 +52,7 @@ const TriggerReviewDialog: React.FC<Props> = ({ isOpen, close, straightToPositio
       title={t(!showPosition ? 'game.triggerReview.title' : 'game.triggerReview.reviewTime')}
       DialogContainerComponent={TriggerDialogContainer}
       DialogContainerProps={containerProps}
+      AdditionalComponent={showReviewPosition ? ReviewContainer : undefined}
     >
       <Typography mt={4} variant="content">
         {t(!showPosition ? 'game.triggerReview.subtitle' : 'game.triggerReview.reviewUnlocked')}

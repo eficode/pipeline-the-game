@@ -2,13 +2,15 @@ import React from 'react';
 import { Box, ExpandableTopPanel, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 
-type Props = {};
+type Props = {
+  disabled?: boolean;
+};
 
-const ReviewPanel: React.FC<Props> = () => {
+const ReviewPanel: React.FC<Props> = ({ disabled }) => {
   const t = useTranslate();
 
   return (
-    <ExpandableTopPanel label="Review">
+    <ExpandableTopPanel label="Review" disabled={disabled}>
       <Box>
         <Typography variant="content" fontWeight="bold" mt={2}>
           {t('game.review.title1')}

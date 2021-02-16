@@ -11,11 +11,11 @@ export const PanelHeader = styled.div`
 
 PanelHeader.displayName = 'PanelHeader';
 
-export const PanelWrapper = styled.div`
+export const PanelWrapper = styled.div<{ disabled?: boolean }>`
   width: 400px;
   background: rgba(255, 255, 255, 0.95);
   border-radius: 4px;
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
 
   @supports (backdrop-filter: blur(20px)) {
     background: rgba(255, 255, 255, 0.5);
