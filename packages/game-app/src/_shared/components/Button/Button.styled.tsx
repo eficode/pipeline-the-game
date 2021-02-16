@@ -29,10 +29,12 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
     variants: {
       default: {
         textTransform: 'uppercase',
-        fontWeight: '600',
+        fontWeight: '700',
+        fontSize: '16px',
         bg: 'secondary',
         '&:hover': {
           bg: 'secondaryDark',
+          textDecoration: 'underline',
         },
       },
       clear: {

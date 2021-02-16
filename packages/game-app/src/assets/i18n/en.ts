@@ -24,7 +24,8 @@ const translations = {
     title: 'Pipeline - The Game that Delivers',
     newGameLabel: 'Create game',
     message:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+      'You can either join an existing game if someone shared a link with you or create a new game and invite others to play, in that case, you’ll be the facilitator. Keep in mind that only the facilitator can trigger the review mode at the end of the game.\n' +
+      'Read more about the game here.',
     joinGame: ' Join game',
     joinButton: 'Join',
     contactUs: 'Contact us',
@@ -143,7 +144,7 @@ const translations = {
     },
   },
   signup: {
-    title: 'Signup to play',
+    title: 'Sign up to play',
     alreadyAccount: 'Already have an account?',
     goToSignIn: 'Sign in',
     verificationRequired: {
@@ -174,8 +175,8 @@ const translations = {
         label: 'Repeat password',
         placeholder: 'Test1234',
       },
-      roleLabel: 'Your role',
-      maturityLabel: 'DevOps maturity',
+      roleLabel: 'What is your role in your company?',
+      maturityLabel: 'How mature are your DevOps practices?',
       buttonText: 'Sign up',
     },
     privacy: {

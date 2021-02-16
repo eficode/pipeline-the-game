@@ -58,7 +58,7 @@ const Signup: React.FC<Props> = () => {
   );
 
   const goToSignIn = useNavigateTo(RoutingPath.Login, location.state);
-  const openPrivacyPolicy = useNavigateOutsideTo('https://www.eficode.com');
+  const openPrivacyPolicy = useNavigateOutsideTo('https://www.eficode.com/privacy-policy');
 
   return (
     <>

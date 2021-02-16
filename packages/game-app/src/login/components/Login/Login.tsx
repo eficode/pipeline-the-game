@@ -35,7 +35,7 @@ const Login: React.FC<Props> = () => {
   const goToSignUp = useNavigateTo(RoutingPath.Signup, location.state);
   const goToForgotPassword = useNavigateTo(RoutingPath.ForgotPassword);
 
-  const openPrivacyPolicy = useNavigateOutsideTo('https://www.eficode.com');
+  const openPrivacyPolicy = useNavigateOutsideTo('https://www.eficode.com/privacy-policy');
 
   const passwordProps = useMemo(() => {
     return {

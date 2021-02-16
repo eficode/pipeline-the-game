@@ -22,17 +22,8 @@
     "tags": null,
     "title": "Execution Time",
     "subtitle": null,
-    "content": "How long will this Pipeline step\ntake to execute?\nWrite the time on a sticky note\nand attach it to the card.",
+    "content": "How long will this Pipeline step take to execute?\nDouble-click on a card to add a time estimate for that step.",
     "number": 3,
-    "deckId": "7p5qqvE8kCV9WWysVc2n"
-  },
-  "51xgsF43n5iaMNLkxGs4": {
-    "type": "game-rule",
-    "tags": null,
-    "title": "What Other Steps Should You Include?",
-    "subtitle": null,
-    "content": "You can invent your own steps\nby sticking notes on the blank\nPipeline cards.",
-    "number": 4,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
   "51xgsF43n5iaMNLkxGs5": {
