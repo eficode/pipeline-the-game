@@ -28,6 +28,7 @@ const translations = {
       'Read more about the game here.',
     joinGame: ' Join game',
     joinButton: 'Join',
+    howToPlay: 'How to play',
     contactUs: 'Contact us',
   },
   game: {

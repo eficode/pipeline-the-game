@@ -42,3 +42,11 @@ Loading.args = {
   label: 'Button',
   loading: true,
 };
+
+export const Secondary = Template.bind({});
+
+Secondary.args = {
+  variant: 'secondary',
+  label: 'Button',
+  rightIcon: <ArrowIcon />,
+};

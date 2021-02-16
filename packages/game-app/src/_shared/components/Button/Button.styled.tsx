@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
-import { variant, color } from 'styled-system';
+import { variant, color, margin, MarginProps } from 'styled-system';
 import Icon from '../Icon';
 import Spinner from '../Spinner';
 import Typography from '../Typography';
 
-export type Variants = 'default' | 'clear';
+export type Variants = 'default' | 'clear' | 'secondary';
 
 export const StyledButton = styled('button')<{ variant: Variants }>`
   height: 40px;
@@ -13,6 +13,7 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
   padding: 2px 40px;
   cursor: pointer;
   font-family: Montserrat;
+  font-size: 16px;
 
   box-sizing: border-box;
   border: 0;
@@ -30,7 +31,6 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
       default: {
         textTransform: 'uppercase',
         fontWeight: '700',
-        fontSize: '16px',
         bg: 'secondary',
         '&:hover': {
           bg: 'secondaryDark',
@@ -41,6 +41,19 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
         bg: 'transparent',
         color: 'white',
         p: '2px 16px',
+      },
+      secondary: {
+        bg: 'transparent',
+        p: '4px 16px',
+        borderRadius: '0px',
+        fontWeight: '500',
+        minWidth: 'unset',
+        '&:hover': {
+          p: '4px 16px 0px 16px',
+          borderColor: 'secondary',
+          borderBottomWidth: '4px',
+          borderBottomStyle: 'solid',
+        },
       },
     },
   })} ${color}
@@ -59,10 +72,11 @@ export const ButtonContent = styled.div`
 
 ButtonContent.displayName = 'ButtonContent';
 
-export const IconWrapper = styled(Icon)`
+export const IconWrapper = styled(Icon)<MarginProps>`
   ${StyledButton} & {
     margin-right: 4px;
   }
+  ${margin}
 `;
 
 IconWrapper.displayName = 'IconWrapper';
