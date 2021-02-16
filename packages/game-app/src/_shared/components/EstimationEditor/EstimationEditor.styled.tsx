@@ -1,6 +1,7 @@
 import Box from '../Box';
 import styled from 'styled-components';
 import Input from '../Input';
+import LightCheckIcon from '@assets/icons/light-estimate-checkmark.svg';
 /*
 const estimationWrapperDefinition = keyframes`
   0% {
@@ -143,7 +144,12 @@ export const ConfirmButton = styled.button`
   }
 
   ${EstimationInputWrapper}:focus-within + & {
-    background: #096762;
+    background-color: #096762;
+    background-image: url(${LightCheckIcon});
+    background-repeat: no-repeat;
+    background-size: 70% 70%;
+    background-position-x: 5px;
+    background-position-y: 4px;
   }
 `;
 

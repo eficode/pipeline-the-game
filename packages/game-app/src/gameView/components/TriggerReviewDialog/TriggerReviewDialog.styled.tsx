@@ -14,9 +14,23 @@ export const TriggerDialogContainer = styled(Dialog.DialogContainer)<{ showRevie
     css`
       position: absolute;
       top: unset;
-      left: 200px;
-      bottom: 55px;
+      left: 278px;
+      bottom: 70px;
       transform: unset;
+      :after {
+         {
+          content: '';
+          position: absolute;
+          bottom: -14px;
+          left: 350px;
+          border-style: solid;
+          border-width: 14px 14px 0;
+          border-color: rgba(255, 255, 255, 0.6) transparent;
+          display: block;
+          width: 0;
+          z-index: 1;
+        }
+      }
     `}
 `;
 

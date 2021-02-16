@@ -20,6 +20,7 @@ type Props = {
   DialogContainerComponent?: React.ElementType;
   // TODO improve types
   DialogContainerProps?: object;
+  AdditionalComponent?: React.ElementType;
 };
 
 /**
@@ -31,6 +32,7 @@ const Dialog: React.FC<Props> & { DialogContainer: typeof DialogContainer } = ({
   title,
   DialogContainerComponent = DialogContainer,
   DialogContainerProps = {},
+  AdditionalComponent,
   children,
 }) => {
   return (
@@ -41,6 +43,7 @@ const Dialog: React.FC<Props> & { DialogContainer: typeof DialogContainer } = ({
         </Typography>
         {children}
       </DialogContainerComponent>
+      {AdditionalComponent && <AdditionalComponent />}
     </GlassOverlay>
   );
 };
