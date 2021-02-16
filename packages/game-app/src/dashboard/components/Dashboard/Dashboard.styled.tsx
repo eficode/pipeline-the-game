@@ -105,7 +105,7 @@ export const ReviewContainer = styled(EmptyCardContainer)`
 `;
 
 export const GameRuleContainer = styled(EmptyCardContainer)`
-  top: 43vh;
+  top: 38vh;
   right: calc(11vw);
   transform: scale(${scaleAtResolution(0.7)}) perspective(1500px) rotate3d(1, 2, -1, 15deg);
 
@@ -117,10 +117,10 @@ export const GameRuleContainer = styled(EmptyCardContainer)`
 export const ScenarioContainer = styled(EmptyCardContainer)`
   bottom: 20%;
   right: -120px;
-  transform: scale(${scaleAtResolution(0.6)}) perspective(1500px) rotate3d(0, -1, -1, 5deg);
+  transform: scale(${scaleAtResolution(0.7)}) perspective(400px) rotate3d(0, 18, 3, 10deg);
 
   :hover {
-    transform: scale(${scaleAtResolution(0.6)});
+    transform: scale(${scaleAtResolution(0.7)});
   }
 `;
 
