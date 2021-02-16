@@ -1,8 +1,8 @@
 import React from 'react';
 import { useTranslate } from '@pipeline/i18n';
 import { useLogout } from '@pipeline/auth';
-import { RoutingPath, useNavigateTo } from '@pipeline/routing';
-import { Box, Button, Link, TextLogo, Typography } from '@pipeline/components';
+import { RoutingPath, useNavigateOutsideTo, useNavigateTo } from '@pipeline/routing';
+import { Box, Button, TextLogo, Typography } from '@pipeline/components';
 import JoinGameButton from '../JoinGameButton';
 import {
   AnimatedEmptyCard,
@@ -18,6 +18,7 @@ import {
   Triangle,
 } from './Dashboard.styled';
 import { CardType } from '@pipeline/common';
+import { ReactComponent as RightIcon } from '@assets/icons/arrow.svg';
 import Tilt from 'react-parallax-tilt';
 
 type Props = {};
@@ -27,6 +28,7 @@ const Dashboard: React.FC<Props> = () => {
   const { call: executeLogout } = useLogout();
 
   const goToCreateGame = useNavigateTo(RoutingPath.CreateGame);
+  const goToHowToPlay = useNavigateOutsideTo('https://www.eficode.com/pipeline-game#how-to-play', true);
 
   return (
     <DashboardContainer>
@@ -35,9 +37,22 @@ const Dashboard: React.FC<Props> = () => {
           <TextLogo />
           <Box display="flex" flexDirection="row">
             <Box display="flex" flexDirection="row" justifyContent="flex-end" mr={4}>
-              <Link onClick={executeLogout} id="logout-button">
-                {t('auth.logout')}
-              </Link>
+              <Button
+                variant="secondary"
+                rightIcon={<RightIcon />}
+                label={t('dashboard.howToPlay')}
+                onClick={goToHowToPlay}
+                id="how-to-play-button"
+              />
+            </Box>
+            <Box display="flex" flexDirection="row" justifyContent="flex-end" mr={4}>
+              <Button
+                variant="secondary"
+                rightIcon={<RightIcon />}
+                label={t('auth.logout')}
+                onClick={executeLogout}
+                id="logout-button"
+              />
             </Box>
             <Box>
               <Button label={t('dashboard.contactUs')} onClick={() => ({})} />

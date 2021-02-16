@@ -17,7 +17,9 @@ type Props = {
   onClick: () => void;
   disabled?: boolean;
   leftIcon?: React.ReactElement;
+  rightIcon?: React.ReactElement;
   leftIconHover?: React.ReactElement;
+  rightIconHover?: React.ReactElement;
   color?: React.ComponentProps<typeof StyledButton>['color'];
   loading?: boolean;
   type?: React.ComponentProps<typeof StyledButton>['type'];
@@ -35,6 +37,8 @@ const Button: React.FC<Props> = ({
   color,
   type = 'button',
   loading,
+  rightIcon,
+  rightIconHover,
 }) => {
   return (
     <StyledButton
@@ -53,6 +57,16 @@ const Button: React.FC<Props> = ({
         ) : null}
         {loading && <ButtonSpinner />}
         <ButtonLabel loading={loading}>{label}</ButtonLabel>
+        {rightIcon ? (
+          <NotHoverIconWrapper ml={3} variant="small">
+            {rightIcon}
+          </NotHoverIconWrapper>
+        ) : null}
+        {rightIconHover || rightIcon ? (
+          <HoverIconWrapper ml={3} variant="small">
+            {rightIconHover || rightIcon!}
+          </HoverIconWrapper>
+        ) : null}
       </ButtonContent>
     </StyledButton>
   );
