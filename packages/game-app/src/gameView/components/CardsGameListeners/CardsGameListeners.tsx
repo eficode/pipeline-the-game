@@ -350,8 +350,8 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
     },
     [boardScaleRef, draggingCard, panAmountRef],
   );
-  const mouseSensor = useSensor(MouseSensor, { activationConstraint: { delay: 150, tolerance: 0 } });
-  const touchSensor = useSensor(PointerSensor, { activationConstraint: { delay: 150, tolerance: 0 } });
+  const mouseSensor = useSensor(MouseSensor, { activationConstraint: { distance: 5 } });
+  const touchSensor = useSensor(PointerSensor, { activationConstraint: { distance: 5 } });
   const sensors = useSensors(mouseSensor, touchSensor);
 
   return (
