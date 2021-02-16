@@ -1,193 +1,223 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 700 1200">
-    <defs>
-        <style>
-            .auth-cls-1,.auth-cls-18{fill:none;}.auth-cls-2{fill:#ecece9;}.auth-cls-3{clip-path:url(#clip-path);}.auth-cls-4{fill:#fba919;}.auth-cls-5{fill:#feda1e;}.auth-cls-6{fill:#fff0c6;}.auth-cls-7{clip-path:url(#clip-path-2);}.auth-cls-8{opacity:0.33;}.auth-cls-9{clip-path:url(#clip-path-4);}.auth-cls-10{fill:#ffc60b;}.auth-cls-11{opacity:0.67;}.auth-cls-12{opacity:0.61;}.auth-cls-13{clip-path:url(#clip-path-5);}.auth-cls-14{clip-path:url(#clip-path-6);}.auth-cls-15{clip-path:url(#clip-path-7);}.auth-cls-16{opacity:0.2;}.auth-cls-17{clip-path:url(#clip-path-8);}.auth-cls-18{stroke:#fff;stroke-miterlimit:10;stroke-width:2px;}.auth-cls-19,.auth-cls-20,.auth-cls-21{isolation:isolate;}.auth-cls-20{font-size:70px;letter-spacing:0.02em;}.auth-cls-20,.auth-cls-21{fill:#090b13;font-family:Montserrat-ExtraBold,
-            Montserrat;font-weight:800;}.auth-cls-21{font-size:32px;letter-spacing:-0.02em;}.auth-cls-22{letter-spacing:0.02em;}.auth-cls-23{letter-spacing:0em;}
-        </style>
-        <clipPath id="clip-path" transform="translate(116.15 294.27)">
-            <path class="auth-cls-1"
-                  d="M209.33,6.54l-197,106.2A20.38,20.38,0,0,0,1.35,130.59V342.4a20.35,20.35,0,0,0,10.94,17.84l197,106.21a22.62,22.62,0,0,0,21.32,0l197-106.21a20.35,20.35,0,0,0,10.94-17.84V130.59a20.38,20.38,0,0,0-10.94-17.85l-197-106.2a22.58,22.58,0,0,0-21.32,0"/>
-        </clipPath>
-        <clipPath id="clip-path-2" transform="translate(116.15 294.27)">
-            <path class="auth-cls-1"
-                  d="M209.33,6.54l-197,106.2A20.38,20.38,0,0,0,1.35,130.59V342.4a20.35,20.35,0,0,0,10.94,17.84l197,106.21a22.62,22.62,0,0,0,21.32,0l197-106.21a20.35,20.35,0,0,0,10.94-17.84V130.59a20.38,20.38,0,0,0-10.94-17.85l-197-106.2a22.6,22.6,0,0,0-21.33,0"/>
-        </clipPath>
-        <clipPath id="clip-path-4" transform="translate(116.15 294.27)">
-            <rect class="auth-cls-1" x="172.09" y="-16.14" width="85.87" height="534.57"/>
-        </clipPath>
-        <clipPath id="clip-path-5" transform="translate(116.15 294.27)">
-            <rect class="auth-cls-1" x="168.11" y="382.13" width="75.86" height="80.76"/>
-        </clipPath>
-        <clipPath id="clip-path-6" transform="translate(116.15 294.27)">
-            <rect class="auth-cls-1" x="167.27" y="81.76" width="75.86" height="80.76"/>
-        </clipPath>
-        <clipPath id="clip-path-7" transform="translate(116.15 294.27)">
-            <path class="auth-cls-1"
-                  d="M208.74,2.69,11.93,109.59A20.53,20.53,0,0,0,1,127.55V340.74a20.52,20.52,0,0,0,10.93,18L208.74,465.6a22.46,22.46,0,0,0,21.3,0L426.87,358.7a20.51,20.51,0,0,0,10.92-18V127.55a20.51,20.51,0,0,0-10.92-18L230,2.69a22.43,22.43,0,0,0-21.3,0"/>
-        </clipPath>
-        <clipPath id="clip-path-8" transform="translate(116.15 294.27)">
-            <rect class="auth-cls-1" x="2.64" y="24.2" width="466.83" height="83.71"/>
-        </clipPath>
-    </defs>
-    <g id="Lag_2" data-name="Lag 2">
-        <g id="Layer_1" data-name="Layer 1">
-            <g id="Group_383" data-name="Group 383">
-                <g id="Group_359" data-name="Group 359">
-                    <path id="Path_180" data-name="Path 180" class="auth-cls-2"
-                          d="M438.63,342.4V130.59a20.38,20.38,0,0,0-10.94-17.85l-197-106.2a22.56,22.56,0,0,0-21.32,0l-197,106.2A20.38,20.38,0,0,0,1.35,130.59V342.4a20.37,20.37,0,0,0,10.94,17.84l197,106.21a22.62,22.62,0,0,0,21.32,0l197-106.21a20.37,20.37,0,0,0,10.94-17.84"
-                          transform="translate(116.15 294.27)"/>
-                </g>
-                <g id="Group_361" data-name="Group 361">
-                    <g class="auth-cls-3">
-                        <g id="Group_360" data-name="Group 360">
-                            <rect id="Rectangle_1427" data-name="Rectangle 1427" class="auth-cls-4" x="344.73" y="515.89"
-                                  width="12.79" height="21.61"/>
-                            <rect id="Rectangle_1428" data-name="Rectangle 1428" class="auth-cls-4" x="330.11" y="503.12"
-                                  width="42.04" height="13.11"/>
-                            <rect id="Rectangle_1429" data-name="Rectangle 1429" class="auth-cls-4" x="89.08" y="381.76"
-                                  width="182.51" height="34.68"/>
-                            <rect id="Rectangle_1430" data-name="Rectangle 1430" class="auth-cls-4" x="260.01" width="34.43"
-                                  height="385.33"/>
-                            <path id="Path_181" data-name="Path 181" class="auth-cls-5"
-                                  d="M137.61,129.89l.63,0A46.22,46.22,0,0,0,184.3,83.53H137.61Z"
-                                  transform="translate(116.15 294.27)"/>
-                            <rect id="Rectangle_1431" data-name="Rectangle 1431" class="auth-cls-6" width="1157.35"
-                                  height="800.1"/>
-                        </g>
-                    </g>
-                </g>
-                <g id="Group_363" data-name="Group 363">
-                    <g class="auth-cls-7">
-                        <g id="Group_362" data-name="Group 362">
-                            <rect id="Rectangle_1432" data-name="Rectangle 1432" class="auth-cls-4" x="155.82" y="317.82"
-                                  width="36.61" height="201.39"/>
-                        </g>
-                    </g>
-                </g>
-                <g id="Group_368" data-name="Group 368">
-                    <g class="auth-cls-3">
-                        <g id="Group_367" data-name="Group 367">
-                            <g id="Group_366" data-name="Group 366" class="auth-cls-8">
-                                <g id="Group_365" data-name="Group 365">
-                                    <g class="auth-cls-9">
-                                        <g id="Group_364" data-name="Group 364">
-                                            <rect id="Rectangle_1433" data-name="Rectangle 1433" class="auth-cls-4"
-                                                  x="313.96" y="298.14" width="34.43" height="511.71"/>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                            <path id="Path_184" data-name="Path 184" class="auth-cls-5"
-                                  d="M34.55,218.44c0,.21,0,.42,0,.64a46.21,46.21,0,0,0,46,46.38h0v-47Z"
-                                  transform="translate(116.15 294.27)"/>
-                            <rect id="Rectangle_1435" data-name="Rectangle 1435" class="auth-cls-5" x="411.03" width="34.43"
-                                  height="800.1"/>
-                            <rect id="Rectangle_1436" data-name="Rectangle 1436" class="auth-cls-5" x="336.34" y="509.86"
-                                  width="29.32" height="53"/>
-                            <rect id="Rectangle_1437" data-name="Rectangle 1437" class="auth-cls-5" x="487.5" y="509.86"
-                                  width="29.32" height="53"/>
-                            <rect id="Rectangle_1438" data-name="Rectangle 1438" class="auth-cls-5" x="444.95" y="408.16"
-                                  width="28.99" height="16.25"/>
-                            <path id="Path_185" data-name="Path 185" class="auth-cls-4"
-                                  d="M351.44,142.07A10.07,10.07,0,1,1,361.5,152.2a10.1,10.1,0,0,1-10.06-10.13"
-                                  transform="translate(116.15 294.27)"/>
-                            <rect id="Rectangle_1439" data-name="Rectangle 1439" class="auth-cls-10" x="401.94" y="396.95"
-                                  width="52.1" height="38.27"/>
-                            <rect id="Rectangle_1440" data-name="Rectangle 1440" class="auth-cls-10" y="640.65"
-                                  width="258.09" height="34.68"/>
-                            <rect id="Rectangle_1441" data-name="Rectangle 1441" class="auth-cls-5" x="508.23" y="715.81"
-                                  width="29.32" height="53"/>
-                        </g>
-                    </g>
-                </g>
-                <rect id="Rectangle_1442" data-name="Rectangle 1442" class="auth-cls-4" x="195.71" y="519.2" width="140.96"
-                      height="36.61"/>
-                <rect id="Rectangle_1443" data-name="Rectangle 1443" class="auth-cls-4" x="365.1" y="519.2" width="122.26"
-                      height="36.61"/>
-                <rect id="Rectangle_1444" data-name="Rectangle 1444" class="auth-cls-4" x="515.79" y="519.2" width="38.99"
-                      height="36.61"/>
-                <rect id="Rectangle_1445" data-name="Rectangle 1445" class="auth-cls-10" x="276.9" y="456.38" width="277.88"
-                      height="32.26"/>
-                <path id="Path_187" data-name="Path 187" class="auth-cls-4"
-                      d="M125.11,200.23c0-.2,0-.4,0-.59,0-23.84,19-43.16,42.56-43.16v43.75Z"
-                      transform="translate(116.15 294.27)"/>
-                <g id="Group_370" data-name="Group 370" class="auth-cls-11">
-                    <g id="Group_369" data-name="Group 369">
-                        <rect id="Rectangle_1446" data-name="Rectangle 1446" class="auth-cls-10" x="117.5" y="585.22"
-                              width="437.27" height="32.26"/>
-                    </g>
-                </g>
-                <path id="Path_188" data-name="Path 188" class="auth-cls-4"
-                      d="M352.09,122.14a10.06,10.06,0,1,1,10.06,10.13,10.1,10.1,0,0,1-10.06-10.13"
-                      transform="translate(116.15 294.27)"/>
-                <path id="Path_189" data-name="Path 189" class="auth-cls-4"
-                      d="M352.09,101.88A10.06,10.06,0,1,1,362.15,112a10.09,10.09,0,0,1-10.06-10.13"
-                      transform="translate(116.15 294.27)"/>
-                <rect id="Rectangle_1447" data-name="Rectangle 1447" class="auth-cls-5" x="147.93" y="431.08" width="53"
-                      height="29.32"/>
-                <rect id="Rectangle_1448" data-name="Rectangle 1448" class="auth-cls-10" x="247.05" y="494.5" width="34.43"
-                      height="154.32"/>
-                <path id="Path_190" data-name="Path 190" class="auth-cls-4"
-                      d="M171.11,340.09c0,.22,0,.43,0,.64a46.22,46.22,0,0,1-46,46.38h0v-47Z"
-                      transform="translate(116.15 294.27)"/>
-                <g id="Group_373" data-name="Group 373" class="auth-cls-12">
-                    <g id="Group_372" data-name="Group 372">
-                        <g class="auth-cls-13">
-                            <g id="Group_371" data-name="Group 371">
-                                <rect id="Rectangle_1449" data-name="Rectangle 1449" class="auth-cls-5" x="304.27" y="702.12"
-                                      width="53" height="29.32"/>
-                            </g>
-                        </g>
-                    </g>
-                </g>
-                <g id="Group_376" data-name="Group 376" class="auth-cls-12">
-                    <g id="Group_375" data-name="Group 375">
-                        <g class="auth-cls-14">
-                            <g id="Group_374" data-name="Group 374">
-                                <rect id="Rectangle_1451" data-name="Rectangle 1451" class="auth-cls-5" x="303.43" y="401.76"
-                                      width="53" height="29.32"/>
-                            </g>
-                        </g>
-                    </g>
-                </g>
-                <g id="Group_381" data-name="Group 381">
-                    <g class="auth-cls-15">
-                        <g id="Group_380" data-name="Group 380">
-                            <g id="Group_379" data-name="Group 379" class="auth-cls-16">
-                                <g id="Group_378" data-name="Group 378">
-                                    <g class="auth-cls-17">
-                                        <g id="Group_377" data-name="Group 377">
-                                            <rect id="Rectangle_1453" data-name="Rectangle 1453" class="auth-cls-10"
-                                                  x="121.65" y="344.2" width="443.97" height="32.26"/>
-                                        </g>
-                                    </g>
-                                </g>
-                            </g>
-                        </g>
-                    </g>
-                </g>
-                <g id="Group_382" data-name="Group 382">
-                    <path id="Path_192" data-name="Path 192" class="auth-cls-18"
-                          d="M437.79,342.75V129.56a20.51,20.51,0,0,0-10.92-18L230.05,4.7a22.46,22.46,0,0,0-21.3,0L11.92,111.6A20.52,20.52,0,0,0,1,129.56V342.75a20.53,20.53,0,0,0,10.92,18l196.83,106.9a22.41,22.41,0,0,0,21.3,0l196.82-106.9A20.51,20.51,0,0,0,437.79,342.75Z"
-                          transform="translate(116.15 294.27)"/>
-                </g>
-            </g>
-            <g id="Group_388" data-name="Group 388">
-                <g id="Group">
-                    <g id="Pipeline" class="auth-cls-19">
-                        <text class="auth-cls-20" transform="translate(176.46 892.25)">Pipeline</text>
-                    </g>
-                </g>
-                <g id="Group-2">
-                    <g id="The_game_that_delivers_" data-name="The game that delivers " class="auth-cls-19">
-                        <text class="auth-cls-21" transform="translate(131.46 950.83)">T
-                            <tspan class="auth-cls-22" x="19.49" y="0">he game that deli</tspan>
-                            <tspan class="auth-cls-23" x="316.86" y="0">v</tspan>
-                            <tspan class="auth-cls-22" x="335.96" y="0">ers!</tspan>
-                        </text>
-                    </g>
-                </g>
-            </g>
-        </g>
-    </g>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 25.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Lag_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 438.8 470.4" style="enable-background:new 0 0 438.8 470.4;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#ECECE9;}
+	.st1{clip-path:url(#SVGID_2_);}
+	.st2{fill:#FBA919;}
+	.st3{fill:#FEDA1E;}
+	.st4{fill:#FFF0C6;}
+	.st5{clip-path:url(#SVGID_4_);}
+	.st6{clip-path:url(#SVGID_6_);}
+	.st7{opacity:0.33;}
+	.st8{clip-path:url(#SVGID_8_);}
+	.st9{fill:#FFC60B;}
+	.st10{opacity:0.67;}
+	.st11{opacity:0.61;}
+	.st12{clip-path:url(#SVGID_10_);}
+	.st13{clip-path:url(#SVGID_12_);}
+	.st14{clip-path:url(#SVGID_14_);}
+	.st15{opacity:0.2;}
+	.st16{clip-path:url(#SVGID_16_);}
+	.st17{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-miterlimit:10;}
+</style>
+<g id="Lag_2_1_">
+	<g id="Layer_1">
+		<g id="Group_383">
+			<g id="Group_359">
+				<path id="Path_180" class="st0" d="M438.6,342.4V130.6c-0.1-7.5-4.3-14.4-10.9-17.8L230.7,6.5C224,3,216,3,209.4,6.5l-197,106.2
+					c-6.7,3.5-10.9,10.3-11,17.8v211.8c0.1,7.5,4.3,14.4,10.9,17.8l197,106.2c6.7,3.6,14.7,3.6,21.3,0l197-106.2
+					C434.3,356.8,438.5,349.9,438.6,342.4"/>
+			</g>
+			<g id="Group_361">
+				<g>
+					<g>
+						<defs>
+							<path id="SVGID_1_" d="M209.3,6.5l-197,106.2c-6.7,3.5-10.9,10.3-11,17.8v211.8c0.1,7.5,4.3,14.4,10.9,17.8l197,106.2
+								c6.7,3.6,14.7,3.6,21.3,0l197-106.2c6.7-3.5,10.9-10.3,10.9-17.8V130.6c-0.1-7.5-4.3-14.4-10.9-17.8L230.6,6.5
+								C224,3,215.9,3,209.3,6.5"/>
+						</defs>
+						<clipPath id="SVGID_2_">
+							<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+						</clipPath>
+						<g class="st1">
+							<g id="Group_360">
+								<rect id="Rectangle_1427" x="228.6" y="221.6" class="st2" width="12.8" height="21.6"/>
+								<rect id="Rectangle_1428" x="214" y="208.8" class="st2" width="42" height="13.1"/>
+								<rect id="Rectangle_1429" x="-27.1" y="87.5" class="st2" width="182.5" height="34.7"/>
+								<rect id="Rectangle_1430" x="143.9" y="-294.3" class="st2" width="34.4" height="385.3"/>
+								<path id="Path_181" class="st3" d="M137.6,129.9h0.6c25.5-0.1,46.1-20.8,46.1-46.4h-46.7L137.6,129.9L137.6,129.9z"/>
+								<rect id="Rectangle_1431" x="-116.2" y="-294.3" class="st4" width="1157.3" height="800.1"/>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+			<g id="Group_363">
+				<g>
+					<g>
+						<defs>
+							<path id="SVGID_3_" d="M209.3,6.5l-197,106.2c-6.7,3.5-10.9,10.3-11,17.8v211.8c0.1,7.5,4.3,14.4,10.9,17.8l197,106.2
+								c6.7,3.6,14.7,3.6,21.3,0l197-106.2c6.7-3.5,10.9-10.3,10.9-17.8V130.6c-0.1-7.5-4.3-14.4-10.9-17.8L230.6,6.5
+								C223.9,3,215.9,3,209.3,6.5"/>
+						</defs>
+						<clipPath id="SVGID_4_">
+							<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+						</clipPath>
+						<g class="st5">
+							<g id="Group_362">
+								<rect id="Rectangle_1432" x="39.7" y="23.5" class="st2" width="36.6" height="201.4"/>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+			<g id="Group_368">
+				<g>
+					<g>
+						<defs>
+							<path id="SVGID_5_" d="M209.3,6.5l-197,106.2c-6.7,3.5-10.9,10.3-11,17.8v211.8c0.1,7.5,4.3,14.4,10.9,17.8l197,106.2
+								c6.7,3.6,14.7,3.6,21.3,0l197-106.2c6.7-3.5,10.9-10.3,10.9-17.8V130.6c-0.1-7.5-4.3-14.4-10.9-17.8L230.6,6.5
+								C224,3,215.9,3,209.3,6.5"/>
+						</defs>
+						<clipPath id="SVGID_6_">
+							<use xlink:href="#SVGID_5_"  style="overflow:visible;"/>
+						</clipPath>
+						<g class="st6">
+							<g id="Group_367">
+								<g id="Group_366" class="st7">
+									<g id="Group_365">
+										<g>
+											<g>
+												<defs>
+													<rect id="SVGID_7_" x="172.1" y="-16.1" width="85.9" height="534.6"/>
+												</defs>
+												<clipPath id="SVGID_8_">
+													<use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
+												</clipPath>
+												<g class="st8">
+													<g id="Group_364">
+														<rect id="Rectangle_1433" x="197.8" y="3.9" class="st2" width="34.4" height="511.7"/>
+													</g>
+												</g>
+											</g>
+										</g>
+									</g>
+								</g>
+								<path id="Path_184" class="st3" d="M34.5,218.4c0,0.2,0,0.4,0,0.6c-0.1,25.5,20.5,46.3,46,46.4l0,0v-47H34.5z"/>
+								<rect id="Rectangle_1435" x="294.9" y="-294.3" class="st3" width="34.4" height="800.1"/>
+								<rect id="Rectangle_1436" x="220.2" y="215.6" class="st3" width="29.3" height="53"/>
+								<rect id="Rectangle_1437" x="371.4" y="215.6" class="st3" width="29.3" height="53"/>
+								<rect id="Rectangle_1438" x="328.8" y="113.9" class="st3" width="29" height="16.3"/>
+								<path id="Path_185" class="st2" d="M351.4,142.1c0-5.6,4.6-10,10.1-10c5.6,0,10,4.6,10,10.1s-4.5,10-10.1,10
+									C355.9,152.2,351.4,147.6,351.4,142.1"/>
+								<rect id="Rectangle_1439" x="285.8" y="102.7" class="st9" width="52.1" height="38.3"/>
+								<rect id="Rectangle_1440" x="-116.2" y="346.4" class="st9" width="258.1" height="34.7"/>
+								<rect id="Rectangle_1441" x="392.1" y="421.5" class="st3" width="29.3" height="53"/>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+			<rect id="Rectangle_1442" x="79.6" y="224.9" class="st2" width="141" height="36.6"/>
+			<rect id="Rectangle_1443" x="249" y="224.9" class="st2" width="122.3" height="36.6"/>
+			<rect id="Rectangle_1444" x="399.6" y="224.9" class="st2" width="39" height="36.6"/>
+			<rect id="Rectangle_1445" x="160.8" y="162.1" class="st9" width="277.9" height="32.3"/>
+			<path id="Path_187" class="st2" d="M125.1,200.2c0-0.2,0-0.4,0-0.6c0-23.8,19-43.2,42.6-43.2v43.8H125.1z"/>
+			<g id="Group_370" class="st10">
+				<g id="Group_369">
+					<rect id="Rectangle_1446" x="1.3" y="290.9" class="st9" width="437.3" height="32.3"/>
+				</g>
+			</g>
+			<path id="Path_188" class="st2" d="M352.1,122.1c0-5.6,4.6-10,10.1-10c5.6,0,10,4.6,10,10.1s-4.5,10-10.1,10
+				C356.6,132.2,352.1,127.7,352.1,122.1"/>
+			<path id="Path_189" class="st2" d="M352.1,101.9c0-5.6,4.6-10,10.1-10c5.6,0,10,4.6,10,10.1s-4.5,10-10.1,10
+				C356.6,112,352.1,107.5,352.1,101.9L352.1,101.9"/>
+			<rect id="Rectangle_1447" x="31.8" y="136.8" class="st3" width="53" height="29.3"/>
+			<rect id="Rectangle_1448" x="130.9" y="200.2" class="st9" width="34.4" height="154.3"/>
+			<path id="Path_190" class="st2" d="M171.1,340.1c0,0.2,0,0.4,0,0.6c0.1,25.5-20.5,46.3-46,46.4l0,0v-47H171.1z"/>
+			<g id="Group_373" class="st11">
+				<g id="Group_372">
+					<g>
+						<g>
+							<defs>
+								<rect id="SVGID_9_" x="168.1" y="382.1" width="75.9" height="80.8"/>
+							</defs>
+							<clipPath id="SVGID_10_">
+								<use xlink:href="#SVGID_9_"  style="overflow:visible;"/>
+							</clipPath>
+							<g class="st12">
+								<g id="Group_371">
+									<rect id="Rectangle_1449" x="188.1" y="407.8" class="st3" width="53" height="29.3"/>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+			<g id="Group_376" class="st11">
+				<g id="Group_375">
+					<g>
+						<g>
+							<defs>
+								<rect id="SVGID_11_" x="167.3" y="81.8" width="75.9" height="80.8"/>
+							</defs>
+							<clipPath id="SVGID_12_">
+								<use xlink:href="#SVGID_11_"  style="overflow:visible;"/>
+							</clipPath>
+							<g class="st13">
+								<g id="Group_374">
+									<rect id="Rectangle_1451" x="187.3" y="107.5" class="st3" width="53" height="29.3"/>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+			<g id="Group_381">
+				<g>
+					<g>
+						<defs>
+							<path id="SVGID_13_" d="M208.7,2.7L11.9,109.6C5.3,113.1,1.1,120,1,127.5v213.2c0.1,7.6,4.3,14.5,10.9,18l196.8,106.9
+								c6.6,3.6,14.7,3.6,21.3,0l196.8-106.9c6.7-3.5,10.9-10.4,10.9-18V127.5c0-7.6-4.2-14.5-10.9-18L230,2.7
+								C223.4-0.9,215.3-0.9,208.7,2.7"/>
+						</defs>
+						<clipPath id="SVGID_14_">
+							<use xlink:href="#SVGID_13_"  style="overflow:visible;"/>
+						</clipPath>
+						<g class="st14">
+							<g id="Group_380">
+								<g id="Group_379" class="st15">
+									<g id="Group_378">
+										<g>
+											<g>
+												<defs>
+													<rect id="SVGID_15_" x="2.6" y="24.2" width="466.8" height="83.7"/>
+												</defs>
+												<clipPath id="SVGID_16_">
+													<use xlink:href="#SVGID_15_"  style="overflow:visible;"/>
+												</clipPath>
+												<g class="st16">
+													<g id="Group_377">
+														<rect id="Rectangle_1453" x="5.5" y="49.9" class="st9" width="444" height="32.3"/>
+													</g>
+												</g>
+											</g>
+										</g>
+									</g>
+								</g>
+							</g>
+						</g>
+					</g>
+				</g>
+			</g>
+			<g id="Group_382">
+				<path id="Path_192" class="st17" d="M437.8,342.7V129.6c0-7.6-4.2-14.5-10.9-18L230.1,4.7c-6.6-3.6-14.7-3.6-21.3,0L11.9,111.6
+					C5.3,115.1,1.1,122,1,129.6v213.2c0.1,7.6,4.2,14.5,10.9,18l196.8,106.9c6.6,3.6,14.7,3.6,21.3,0l196.8-106.9
+					C433.5,357.2,437.7,350.3,437.8,342.7z"/>
+			</g>
+		</g>
+	</g>
+</g>
 </svg>
