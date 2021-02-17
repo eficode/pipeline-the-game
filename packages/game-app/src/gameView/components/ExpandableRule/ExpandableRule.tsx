@@ -6,9 +6,10 @@ import { ReactComponent as CollapseIcon } from '@assets/icons/accordion-collapse
 
 type Props = {
   title: string;
+  id: string;
 };
 
-const ExpandableRule: React.FC<Props> = ({ title, children }) => {
+const ExpandableRule: React.FC<Props> = ({ title, children, id }) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggle = useCallback(() => {
@@ -16,15 +17,15 @@ const ExpandableRule: React.FC<Props> = ({ title, children }) => {
   }, []);
 
   return (
-    <RuleWrapper collapsed={collapsed}>
-      <RuleHeader collapsed={collapsed} p={3} onClick={toggle}>
+    <RuleWrapper collapsed={collapsed} id={`rule-${id}`} onClick={toggle}>
+      <RuleHeader collapsed={collapsed} p={3}>
         <Icon>{collapsed ? <ExpandIcon /> : <CollapseIcon />}</Icon>
         <Typography variant="dialogHead" fontWeight="600">
           {title}
         </Typography>
       </RuleHeader>
       <CollapsibleRuleContent collapsed={collapsed}>
-        <RuleContent>{children}</RuleContent>
+        <RuleContent id={`rule-${id}-content`}>{children}</RuleContent>
       </CollapsibleRuleContent>
     </RuleWrapper>
   );

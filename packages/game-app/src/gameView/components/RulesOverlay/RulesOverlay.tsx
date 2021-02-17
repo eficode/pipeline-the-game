@@ -56,7 +56,7 @@ const RulesOverlay: React.FC<Props> = ({ isOpen, close }) => {
         <RulesContainer>
           <Box flex={0.5} marginRight={3}>
             {firstGroup.map(card => (
-              <ExpandableRule title={card.title} key={card.id}>
+              <ExpandableRule title={card.title} key={card.id} id={card.id}>
                 {images[card.id as keyof typeof images] && (
                   <RuleMainImage>{images[card.id as keyof typeof images]}</RuleMainImage>
                 )}
@@ -66,7 +66,7 @@ const RulesOverlay: React.FC<Props> = ({ isOpen, close }) => {
           </Box>
           <Box flex={0.5}>
             {secondGroup.map(card => (
-              <ExpandableRule title={card.title} key={card.id}>
+              <ExpandableRule title={card.title} key={card.id} id={card.id}>
                 {images[card.id as keyof typeof images] && (
                   <RuleMainImage>{images[card.id as keyof typeof images]}</RuleMainImage>
                 )}

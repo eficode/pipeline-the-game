@@ -89,7 +89,7 @@ const ShareGameDialog: React.FC<Props> = ({ isOpen, close }) => {
           <Input flex={1} readOnly variant="clear" color="activeAccentLight" value={url} />
         </Box>
         <Box display="flex" width="15%" justifyContent="center">
-          <IconButton variant="clear" onClick={copyUrl}>
+          <IconButton id="copy-game-link-button" variant="clear" onClick={copyUrl}>
             <CopyIcon />
           </IconButton>
         </Box>

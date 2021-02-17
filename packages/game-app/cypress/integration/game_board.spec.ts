@@ -71,7 +71,7 @@ context("Game board", () => {
 
   });
 
-  describe('Panel', () => {
+  describe('Deck panel', () => {
 
     const CLOSED_PANEL_WIDTH = 40;
 
@@ -167,7 +167,7 @@ context("Game board", () => {
     });
 
     it("should contain correct scenario data", () => {
-      cy.getFirestoreDocument<GameEntity>(`${FirebaseCollection.Games}/${game.id}`).then(gameData=>{
+      cy.getFirestoreDocument<GameEntity>(`${FirebaseCollection.Games}/${game.id}`).then(gameData => {
 
         cy.getElementById('scenario-panel').should('contain', gameData.scenarioTitle);
         cy.getElementById('scenario-panel').should('contain', gameData.scenarioContent);
@@ -175,6 +175,32 @@ context("Game board", () => {
     });
 
   })
+
+  describe("Game Rules", () => {
+
+    it("should show all the game rules correcly", () => {
+      cy.getElementById('show-rules-button').click();
+      cy.get('body').should('contain.translationOf', 'game.rules');
+      cy.queryFirestore<CardEntity>(FirebaseCollection.Cards, {
+        field: 'type', condition: '==', value: CardType.GameRule
+      }).then(cards => {
+        cy.wrap(cards).each(c => {
+          cy.get('body').should('contain', c.title);
+        })
+      })
+    });
+
+    it("should toggle content visibility on click", () => {
+      cy.getElementById('show-rules-button').click();
+      return cy.get('[id^="rule-"]').first().within($el => {
+        cy.get('[id$="content"]').should('not.be.visible');
+        cy.wrap($el).click();
+        cy.get('[id$="content"]').should('be.visible');
+        cy.wrap($el).click();
+        cy.get('[id$="content"]').should('not.be.visible');
+      })
+    });
+  });
 
 
 });
