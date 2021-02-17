@@ -32,6 +32,9 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
       });
     } catch (e) {
       // in case of exception for example no card placed, do nothing
+      setScaleAndPanRef.current?.({
+        pan: { x: 0, y: 0 },
+      });
     }
   }, [setScaleAndPanRef, state]);
 
