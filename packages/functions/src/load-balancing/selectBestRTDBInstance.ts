@@ -4,7 +4,6 @@ import {runTransactionWithRetry} from "../utils/db";
 import {FirebaseCollection, RTDBPaths} from '@pipeline/common';
 import {getDatabase, PROJECT_ID} from "../utils/rtdb";
 import {Game} from "../models/Game";
-const db = admin.firestore();
 const logger = functions.logger;
 
 /*const getNextRTDBInstanceNum = async (): Promise<number> => {
@@ -67,6 +66,7 @@ export const selectBestRTDBInstance = functions.region(
       'while authenticated.');
   }
 
+  const db = admin.firestore();
 
   const bestRTDBInstanceQuery = await db.collection(FirebaseCollection.RTDBInstances)
     .orderBy('connectionsCount', "asc").limit(1).get();

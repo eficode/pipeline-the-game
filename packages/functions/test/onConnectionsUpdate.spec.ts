@@ -14,6 +14,10 @@ const test = testFactory();
 
 describe("onConnectionsUpdate", () => {
 
+  before(()=>{
+    admin.initializeApp();
+  })
+
   after(() => {
     // Do cleanup tasks.
     test.cleanup();
