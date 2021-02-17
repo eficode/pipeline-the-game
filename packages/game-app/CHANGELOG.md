@@ -3,6 +3,49 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.3.3](https://github.com/eficode/pipeline-the-game/compare/v0.3.2...v0.3.3) (2021-02-17)
+
+
+### Bug Fixes
+
+* **app-board:** fix drag behaviour ([50cdde2](https://github.com/eficode/pipeline-the-game/commit/50cdde2aa2d73dbda3d7b3ed236a9d2a239c2c24))
+* **app-board:** fix weird estimation opening behaviour ([e2c0dd9](https://github.com/eficode/pipeline-the-game/commit/e2c0dd9cf46d08fcea38e937f75f03e6e1cd8737))
+* **app-board:** force card estimation null when parent is panel ([1be6364](https://github.com/eficode/pipeline-the-game/commit/1be6364abf284da6cb5171de26a2bb5d73438fbe))
+* **app-board:** remove drag events on double click on cards ([e86b056](https://github.com/eficode/pipeline-the-game/commit/e86b056e7b2d73ee24d30be877e95053d1a36eeb))
+* **app-board:** update not found error text ([78b8613](https://github.com/eficode/pipeline-the-game/commit/78b8613a76a0b38237a7492cd71628808cc47ed9))
+* **app-dashboard:** make first step card tiltable ([40b444e](https://github.com/eficode/pipeline-the-game/commit/40b444e63cbe607cceb64ff16d5e13d182086751))
+* **app-general:** fix copy ([c3cbdce](https://github.com/eficode/pipeline-the-game/commit/c3cbdce37bf14e702b5a5c5cb3fdbd712c5d9546))
+* **app-general:** misc ui fixes ([73d0bec](https://github.com/eficode/pipeline-the-game/commit/73d0becfaa37e0394034edffa8965c9b88a3634f))
+* **app-signup:** add go to signup link id ([b18163d](https://github.com/eficode/pipeline-the-game/commit/b18163d912fa92500454bf6d05734d6707bd8e19))
+
+
+### Features
+
+* **app-board:** add estimation element id ([0dff38e](https://github.com/eficode/pipeline-the-game/commit/0dff38e8d8235c67046c47c09bf52822048c4e7c))
+* **app-board:** add facilitator logs for performace test ([a87752a](https://github.com/eficode/pipeline-the-game/commit/a87752ab4321deafde2e1cb89181e7116b79994e))
+* **app-board:** add game not found error ([f4cd12e](https://github.com/eficode/pipeline-the-game/commit/f4cd12e7d38852542eaaa78895b41470fbd2e6ee))
+* **app-board:** add log event call for test ([05e5d02](https://github.com/eficode/pipeline-the-game/commit/05e5d0272fcb84a68bcd0333048b62dcd503a4f2))
+* **app-board:** add rule card images ([406906e](https://github.com/eficode/pipeline-the-game/commit/406906e6616fb8991e3763e9f96ff8de2bbfb980))
+* **app-board:** free zoom pan container ([bea596c](https://github.com/eficode/pipeline-the-game/commit/bea596c9861b34bbf457cb313a5ae608ba4f5bf7))
+* **app-board:** toggle estimation on double click ([45c6141](https://github.com/eficode/pipeline-the-game/commit/45c6141997eb3d23ba2801ec51d9dfb563f6639f))
+* **app-dashboard:** add dashboard cards animation ([b7d1585](https://github.com/eficode/pipeline-the-game/commit/b7d158551e3eb81bdc3a40d242f30e6bdbb3ecf7))
+* **app-dashboard:** add new button variant in dashboard ([6fa8122](https://github.com/eficode/pipeline-the-game/commit/6fa81226c26e4e48d4493db7aadf524b283b1a0c))
+* **app-dashboard:** improve dashboard animation ([b4893a0](https://github.com/eficode/pipeline-the-game/commit/b4893a08890c11a072f8e6c6a6f49929681bb231))
+* **app-dashboard:** improve dashboard animation ([faf0916](https://github.com/eficode/pipeline-the-game/commit/faf09165463747580a6a0debef7cbc95167d4395))
+* **app-dashboard:** improve dashboard animation responsiveness ([a0235db](https://github.com/eficode/pipeline-the-game/commit/a0235db48258333d3da6ac860ad66cfd3264c004))
+* **app-general:** add checkmark on estimation confirm ([bd8f387](https://github.com/eficode/pipeline-the-game/commit/bd8f38721ecec28369eb151552c7b11382df6d2e))
+* **app-general:** add correct svg and text for two column illustration ([4c37dd3](https://github.com/eficode/pipeline-the-game/commit/4c37dd345e96e945f54003c11961ff4f6f25c28a))
+* **app-general:** add more icons and images ([c8b5110](https://github.com/eficode/pipeline-the-game/commit/c8b51109533cc3c71406d0ec8dbe646086590c50))
+* **app-general:** add pipes svg ([c5d1315](https://github.com/eficode/pipeline-the-game/commit/c5d13155ebb49dacb867a8c04f57cd8e8d99e2ad))
+* **app-general:** add review panel on trigger review ([d9d1f78](https://github.com/eficode/pipeline-the-game/commit/d9d1f78257e70a691ff5fd4f61f796d8b921c8f6))
+* **app-general:** add small ui improvements ([ee11f3c](https://github.com/eficode/pipeline-the-game/commit/ee11f3c389b73a739b01952e5a085075049cf1d7))
+* **app-general:** add test ids to fab dials ([4a5f77e](https://github.com/eficode/pipeline-the-game/commit/4a5f77ee861b7ae5d7ebdff8d7e04927b87dfd94))
+* **app-general:** improve dashboard animation ([e720256](https://github.com/eficode/pipeline-the-game/commit/e720256e37650bea62ddad58ba4a092e9415cf5b))
+
+
+
+
+
 ## [0.3.2](https://github.com/eficode/pipeline-the-game/compare/v0.3.1...v0.3.2) (2021-02-12)
 
 
