@@ -86,9 +86,9 @@ const DroppablePanelArea: React.FC<Props> = ({ children, mode }) => {
   }, []);
 
   return (
-    <FixedPanel ref={setNodeRef} closed={closed} mode={mode} isOver={isOver}>
+    <FixedPanel ref={setNodeRef} closed={closed} mode={mode} isOver={isOver} data-cy="panel-container">
       <ToggleWrapper>
-        <IconButton onClick={toggle} variant="clear">
+        <IconButton onClick={toggle} variant="clear" id="toggle-panel-button">
           <ArrowIconDiv collapsed={closed}>
             <ArrowIcon />
           </ArrowIconDiv>

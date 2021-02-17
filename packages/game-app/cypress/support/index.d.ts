@@ -57,7 +57,7 @@ declare namespace Cypress {
     getFirestoreDocument(path: string): Chainable<any>;
     getEmailVerificationLink(email: string): Chainable<any>;
     getRestPasswordLink(email: string): Chainable<any>;
-    queryFirestore(collection: string, data: { field: string; condition: import("firebase").default.firestore.WhereFilterOp; value: any; });
+    queryFirestore<T = any>(collection: string, data: { field: string; condition: import("firebase").default.firestore.WhereFilterOp; value: any; }): Chainable<T[]>;
   }
 
   /**

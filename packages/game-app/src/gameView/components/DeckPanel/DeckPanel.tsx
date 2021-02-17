@@ -69,24 +69,31 @@ const DeckPanel: React.FC<Props> = ({ panelModeRef }) => {
     <DroppablePanelArea mode={panelMode}>
       <PanelTools>
         <Input
+          name="card-search-text"
           variant="clearRound"
           value={searchedText}
           iconLeft={<SearchIcon />}
           onChange={changeSearchedText}
           iconRight={
             searchedText && (
-              <IconButton variant="clearSmall" onClick={clearText}>
+              <IconButton id="clear-search-button" variant="clearSmall" onClick={clearText}>
                 <ClearIcon />
               </IconButton>
             )
           }
         />
         <PanelButtons>
-          <IconButton active={panelMode === 'stacked'} onClick={setStacked} tooltipLabel={t('game.panel.stackTooltip')}>
+          <IconButton
+            active={panelMode === 'stacked'}
+            id="button-stacked-panel"
+            onClick={setStacked}
+            tooltipLabel={t('game.panel.stackTooltip')}
+          >
             <StackedIcon />
           </IconButton>
           <IconButton
             active={panelMode === 'tow-columns'}
+            id="button-columns-panel"
             onClick={setTowColumns}
             tooltipLabel={t('game.panel.verticalTooltip')}
           >
