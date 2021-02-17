@@ -26,3 +26,9 @@ export const RulesContainer = styled.div`
 `;
 
 RulesContainer.displayName = 'RulesContainer';
+
+export const RuleMainImage = styled.div`
+  svg {
+    max-width: 100%;
+  }
+`;

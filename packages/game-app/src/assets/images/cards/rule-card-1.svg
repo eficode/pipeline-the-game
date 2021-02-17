@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   width="201.63631mm"
+   height="30.342417mm"
+   viewBox="0 0 201.63631 30.342417"
+   version="1.1"
+   id="svg162">
+  <defs
+     id="defs156">
+    <style
+       id="style164">.rule-card-1-cls--1{fill:#dad9df;}.rule-card-1-cls--2{fill:#ffd114;}.rule-card-1-cls--3{font-size:16.98px;fill:#00020f;}.rule-card-1-cls--3,.rule-card-1-cls--4{font-family:Ubuntu-Bold, Ubuntu;font-weight:700;}.rule-card-1-cls--4{font-size:16.95px;fill:#1d1d1b;}</style>
+  </defs>
+  <metadata
+     id="metadata159">
+  </metadata>
+  <g
+     id="layer1"
+     transform="translate(337.43125,-97.465697)">
+    <g
+       id="g222"
+       transform="matrix(0.26458333,0,0,0.26458333,-347.90081,33.899552)">
+      <rect
+         class="rule-card-1-cls--1"
+         x="231.57001"
+         y="272.60999"
+         width="82.809998"
+         height="49.959999"
+         id="rect168" />
+      <rect
+         class="rule-card-1-cls--1"
+         x="330.76999"
+         y="272.60999"
+         width="82.809998"
+         height="49.959999"
+         id="rect170" />
+      <rect
+         class="rule-card-1-cls--1"
+         x="529.15997"
+         y="272.60999"
+         width="82.809998"
+         height="49.959999"
+         id="rect172" />
+      <rect
+         class="rule-card-1-cls--1"
+         x="429.97"
+         y="304.97"
+         width="82.809998"
+         height="49.959999"
+         id="rect174" />
+      <rect
+         class="rule-card-1-cls--1"
+         x="429.97"
+         y="240.25"
+         width="82.809998"
+         height="49.959999"
+         id="rect176" />
+      <rect
+         class="rule-card-1-cls--2"
+         x="39.57"
+         y="245.78999"
+         width="172.59"
+         height="106.46"
+         id="rect178" />
+      <text
+         class="rule-card-1-cls--3"
+         transform="translate(269.12,300.76)"
+         id="text180">?</text>
+      <text
+         class="rule-card-1-cls--3"
+         transform="translate(368.32,300.76)"
+         id="text182">?</text>
+      <text
+         class="rule-card-1-cls--3"
+         transform="translate(467.51,268.28)"
+         id="text184">?</text>
+      <text
+         class="rule-card-1-cls--3"
+         transform="translate(467.51,333.11)"
+         id="text186">?</text>
+      <text
+         class="rule-card-1-cls--3"
+         transform="translate(566.71,300.75)"
+         id="text188">?</text>
+      <rect
+         class="rule-card-1-cls--2"
+         x="629.07001"
+         y="245.78999"
+         width="172.59"
+         height="106.46"
+         id="rect190" />
+      <text
+         class="rule-card-1-cls--4"
+         transform="translate(75.6,291.61)"
+         id="text192">A Developer</text>
+      <text
+         class="rule-card-1-cls--4"
+         transform="translate(674.58,293.87)"
+         id="text194">Deploy to</text>
+      <text
+         class="rule-card-1-cls--4"
+         transform="translate(672.58,311.94)"
+         id="text196">Production</text>
+      <text
+         class="rule-card-1-cls--4"
+         transform="translate(66.85,313.23)"
+         id="text198">Commits Code</text>
+    </g>
+  </g>
+</svg>
