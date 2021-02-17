@@ -7,29 +7,28 @@ import * as admin from "firebase-admin";
 import {DEFAULT_Z_INDEX, FirebaseCollection, RTDBPaths} from "@pipeline/common";
 import * as firebase from "@firebase/rules-unit-testing";
 import {Game} from "../src/models/Game";
+import {allSequentially} from "./utils";
 
 chai.use(chaiAsPromised)
 
 const test = testFactory();
 
-describe("ScheduledMoveGame", () => {
+describe("scheduledMoveGame", () => {
 
   before(() => {
     admin.initializeApp();
   });
 
   beforeEach(() => {
-    return Promise.all([
+    return allSequentially([
       firebase.clearFirestoreData({projectId: process.env.GCLOUD_PROJECT!}),
-      admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref().set(null)]);
+      admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref().set(null)])
   });
 
   after(() => {
     // Do cleanup tasks.
     test.cleanup();
-    return Promise.all([firebase.clearFirestoreData({projectId: process.env.GCLOUD_PROJECT!}),
-      admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref().set(null),
-      admin.apps.map(a => a?.delete())]);
+    return Promise.all(admin.apps.map(a => a!.delete()));
   });
 
   it("should not move game with recent lastPlayerDisconnectedAt", async () => {
@@ -237,7 +236,7 @@ describe("ScheduledMoveGame", () => {
         lockedBy: null,
         parent: 'panel',
       },
-    })
+    });
   });
 
 });

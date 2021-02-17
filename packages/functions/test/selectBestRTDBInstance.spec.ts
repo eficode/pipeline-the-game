@@ -8,6 +8,7 @@ import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBPaths} from "@pipeline/common";
 import * as firebase from "@firebase/rules-unit-testing";
 import rtdbInstances from "../src/rtdbInstances";
+import {allSequentially} from "./utils";
 
 chai.use(chaiAsPromised)
 
@@ -20,7 +21,7 @@ describe("SelectBestRTDBInstance", () => {
   });
 
   beforeEach(() => {
-    return Promise.all([
+    return allSequentially([
       firebase.clearFirestoreData({projectId: process.env.GCLOUD_PROJECT!}),
       admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref().set(null)]);
   });
@@ -28,9 +29,7 @@ describe("SelectBestRTDBInstance", () => {
   after(() => {
     // Do cleanup tasks.
     test.cleanup();
-    return Promise.all([firebase.clearFirestoreData({projectId: process.env.GCLOUD_PROJECT!}),
-      admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref().set(null),
-      admin.apps.map(a => a?.delete())]);
+    return Promise.all(admin.apps.map(a => a!.delete()));
   });
 
   it("should throw if no gameId is provided", async () => {
