@@ -4,7 +4,7 @@
     "tags": null,
     "title": "Delivery Pipeline Start & End",
     "subtitle": null,
-    "content": "• Start with “A Developer Commits Code.”\n• End with “Deploy to Production.”\n• Cards placed before or after these do not count towards\ndeployment lead time",
+    "content": "• Start with “A Developer Commits Code.”\n• End with “Deploy to Production.”\n• Cards placed before or after these do not count towards deployment lead time",
     "number": 1,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
@@ -13,7 +13,7 @@
     "tags": null,
     "title": "Step Ordering Constraints",
     "subtitle": null,
-    "content": "• You cannot Deploy to Production until you have built a\nRelease Candidate.\n• You cannot build a Release Candidate until you have\nMerged to Trunk (Master).",
+    "content": "• You cannot Deploy to Production until you have built a Release Candidate.\n• You cannot build a Release Candidate until you have Merged to Trunk (Master).",
     "number": 2,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
@@ -40,7 +40,7 @@
     "tags": null,
     "title": "Build Prior to Deploy",
     "subtitle": null,
-    "content": "Pipeline steps which deploy the system need a built and\npackaged system before they can execute. You must have\neither “Build Release Candidate” or “Build Snapshot Version”\nbefore any card marked as “Deploy Step.”",
+    "content": "Pipeline steps which deploy the system need a built and packaged system before they can execute. You must have either “Build Release Candidate” or “Build Snapshot Version” before any card marked as “Deploy Step.”",
     "number": 6,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   },
