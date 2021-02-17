@@ -4,14 +4,14 @@ import {FirebaseCollection} from '@pipeline/common';
 import {getDatabase} from "../utils/rtdb";
 import {Game} from "../models/Game";
 import {moveGameFromRTDBToFirestore} from "./utils";
-const db = admin.firestore();
 const logger = functions.logger;
 
-const DAY_IN_MILLIS = 24 * 60 * 60 * 1000;
+export const DAY_IN_MILLIS = 24 * 60 * 60 * 1000;
 
-const moveGamesJob = async () => {
+export const moveGamesJob = async () => {
   const lastActiveGamesDate = new Date(Date.now() - DAY_IN_MILLIS);
 
+  const db = admin.firestore();
   const oldActiveGamesQuery = db.collection(FirebaseCollection.Games)
       .where(`lastPlayerDisconnectedAt`, '<=', lastActiveGamesDate);
 
