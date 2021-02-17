@@ -152,8 +152,29 @@ context("Game board", () => {
       })
     });
 
-
   });
+
+
+  describe('Scenario panel', () => {
+
+    it("should not be visible by default", () => {
+      cy.getElementById('scenario-panel-content').should('not.be.visible')
+    });
+
+    it("should become visible on header click", () => {
+      cy.getElementById('scenario-panel').click()
+      cy.getElementById('scenario-panel-content').should('be.visible')
+    });
+
+    it("should contain correct scenario data", () => {
+      cy.getFirestoreDocument<GameEntity>(`${FirebaseCollection.Games}/${game.id}`).then(gameData=>{
+
+        cy.getElementById('scenario-panel').should('contain', gameData.scenarioTitle);
+        cy.getElementById('scenario-panel').should('contain', gameData.scenarioContent);
+      })
+    });
+
+  })
 
 
 });

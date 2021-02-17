@@ -17,13 +17,17 @@ type Props = {
    * Content placed into the space that appears when the panel in expanded
    */
   children: React.ReactNode;
+  /**
+   * Element id
+   */
+  id?: string;
 };
 
 /**
  *  Animated expandable panel that shows the header always on top.
  *  and expands itself in the top direction
  */
-const ExpandableTopPanel: React.FC<Props> = ({ className, label, disabled, children }) => {
+const ExpandableTopPanel: React.FC<Props> = ({ className, label, disabled, children, id }) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const toggle = useCallback(() => {
@@ -33,7 +37,7 @@ const ExpandableTopPanel: React.FC<Props> = ({ className, label, disabled, child
   }, [disabled]);
 
   return (
-    <PanelWrapper className={className} onClick={toggle} disabled={disabled}>
+    <PanelWrapper className={className} onClick={toggle} disabled={disabled} id={id}>
       <PanelHeader>
         <Typography variant="content" fontWeight="600">
           {label}
@@ -43,7 +47,9 @@ const ExpandableTopPanel: React.FC<Props> = ({ className, label, disabled, child
         </ExpandIcon>
       </PanelHeader>
       <PanelContentWrapper collapsed={collapsed}>
-        <PanelContent collapsed={collapsed}>{children}</PanelContent>
+        <PanelContent id={id ? `${id}-content` : undefined} collapsed={collapsed}>
+          {children}
+        </PanelContent>
       </PanelContentWrapper>
     </PanelWrapper>
   );
