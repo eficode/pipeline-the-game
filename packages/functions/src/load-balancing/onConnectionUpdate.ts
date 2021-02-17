@@ -4,7 +4,6 @@ import {RTDBPaths} from "@pipeline/common";
 import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
 import {handleUpdateConnectionsCount} from "./utils";
 
-const db = admin.firestore();
 const logger = functions.logger;
 
 /**
@@ -33,6 +32,7 @@ export async function handler(snapshot: functions.Change<functions.database.Data
   const afterConnections = snapshot.after.numChildren();
 
   const connectionsDiff = afterConnections - previousConnections;
+  const db = admin.firestore();
 
   if (connectionsDiff < 0) {
     logger.log(`User ${userId} for game ${gameId} has closed one connection instance ${rtdbId}`);

@@ -13,6 +13,10 @@ const test = testFactory();
 
 describe("SelectBestRTDBInstance", () => {
 
+  before(()=>{
+    admin.initializeApp();
+  })
+
   after(() => {
     // Do cleanup tasks.
     test.cleanup();
