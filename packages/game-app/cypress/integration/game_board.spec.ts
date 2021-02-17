@@ -118,6 +118,7 @@ context("Game board", () => {
     }
 
     it('should filter card correctly based on searched text: "test"', () => {
+      cy.get("[data-cy^=\"card-\"]", {timeout:10000});
       const searchedText = 'test';
       cy.getInputByName('card-search-text').fill(searchedText);
       cy.queryFirestore<CardEntity>(FirebaseCollection.Cards, {
@@ -129,6 +130,7 @@ context("Game board", () => {
     });
 
     it('should filter card correctly based on searched text: "environment"', () => {
+      cy.get("[data-cy^=\"card-\"]", {timeout:10000});
       const searchedText = 'environment';
       cy.getInputByName('card-search-text').fill(searchedText);
       cy.queryFirestore<CardEntity>(FirebaseCollection.Cards, {
@@ -140,6 +142,7 @@ context("Game board", () => {
     });
 
     it('should clear searched text correctly', () => {
+      cy.get("[data-cy^=\"card-\"]", {timeout:10000});
       const searchedText = 'environment';
       cy.getInputByName('card-search-text').fill(searchedText);
       cy.queryFirestore<CardEntity>(FirebaseCollection.Cards, {
