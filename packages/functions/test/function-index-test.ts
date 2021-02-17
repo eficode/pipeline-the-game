@@ -8,12 +8,12 @@ import {RTDBPaths} from "@pipeline/common";
 import rtdbInstances from "../src/rtdbInstances";
 
 
-const onOnlineGameStatusUpdate = functions.database.instance(rtdbInstances[0].name)
+const onConnectionsUpdate = functions.database.instance(rtdbInstances[0].name)
   .ref(`/${RTDBPaths.Connections}/{gameId}/{userId}`)
   .onUpdate((change, context) => handler(change, context, rtdbInstances[0].id))
 
 export {
-  onOnlineGameStatusUpdate,
+  onConnectionsUpdate,
   selectBestRTDBInstance,
 }
 
