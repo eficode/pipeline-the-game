@@ -1,14 +1,14 @@
 {
   "name": "@pipeline/database",
   "private": true,
-  "version": "0.3.3",
+  "version": "0.4.0",
   "scripts": {
     "test": "mocha -r ts-node/register test/*.spec.ts",
     "test:local": "npx env-cmd -f .env mocha -r ts-node/register test/*.spec.ts --timeout 5000"
   },
   "devDependencies": {
     "@firebase/rules-unit-testing": "^1.1.10",
-    "@pipeline/common": "^0.3.3",
+    "@pipeline/common": "^0.4.0",
     "@types/mocha": "^8.2.0",
     "env-cmd": "^10.1.0",
     "mocha": "^8.2.1",

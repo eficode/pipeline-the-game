@@ -3,6 +3,33 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.4.0](https://github.com/eficode/pipeline-the-game/compare/v0.3.3...v0.4.0) (2021-02-18)
+
+
+### Bug Fixes
+
+* **all-general:** update cards wording ([19b757f](https://github.com/eficode/pipeline-the-game/commit/19b757fa56f542c292f4fe579be74d7faa7fe75f))
+* **app-board:** restore delay to work with performance test ([40b031d](https://github.com/eficode/pipeline-the-game/commit/40b031de3031686fa05868abdd142542be25316a))
+* **app-board:** restore ids in animated estimation editor ([8837788](https://github.com/eficode/pipeline-the-game/commit/883778828b9bb8d831c8d70dc4f6ac3f118f25d2))
+* **app-general:** add email router logic ([87b6d96](https://github.com/eficode/pipeline-the-game/commit/87b6d96e8861e4c8b2e5a0d62f5d29e0ea2ea237))
+* **app-general:** add missing hook dep ([8204d55](https://github.com/eficode/pipeline-the-game/commit/8204d5539e7c3dff8d023ad2c4ea41251ce4e1dd))
+
+
+### Features
+
+* **all-general:** add basic hubspot integration ([b2cf761](https://github.com/eficode/pipeline-the-game/commit/b2cf761b578ca260467bde0dc432a54ae8603851))
+* **all-general:** add env variable ([fb24cc1](https://github.com/eficode/pipeline-the-game/commit/fb24cc1cc2279d03b048510a9e612f191a7d4644))
+* **app-board:** add estimation animation ([95b44fd](https://github.com/eficode/pipeline-the-game/commit/95b44fd0fe5c45427a66a52568433723fade6525))
+* **app-board:** change drag constraint if in perf test ([0436221](https://github.com/eficode/pipeline-the-game/commit/0436221a43e21113022a7c6d74ec5baf5038530c))
+* **app-board:** reset pan on fit to window with empty ([bb5788b](https://github.com/eficode/pipeline-the-game/commit/bb5788b667591e4b619abebe7e02ae1403618031))
+* **app-general:** improve select ([d2df5e0](https://github.com/eficode/pipeline-the-game/commit/d2df5e0ae13f70cf1b8b02b7476f9da9b9e5bf1f))
+* **app-general:** remove logs in production ([eb8e879](https://github.com/eficode/pipeline-the-game/commit/eb8e879bf77420b3f40ae2e493b1b803c98d2428))
+
+
+
+
+
+
 ## [0.3.3](https://github.com/eficode/pipeline-the-game/compare/v0.3.2...v0.3.3) (2021-02-17)
 
 
