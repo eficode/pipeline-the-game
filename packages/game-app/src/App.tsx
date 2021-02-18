@@ -8,6 +8,7 @@ import { Box, Link, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 
 const Signup = React.lazy(() => import('./signup/components/Signup'));
+const EmailRouter = React.lazy(() => import('./_shared/routing/EmailRouter'));
 const VerifyEmail = React.lazy(() => import('./signup/components/VerifyEmail'));
 const ForgotPassword = React.lazy(() => import('./forgotPassword/components/ForgotPassword'));
 const ResetPassword = React.lazy(() => import('./forgotPassword/components/ResetPassword/ResetPassword'));
@@ -30,6 +31,7 @@ function renderAuthRoutes(user: AuthUser | null) {
     return [
       <Route path={RoutingPath.Login} component={Login} />,
       <Route path={RoutingPath.Signup} component={Signup} />,
+      <Route path={RoutingPath.EmailRouter} component={EmailRouter} />,
       <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
       <Route path={RoutingPath.ForgotPassword} component={ForgotPassword} />,
       <Route path={RoutingPath.ResetPassword} component={ResetPassword} />,
@@ -41,6 +43,7 @@ function renderAuthRoutes(user: AuthUser | null) {
   if (user && !user.emailVerified) {
     return [
       <Route path={RoutingPath.Signup} component={Signup} />,
+      <Route path={RoutingPath.EmailRouter} component={EmailRouter} />,
       <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
       <Route path="*">
         <Redirect to={RoutingPath.Signup} />
