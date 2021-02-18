@@ -22,6 +22,16 @@
       <!-- Start of HubSpot Embed Code -->
       <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2714969.js"></script>
       <!-- End of HubSpot Embed Code -->
+
+    <script>
+      // remove logs in production
+      var emptyFunction = function() {};
+      console.debug = emptyFunction;
+      console.error = emptyFunction;
+      console.log = emptyFunction;
+      console.warn = emptyFunction;
+
+    </script>
     <% } %>
 
     <!--
