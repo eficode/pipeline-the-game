@@ -6,8 +6,7 @@ import * as chaiAsPromised from 'chai-as-promised'
 import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
 import rtdbInstances from "../src/rtdbInstances";
-import * as firebase from "@firebase/rules-unit-testing";
-import {allSequentially} from "./utils";
+import {allSequentially, getAdminDatabase, reinitializeFirestore} from "./utils";
 
 
 chai.use(chaiAsPromised)
@@ -22,8 +21,8 @@ describe("onConnectionsUpdate", () => {
 
   beforeEach(() => {
     return allSequentially([
-      firebase.clearFirestoreData({projectId: process.env.GCLOUD_PROJECT!}),
-      admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref().set(null)]);
+      reinitializeFirestore(),
+      getAdminDatabase().ref().set(null)]);
   });
 
   after(() => {

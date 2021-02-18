@@ -5,9 +5,8 @@ import {assert, expect} from 'chai';
 import * as chaiAsPromised from 'chai-as-promised'
 import * as admin from "firebase-admin";
 import {DEFAULT_Z_INDEX, FirebaseCollection, RTDBPaths} from "@pipeline/common";
-import * as firebase from "@firebase/rules-unit-testing";
 import {Game} from "../src/models/Game";
-import {allSequentially} from "./utils";
+import {allSequentially, getAdminDatabase, reinitializeFirestore} from "./utils";
 
 chai.use(chaiAsPromised)
 
@@ -21,8 +20,8 @@ describe("scheduledMoveGame", () => {
 
   beforeEach(() => {
     return allSequentially([
-      firebase.clearFirestoreData({projectId: process.env.GCLOUD_PROJECT!}),
-      admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref().set(null)])
+      reinitializeFirestore(),
+      getAdminDatabase().ref().set(null)]);
   });
 
   after(() => {

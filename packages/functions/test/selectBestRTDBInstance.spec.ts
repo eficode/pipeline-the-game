@@ -6,9 +6,8 @@ import * as chaiAsPromised from 'chai-as-promised'
 import * as firebaseFunctions from 'firebase-functions';
 import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBPaths} from "@pipeline/common";
-import * as firebase from "@firebase/rules-unit-testing";
 import rtdbInstances from "../src/rtdbInstances";
-import {allSequentially} from "./utils";
+import {allSequentially, getAdminDatabase, reinitializeFirestore} from "./utils";
 
 chai.use(chaiAsPromised)
 
@@ -22,8 +21,8 @@ describe("SelectBestRTDBInstance", () => {
 
   beforeEach(() => {
     return allSequentially([
-      firebase.clearFirestoreData({projectId: process.env.GCLOUD_PROJECT!}),
-      admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref().set(null)]);
+      reinitializeFirestore(),
+      getAdminDatabase().ref().set(null)]);
   });
 
   after(() => {
