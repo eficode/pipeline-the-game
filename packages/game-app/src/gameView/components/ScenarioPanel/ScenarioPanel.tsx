@@ -9,7 +9,7 @@ const ScenarioPanel: React.FC<Props> = () => {
   const scenario = useSelector(selectors.getScenario);
 
   return (
-    <ExpandableTopPanel label="Scenario">
+    <ExpandableTopPanel label="Scenario" id="scenario-panel">
       <Typography variant="dialogHead" as="h2">
         {scenario?.title}
       </Typography>

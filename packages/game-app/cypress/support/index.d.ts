@@ -54,10 +54,10 @@ declare namespace Cypress {
 
     getInputByName(name: string, options?: Parameters<typeof cy.get>[1]): Chainable<JQuery<HTMLInputElement>>;
     getFirebaseUserByEmail(email: string): Chainable<any>;
-    getFirestoreDocument(path: string): Chainable<any>;
+    getFirestoreDocument<T = any>(path: string): Chainable<T>;
     getEmailVerificationLink(email: string): Chainable<any>;
     getRestPasswordLink(email: string): Chainable<any>;
-    queryFirestore(collection: string, data: { field: string; condition: import("firebase").default.firestore.WhereFilterOp; value: any; });
+    queryFirestore<T = any>(collection: string, data: { field: string; condition: import("firebase").default.firestore.WhereFilterOp; value: any; }): Chainable<T[]>;
   }
 
   /**

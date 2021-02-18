@@ -72,18 +72,28 @@ const TopWidgetsRow: React.FC<Props> = () => {
             </GameName>
           )}
           <IconButton
-            testId="exit-game"
+            id="exit-game"
             variant="clear"
             onClick={confirmExitDialog.open}
             tooltipLabel={t('game.toolbar.exitTooltip')}
           >
             <ExitIcon />
           </IconButton>
-          <IconButton variant="clear" onClick={shareDialog.open} tooltipLabel={t('game.toolbar.shareTooltip')}>
+          <IconButton
+            id="share-game"
+            variant="clear"
+            onClick={shareDialog.open}
+            tooltipLabel={t('game.toolbar.shareTooltip')}
+          >
             <ShareIcon />
           </IconButton>
 
-          <IconButton variant="clear" onClick={rulesOverlay.toggle} tooltipLabel={t('game.toolbar.rulesTooltip')}>
+          <IconButton
+            id="show-rules-button"
+            variant="clear"
+            onClick={rulesOverlay.toggle}
+            tooltipLabel={t('game.toolbar.rulesTooltip')}
+          >
             <RulesIcon />
           </IconButton>
 

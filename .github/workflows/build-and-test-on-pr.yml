@@ -12,7 +12,9 @@ jobs:
       - name: Retrieve npm cache
         uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: |
+            ~/.npm
+            /home/runner/.cache/firebase/emulators
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -70,8 +72,16 @@ jobs:
           working-directory: packages/game-app
           install: false
           wait-on: 'http://localhost:5000'
+          browser: chrome
         env:
           CYPRESS_BASE_URL: http://localhost:5000
           FIREBASE_AUTH_EMULATOR_HOST: localhost:9099
           FIRESTORE_EMULATOR_HOST: localhost:8080
           REACT_APP_FIREBASE_CONFIG_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
+
+      - name: Upload test videos on fail
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-videos
+          path: packages/game-app/cypress/videos

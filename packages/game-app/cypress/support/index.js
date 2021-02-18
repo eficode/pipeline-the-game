@@ -1,3 +1,4 @@
+import 'cypress-wait-until';
 import './commands'
 import '@cypress/code-coverage/support'
 import './customAssertions'
