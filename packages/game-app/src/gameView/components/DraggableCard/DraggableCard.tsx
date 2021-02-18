@@ -5,7 +5,7 @@ import { actions, selectors } from '../../slice';
 import ConnectedCard from '../ConnectedCard';
 import { CardWrapper } from './DraggableCard.styled';
 import useDoubleClick from './useDoubleClick';
-import { EstimationEditor, EstimationInCard } from '@pipeline/components';
+import { EstimationEditor, EstimationInCard, Estimation } from '@pipeline/components';
 
 type Props = {
   id: string;
@@ -94,15 +94,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   const estimations = useMemo(() => {
     return (
       <>
-        {estimationOpen && <EstimationEditor saveEstimation={saveEstimation} initialEstimation={estimation} />}
-        {!estimationOpen && estimation && (
-          <EstimationInCard
-            id={`card-estimation-${id}`}
-            onClick={handler}
-            moving={isCardMoving}
-            estimation={estimation}
-          />
-        )}
+        <Estimation open={estimationOpen} saveEstimation={saveEstimation} initialEstimation={estimation} />
       </>
     );
   }, [estimation, estimationOpen, isCardMoving, saveEstimation, handler, id]);

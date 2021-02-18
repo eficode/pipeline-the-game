@@ -11,12 +11,13 @@ import { useTranslate } from '@pipeline/i18n';
 type Props = {
   saveEstimation: (estimation: string) => void;
   initialEstimation?: string | null;
+  state: 'opening' | 'open' | 'closed' | 'closing';
 };
 
 /**
  * Input that appears at the top of the card to edit time estimation
  */
-const EstimationEditor: React.FC<Props> = ({ saveEstimation, initialEstimation }) => {
+const EstimationEditor: React.FC<Props> = ({ saveEstimation, initialEstimation, state }) => {
   const [estimation, setEstimation] = useState(initialEstimation || '');
 
   const t = useTranslate();
@@ -45,10 +46,11 @@ const EstimationEditor: React.FC<Props> = ({ saveEstimation, initialEstimation }
   }, []);
 
   return (
-    <EstimationWrapper mb={2}>
-      <EstimationInputContainer>
+    <EstimationWrapper mb={2} state={state}>
+      <EstimationInputContainer state={state}>
         <form onSubmit={submit}>
           <EstimationInput
+            state={state}
             ref={inputRef}
             WrapperComponent={EstimationInputWrapper}
             value={estimation}
@@ -56,13 +58,14 @@ const EstimationEditor: React.FC<Props> = ({ saveEstimation, initialEstimation }
             placeholder={t('game.estimationPlaceholder')}
             variant="clear"
           />
-          <ConfirmButton type="submit" onClick={onClick} />
+          <ConfirmButton state={state} type="submit" onClick={onClick}>
+            {state === 'closed' ? estimation : null}
+          </ConfirmButton>
         </form>
       </EstimationInputContainer>
     </EstimationWrapper>
   );
 };
-
 EstimationEditor.displayName = 'EstimationEditor';
 
 export default EstimationEditor;
