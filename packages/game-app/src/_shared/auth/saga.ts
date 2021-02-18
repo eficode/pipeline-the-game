@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import 'firebase/auth';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
 import { RoutingPath } from '@pipeline/routing';
+import CONFIG from '@pipeline/app-config';
 
 function getCurrentUser(): Promise<AuthUser | null> {
   return new Promise<AuthUser | null>(resolve => {
@@ -23,8 +24,7 @@ function getCurrentUser(): Promise<AuthUser | null> {
 
 function* initializeAuthSaga() {
   const user: AuthUser | null = yield call(getCurrentUser);
-  // todo do it only in dev and uat
-  if (user) {
+  if (user && (CONFIG.REACT_APP_ENV === 'dev' || CONFIG.REACT_APP_ENV === 'test')) {
     yield call(() => firebase.auth().currentUser?.getIdToken(true));
   }
   yield put(actions.setLoggedUser(user));

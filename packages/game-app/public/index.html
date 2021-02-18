@@ -16,7 +16,15 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">    <!--
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <% if (process.env.REACT_APP_ENV === "prod") { %>
+      <!-- production -->
+      <!-- Start of HubSpot Embed Code -->
+      <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2714969.js"></script>
+      <!-- End of HubSpot Embed Code -->
+    <% } %>
+
+    <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
