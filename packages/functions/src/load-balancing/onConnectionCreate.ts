@@ -3,8 +3,8 @@ import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBPaths} from "@pipeline/common";
 import exportFunctionsOnAllRTDBInstances from "../utils/exportFunctionsOnAllRTDBInstances";
 import {handleUpdateConnectionsCount} from "./utils";
+import {runTransactionWithRetry} from "../utils/db";
 
-const db = admin.firestore();
 const logger = functions.logger;
 
 /**
@@ -21,9 +21,19 @@ export async function handler(snapshot: functions.database.DataSnapshot, context
 
   logger.log(`User ${userId} just created connection for game ${gameId} in ${rtdbId} snapshotInstance ${snapshot.instance}`);
 
+  const db = admin.firestore();
+
   await handleUpdateConnectionsCount(db, rtdbId, 1);
 
-  await db.collection(FirebaseCollection.Games).doc(gameId).update({lastPlayerDisconnectedAt: null})
+  const gameRef = db.collection(FirebaseCollection.Games).doc(gameId);
+  await runTransactionWithRetry(db, async transaction => {
+    const gameDoc = await transaction.get(gameRef);
+    if (gameDoc.exists) {
+      transaction.update(gameRef, {lastPlayerDisconnectedAt: null});
+    } else {
+      logger.log(`Game ${gameId} does not exist anymore`);
+    }
+  });
   logger.log(`Game ${gameId} lastPlayerDisconnectedAt updated`);
 }
 

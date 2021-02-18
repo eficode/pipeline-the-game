@@ -6,6 +6,7 @@ import * as chaiAsPromised from 'chai-as-promised'
 import * as admin from "firebase-admin";
 import {FirebaseCollection, RTDBInstance, RTDBPaths} from "@pipeline/common";
 import rtdbInstances from "../src/rtdbInstances";
+import {allSequentially, getAdminDatabase, reinitializeFirestore} from "./utils";
 
 
 chai.use(chaiAsPromised)
@@ -16,7 +17,13 @@ describe("onConnectionsUpdate", () => {
 
   before(()=>{
     admin.initializeApp();
-  })
+  });
+
+  beforeEach(() => {
+    return allSequentially([
+      reinitializeFirestore(),
+      getAdminDatabase().ref().set(null)]);
+  });
 
   after(() => {
     // Do cleanup tasks.
@@ -31,11 +38,11 @@ describe("onConnectionsUpdate", () => {
       .set({connectionsCount:0}, {merge:true});
 
     const beforeSnap = test.database.makeDataSnapshot(
-      {'connectionId1': {upatedAt: 156321}},
+      {'connectionId1': {updatedAt: 156321}},
       `/${RTDBPaths.Connections}/testGameId/testUserId`);
 
     const afterSnap = test.database.makeDataSnapshot(
-      {'connectionId': {upatedAt: 156321}, 'connectionId2': {upatedAt: 156321}},
+      {'connectionId': {updatedAt: 156321}, 'connectionId2': {updatedAt: 156321}},
       `/${RTDBPaths.Connections}/testGameId/testUserId`);
     const change = test.makeChange(beforeSnap, afterSnap);
 
@@ -54,10 +61,10 @@ describe("onConnectionsUpdate", () => {
       .set({connectionsCount:1}, {merge:true});
 
     const beforeSnap  = test.database.makeDataSnapshot(
-      {'connectionId': {upatedAt: 156321}, 'connectionId2': {upatedAt: 156321}},
+      {'connectionId': {updatedAt: 156321}, 'connectionId2': {updatedAt: 156321}},
       `/${RTDBPaths.Connections}/testGameId/testUserId`);
     const afterSnap = test.database.makeDataSnapshot(
-      {'connectionId1': {upatedAt: 156321}},
+      {'connectionId1': {updatedAt: 156321}},
       `/${RTDBPaths.Connections}/testGameId/testUserId`);
 
     const change = test.makeChange(beforeSnap, afterSnap);
@@ -77,11 +84,11 @@ describe("onConnectionsUpdate", () => {
       .set({connectionsCount:0}, {merge:true});
 
     const beforeSnap = test.database.makeDataSnapshot(
-      {'connectionId1': {upatedAt: 156321}},
+      {'connectionId1': {updatedAt: 156321}},
       `/${RTDBPaths.Connections}/testGameId/testUserId`);
 
     const afterSnap = test.database.makeDataSnapshot(
-      {'connectionId': {upatedAt: 156321}, 'connectionId2': {upatedAt: 156321}, 'connectionId3': {upatedAt: 156321}},
+      {'connectionId': {updatedAt: 156321}, 'connectionId2': {updatedAt: 156321}, 'connectionId3': {updatedAt: 156321}},
       `/${RTDBPaths.Connections}/testGameId/testUserId`);
     const change = test.makeChange(beforeSnap, afterSnap);
 
@@ -100,10 +107,10 @@ describe("onConnectionsUpdate", () => {
       .set({connectionsCount:2}, {merge:true});
 
     const beforeSnap  = test.database.makeDataSnapshot(
-      {'connectionId': {upatedAt: 156321}, 'connectionId2': {upatedAt: 156321}, 'connectionId3': {upatedAt: 156321}},
+      {'connectionId': {updatedAt: 156321}, 'connectionId2': {updatedAt: 156321}, 'connectionId3': {updatedAt: 156321}},
       `/${RTDBPaths.Connections}/testGameId/testUserId`);
     const afterSnap = test.database.makeDataSnapshot(
-      {'connectionId1': {upatedAt: 156321}},
+      {'connectionId1': {updatedAt: 156321}},
       `/${RTDBPaths.Connections}/testGameId/testUserId`);
 
     const change = test.makeChange(beforeSnap, afterSnap);

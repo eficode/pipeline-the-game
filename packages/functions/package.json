@@ -26,6 +26,7 @@
     "lodash": "^4.17.20"
   },
   "devDependencies": {
+    "@firebase/rules-unit-testing": "^1.1.10",
     "@types/async-retry": "^1.4.2",
     "@types/axios": "^0.14.0",
     "@types/chai": "^4.2.14",

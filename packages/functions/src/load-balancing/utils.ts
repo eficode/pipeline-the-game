@@ -4,6 +4,7 @@ import {Game} from "../models/Game";
 import {RTDBGame} from "../models/RTDBGame";
 import * as functions from "firebase-functions";
 import * as retry from "async-retry";
+import {runTransactionWithRetry} from "../utils/db";
 
 const logger = functions.logger;
 
@@ -81,11 +82,19 @@ const moveGameFromRTDBToFirestore = async (gameId: string, db: FirebaseFirestore
 }
 
 async function handleUpdateLastPlayerDisconnectedAtGameField(gameId: string, db: FirebaseFirestore.Firestore, rtdb: admin.database.Database) {
-  const snap = await rtdb.ref(`/${RTDBPaths.Connections}/${gameId}`).get();
+  const snap = await rtdb.ref(`${RTDBPaths.Connections}/${gameId}`).get();
   const onlineCount = snap.exists() ? snap.numChildren() : 0;
   logger.log(`Online user for game ${gameId}: ${onlineCount}`);
   if (onlineCount === 0) {
-    await db.collection(FirebaseCollection.Games).doc(gameId).update({lastPlayerDisconnectedAt: admin.firestore.FieldValue.serverTimestamp()})
+    const gameRef = db.collection(FirebaseCollection.Games).doc(gameId);
+    await runTransactionWithRetry(db, async transaction => {
+      const gameDoc = await transaction.get(gameRef);
+      if (gameDoc.exists) {
+        transaction.update(gameRef, {lastPlayerDisconnectedAt: admin.firestore.FieldValue.serverTimestamp()});
+      } else {
+        logger.log(`Game ${gameId} does not exist anymore`);
+      }
+    });
     logger.log(`Game ${gameId} lastPlayerDisconnectedAt updated`);
   }
 

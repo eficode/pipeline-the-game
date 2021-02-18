@@ -5,7 +5,9 @@ import {expect} from 'chai';
 import * as chaiAsPromised from 'chai-as-promised'
 import * as firebaseFunctions from 'firebase-functions';
 import * as admin from "firebase-admin";
-import {FirebaseCollection} from "@pipeline/common";
+import {FirebaseCollection, RTDBPaths} from "@pipeline/common";
+import rtdbInstances from "../src/rtdbInstances";
+import {allSequentially, getAdminDatabase, reinitializeFirestore} from "./utils";
 
 chai.use(chaiAsPromised)
 
@@ -15,12 +17,18 @@ describe("SelectBestRTDBInstance", () => {
 
   before(()=>{
     admin.initializeApp();
-  })
+  });
+
+  beforeEach(() => {
+    return allSequentially([
+      reinitializeFirestore(),
+      getAdminDatabase().ref().set(null)]);
+  });
 
   after(() => {
     // Do cleanup tasks.
     test.cleanup();
-    return Promise.all(admin.apps.map(a => a?.delete()));
+    return Promise.all(admin.apps.map(a => a!.delete()));
   });
 
   it("should throw if no gameId is provided", async () => {
@@ -41,6 +49,8 @@ describe("SelectBestRTDBInstance", () => {
 
 
   it("should throw if a non existing game is provided", async () => {
+    await admin.firestore().doc(`${FirebaseCollection.RTDBInstances}/${rtdbInstances[0].id}`)
+      .set({connectionsCount:0, region: 'europe-west1'}, {merge:true});
     const wrapped = test.wrap(functions.selectBestRTDBInstance);
     const auth = test.auth.exampleUserRecord();
     return expect(wrapped({gameId: 'gameId'}, {auth})).to.eventually.rejectedWith(
@@ -52,8 +62,10 @@ describe("SelectBestRTDBInstance", () => {
   it("should return instance correctly", async () => {
 
     const gameData = {
-      scenarioTitle: 'test'
+      scenarioTitle: 'test',
     };
+    await admin.firestore().doc(`${FirebaseCollection.RTDBInstances}/${rtdbInstances[0].id}`)
+      .set({connectionsCount:0, region: 'europe-west1'}, {merge:true});
     const gameDoc = await admin.firestore().collection(FirebaseCollection.Games).add(gameData);
     const wrapped = test.wrap(functions.selectBestRTDBInstance);
     const auth = test.auth.exampleUserRecord();
@@ -61,7 +73,7 @@ describe("SelectBestRTDBInstance", () => {
       bestRTDBInstanceName: 'pipeline-game-dev-default-rtdb.europe-west1',
     });
     const snap = await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`)
-      .ref(`${FirebaseCollection.Games}/${gameDoc.id}`).get();
+      .ref(`${RTDBPaths.Games}/${gameDoc.id}`).get();
     expect(snap.exists()).to.eq(true);
     return expect(snap.val()).to.deep.eq(gameData);
   });
