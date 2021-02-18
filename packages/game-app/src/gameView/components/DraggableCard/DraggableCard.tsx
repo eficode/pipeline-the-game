@@ -32,7 +32,6 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   const saveEstimation = useCallback(
     (estimation: string) => {
       dispatch(actions.setEstimation({ estimation, cardId: id }));
-      console.debug('saving estimation', estimation);
       setEstimationOpen(false);
     },
     [dispatch, id],
@@ -56,7 +55,6 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
 
   const handler = useCallback(() => {
     if (parent === 'board') {
-      console.debug('toggling estimation');
       setEstimationOpen(o => !o);
     }
   }, [parent]);
