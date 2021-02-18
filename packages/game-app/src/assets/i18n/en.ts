@@ -198,6 +198,7 @@ const translations = {
     emptyOptionLabel: 'None selected',
     chromeBanner: 'To get the best experience, we recommend that you view this service in',
     chrome: 'Google Chrome',
+    loading: 'Loading...',
   },
   card: {
     type: {

@@ -43,7 +43,7 @@ const getGameRolesOptions = createSelector(
   (state: { [name]: State }) => state[name],
   getCurrentLanguage,
   (dynamicDataState, currentLanguage) => {
-    if (dynamicDataState.gameRoles === null) {
+    if (dynamicDataState.gameRoles == null) {
       return [];
     }
     return dynamicDataState.gameRoles.roles.map(m =>
@@ -56,7 +56,7 @@ const getDevOpsMaturitiesOptions = createSelector(
   (state: { [name]: State }) => state[name],
   getCurrentLanguage,
   (dynamicDataState, currentLanguage) => {
-    if (dynamicDataState.devOpsMaturities === null) {
+    if (dynamicDataState.devOpsMaturities == null) {
       return [];
     }
     return dynamicDataState.devOpsMaturities.maturities.map(m =>
