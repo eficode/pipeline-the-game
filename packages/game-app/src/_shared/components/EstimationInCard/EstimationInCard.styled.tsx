@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-export const EstimationCardContent = styled.div<{ moving?: boolean }>`
+export const EstimationCardContent = styled.button<{ moving?: boolean }>`
   width: 80px;
   height: 32px;
   background: #2c3644;
@@ -9,13 +9,16 @@ export const EstimationCardContent = styled.div<{ moving?: boolean }>`
   position: absolute;
   top: 12px;
   left: -4px;
-  line-height: 32px;
   color: white;
   padding-left: 16px;
   z-index: 100001;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  border: none;
+  font-size: 12px;
+  font-family: Montserrat;
+  white-space: nowrap;
 
   ${props =>
     props.moving &&
