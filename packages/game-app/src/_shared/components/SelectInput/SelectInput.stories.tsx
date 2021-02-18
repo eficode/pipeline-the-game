@@ -35,6 +35,5 @@ export const WithEmptyLabel = Template.bind({});
 
 WithEmptyLabel.args = {
   ...Inactive.args,
-  emptyOption: true,
   emptyOptionLabel: 'Select a role',
 };

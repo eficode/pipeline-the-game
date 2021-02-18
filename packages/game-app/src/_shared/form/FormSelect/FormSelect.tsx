@@ -25,6 +25,7 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
   }, [error, t]);
 
   const emptyOptionLabel = t('general.emptyOptionLabel');
+  const loadingOptionLabel = t('general.loading');
 
   const renderInput = useCallback(
     (props: ControllerRenderProps) => {
@@ -37,12 +38,12 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
           onChange={props.onChange}
           disabled={disabled}
           errorMessage={translatedError}
-          emptyOption
           emptyOptionLabel={emptyOptionLabel}
+          loadingOptionLabel={loadingOptionLabel}
         />
       );
     },
-    [translatedError, label, options, disabled, emptyOptionLabel],
+    [translatedError, label, options, disabled, emptyOptionLabel, loadingOptionLabel],
   );
 
   return (

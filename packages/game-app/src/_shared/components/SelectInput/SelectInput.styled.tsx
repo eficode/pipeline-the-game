@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Box from '../Box';
 import React from 'react';
 import dropdownArrow from '../../../assets/icons/dropdown-arrow.svg';
 
-export const Select = styled.select<{ error?: boolean }>`
+export const Select = styled.select<{ error?: boolean; showingFakeLabel?: boolean }>`
   width: 100%;
   height: 40px;
   padding: 5px 10px;
@@ -19,9 +19,13 @@ export const Select = styled.select<{ error?: boolean }>`
     border: 1px solid ${props => props.theme.colors.activeAccent};
   }
 
-  &:first-child {
-    color: #7a7a7a;
-  }
+  ${props =>
+    props.showingFakeLabel &&
+    css`
+      :first-child {
+        color: #7a7a7a;
+      }
+    `}
 
   appearance: none;
   -webkit-appearance: none;

@@ -13,13 +13,13 @@ type Props = {
   disabled?: boolean;
   errorMessage?: string | null;
   /**
-   * If the component should show also an empty option that is selected by default
-   */
-  emptyOption?: boolean;
-  /**
    * Empty option label
    */
   emptyOptionLabel?: string;
+  /**
+   * Loading option label
+   */
+  loadingOptionLabel?: string;
 };
 
 const SelectInput: React.FC<Props> = ({
@@ -30,8 +30,8 @@ const SelectInput: React.FC<Props> = ({
   options,
   errorMessage,
   disabled,
-  emptyOption,
   emptyOptionLabel,
+  loadingOptionLabel,
 }) => {
   return (
     <SelectContainer>
@@ -46,9 +46,15 @@ const SelectInput: React.FC<Props> = ({
           value={value}
           onChange={onChange}
           error={!!errorMessage}
+          showingFakeLabel={value === ''}
         >
-          {emptyOption && emptyOptionLabel ? (
-            <option key="" value="">
+          {options.length === 0 && !disabled && loadingOptionLabel && (
+            <option key={loadingOptionLabel} value="">
+              {loadingOptionLabel}
+            </option>
+          )}
+          {emptyOptionLabel ? (
+            <option key={emptyOptionLabel} value="">
               {emptyOptionLabel}
             </option>
           ) : null}
@@ -62,7 +68,6 @@ const SelectInput: React.FC<Props> = ({
             );
           })}
         </Select>
-        {options.length === 0 && !disabled && <div>Loading...</div>}
       </SelectLoadingWrapper>
       {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
     </SelectContainer>
