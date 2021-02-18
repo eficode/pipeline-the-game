@@ -3,6 +3,7 @@
   "include": ["../node_modules/cypress", "*/*.ts", "./support/index.d.ts"],
   "compilerOptions": {
     "noEmit": false,
-    "isolatedModules": false
+    "isolatedModules": false,
+    "types": ["cypress", "cypress-wait-until"]
   }
 }

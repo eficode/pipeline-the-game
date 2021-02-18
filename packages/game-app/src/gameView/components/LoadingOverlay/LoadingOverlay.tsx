@@ -11,7 +11,7 @@ const LoadingOverlay: React.FC<Props> = ({ isOpen }) => {
   const t = useTranslate();
 
   return (
-    <GlassOverlay open={isOpen}>
+    <GlassOverlay open={isOpen} id="loading-game-overlay">
       <Title variant="dialogHead">{t('game.initializing')}</Title>
     </GlassOverlay>
   );

@@ -4,9 +4,10 @@ import { createPortal } from 'react-dom';
 
 type Props = {
   open?: boolean;
+  id?: string;
 };
 
-const GlassOverlay: React.FC<Props> = ({ children, open }) => {
+const GlassOverlay: React.FC<Props> = ({ children, open, id }) => {
   const [internalState, setInternalState] = useState<'opening' | 'open' | 'closed' | 'closing'>(
     open ? 'open' : 'closed',
   );
@@ -27,7 +28,7 @@ const GlassOverlay: React.FC<Props> = ({ children, open }) => {
 
   return internalState !== 'closed'
     ? createPortal(
-        <Overlay isClosing={internalState === 'closing'} isOpening={internalState === 'opening'}>
+        <Overlay isClosing={internalState === 'closing'} isOpening={internalState === 'opening'} id={id}>
           <OverlayContentWrapper>{children}</OverlayContentWrapper>
         </Overlay>,
         document.body,

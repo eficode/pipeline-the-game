@@ -29,6 +29,8 @@ context("Game board", () => {
 
   beforeEach(() => {
     cy.visit(`/game/${game.id}`);
+    cy.waitUntil(() => Cypress.$("#initial-loading-overlay").length === 0);
+    cy.waitUntil(() => Cypress.$('#loading-game-overlay').length === 0);
   });
 
   describe('Exit game', () => {
@@ -118,7 +120,7 @@ context("Game board", () => {
     }
 
     it('should filter card correctly based on searched text: "test"', () => {
-      cy.get("[data-cy^=\"card-\"]", {timeout:10000});
+      cy.get("[data-cy^=\"card-\"]", {timeout: 10000});
       const searchedText = 'test';
       cy.getInputByName('card-search-text').fill(searchedText);
       cy.queryFirestore<CardEntity>(FirebaseCollection.Cards, {
@@ -130,7 +132,7 @@ context("Game board", () => {
     });
 
     it('should filter card correctly based on searched text: "environment"', () => {
-      cy.get("[data-cy^=\"card-\"]", {timeout:10000});
+      cy.get("[data-cy^=\"card-\"]", {timeout: 10000});
       const searchedText = 'environment';
       cy.getInputByName('card-search-text').fill(searchedText);
       cy.queryFirestore<CardEntity>(FirebaseCollection.Cards, {
@@ -142,7 +144,7 @@ context("Game board", () => {
     });
 
     it('should clear searched text correctly', () => {
-      cy.get("[data-cy^=\"card-\"]", {timeout:10000});
+      cy.get("[data-cy^=\"card-\"]", {timeout: 10000});
       const searchedText = 'environment';
       cy.getInputByName('card-search-text').fill(searchedText);
       cy.queryFirestore<CardEntity>(FirebaseCollection.Cards, {
