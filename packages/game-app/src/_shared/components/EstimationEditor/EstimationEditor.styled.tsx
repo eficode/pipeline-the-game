@@ -7,6 +7,7 @@ const estimationWrapperDefinition = keyframes`
   0% {
     top: -50px;
     left: 0;
+    height: 40px;
   }
   50% {
     left: 0;
@@ -31,7 +32,7 @@ const estimationWrapperDefinition = keyframes`
   }
 `;
 
-export const EstimationWrapper = styled(Box)<{ state: 'opening' | 'open' | 'closed' | 'closing' }>`
+export const EstimationWrapper = styled(Box)<{ state: 'opening' | 'open' | 'closed' | 'closing'; moving: boolean }>`
   position: absolute;
   top: -50px;
   left: 0;
@@ -57,10 +58,16 @@ export const EstimationWrapper = styled(Box)<{ state: 'opening' | 'open' | 'clos
     props.state === 'closed' &&
     css`
       left: -4px;
-      top: 8px;
+      top: 12px;
       height: 32px;
       width: 80px;
       border-radius: 10px 20px 20px 10px;
+    `}
+
+  ${props =>
+    props.moving &&
+    css`
+      opacity: 0.5;
     `}
 `;
 
@@ -135,7 +142,7 @@ const confirmButtonAnimation = keyframes`
     right: 0;
     top: 0;
     bottom: 0;
-    height: 100%;
+    height: 32px;
     width: 100%;
     border-radius: 10px 20px 20px 10px;
     color: white;
@@ -160,15 +167,18 @@ export const ConfirmButton = styled.button<{ state: 'opening' | 'open' | 'closed
   background-size: 70% 70%;
   background-position-x: 5px;
   background-position-y: 4px;
+  font-family: Montserrat;
+  font-size: 12px;
 
   ${props =>
-    props.state !== 'closed' &&
+    props.state === 'open' &&
     css`
       :hover {
         width: 40px;
         height: 40px;
         right: 0;
         top: 0;
+        background-color: #2c3644;
       }
     `}
 
@@ -208,7 +218,7 @@ export const ConfirmButton = styled.button<{ state: 'opening' | 'open' | 'closed
       right: 0;
       top: 0;
       bottom: 0;
-      height: 100%;
+      height: 32px;
       width: 100%;
       border-radius: 10px 20px 20px 10px;
       color: white;
@@ -225,15 +235,45 @@ export const ConfirmButton = styled.button<{ state: 'opening' | 'open' | 'closed
 
 ConfirmButton.displayName = 'ConfirmButton';
 
+const inputWrapAnimation = keyframes`
+  0% {
+    border-radius: 20px;
+    height: 40px;
+  }
+  75% {
+    border-radius: 20px;
+    height: 40px;
+  }
+  100% {
+    border-radius: 10px 20px 20px 10px;
+    height: 32px;
+  }
+`;
+
 export const EstimationInputContainer = styled.div<{ state: 'opening' | 'open' | 'closed' | 'closing' }>`
-  border-radius: 20px;
   position: relative;
   overflow: hidden;
+
+  ${props =>
+    props.state === 'opening' &&
+    css`
+      animation: ${inputWrapAnimation} linear 1s;
+      animation-fill-mode: forwards;
+      animation-direction: reverse;
+    `}
+
+  ${props =>
+    props.state === 'closing' &&
+    css`
+      animation: ${inputWrapAnimation} linear 1s;
+      animation-fill-mode: forwards;
+    `}
 
   ${props =>
     props.state === 'closed' &&
     css`
       border-radius: 10px 20px 20px 10px;
+      height: 32px;
     `}
 `;
 

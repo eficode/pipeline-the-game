@@ -5,7 +5,7 @@ import { actions, selectors } from '../../slice';
 import ConnectedCard from '../ConnectedCard';
 import { CardWrapper } from './DraggableCard.styled';
 import useDoubleClick from './useDoubleClick';
-import { EstimationEditor, EstimationInCard, Estimation } from '@pipeline/components';
+import { Estimation } from '@pipeline/components';
 
 type Props = {
   id: string;
@@ -32,6 +32,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   const saveEstimation = useCallback(
     (estimation: string) => {
       dispatch(actions.setEstimation({ estimation, cardId: id }));
+      console.debug('saving estimation', estimation);
       setEstimationOpen(false);
     },
     [dispatch, id],
@@ -55,6 +56,7 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
 
   const handler = useCallback(() => {
     if (parent === 'board') {
+      console.debug('toggling estimation');
       setEstimationOpen(o => !o);
     }
   }, [parent]);
@@ -94,7 +96,14 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   const estimations = useMemo(() => {
     return (
       <>
-        <Estimation open={estimationOpen} saveEstimation={saveEstimation} initialEstimation={estimation} />
+        <Estimation
+          open={estimationOpen}
+          moving={isCardMoving}
+          onCloseClick={handler}
+          buttonId={`card-estimation-${id}`}
+          saveEstimation={saveEstimation}
+          initialEstimation={estimation}
+        />
       </>
     );
   }, [estimation, estimationOpen, isCardMoving, saveEstimation, handler, id]);

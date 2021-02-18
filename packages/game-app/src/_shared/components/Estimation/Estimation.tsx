@@ -5,6 +5,9 @@ type Props = {
   open: boolean;
   saveEstimation: (estimation: string) => void;
   initialEstimation?: string | null;
+  moving?: boolean;
+  onCloseClick: () => void;
+  buttonId?: string;
 };
 
 function useOpeningTransaction(open: boolean, timing = 500) {
@@ -29,11 +32,18 @@ function useOpeningTransaction(open: boolean, timing = 500) {
   return internalState;
 }
 
-const Estimation: React.FC<Props> = ({ open, initialEstimation, saveEstimation }) => {
+const Estimation: React.FC<Props> = ({ open, initialEstimation, saveEstimation, moving, onCloseClick, buttonId }) => {
   const state = useOpeningTransaction(open, 1100);
 
   return state === 'closed' && !initialEstimation ? null : (
-    <EstimationEditor state={state} saveEstimation={saveEstimation} initialEstimation={initialEstimation} />
+    <EstimationEditor
+      buttonId={buttonId}
+      onCloseClick={onCloseClick}
+      moving={!!moving}
+      state={state}
+      saveEstimation={saveEstimation}
+      initialEstimation={initialEstimation}
+    />
   );
 };
 
