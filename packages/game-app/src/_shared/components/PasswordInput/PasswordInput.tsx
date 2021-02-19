@@ -21,11 +21,23 @@ type Props = {
   errorMessage?: string | null;
   onForgotPassword?: () => void;
   forgotPasswordLabel?: string;
+  tabIndex?: React.ComponentProps<typeof Input>['tabIndex'];
 };
 
 const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
   (
-    { name, value, errorMessage, label, labelDetails, placeholder, onChange, forgotPasswordLabel, onForgotPassword },
+    {
+      name,
+      value,
+      errorMessage,
+      label,
+      labelDetails,
+      placeholder,
+      onChange,
+      forgotPasswordLabel,
+      onForgotPassword,
+      tabIndex,
+    },
     ref,
   ) => {
     const [type, setType] = useState<'text' | 'password'>('password');
@@ -51,7 +63,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
           ref={ref}
           variant={!!errorMessage ? 'defaultError' : 'default'}
           iconRight={
-            <IconButton variant="clearSmall" onClick={toggleType}>
+            <IconButton variant="clearSmall" onClick={toggleType} tabIndex={-1}>
               <StyledIcon variant="small">{type === 'password' ? <EyeIcon /> : <HideIcon />}</StyledIcon>
             </IconButton>
           }
@@ -61,6 +73,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
           name={name}
           id={name}
           onChange={onChange}
+          tabIndex={tabIndex}
         />
         {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
       </InputContainer>

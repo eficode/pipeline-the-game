@@ -25,6 +25,7 @@ type Props = {
   type?: string;
   CustomInput?: React.ComponentType<React.ComponentProps<typeof TextInput>>;
   disabled?: boolean;
+  tabIndex?: React.ComponentProps<typeof TextInput>['tabIndex'];
 };
 
 /**
@@ -60,6 +61,7 @@ const FormTextField: React.FC<Props> = ({
       const Input = CustomInput || TextInput;
       return (
         <Input
+          {...others}
           name={props.name}
           label={label}
           labelDetails={labelDetails}
@@ -69,7 +71,6 @@ const FormTextField: React.FC<Props> = ({
           errorMessage={translatedError}
           type={type}
           disabled={disabled}
-          {...others}
         />
       );
     },

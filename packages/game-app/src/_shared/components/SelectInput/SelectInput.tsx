@@ -3,6 +3,7 @@ import { SelectOption } from '@pipeline/models';
 import { SelectContainer, SelectLoadingWrapper, Select } from './SelectInput.styled';
 import ErrorMessage from '../ErrorMessage';
 import Typography from '../Typography';
+import { StyledButton } from '../Button/Button.styled';
 
 type Props = {
   name: string;
@@ -20,6 +21,8 @@ type Props = {
    * Loading option label
    */
   loadingOptionLabel?: string;
+
+  tabIndex?: React.ComponentProps<typeof Select>['tabIndex'];
 };
 
 const SelectInput: React.FC<Props> = ({
@@ -32,6 +35,7 @@ const SelectInput: React.FC<Props> = ({
   disabled,
   emptyOptionLabel,
   loadingOptionLabel,
+  tabIndex,
 }) => {
   return (
     <SelectContainer>
@@ -47,6 +51,7 @@ const SelectInput: React.FC<Props> = ({
           onChange={onChange}
           error={!!errorMessage}
           showingFakeLabel={value === ''}
+          tabIndex={tabIndex}
         >
           {options.length === 0 && !disabled && loadingOptionLabel && (
             <option key={loadingOptionLabel} value="">

@@ -23,6 +23,7 @@ type Props = {
   color?: React.ComponentProps<typeof StyledButton>['color'];
   loading?: boolean;
   type?: React.ComponentProps<typeof StyledButton>['type'];
+  tabIndex?: React.ComponentProps<typeof StyledButton>['tabIndex'];
 };
 
 const Button: React.FC<Props> = ({
@@ -39,6 +40,7 @@ const Button: React.FC<Props> = ({
   loading,
   rightIcon,
   rightIconHover,
+  tabIndex,
 }) => {
   return (
     <StyledButton
@@ -49,6 +51,7 @@ const Button: React.FC<Props> = ({
       onClick={onClick}
       variant={variant}
       color={color}
+      tabIndex={tabIndex}
     >
       <ButtonContent>
         {leftIcon ? <NotHoverIconWrapper variant="small">{leftIcon}</NotHoverIconWrapper> : null}

@@ -12,6 +12,7 @@ type Props = {
   testId?: string;
   tooltipLabel?: React.ReactNode;
   tooltipPosition?: Exclude<PopoverPosition, 'custom'>;
+  tabIndex?: React.ComponentProps<typeof StyledButton>['tabIndex'];
 };
 
 const IconButton: React.FC<Props> = ({
@@ -24,6 +25,7 @@ const IconButton: React.FC<Props> = ({
   testId,
   tooltipLabel,
   tooltipPosition,
+  tabIndex,
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -56,6 +58,7 @@ const IconButton: React.FC<Props> = ({
         active={active}
         onMouseEnter={openPopover}
         onMouseLeave={closePopover}
+        tabIndex={tabIndex}
       >
         {children}
       </StyledButton>

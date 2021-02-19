@@ -16,10 +16,14 @@ type Props = {
   errorMessage?: string | null;
   type?: string;
   disabled?: boolean;
+  tabIndex?: React.ComponentProps<typeof Input>['tabIndex'];
 };
 
 const TextInput = React.forwardRef<HTMLInputElement, Props>(
-  ({ name, value, errorMessage, label, labelDetails, placeholder, onChange, type = 'text', disabled }, ref) => {
+  (
+    { name, value, errorMessage, label, labelDetails, placeholder, onChange, type = 'text', disabled, tabIndex },
+    ref,
+  ) => {
     return (
       <InputContainer>
         {label ? (
@@ -40,6 +44,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>(
           name={name}
           id={name}
           onChange={onChange}
+          tabIndex={tabIndex}
         />
         {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
       </InputContainer>
