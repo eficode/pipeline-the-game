@@ -1,21 +1,16 @@
 import React from 'react';
 import { Column, LeftColumn, Logo, RightIllustration, TowColumnsContainer } from './TwoColumnPage.styled';
-import { ReactComponent as TextLogo } from '@assets/images/eficode-text-logo.svg';
 import { ReactComponent as Illustration } from '@assets/images/signin-illustration.svg';
-import { Typography, Box } from '@pipeline/components';
-import { useNavigateOutsideTo } from '@pipeline/routing';
-import { ExternalUrl } from '@pipeline/models';
+import { Typography, Box, TextLogo } from '@pipeline/components';
 
 type Props = {
   left: React.ReactElement;
 };
 
 const TwoColumnPage: React.FC<Props> = ({ left }) => {
-  const goToPipeline = useNavigateOutsideTo(ExternalUrl.PIPELINE, true);
-
   return (
     <TowColumnsContainer>
-      <Logo onClick={goToPipeline}>
+      <Logo>
         <TextLogo />
       </Logo>
       <LeftColumn>{left}</LeftColumn>
