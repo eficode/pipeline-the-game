@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect, useState } from 'react';
-import { Redirect, Route, Switch, useLocation, useHistory } from 'react-router-dom';
+import { Redirect, Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { PrivateRoute, RoutingPath, useNavigateOutsideTo } from '@pipeline/routing';
 import { useBootstrapIsFinished } from './_shared';
 import { AuthUser, useLoggedUser } from '@pipeline/auth';
@@ -68,11 +68,23 @@ const Loader: React.FC = () => {
   return null;
 };
 
-function App() {
-  const bootstrapIsFinished = useBootstrapIsFinished();
+const SmallScreenDialog: React.FC = () => {
+  const t = useTranslate();
   const { width, height } = useWindowDimensions();
 
-  const isWindowTooSmall = width < 1400 || height < 700;
+  const isWindowTooSmall = width < 1100 || height < 600;
+
+  return (
+    <Dialog id="small-screen-dialog" open={isWindowTooSmall} title={t('general.responsiveness.title')}>
+      <Typography textAlign="center" mt={3}>
+        {t('general.responsiveness.subtitle')}
+      </Typography>
+    </Dialog>
+  );
+};
+
+function App() {
+  const bootstrapIsFinished = useBootstrapIsFinished();
 
   const user = useLoggedUser();
   const [state, setState] = useState(false);
@@ -111,12 +123,7 @@ function App() {
           </Box>
         </PersistentBanner>
       )}
-      <Dialog open={isWindowTooSmall} title={t('general.responsiveness.title')}>
-        <Typography textAlign="center" mt={3}>
-          {t('general.responsiveness.subtitle')}
-        </Typography>
-      </Dialog>
-      )
+      <SmallScreenDialog />)
     </Suspense>
   ) : null;
 }
