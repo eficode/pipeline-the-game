@@ -1,6 +1,7 @@
 import { Saga } from 'redux-saga';
 import { all, call, spawn } from 'redux-saga/effects';
 import { saga as authSaga } from '@pipeline/auth';
+import { saga as analyticsSaga } from '@pipeline/analytics';
 import signupSaga from '../../signup/sagas';
 import gameSaga from '../../gameView/sagas';
 import createGameSaga from '../../createGame/sagas';
@@ -20,6 +21,7 @@ export default function* rootSaga() {
     gameSaga,
     createGameSaga,
     userGameStatusSaga,
+    analyticsSaga,
   ];
   yield all(
     sagas.map(saga =>

@@ -14,6 +14,6 @@ export function* identifySaga(action: ReturnType<typeof actions.identify>) {
   });
 }
 
-export default function* sagas() {
+export function* saga() {
   yield takeEvery(actions.identify, identifySaga);
 }
