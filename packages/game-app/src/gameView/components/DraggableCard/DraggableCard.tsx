@@ -107,15 +107,9 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
   }, [estimation, estimationOpen, isCardMoving, saveEstimation, handler, id]);
 
   return (
-    <div style={style} data-cy={`card-${id}`}>
+    <div style={style} data-cy={`card-${id}`} ref={setNodeRef}>
       {estimations}
-      <CardWrapper
-        ref={setNodeRef}
-        {...listeners}
-        onPointerDown={onPointerDown}
-        {...attributes}
-        isDragging={isCardMoving}
-      >
+      <CardWrapper {...listeners} onPointerDown={onPointerDown} {...attributes} isDragging={isCardMoving}>
         {card}
       </CardWrapper>
     </div>

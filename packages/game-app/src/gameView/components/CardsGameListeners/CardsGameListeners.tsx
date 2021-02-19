@@ -8,12 +8,14 @@ import {
   Modifiers,
   MouseSensor,
   PointerSensor,
+  rectIntersection,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
 import { RectEntry, ViewRect } from '@dnd-kit/core/dist/types';
 import { createPortal } from 'react-dom';
 import { Transform } from '@dnd-kit/utilities';
+import { restrictToWindowEdges, restrictToParentElement } from '@dnd-kit/modifiers';
 import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { GameUIState } from '../../types/gameUIState';
 import { PanelMode } from '../DeckPanel/DeckPanel';
@@ -60,6 +62,9 @@ let collisionTime = 0;
 let moveTime = 0;
 let modifiersTime = 0;
 let movementStart = 0;
+
+// to avoid moving cards outside window and outside board
+const contextModifiers = [restrictToWindowEdges, restrictToParentElement];
 
 // hack for performance test selenium is not able to work with distance activation
 // if window.isPerfTestRunning use the perfTestConstraints for drag activation
@@ -219,6 +224,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
   const modifiers = useMemo(
     () =>
       [
+        restrictToWindowEdges,
         args => {
           const start = performance.now();
 
@@ -366,6 +372,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
       onDragStart={handleDragStart}
       onDragEnd={handleDragEnd}
       onDragMove={handleDragMove}
+      modifiers={contextModifiers}
       collisionDetection={customCollisionDetectionStrategy}
     >
       {children}
