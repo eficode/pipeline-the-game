@@ -194,6 +194,7 @@ const translations = {
     refresh: 'Refresh',
     errors: {
       required: 'This field is required',
+      maxLength: 'This field is too long',
     },
     emptyOptionLabel: 'None selected',
     chromeBanner: 'To get the best experience, we recommend that you view this service in',
