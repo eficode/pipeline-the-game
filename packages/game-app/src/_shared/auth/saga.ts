@@ -5,6 +5,7 @@ import 'firebase/auth';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
 import { RoutingPath } from '@pipeline/routing';
 import CONFIG from '@pipeline/app-config';
+import { actions as analyticsActions } from '@pipeline/analytics';
 
 function getCurrentUser(): Promise<AuthUser | null> {
   return new Promise<AuthUser | null>(resolve => {
@@ -26,6 +27,9 @@ function* initializeAuthSaga() {
   const user: AuthUser | null = yield call(getCurrentUser);
   if (user && (CONFIG.REACT_APP_ENV === 'dev' || CONFIG.REACT_APP_ENV === 'test')) {
     yield call(() => firebase.auth().currentUser?.getIdToken(true));
+  }
+  if (user) {
+    yield put(analyticsActions.identify({ email: user?.email, id: user?.id }));
   }
   yield put(actions.setLoggedUser(user));
 }
@@ -73,6 +77,7 @@ function* executeLogin({ payload: { email, password } }: ReturnType<typeof actio
   const { user }: firebase.auth.UserCredential = yield call(() =>
     firebase.auth().signInWithEmailAndPassword(email, password),
   );
+  yield put(analyticsActions.identify({ email: user?.email, id: user?.uid }));
   if (user) {
     yield put(
       actions.setLoggedUser({

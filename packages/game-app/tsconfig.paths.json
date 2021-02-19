@@ -12,7 +12,8 @@
       "@pipeline/components": ["src/_shared/components"],
       "@pipeline/models": ["src/_shared/models"],
       "@pipeline/dynamicData": ["src/_shared/dynamicData"],
-      "@pipeline/networkStatus": ["src/_shared/networkStatus"]
+      "@pipeline/networkStatus": ["src/_shared/networkStatus"],
+      "@pipeline/analytics": ["src/_shared/analytics"]
     }
   }
 }
