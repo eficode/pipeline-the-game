@@ -4,8 +4,9 @@ import { PrivateRoute, RoutingPath, useNavigateOutsideTo } from '@pipeline/routi
 import { useBootstrapIsFinished } from './_shared';
 import { AuthUser, useLoggedUser } from '@pipeline/auth';
 import PersistentBanner from './_shared/components/PersistentBanner';
-import { Box, Link, Typography } from '@pipeline/components';
+import { Box, Dialog, Link, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
+import { useWindowDimensions } from './_shared/components/utils';
 
 const Signup = React.lazy(() => import('./signup/components/Signup'));
 const EmailRouter = React.lazy(() => import('./_shared/routing/EmailRouter'));
@@ -69,6 +70,9 @@ const Loader: React.FC = () => {
 
 function App() {
   const bootstrapIsFinished = useBootstrapIsFinished();
+  const { width, height } = useWindowDimensions();
+
+  const isWindowTooSmall = width < 1400 || height < 700;
 
   const user = useLoggedUser();
   const [state, setState] = useState(false);
@@ -107,6 +111,12 @@ function App() {
           </Box>
         </PersistentBanner>
       )}
+      <Dialog open={isWindowTooSmall} title={t('general.responsiveness.title')}>
+        <Typography textAlign="center" mt={3}>
+          {t('general.responsiveness.subtitle')}
+        </Typography>
+      </Dialog>
+      )
     </Suspense>
   ) : null;
 }

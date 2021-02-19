@@ -199,6 +199,10 @@ const translations = {
     chromeBanner: 'To get the best experience, we recommend that you view this service in',
     chrome: 'Google Chrome',
     loading: 'Loading...',
+    responsiveness: {
+      title: 'Your screen size is not enough :(',
+      subtitle: 'Pipeline does not support small screens yet. Please use it on desktop through a full-size window.',
+    },
   },
   card: {
     type: {
