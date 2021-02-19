@@ -6,6 +6,7 @@ import {generateRandomCredentials} from './utils/generators';
 
 context('Logout', () => {
   beforeEach(() => {
+    cy.viewport(1200, 700);
     cy.clearLocalStorage();
     cy.clearIndexedDB();
     cy.visit('/login');

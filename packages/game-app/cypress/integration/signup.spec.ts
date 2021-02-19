@@ -8,6 +8,7 @@ context('Signup', () => {
   const usedEmails: string[] = [];
 
   beforeEach(() => {
+    cy.viewport(1200, 700);
     cy.clearLocalStorage();
     cy.clearIndexedDB();
     cy.visit('/signup');
@@ -85,5 +86,12 @@ context('Signup', () => {
     cy.getInputByName('devOpsMaturity').select('veryImmature');
     cy.containsTranslationOf('button', 'signup.form.buttonText').click();
     cy.get('body').should('contain.translationOf', 'auth.errors.auth/email-already-in-use');
+  });
+
+  it("should show a small screen error dialog", () => {
+    cy.viewport(1000, 700);
+    cy.waitUntil(() => Cypress.$("#small-screen-dialog").length === 1);
+    cy.get('body').should('contain.translationOf', 'general.responsiveness.title');
+    cy.get('body').should('contain.translationOf', 'general.responsiveness.subtitle');
   });
 });

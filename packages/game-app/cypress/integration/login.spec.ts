@@ -6,6 +6,7 @@ import {generateRandomCredentials, generateRandomEmail} from "./utils/generators
 context("Login", () => {
 
   beforeEach(() => {
+    cy.viewport(1200, 700);
     cy.clearLocalStorage()
     cy.clearIndexedDB();
     cy.visit('/login');
@@ -49,6 +50,13 @@ context("Login", () => {
       cy.location('pathname').should('equal', '/signup');
       cy.get('body').should('contain.translationOf', 'signup.verificationRequired.title');
     });
+  });
+
+  it("should show a small screen error dialog", () => {
+    cy.viewport(1000, 700);
+    cy.waitUntil(() => Cypress.$("#small-screen-dialog").length === 1);
+    cy.get('body').should('contain.translationOf', 'general.responsiveness.title');
+    cy.get('body').should('contain.translationOf', 'general.responsiveness.subtitle');
   });
 
 });

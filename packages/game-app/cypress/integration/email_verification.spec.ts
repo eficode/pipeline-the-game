@@ -6,6 +6,7 @@ import {generateRandomCredentials} from "./utils/generators";
 context("Email verification", () => {
 
   beforeEach(() => {
+    cy.viewport(1200, 700);
     cy.clearLocalStorage()
     cy.clearIndexedDB();
     cy.visit(Cypress.config().baseUrl!);
@@ -51,7 +52,11 @@ context("Email verification", () => {
       cy.getEmailVerificationLink(email).then(url => {
         verificationLink = `/verify-email?${url.split('?')[1]}`;
       });
-    })
+    });
+
+    beforeEach(() => {
+      cy.viewport(1200, 700);
+    });
 
     it('go to login if not authenticated', () => {
       cy.visit(verificationLink);
@@ -81,7 +86,11 @@ context("Email verification", () => {
         cy.wait('@verify')
 
       });
-    })
+    });
+
+    beforeEach(() => {
+      cy.viewport(1200, 700);
+    });
 
     it('on link reuse', () => {
       cy.visit(alreadyUsedLink);
@@ -93,6 +102,14 @@ context("Email verification", () => {
   it("should show invalid code error on wrong params", () => {
     cy.visit('/verify-email?oobCode=noCode');
     cy.get('body').should('contain.translationOf', 'auth.errors.auth/invalid-action-code')
+  });
+
+  it("should show a small screen error dialog", () => {
+    cy.viewport(1000, 700);
+    cy.visit('/verify-email?oobCode=noCode');
+    cy.waitUntil(() => Cypress.$("#small-screen-dialog").length === 1);
+    cy.get('body').should('contain.translationOf', 'general.responsiveness.title');
+    cy.get('body').should('contain.translationOf', 'general.responsiveness.subtitle');
   });
 
 });

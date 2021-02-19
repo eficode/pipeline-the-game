@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 
 context('Routing', () => {
   beforeEach(() => {
+    cy.viewport(1200, 700);
     cy.clearLocalStorage();
     cy.clearIndexedDB();
     cy.visit(Cypress.config().baseUrl!);
