@@ -8,7 +8,6 @@ import {
   Modifiers,
   MouseSensor,
   PointerSensor,
-  rectIntersection,
   useSensor,
   useSensors,
 } from '@dnd-kit/core';
