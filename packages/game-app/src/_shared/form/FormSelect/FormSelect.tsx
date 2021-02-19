@@ -44,7 +44,7 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled, ...others
         />
       );
     },
-    [translatedError, label, options, disabled, emptyOptionLabel, loadingOptionLabel],
+    [translatedError, label, options, disabled, emptyOptionLabel, loadingOptionLabel, others],
   );
 
   return (

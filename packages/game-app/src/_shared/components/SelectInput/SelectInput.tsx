@@ -3,7 +3,6 @@ import { SelectOption } from '@pipeline/models';
 import { SelectContainer, SelectLoadingWrapper, Select } from './SelectInput.styled';
 import ErrorMessage from '../ErrorMessage';
 import Typography from '../Typography';
-import { StyledButton } from '../Button/Button.styled';
 
 type Props = {
   name: string;
