@@ -14,6 +14,7 @@ import useSignup from '../../hooks/useSignup';
 import { signupValidationSchema } from '../../utils/validation';
 import { SignupContent } from './Signup.styled';
 import EmailVerificationRequiredDialog from '../EmailVerificationRequiredDialog';
+import { ExternalUrl } from '@pipeline/models';
 
 type Props = {};
 
@@ -58,7 +59,7 @@ const Signup: React.FC<Props> = () => {
   );
 
   const goToSignIn = useNavigateTo(RoutingPath.Login, location.state);
-  const openPrivacyPolicy = useNavigateOutsideTo('https://www.eficode.com/privacy-policy');
+  const openPrivacyPolicy = useNavigateOutsideTo(ExternalUrl.PRIVACY_POLICY);
 
   return (
     <>

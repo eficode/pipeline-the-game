@@ -6,6 +6,7 @@ import { AuthUser, useLoggedUser } from '@pipeline/auth';
 import PersistentBanner from './_shared/components/PersistentBanner';
 import { Box, Dialog, Link, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
+import { ExternalUrl } from '@pipeline/models';
 import { useWindowDimensions } from './_shared/components/utils';
 
 const Signup = React.lazy(() => import('./signup/components/Signup'));
@@ -101,7 +102,7 @@ function App() {
     }
   }, [location, user, history, state]);
 
-  const goToChrome = useNavigateOutsideTo('https://www.google.com/chrome/', true);
+  const goToChrome = useNavigateOutsideTo(ExternalUrl.CHROME, true);
 
   return bootstrapIsFinished ? (
     <Suspense fallback={<Loader />}>

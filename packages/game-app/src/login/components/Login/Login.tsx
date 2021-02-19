@@ -9,6 +9,7 @@ import { RoutingPath, useNavigateTo, useNavigateOutsideTo } from '@pipeline/rout
 import { LoginForm, Separator } from './Login.styled';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { loginValidationSchema } from '../../utils/validation';
+import { ExternalUrl } from '@pipeline/models';
 
 type Props = {};
 
@@ -35,7 +36,7 @@ const Login: React.FC<Props> = () => {
   const goToSignUp = useNavigateTo(RoutingPath.Signup, location.state);
   const goToForgotPassword = useNavigateTo(RoutingPath.ForgotPassword);
 
-  const openPrivacyPolicy = useNavigateOutsideTo('https://www.eficode.com/privacy-policy');
+  const openPrivacyPolicy = useNavigateOutsideTo(ExternalUrl.PRIVACY_POLICY);
 
   const passwordProps = useMemo(() => {
     return {
