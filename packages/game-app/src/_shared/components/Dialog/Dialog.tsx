@@ -21,6 +21,8 @@ type Props = {
   // TODO improve types
   DialogContainerProps?: object;
   AdditionalComponent?: React.ElementType;
+  id?: string;
+  testId?: string;
 };
 
 /**
@@ -33,10 +35,12 @@ const Dialog: React.FC<Props> & { DialogContainer: typeof DialogContainer } = ({
   DialogContainerComponent = DialogContainer,
   DialogContainerProps = {},
   AdditionalComponent,
+  id,
+  testId,
   children,
 }) => {
   return (
-    <GlassOverlay open={open}>
+    <GlassOverlay open={open} id={id} testId={id || testId}>
       <DialogContainerComponent {...DialogContainerProps}>
         <Typography textAlign="center" variant="dialogHead">
           {title}

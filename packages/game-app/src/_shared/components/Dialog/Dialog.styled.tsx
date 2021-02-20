@@ -5,6 +5,7 @@ export const DialogContainer = styled.div`
   box-shadow: 0px 0px 6px #d7d2cb80;
   border-radius: 10px;
   padding: 40px;
+  margin: 8px;
 `;
 
 DialogContainer.displayName = 'DialogContainer';
