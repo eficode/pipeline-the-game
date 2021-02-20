@@ -20,6 +20,8 @@ type Props = {
    * Loading option label
    */
   loadingOptionLabel?: string;
+
+  tabIndex?: React.ComponentProps<typeof Select>['tabIndex'];
 };
 
 const SelectInput: React.FC<Props> = ({
@@ -32,6 +34,7 @@ const SelectInput: React.FC<Props> = ({
   disabled,
   emptyOptionLabel,
   loadingOptionLabel,
+  tabIndex,
 }) => {
   return (
     <SelectContainer>
@@ -47,6 +50,7 @@ const SelectInput: React.FC<Props> = ({
           onChange={onChange}
           error={!!errorMessage}
           showingFakeLabel={value === ''}
+          tabIndex={tabIndex}
         >
           {options.length === 0 && !disabled && loadingOptionLabel && (
             <option key={loadingOptionLabel} value="">

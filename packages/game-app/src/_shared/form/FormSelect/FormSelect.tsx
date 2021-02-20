@@ -9,7 +9,7 @@ type Props = {} & Omit<React.ComponentProps<typeof SelectInput>, 'errorMessage' 
  * Select directly connected to the parent form that includes error message
  * visualization. Its value can be found under the {name} key in the form
  */
-const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
+const FormSelect: React.FC<Props> = ({ name, label, options, disabled, ...others }) => {
   const data = useFormContext();
 
   const error = data.errors[name];
@@ -31,6 +31,7 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
     (props: ControllerRenderProps) => {
       return (
         <SelectInput
+          {...others}
           name={props.name}
           label={label}
           value={props.value}
@@ -43,7 +44,7 @@ const FormSelect: React.FC<Props> = ({ name, label, options, disabled }) => {
         />
       );
     },
-    [translatedError, label, options, disabled, emptyOptionLabel, loadingOptionLabel],
+    [translatedError, label, options, disabled, emptyOptionLabel, loadingOptionLabel, others],
   );
 
   return (
