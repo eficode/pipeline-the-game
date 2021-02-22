@@ -14,7 +14,7 @@ import {
 import { RectEntry, ViewRect } from '@dnd-kit/core/dist/types';
 import { createPortal } from 'react-dom';
 import { Transform } from '@dnd-kit/utilities';
-import { restrictToWindowEdges, restrictToParentElement } from '@dnd-kit/modifiers';
+import { restrictToWindowEdges } from '@dnd-kit/modifiers';
 import { GameEvent, GameEventType } from '../../types/gameEvents';
 import { GameUIState } from '../../types/gameUIState';
 import { PanelMode } from '../DeckPanel/DeckPanel';
@@ -63,7 +63,7 @@ let modifiersTime = 0;
 let movementStart = 0;
 
 // to avoid moving cards outside window and outside board
-const contextModifiers = [restrictToWindowEdges, restrictToParentElement];
+const contextModifiers = [restrictToWindowEdges];
 
 // hack for performance test selenium is not able to work with distance activation
 // if window.isPerfTestRunning use the perfTestConstraints for drag activation
@@ -147,6 +147,19 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
       setDraggingCard(null);
 
       if (delta?.x === 0 && delta.y === 0) {
+        return;
+      }
+      if (!newParent) {
+        debugPrint('card released nowhere');
+        onEvent({
+          cardId,
+          target: null,
+          type: GameEventType.CardMovingEnd,
+        });
+        if (translationDeltaRef.current[cardId]) {
+          translationDeltaRef.current[cardId].x = 0;
+          translationDeltaRef.current[cardId].y = 0;
+        }
         return;
       }
 
@@ -348,14 +361,34 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
           ? 'panel'
           : null;
 
+      const boardRect = rects.filter(([id]) => id === 'board')[0][1];
+
+      const boardAbsoluteRect = {
+        left: panAmountRef.current.x,
+        top: panAmountRef.current.y,
+        width: boardRect.width * boardScaleRef.current,
+        height: boardRect.height * boardScaleRef.current,
+      };
+
+      const isCardInsideBoard =
+        absoluteRectWithRespectToWindow.left > boardAbsoluteRect.left &&
+        absoluteRectWithRespectToWindow.top > boardAbsoluteRect.top &&
+        absoluteRectWithRespectToWindow.left + absoluteRectWithRespectToWindow.width <
+          boardAbsoluteRect.left + boardAbsoluteRect.width &&
+        absoluteRectWithRespectToWindow.top + absoluteRectWithRespectToWindow.height <
+          boardAbsoluteRect.top + boardAbsoluteRect.height;
+
       debugPrint('customCollisionDetectionStrategy', rects, absoluteRectWithRespectToWindow);
       debugPrint('intersectingPanelRect', intersectingPanelRect, panelRect);
+      debugPrint('isCardInsideBoard', isCardInsideBoard);
       const end = performance.now();
       collisionTime += end - start;
       if (intersectingPanelRect) {
         return intersectingPanelRect;
-      } else {
+      } else if (isCardInsideBoard) {
         return 'board';
+      } else {
+        return null;
       }
     },
     [boardScaleRef, draggingCard, panAmountRef],
