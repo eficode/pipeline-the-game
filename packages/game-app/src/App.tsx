@@ -124,7 +124,7 @@ function App() {
           </Box>
         </PersistentBanner>
       )}
-      <SmallScreenDialog />)
+      <SmallScreenDialog />
     </Suspense>
   ) : null;
 }

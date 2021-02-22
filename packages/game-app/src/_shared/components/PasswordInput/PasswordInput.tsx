@@ -62,6 +62,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
         <Input
           ref={ref}
           variant={!!errorMessage ? 'defaultError' : 'default'}
+          autoComplete="new-password"
           iconRight={
             <IconButton variant="clearSmall" onClick={toggleType} tabIndex={-1}>
               <StyledIcon variant="small">{type === 'password' ? <EyeIcon /> : <HideIcon />}</StyledIcon>
