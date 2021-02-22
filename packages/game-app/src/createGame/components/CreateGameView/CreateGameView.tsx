@@ -32,23 +32,23 @@ const CreateGameView: React.FC<Props> = () => {
     resolver: yupResolver(createGameValidationSchema),
   });
 
-  const { handleSubmit } = methods;
-
-  const { setValue, clearErrors } = methods;
+  const { handleSubmit, clearErrors, reset } = methods;
 
   const selectScenario = useCallback(
     (scenarioId: string) => {
+      setIsYourOwnVisible(false);
       setSelectedScenario(prevState => (scenarioId === prevState ? null : scenarioId));
-      setValue('scenarioTitle', '');
-      setValue('scenarioContent', '');
+      reset();
       clearErrors();
     },
-    [setValue, clearErrors],
+    [reset, clearErrors],
   );
 
   const toggleYourOwnVisibility = useCallback(() => {
     setIsYourOwnVisible(v => !v);
-  }, []);
+    clearErrors();
+    reset();
+  }, [clearErrors, reset]);
 
   const { call, success, loading, translatedError, newCreatedId } = useCreateGame();
 
@@ -64,9 +64,14 @@ const CreateGameView: React.FC<Props> = () => {
           scenarioCardId: selectedScenario.id,
         });
     } else {
-      return handleSubmit((info: GameCreationData) => {
-        call(info);
-      });
+      return handleSubmit(
+        (info: GameCreationData) => {
+          call(info);
+        },
+        () => {
+          setIsYourOwnVisible(true);
+        },
+      );
     }
   }, [handleSubmit, call, selectedScenarioCard, cards]);
 
@@ -96,7 +101,7 @@ const CreateGameView: React.FC<Props> = () => {
                 rightIcon={<RightIcon />}
                 label={t('createGame.writeYours')}
                 onClick={toggleYourOwnVisibility}
-                id="how-to-play-button"
+                id="make-your-own"
               />
               {isYourOwnVisible && (
                 <>

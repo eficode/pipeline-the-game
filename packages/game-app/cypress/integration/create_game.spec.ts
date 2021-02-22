@@ -33,8 +33,6 @@ context("Create Game", () => {
   it("should select card scenario correctly", () => {
     cy.get('[id*="scenario-"]').first().click();
     cy.get('[id*="scenario-"]').first().should('have.css', 'border', '2px solid rgb(0, 134, 124)')
-    cy.getInputByName('scenarioTitle').should('be.disabled');
-    cy.getInputByName('scenarioContent').should('be.disabled');
   });
 
   it("should create scenario correctly from card", () => {
@@ -49,6 +47,7 @@ context("Create Game", () => {
   });
 
   it("should create scenario correctly using form", () => {
+    cy.containsTranslationOf('button', 'createGame.writeYours').click();
     cy.getInputByName('scenarioTitle').fill('scenario test title');
     cy.getInputByName('scenarioContent').fill('scenario test content');
     cy.containsTranslationOf('button', 'createGame.createButtonText').click();
