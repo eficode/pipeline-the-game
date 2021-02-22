@@ -29,7 +29,8 @@ function* initializeAuthSaga() {
     yield call(() => firebase.auth().currentUser?.getIdToken(true));
   }
   if (user) {
-    yield put(analyticsActions.identify({ email: user?.email, id: user?.id }));
+    const crmInfo = { email: user?.email, id: user?.id };
+    yield put(analyticsActions.identify(crmInfo));
   }
   yield put(actions.setLoggedUser(user));
 }
@@ -77,8 +78,9 @@ function* executeLogin({ payload: { email, password } }: ReturnType<typeof actio
   const { user }: firebase.auth.UserCredential = yield call(() =>
     firebase.auth().signInWithEmailAndPassword(email, password),
   );
-  yield put(analyticsActions.identify({ email: user?.email, id: user?.uid }));
   if (user) {
+    const crmInfo = { email: user?.email!, id: user?.uid };
+    yield put(analyticsActions.identify(crmInfo));
     yield put(
       actions.setLoggedUser({
         emailVerified: user.emailVerified,
