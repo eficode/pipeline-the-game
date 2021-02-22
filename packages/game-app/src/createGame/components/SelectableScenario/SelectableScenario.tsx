@@ -15,14 +15,21 @@ const ScenarioCard = styled.div<{ selected: boolean }>`
   background: white;
   border-radius: 10px;
   backdrop-filter: blur(20px);
-  padding: ${({ selected }) => (selected ? '22px' : '24px')};
-  margin-right: 20px;
+  padding: ${({ selected }) => (selected ? '18px' : '20px')};
+  margin-right: 15px;
+  margin-left: 15px;
   box-sizing: border-box;
   border: ${({ selected }) => (selected ? '2px solid #00867C' : '')};
   transition: transform 0.5s;
 
   &:hover {
     transform: translate(0, -20px);
+  }
+  &:first-child {
+    margin-left: 30px;
+  }
+  &:last-child {
+    margin-right: 30px;
   }
 `;
 const ScenarioTitle = styled.h5({

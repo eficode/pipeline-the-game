@@ -7,17 +7,19 @@ import useCards from '../../../gameView/hooks/useCards';
 import { CardType } from '@pipeline/common';
 import ScenariosList from '../ScenariosList';
 import { FormTextField } from '@pipeline/form';
-import { Button, Link, Box, TextArea, Typography, ErrorMessage } from '@pipeline/components';
+import { Box, Button, ErrorMessage, Link, TextArea, Typography } from '@pipeline/components';
 import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
 import useCreateGame from '../../hook/useCreateGame';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createGameValidationSchema } from '../../utils/validation';
 import { CreateGameContainer, CreateGameContent } from './CreateGameView.styled';
+import { ReactComponent as RightIcon } from '@assets/icons/arrow.svg';
 
 type Props = {};
 
 const CreateGameView: React.FC<Props> = () => {
   const [selectedScenarioCard, setSelectedScenario] = useState<string | null>(null);
+  const [isYourOwnVisible, setIsYourOwnVisible] = useState<boolean>();
 
   const t = useTranslate();
 
@@ -43,6 +45,10 @@ const CreateGameView: React.FC<Props> = () => {
     },
     [setValue, clearErrors],
   );
+
+  const toggleYourOwnVisibility = useCallback(() => {
+    setIsYourOwnVisible(v => !v);
+  }, []);
 
   const { call, success, loading, translatedError, newCreatedId } = useCreateGame();
 
@@ -75,26 +81,36 @@ const CreateGameView: React.FC<Props> = () => {
   return (
     <CreateGameContainer>
       <CreateGameContent>
-        <Typography variant="dialogHead">{t('createGame.title')}</Typography>
-        <Typography variant="content" fontWeight="600">
-          {t('createGame.subtitle', { data: { cardsCount: cards.length } })}
-        </Typography>
+        <Box paddingX={20}>
+          <Typography variant="dialogHead">{t('createGame.title')}</Typography>
+          <Typography variant="content" fontWeight="600">
+            {t('createGame.subtitle', { data: { cardsCount: cards.length } })}
+          </Typography>
+        </Box>
         <FormProvider {...methods}>
           <form>
             <ScenariosList cards={cards} onScenarioSelected={selectScenario} selectedScenario={selectedScenarioCard} />
-            <Box mt={3}>
-              <Typography variant="content" fontWeight="600">
-                {t('createGame.writeYours')}
-              </Typography>
-              <FormTextField disabled={!!selectedScenarioCard} name="scenarioTitle" />
-              <Box mt={2}>
-                <FormTextField
-                  disabled={!!selectedScenarioCard}
-                  CustomInput={TextArea}
-                  label=" "
-                  name="scenarioContent"
-                />
-              </Box>
+            <Box mt={3} paddingX={20}>
+              <Button
+                variant="secondary"
+                rightIcon={<RightIcon />}
+                label={t('createGame.writeYours')}
+                onClick={toggleYourOwnVisibility}
+                id="how-to-play-button"
+              />
+              {isYourOwnVisible && (
+                <>
+                  <FormTextField disabled={!!selectedScenarioCard} name="scenarioTitle" />
+                  <Box mt={2}>
+                    <FormTextField
+                      disabled={!!selectedScenarioCard}
+                      CustomInput={TextArea}
+                      label=" "
+                      name="scenarioContent"
+                    />
+                  </Box>
+                </>
+              )}
               <Box textAlign="center" mt={4}>
                 <Button
                   id="create-game-button"
