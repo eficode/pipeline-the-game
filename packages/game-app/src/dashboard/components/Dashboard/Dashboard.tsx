@@ -20,6 +20,7 @@ import {
 import { CardType } from '@pipeline/common';
 import { ReactComponent as RightIcon } from '@assets/icons/arrow.svg';
 import Tilt from 'react-parallax-tilt';
+import { ExternalUrl } from '@pipeline/models';
 
 type Props = {};
 
@@ -28,7 +29,7 @@ const Dashboard: React.FC<Props> = () => {
   const { call: executeLogout } = useLogout();
 
   const goToCreateGame = useNavigateTo(RoutingPath.CreateGame);
-  const goToHowToPlay = useNavigateOutsideTo('https://www.eficode.com/pipeline-game#how-to-play', true);
+  const goToHowToPlay = useNavigateOutsideTo(ExternalUrl.PIPELINE_HOW_TO_PLAY, true);
 
   return (
     <DashboardContainer>

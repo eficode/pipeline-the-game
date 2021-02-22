@@ -35,7 +35,6 @@ export const Logo = styled.div`
   position: absolute;
   top: 8px;
   left: 6%;
-
   svg {
     max-width: 100%;
   }
