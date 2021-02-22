@@ -42,7 +42,7 @@ const RulesOverlay: React.FC<Props> = ({ isOpen, close }) => {
       <RulesOverlayContent>
         <Box>
           <Button
-            variant="clear"
+            variant="clearBold"
             onClick={close}
             leftIconHover={<ArrowHoverIcon />}
             leftIcon={<ArrowIcon />}
