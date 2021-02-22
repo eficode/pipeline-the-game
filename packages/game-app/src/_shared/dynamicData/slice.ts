@@ -65,6 +65,41 @@ const getDevOpsMaturitiesOptions = createSelector(
   },
 );
 
+const getGameRolesMap = createSelector(
+  (state: { [name]: State }) => state[name],
+  getCurrentLanguage,
+  (dynamicDataState, currentLanguage) => {
+    if (dynamicDataState.gameRoles == null) {
+      return [];
+    }
+    const labels = {} as { [key: string]: string };
+
+    for (const maturity in dynamicDataState.gameRoles.labels) {
+      const supportedLanguage = currentLanguage in dynamicDataState.gameRoles.labels[maturity] ? currentLanguage : 'en';
+      labels[maturity] = dynamicDataState.gameRoles.labels[maturity][supportedLanguage];
+    }
+    return labels;
+  },
+);
+
+const getDevOpsMaturitiesMap = createSelector(
+  (state: { [name]: State }) => state[name],
+  getCurrentLanguage,
+  (dynamicDataState, currentLanguage) => {
+    if (dynamicDataState.devOpsMaturities == null) {
+      return [];
+    }
+    const labels = {} as { [key: string]: string };
+
+    for (const maturity in dynamicDataState.devOpsMaturities.labels) {
+      const supportedLanguage =
+        currentLanguage in dynamicDataState.devOpsMaturities.labels[maturity] ? currentLanguage : 'en';
+      labels[maturity] = dynamicDataState.devOpsMaturities.labels[maturity][supportedLanguage];
+    }
+    return labels;
+  },
+);
+
 export const reducer = slice.reducer;
 export const actions = {
   ...slice.actions,
@@ -75,4 +110,6 @@ export const name = slice.name;
 export const selectors = {
   getGameRolesOptions,
   getDevOpsMaturitiesOptions,
+  getGameRolesMap,
+  getDevOpsMaturitiesMap,
 };
