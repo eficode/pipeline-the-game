@@ -4,7 +4,7 @@ import Icon from '../Icon';
 import Spinner from '../Spinner';
 import Typography from '../Typography';
 
-export type Variants = 'default' | 'clear' | 'secondary';
+export type Variants = 'default' | 'clear' | 'secondary' | 'clearBold';
 
 export const StyledButton = styled('button')<{ variant: Variants }>`
   height: 40px;
@@ -41,6 +41,12 @@ export const StyledButton = styled('button')<{ variant: Variants }>`
         bg: 'transparent',
         color: 'white',
         p: '2px 16px',
+      },
+      clearBold: {
+        bg: 'transparent',
+        color: 'white',
+        p: '2px 16px',
+        fontWeight: '600',
       },
       secondary: {
         bg: 'transparent',
