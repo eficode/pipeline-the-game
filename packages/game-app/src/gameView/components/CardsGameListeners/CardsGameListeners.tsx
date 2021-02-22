@@ -357,7 +357,8 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
 
       const intersectingPanelRect =
         panelRect?.[0] &&
-        absoluteRectWithRespectToWindow.left + absoluteRectWithRespectToWindow.width >= panelRect[0][1].offsetLeft
+        absoluteRectWithRespectToWindow.left + (absoluteRectWithRespectToWindow.width * 2) / 3 >=
+          panelRect[0][1].offsetLeft
           ? 'panel'
           : null;
 
