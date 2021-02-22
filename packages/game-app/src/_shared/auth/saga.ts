@@ -5,6 +5,7 @@ import 'firebase/auth';
 import { addRequestStatusManagement } from '@pipeline/requests-status';
 import { RoutingPath } from '@pipeline/routing';
 import CONFIG from '@pipeline/app-config';
+import { actions as analyticsActions } from '@pipeline/analytics';
 
 function getCurrentUser(): Promise<AuthUser | null> {
   return new Promise<AuthUser | null>(resolve => {
@@ -26,6 +27,10 @@ function* initializeAuthSaga() {
   const user: AuthUser | null = yield call(getCurrentUser);
   if (user && (CONFIG.REACT_APP_ENV === 'dev' || CONFIG.REACT_APP_ENV === 'test')) {
     yield call(() => firebase.auth().currentUser?.getIdToken(true));
+  }
+  if (user) {
+    const crmInfo = { email: user?.email, id: user?.id };
+    yield put(analyticsActions.identify(crmInfo));
   }
   yield put(actions.setLoggedUser(user));
 }
@@ -74,6 +79,8 @@ function* executeLogin({ payload: { email, password } }: ReturnType<typeof actio
     firebase.auth().signInWithEmailAndPassword(email, password),
   );
   if (user) {
+    const crmInfo = { email: user?.email!, id: user?.uid };
+    yield put(analyticsActions.identify(crmInfo));
     yield put(
       actions.setLoggedUser({
         emailVerified: user.emailVerified,
