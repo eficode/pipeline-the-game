@@ -5,25 +5,25 @@
         "en": "Other"
       },
       "requirementsDecisionMaker": {
-        "en": "Define requirements and propose solutions"
+        "en": "I define requirements and propose a solution"
       },
       "studentOrPotentialEmployee": {
-        "en": "Student or potential employee"
+        "en": "I am a student or a potential employee"
       },
       "influenceDecisionMaker": {
-        "en": "Influence decision"
+        "en": "I influence in the decision"
       },
       "budgetOwner": {
-        "en": "Have budget and make final decisions"
+        "en": "I have the budget and I make final decision"
       },
       "consultant": {
         "en": "Consultant"
       },
       "recommender": {
-        "en": "Give recommendations"
+        "en": "I give recommendations"
       },
       "endUser": {
-        "en": "End user"
+        "en": "I am an end user"
       }
     },
     "roles": [
