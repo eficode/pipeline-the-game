@@ -26,6 +26,7 @@ type Props = {
   CustomInput?: React.ComponentType<React.ComponentProps<typeof TextInput>>;
   disabled?: boolean;
   tabIndex?: React.ComponentProps<typeof TextInput>['tabIndex'];
+  autocomplete?: React.ComponentProps<typeof TextInput>['autocomplete'];
 };
 
 /**
