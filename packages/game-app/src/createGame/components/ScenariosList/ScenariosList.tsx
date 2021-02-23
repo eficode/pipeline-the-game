@@ -26,11 +26,31 @@ const LeftArrowIcon = styled(RightArrowIcon)`
 
 const LeftArrowBox = styled(Box)`
   z-index: 1;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 100px;
+  padding-left: 2px;
+  left: 0;
+  top: 0;
+  position: absolute;
   background: transparent linear-gradient(90deg, #eeeeee 30px, #e3eeec00 100%) 0 0 no-repeat padding-box;
 `;
 
 const RightArrowBox = styled(Box)`
   z-index: 1;
+  flex-direction: row;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  width: 100px;
+  padding-right: 2px;
+  right: 0;
+  top: 0;
+  position: absolute;
   background: transparent linear-gradient(270deg, #eeeeee 30px, #e3eeec00 100%) 0 0 no-repeat padding-box;
 `;
 
@@ -72,18 +92,7 @@ const ScenariosList: React.FC<Props> = ({ cards, onScenarioSelected, selectedSce
   return (
     <Wrapper>
       {scrollLeft !== 0 && (
-        <LeftArrowBox
-          paddingLeft={2}
-          flexDirection="row"
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-start"
-          height="100%"
-          width={100}
-          position="absolute"
-          left={0}
-          top={0}
-        >
+        <LeftArrowBox>
           <IconButton variant="clearSmall" onClick={scrollToLeft}>
             <LeftArrowIcon />
           </IconButton>
@@ -111,18 +120,7 @@ const ScenariosList: React.FC<Props> = ({ cards, onScenarioSelected, selectedSce
         ))}
       </Box>
       {scrollLeft < maxScroll && (
-        <RightArrowBox
-          paddingRight={2}
-          flexDirection="row"
-          display="flex"
-          alignItems="center"
-          justifyContent="flex-end"
-          height="100%"
-          width={100}
-          position="absolute"
-          right={0}
-          top={0}
-        >
+        <RightArrowBox>
           <IconButton variant="clearSmall" onClick={scrollToRight}>
             <RightArrowIcon />
           </IconButton>
