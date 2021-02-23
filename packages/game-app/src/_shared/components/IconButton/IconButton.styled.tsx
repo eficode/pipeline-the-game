@@ -35,6 +35,16 @@ export const StyledButton = styled.button<{ active?: boolean; variant: IconButto
           background: '#eeeeee',
           color: '#00867c',
         },
+        '& > svg': {
+          width: '24px',
+          height: '24px',
+        },
+      },
+      clear: {
+        '& > svg': {
+          width: '24px',
+          height: '24px',
+        },
       },
       rounded: {
         borderRadius: '50%',
