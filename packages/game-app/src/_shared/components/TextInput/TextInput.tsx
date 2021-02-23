@@ -17,11 +17,24 @@ type Props = {
   type?: string;
   disabled?: boolean;
   tabIndex?: React.ComponentProps<typeof Input>['tabIndex'];
+  autocomplete?: React.ComponentProps<typeof Input>['autocomplete'];
 };
 
 const TextInput = React.forwardRef<HTMLInputElement, Props>(
   (
-    { name, value, errorMessage, label, labelDetails, placeholder, onChange, type = 'text', disabled, tabIndex },
+    {
+      name,
+      value,
+      errorMessage,
+      label,
+      labelDetails,
+      placeholder,
+      onChange,
+      type = 'text',
+      disabled,
+      tabIndex,
+      autocomplete,
+    },
     ref,
   ) => {
     return (
@@ -45,6 +58,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>(
           id={name}
           onChange={onChange}
           tabIndex={tabIndex}
+          autocomplete={autocomplete}
         />
         {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
       </InputContainer>

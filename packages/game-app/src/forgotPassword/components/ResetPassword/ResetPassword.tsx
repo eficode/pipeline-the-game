@@ -79,6 +79,7 @@ const ResetPassword: React.FC<Props> = () => {
                     placeholder={t('resetPassword.form.password.placeholder')}
                     labelDetails={t('auth.errors.passwordRequirements')}
                     disabled={resetLoading || verifyActionCodeLoading}
+                    autocomplete="new-password"
                   />
                   <Box mt={3}>
                     <FormTextField
@@ -87,6 +88,7 @@ const ResetPassword: React.FC<Props> = () => {
                       label={t('resetPassword.form.repeatPassword.label')}
                       placeholder={t('resetPassword.form.repeatPassword.placeholder')}
                       disabled={resetLoading || verifyActionCodeLoading}
+                      autocomplete="new-password"
                     />
                   </Box>
                   <Box textAlign="center" mt={5}>

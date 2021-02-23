@@ -76,6 +76,7 @@ const Signup: React.FC<Props> = () => {
                         name="firstName"
                         label={t('signup.form.firstName.label')}
                         placeholder={t('signup.form.firstName.placeholder')}
+                        autocomplete="given-name"
                       />
                     </Box>
                     <Box flex={1} ml={3}>
@@ -83,6 +84,7 @@ const Signup: React.FC<Props> = () => {
                         name="lastName"
                         label={t('signup.form.lastName.label')}
                         placeholder={t('signup.form.lastName.placeholder')}
+                        autocomplete="family-name"
                       />
                     </Box>
                   </Box>
@@ -92,6 +94,7 @@ const Signup: React.FC<Props> = () => {
                       name="email"
                       label={t('signup.form.email.label')}
                       placeholder={t('signup.form.email.placeholder')}
+                      autocomplete="email"
                     />
                   </Box>
                   <Box mt={3} display="flex" flexDirection="row">
@@ -102,6 +105,7 @@ const Signup: React.FC<Props> = () => {
                         label={t('signup.form.password.label')}
                         labelDetails={t('auth.errors.passwordRequirements')}
                         placeholder={t('signup.form.password.placeholder')}
+                        autocomplete="new-password"
                       />
                     </Box>
                     <Box flex={1} ml={3}>
@@ -110,6 +114,7 @@ const Signup: React.FC<Props> = () => {
                         name="repeatPassword"
                         label={t('signup.form.repeatPassword.label')}
                         placeholder={t('signup.form.repeatPassword.placeholder')}
+                        autocomplete="new-password"
                       />
                     </Box>
                   </Box>

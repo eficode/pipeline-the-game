@@ -64,6 +64,7 @@ const ForgotPassword: React.FC<Props> = () => {
                     name="email"
                     label={t('forgotPassword.form.email.label')}
                     placeholder={t('forgotPassword.form.email.placeholder')}
+                    autocomplete="email"
                   />
                   <Box textAlign="center" mt={5}>
                     <Button
