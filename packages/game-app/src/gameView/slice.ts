@@ -62,6 +62,9 @@ const extraActions = {
     target: 'panel' | 'board';
     position?: { x: number; y: number };
   }>(`${name}/updateCardPosition`),
+  unlockCard: createNetworkRequiringAction<{
+    cardId: string;
+  }>(`${name}/unlockCard`),
   setEstimation: createNetworkRequiringAction<{ cardId: string; estimation: string }>(`${name}/setEstimation`),
   startListenToGameState: createAction<string>(`${name}/startListenToGameState`),
 };
@@ -157,6 +160,13 @@ const slice = createSlice({
       gameState.cardsState[action.payload.cardId] = {
         ...(gameState.cardsState[action.payload.cardId] || {}),
         estimation: action.payload.estimation,
+      };
+    });
+    builder.addCase(extraActions.unlockCard, (state, action) => {
+      const gameState = state.gameState!;
+      gameState.cardsState[action.payload.cardId] = {
+        ...(gameState.cardsState[action.payload.cardId] || {}),
+        lockedBy: null,
       };
     });
   },

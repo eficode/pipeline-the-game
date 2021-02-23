@@ -12,7 +12,7 @@ type CardMovingStart = {
 type CardMovingEnd = {
   type: GameEventType.CardMovingEnd;
   cardId: string;
-  target: 'board' | 'panel';
+  target: 'board' | 'panel' | null;
   position?: {
     x: number;
     y: number;

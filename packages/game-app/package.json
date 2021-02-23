@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@dnd-kit/core": "^1.0.1",
+    "@dnd-kit/modifiers": "^1.0.1",
     "@hookform/resolvers": "^1.2.0",
     "@pipeline/common": "^0.4.0",
     "@reduxjs/toolkit": "^1.5.0",

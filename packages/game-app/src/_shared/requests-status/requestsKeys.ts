@@ -15,6 +15,7 @@ export interface RequestsKeys {
   'game.saveCardPosition': null;
   'game.saveEstimation': null;
   'game.saveCardLock': null;
+  'game.saveUnlockCard': null;
   'game.saveReview': null;
   createGame: null;
   'loadBalancer.status': null;

@@ -25,7 +25,7 @@ type GameProps = {
 
 const initialPan = {
   y: -700,
-  x: 0,
+  x: -15,
 };
 
 const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
