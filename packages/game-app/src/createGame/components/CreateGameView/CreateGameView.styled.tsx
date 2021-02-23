@@ -18,12 +18,12 @@ export const CreateGameContainer = styled.div`
 CreateGameContainer.displayName = 'CreateGameContainer';
 
 export const CreateGameContent = styled.div`
-  width: 80%;
-  max-width: 900px;
+  width: 85%;
+  max-width: 1000px;
   background: rgba(255, 255, 255, 0.5);
   box-shadow: 0px 0px 6px #d7d2cb80;
   border-radius: 10px;
-  padding: 24px 40px;
+  padding: 20px 0px;
 `;
 
 CreateGameContent.displayName = 'CreateGameContent';

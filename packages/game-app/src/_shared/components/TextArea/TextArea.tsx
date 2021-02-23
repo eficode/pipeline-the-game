@@ -17,7 +17,6 @@ const StyledTextArea = styled.textarea`
   border: 0;
   border-radius: 10px;
   resize: none;
-  width: 100%;
   margin-top: 5px;
 
   :active {
