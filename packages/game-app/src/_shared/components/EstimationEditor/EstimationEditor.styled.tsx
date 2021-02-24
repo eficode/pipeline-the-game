@@ -32,7 +32,11 @@ const estimationWrapperDefinition = keyframes`
   }
 `;
 
-export const EstimationWrapper = styled(Box)<{ state: 'opening' | 'open' | 'closed' | 'closing'; moving: boolean }>`
+export const EstimationWrapper = styled(Box)<{
+  state: 'opening' | 'open' | 'closed' | 'closing';
+  moving: boolean;
+  chars: number;
+}>`
   position: absolute;
   top: -50px;
   left: 0;
@@ -61,7 +65,12 @@ export const EstimationWrapper = styled(Box)<{ state: 'opening' | 'open' | 'clos
       top: 12px;
       height: 32px;
       width: 80px;
+      min-width: 80px;
       border-radius: 10px 20px 20px 10px;
+      transition: width 0.5s ease-in-out;
+      :hover {
+        width: ${props.chars + 1}ch;
+      }
     `}
 
   ${props =>

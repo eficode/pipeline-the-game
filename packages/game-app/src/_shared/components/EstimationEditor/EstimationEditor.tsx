@@ -58,12 +58,13 @@ const EstimationEditor: React.FC<Props> = ({
   }, []);
 
   return (
-    <EstimationWrapper state={state} moving={moving}>
+    <EstimationWrapper state={state} moving={moving} chars={estimation ? estimation.length : 0}>
       <EstimationInputContainer state={state}>
         <form onSubmit={submit}>
           <EstimationInput
             state={state}
             ref={inputRef}
+            maxLength={20}
             WrapperComponent={EstimationInputWrapper}
             value={estimation}
             onChange={onChange}
