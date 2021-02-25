@@ -47,7 +47,7 @@ context("Create Game", () => {
   });
 
   it("should create scenario correctly using form", () => {
-    cy.containsTranslationOf('button', 'createGame.writeYours').click();
+    cy.getElementById('make-your-own').click();
     cy.getInputByName('scenarioTitle').fill('scenario test title');
     cy.getInputByName('scenarioContent').fill('scenario test content');
     cy.containsTranslationOf('button', 'createGame.createButtonText').click();

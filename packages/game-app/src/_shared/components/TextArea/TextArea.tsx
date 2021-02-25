@@ -7,6 +7,7 @@ import Typography from '../Typography';
 type Props = {
   name: string;
   label?: string;
+  placeholder?: string;
   value: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   errorMessage?: string | null;
@@ -14,17 +15,25 @@ type Props = {
 };
 
 const StyledTextArea = styled.textarea`
-  border: 0;
-  border-radius: 10px;
+  padding: 5px 10px;
   resize: none;
   margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #d7d2cb;
+  font-family: Montserrat;
+  font-size: 14px;
 
-  :active {
+  :active,
+  :focus {
     outline: none;
+  }
+
+  &:focus {
+    border: 1px solid ${props => props.theme.colors.activeAccent};
   }
 `;
 
-const TextArea: React.FC<Props> = ({ name, value, errorMessage, label, onChange, disabled }) => {
+const TextArea: React.FC<Props> = ({ name, value, errorMessage, label, onChange, disabled, placeholder }) => {
   return (
     <Box display="flex" flexDirection="column">
       {label ? (
@@ -32,7 +41,15 @@ const TextArea: React.FC<Props> = ({ name, value, errorMessage, label, onChange,
           {label}
         </Typography>
       ) : null}
-      <StyledTextArea rows={4} disabled={disabled} value={value} name={name} id={name} onChange={onChange as any} />
+      <StyledTextArea
+        rows={4}
+        disabled={disabled}
+        value={value}
+        name={name}
+        id={name}
+        onChange={onChange as any}
+        placeholder={placeholder}
+      />
       {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
     </Box>
   );

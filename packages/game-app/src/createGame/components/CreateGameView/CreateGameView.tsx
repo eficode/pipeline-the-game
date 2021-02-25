@@ -12,14 +12,20 @@ import { RoutingPath, useNavigateOnCondition } from '@pipeline/routing';
 import useCreateGame from '../../hook/useCreateGame';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { createGameValidationSchema } from '../../utils/validation';
-import { CreateGameContainer, CreateGameContent } from './CreateGameView.styled';
+import {
+  CreateGameContainer,
+  CreateGameContent,
+  CustomScenarioForm,
+  OwnScenarioButton,
+  OwnScenarioIcon,
+} from './CreateGameView.styled';
 import { ReactComponent as RightIcon } from '@assets/icons/arrow.svg';
 
 type Props = {};
 
 const CreateGameView: React.FC<Props> = () => {
   const [selectedScenarioCard, setSelectedScenario] = useState<string | null>(null);
-  const [isYourOwnVisible, setIsYourOwnVisible] = useState<boolean>();
+  const [isYourOwnVisible, setIsYourOwnVisible] = useState<boolean>(false);
 
   const t = useTranslate();
 
@@ -85,53 +91,72 @@ const CreateGameView: React.FC<Props> = () => {
 
   return (
     <CreateGameContainer>
-      <CreateGameContent>
-        <Box paddingX={20}>
-          <Typography variant="dialogHead">{t('createGame.title')}</Typography>
-          <Typography variant="content" fontWeight="600">
-            {t('createGame.subtitle', { data: { cardsCount: cards.length } })}
-          </Typography>
-        </Box>
-        <FormProvider {...methods}>
-          <form>
-            <ScenariosList cards={cards} onScenarioSelected={selectScenario} selectedScenario={selectedScenarioCard} />
-            <Box mt={3} paddingX={20}>
-              <Button
-                variant="secondary"
-                rightIcon={<RightIcon />}
-                label={t('createGame.writeYours')}
-                onClick={toggleYourOwnVisibility}
-                id="make-your-own"
+      <Box
+        display="flex"
+        minHeight="100%"
+        flexDirection="column"
+        justifyContent="center"
+        alignItems="center"
+        paddingY="24px"
+      >
+        <CreateGameContent>
+          <Box paddingX={20}>
+            <Typography variant="dialogHead">{t('createGame.title')}</Typography>
+            <Typography variant="content" fontWeight="600">
+              {t('createGame.subtitle', { data: { cardsCount: cards.length } })}
+            </Typography>
+          </Box>
+          <FormProvider {...methods}>
+            <form>
+              <ScenariosList
+                cards={cards}
+                onScenarioSelected={selectScenario}
+                selectedScenario={selectedScenarioCard}
               />
-              {isYourOwnVisible && (
-                <>
-                  <FormTextField disabled={!!selectedScenarioCard} name="scenarioTitle" />
+              <Box mt={3} paddingX={20}>
+                <OwnScenarioButton onClick={toggleYourOwnVisibility} id="make-your-own">
+                  <Box display="flex" alignItems="center">
+                    <Typography mr={2} fontWeight="600">
+                      {t('createGame.writeYours')}
+                    </Typography>
+                    <OwnScenarioIcon variant="small" open={isYourOwnVisible}>
+                      <RightIcon />
+                    </OwnScenarioIcon>
+                  </Box>
+                </OwnScenarioButton>
+                <CustomScenarioForm open={isYourOwnVisible}>
+                  <FormTextField
+                    disabled={!!selectedScenarioCard}
+                    name="scenarioTitle"
+                    placeholder={t('createGame.yourTitlePlaceholder')}
+                  />
                   <Box mt={2}>
                     <FormTextField
                       disabled={!!selectedScenarioCard}
                       CustomInput={TextArea}
                       label=" "
                       name="scenarioContent"
+                      placeholder={t('createGame.yourContentPlaceholder')}
                     />
                   </Box>
-                </>
-              )}
-              <Box textAlign="center" mt={4}>
-                <Button
-                  id="create-game-button"
-                  label={t('createGame.createButtonText')}
-                  loading={loading}
-                  onClick={submit}
-                />
-                {translatedError && <ErrorMessage message={translatedError} />}
+                </CustomScenarioForm>
+                <Box textAlign="center" mt={4}>
+                  <Button
+                    id="create-game-button"
+                    label={t('createGame.createButtonText')}
+                    loading={loading}
+                    onClick={submit}
+                  />
+                  {translatedError && <ErrorMessage message={translatedError} />}
+                </Box>
+                <Box textAlign="center" mt={2}>
+                  <Link onClick={cancel}>{t('general.cancel')}</Link>
+                </Box>
               </Box>
-              <Box textAlign="center" mt={2}>
-                <Link onClick={cancel}>{t('general.cancel')}</Link>
-              </Box>
-            </Box>
-          </form>
-        </FormProvider>
-      </CreateGameContent>
+            </form>
+          </FormProvider>
+        </CreateGameContent>
+      </Box>
     </CreateGameContainer>
   );
 };
