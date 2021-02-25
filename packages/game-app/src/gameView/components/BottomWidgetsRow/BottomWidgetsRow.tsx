@@ -72,23 +72,29 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
     [fitWindow, translate, zoomIn, zoomOut],
   );
 
+  const poweredBy = (
+    <PoweredByContainer>
+      <Typography variant="label" color="#9F998F" as="span">
+        Powered by
+      </Typography>
+      <TextLogoWrapper>
+        <EficodeTextLogo />
+      </TextLogoWrapper>
+    </PoweredByContainer>
+  );
+
+  const zoomDial = <FabDial icon={<LensIcon />} buttons={buttons} id="zoom-dial" />;
+
+  // switch zoom dial ad powered by when on review
   return (
     <BottomWidgetsRowContainer>
       <ScenarioPanel />
       {review && <ReviewPanel />}
-      <PoweredByContainer>
-        <Typography variant="label" color="#9F998F" as="span">
-          Powered by
-        </Typography>
-        <TextLogoWrapper>
-          <EficodeTextLogo />
-        </TextLogoWrapper>
-      </PoweredByContainer>
-      <FabDial icon={<LensIcon />} buttons={buttons} id="zoom-dial" />
+      {review ? zoomDial : poweredBy}
+      {review ? poweredBy : zoomDial}
     </BottomWidgetsRowContainer>
   );
 };
-
 BottomWidgetsRowStyled.displayName = 'BottomWidgetsRow';
 
 export default BottomWidgetsRowStyled;
