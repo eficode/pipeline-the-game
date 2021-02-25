@@ -26,8 +26,8 @@ const translations = {
     title: 'Pipeline - The Game that Delivers',
     newGameLabel: 'Create game',
     message:
-      'You can either join an existing game if someone shared a link with you or create a new game and invite others to play, in that case, you’ll be the facilitator. Keep in mind that only the facilitator can trigger the review mode at the end of the game.\n' +
-      'Read more about the game here.',
+      'You can either join an existing game if someone shared a link with you or create a new game and invite others to play, in that case, you’ll be the facilitator. Keep in mind that only the facilitator can trigger the review mode at the end of the game.',
+    link: 'Read more about the game here.',
     joinGame: ' Join game',
     joinButton: 'Join',
     howToPlay: 'How to play',

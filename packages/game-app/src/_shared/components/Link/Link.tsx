@@ -1,10 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { variant } from 'styled-system';
 
 type Props = {
   onClick: () => void;
   id?: string;
+  as?: 'button' | 'a';
 };
 
 type LinkVariants = 'tinyBlue' | 'tinyGray' | 'smallBlue' | 'smallGray' | 'gray' | 'blue' | 'activeAccent';
@@ -61,16 +62,25 @@ export const LinkButton = styled.button<CustomLinkProps>`
   border: 0;
   font-family: 'Montserrat';
   cursor: pointer;
+
   :focus {
     outline: none;
   }
+
+  ${props =>
+    props.as === 'a' &&
+    css`
+      :hover {
+        text-decoration: underline;
+      }
+    `}
 `;
 
 LinkButton.displayName = 'LinkButton';
 
-const Link: React.FC<CustomLinkProps> = ({ onClick, children, id, variant = 'blue' }) => {
+const Link: React.FC<CustomLinkProps> = ({ onClick, children, id, variant = 'blue', as = 'button' }) => {
   return (
-    <LinkButton id={id} data-cy={id} type="button" onClick={onClick} variant={variant}>
+    <LinkButton id={id} data-cy={id} type="button" onClick={onClick} variant={variant} as={as}>
       {children}
     </LinkButton>
   );
