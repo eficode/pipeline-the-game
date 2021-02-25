@@ -7,7 +7,7 @@ import { ReactComponent as RulesIcon } from '@assets/icons/rules.svg';
 import { ReactComponent as TriggerReviewIcon } from '@assets/icons/review.svg';
 import { Button, IconButton, Typography, useDialog } from '@pipeline/components';
 import { useHistory } from 'react-router-dom';
-import { RoutingPath } from '@pipeline/routing';
+import { RoutingPath, useNavigateOutsideTo } from '@pipeline/routing';
 import { useTranslate } from '@pipeline/i18n';
 import ShareGameDialog from '../ShareGameDialog';
 import RulesOverlay from '../RulesOverlay';
@@ -15,6 +15,7 @@ import TriggerReviewDialog from '../TriggerReviewDialog';
 import ConfirmExitDialog from '../ConfirmExitDialog';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
+import { ExternalUrl } from '@pipeline/models';
 
 type Props = {};
 
@@ -53,8 +54,7 @@ const TopWidgetsRow: React.FC<Props> = () => {
     }
   }, [review, isUserTheFacilitator, currentReview, openReviewDialog]);
 
-  // TODO
-  const contactUs = () => ({});
+  const contactUs = useNavigateOutsideTo(ExternalUrl.CONTACT_US, true);
 
   return (
     <>

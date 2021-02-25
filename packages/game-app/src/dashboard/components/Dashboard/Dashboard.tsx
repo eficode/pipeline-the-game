@@ -31,6 +31,7 @@ const Dashboard: React.FC<Props> = () => {
   const goToCreateGame = useNavigateTo(RoutingPath.CreateGame);
   const goToHowToPlay = useNavigateOutsideTo(ExternalUrl.PIPELINE_HOW_TO_PLAY, true);
   const goToGameInfo = useNavigateOutsideTo(ExternalUrl.PIPELINE, true);
+  const goToContactForm = useNavigateOutsideTo(ExternalUrl.CONTACT_US, true);
 
   return (
     <DashboardContainer>
@@ -57,7 +58,7 @@ const Dashboard: React.FC<Props> = () => {
               />
             </Box>
             <Box>
-              <Button label={t('dashboard.contactUs')} onClick={() => ({})} />
+              <Button label={t('dashboard.contactUs')} onClick={goToContactForm} />
             </Box>
           </Box>
         </DashboardHeader>
