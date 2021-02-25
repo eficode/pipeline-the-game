@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslate } from '@pipeline/i18n';
 import { useLogout } from '@pipeline/auth';
 import { RoutingPath, useNavigateOutsideTo, useNavigateTo } from '@pipeline/routing';
-import { Box, Button, TextLogo, Typography } from '@pipeline/components';
+import { Box, Button, Link, TextLogo, Typography } from '@pipeline/components';
 import JoinGameButton from '../JoinGameButton';
 import {
   AnimatedEmptyCard,
@@ -30,6 +30,7 @@ const Dashboard: React.FC<Props> = () => {
 
   const goToCreateGame = useNavigateTo(RoutingPath.CreateGame);
   const goToHowToPlay = useNavigateOutsideTo(ExternalUrl.PIPELINE_HOW_TO_PLAY, true);
+  const goToGameInfo = useNavigateOutsideTo(ExternalUrl.PIPELINE, true);
 
   return (
     <DashboardContainer>
@@ -68,6 +69,12 @@ const Dashboard: React.FC<Props> = () => {
             <Typography mt={3} variant="dialogHead" fontWeight="normal">
               {t('dashboard.message')}
             </Typography>
+            <br />
+            <Link as="a" onClick={goToGameInfo}>
+              <Typography variant="dialogHead" fontWeight="normal">
+                {t('dashboard.link')}
+              </Typography>
+            </Link>
             <Box mt={4} display="flex" flexDirection="row">
               <Button id="go-to-create-game-button" onClick={goToCreateGame} label={t('dashboard.newGameLabel')} />
               <JoinGameButton />
