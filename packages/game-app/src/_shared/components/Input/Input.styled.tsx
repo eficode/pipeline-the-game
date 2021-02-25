@@ -11,6 +11,8 @@ export const StyledInput = styled.input<{ variant: InputVariants; withIcon?: boo
   box-sizing: border-box;
   border-radius: 8px;
   display: flex;
+  font-family: Montserrat;
+  font-size: 14px;
 
   &:focus {
     outline: none;

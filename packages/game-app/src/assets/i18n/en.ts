@@ -19,6 +19,8 @@ const translations = {
     subtitle: 'Pick one of the {{cardsCount}} pre-made scenarios or create your own',
     writeYours: 'Make your own',
     createButtonText: 'Start Game',
+    yourTitlePlaceholder: 'Your scenario title',
+    yourContentPlaceholder: 'Your scenario content',
   },
   dashboard: {
     title: 'Pipeline - The Game that Delivers',
