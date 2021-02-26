@@ -3,4 +3,5 @@ export enum ExternalUrl {
   PIPELINE = 'https://www.eficode.com/pipeline-game',
   PIPELINE_HOW_TO_PLAY = 'https://www.eficode.com/pipeline-game#how-to-play',
   CHROME = 'https://www.google.com/chrome/',
+  CONTACT_US = 'https://www.eficode.com/pipeline-game-contact',
 }
