@@ -1,4 +1,5 @@
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/functions';
 
 export default async function selectBestRTDBInstance(gameId?: string): Promise<string> {
   const functions = firebase.app().functions('europe-west1');

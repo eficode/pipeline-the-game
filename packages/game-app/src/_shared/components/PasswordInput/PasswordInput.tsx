@@ -21,7 +21,7 @@ type Props = {
   errorMessage?: string | null;
   onForgotPassword?: () => void;
   forgotPasswordLabel?: string;
-  autocomplete?: React.ComponentProps<typeof Input>['autocomplete'];
+  autoComplete?: React.ComponentProps<typeof Input>['autocomplete'];
   tabIndex?: React.ComponentProps<typeof Input>['tabIndex'];
 };
 
@@ -38,7 +38,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
       forgotPasswordLabel,
       onForgotPassword,
       tabIndex,
-      autocomplete,
+      autoComplete,
     },
     ref,
   ) => {
@@ -64,7 +64,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
         <Input
           ref={ref}
           variant={!!errorMessage ? 'defaultError' : 'default'}
-          autocomplete={autocomplete}
+          autoComplete={autoComplete}
           iconRight={
             <IconButton variant="clearSmall" onClick={toggleType} tabIndex={-1}>
               <StyledIcon variant="small">{type === 'password' ? <EyeIcon /> : <HideIcon />}</StyledIcon>

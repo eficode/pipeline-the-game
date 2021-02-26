@@ -109,9 +109,9 @@ export const ButtonSpinner = styled(Spinner)`
 
 ButtonSpinner.displayName = 'ButtonSpinner';
 
-export const ButtonLabel = styled(Typography)<{ loading?: boolean }>`
+export const ButtonLabel = styled(Typography)<{ $loading?: boolean }>`
   ${props =>
-    props.loading &&
+    props.$loading &&
     css`
       visibility: hidden;
     `}

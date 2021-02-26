@@ -59,7 +59,7 @@ const Button: React.FC<Props> = ({
           <HoverIconWrapper variant="small">{leftIconHover || leftIcon!}</HoverIconWrapper>
         ) : null}
         {loading && <ButtonSpinner />}
-        <ButtonLabel loading={loading}>{label}</ButtonLabel>
+        <ButtonLabel $loading={loading}>{label}</ButtonLabel>
         {rightIcon ? (
           <NotHoverIconWrapper ml={3} variant="small">
             {rightIcon}
