@@ -8,7 +8,7 @@ export const SignupContent = styled(Box)`
   scrollbar-width: 2px;
 
   ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
     background-color: rgba(255, 255, 255, 0.5);
     border-radius: 5px;
   }
