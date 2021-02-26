@@ -10,6 +10,7 @@ import Box from '../Box';
 import Link from '../Link';
 import PopoverDetails from '../PopoverDetails';
 import StyledIcon from '../Icon';
+import { TextInput } from '@pipeline/components';
 
 type Props = {
   name: string;
@@ -23,6 +24,7 @@ type Props = {
   forgotPasswordLabel?: string;
   autoComplete?: React.ComponentProps<typeof Input>['autocomplete'];
   tabIndex?: React.ComponentProps<typeof Input>['tabIndex'];
+  maxLength?: React.ComponentProps<typeof TextInput>['maxLength'];
 };
 
 const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
@@ -39,6 +41,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
       onForgotPassword,
       tabIndex,
       autoComplete,
+      maxLength,
     },
     ref,
   ) => {
@@ -77,6 +80,7 @@ const PasswordInput = React.forwardRef<HTMLInputElement, Props>(
           id={name}
           onChange={onChange}
           tabIndex={tabIndex}
+          maxLength={maxLength}
         />
         {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
       </InputContainer>

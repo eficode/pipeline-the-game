@@ -129,6 +129,7 @@ const CreateGameView: React.FC<Props> = () => {
                     disabled={!!selectedScenarioCard}
                     name="scenarioTitle"
                     placeholder={t('createGame.yourTitlePlaceholder')}
+                    maxLength={100}
                   />
                   <Box mt={2}>
                     <FormTextField
@@ -137,6 +138,7 @@ const CreateGameView: React.FC<Props> = () => {
                       label=" "
                       name="scenarioContent"
                       placeholder={t('createGame.yourContentPlaceholder')}
+                      maxLength={3000}
                     />
                   </Box>
                 </CustomScenarioForm>

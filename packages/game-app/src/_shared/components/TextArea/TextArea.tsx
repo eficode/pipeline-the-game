@@ -12,6 +12,7 @@ type Props = {
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   errorMessage?: string | null;
   disabled?: boolean;
+  maxLength?: number;
 };
 
 const StyledTextArea = styled.textarea`
@@ -33,7 +34,16 @@ const StyledTextArea = styled.textarea`
   }
 `;
 
-const TextArea: React.FC<Props> = ({ name, value, errorMessage, label, onChange, disabled, placeholder }) => {
+const TextArea: React.FC<Props> = ({
+  name,
+  value,
+  errorMessage,
+  label,
+  onChange,
+  disabled,
+  placeholder,
+  maxLength,
+}) => {
   return (
     <Box display="flex" flexDirection="column">
       {label ? (
@@ -49,6 +59,7 @@ const TextArea: React.FC<Props> = ({ name, value, errorMessage, label, onChange,
         id={name}
         onChange={onChange as any}
         placeholder={placeholder}
+        maxLength={maxLength}
       />
       {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
     </Box>

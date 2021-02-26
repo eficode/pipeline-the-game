@@ -18,6 +18,7 @@ type Props = {
   disabled?: boolean;
   tabIndex?: React.ComponentProps<typeof Input>['tabIndex'];
   autoComplete?: React.ComponentProps<typeof Input>['autocomplete'];
+  maxLength?: React.ComponentProps<typeof Input>['maxLength'];
 };
 
 const TextInput = React.forwardRef<HTMLInputElement, Props>(
@@ -34,6 +35,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>(
       disabled,
       tabIndex,
       autoComplete,
+      maxLength,
     },
     ref,
   ) => {
@@ -59,6 +61,7 @@ const TextInput = React.forwardRef<HTMLInputElement, Props>(
           onChange={onChange}
           tabIndex={tabIndex}
           autoComplete={autoComplete}
+          maxLength={maxLength}
         />
         {errorMessage ? <ErrorMessage message={errorMessage} /> : null}
       </InputContainer>
