@@ -77,7 +77,7 @@ const Signup: React.FC<Props> = () => {
                         label={t('signup.form.firstName.label')}
                         placeholder={t('signup.form.firstName.placeholder')}
                         autoComplete="given-name"
-                        maxLength={99}
+                        maxLength={100}
                       />
                     </Box>
                     <Box flex={1} ml={3}>
@@ -86,7 +86,7 @@ const Signup: React.FC<Props> = () => {
                         label={t('signup.form.lastName.label')}
                         placeholder={t('signup.form.lastName.placeholder')}
                         autoComplete="family-name"
-                        maxLength={99}
+                        maxLength={100}
                       />
                     </Box>
                   </Box>
@@ -97,7 +97,7 @@ const Signup: React.FC<Props> = () => {
                       label={t('signup.form.email.label')}
                       placeholder={t('signup.form.email.placeholder')}
                       autoComplete="email"
-                      maxLength={200}
+                      maxLength={250}
                     />
                   </Box>
                   <Box mt={3} display="flex" flexDirection="row">
@@ -109,7 +109,7 @@ const Signup: React.FC<Props> = () => {
                         labelDetails={t('auth.errors.passwordRequirements')}
                         placeholder={t('signup.form.password.placeholder')}
                         autoComplete="new-password"
-                        maxLength={300}
+                        maxLength={50}
                       />
                     </Box>
                     <Box flex={1} ml={3}>
@@ -119,7 +119,7 @@ const Signup: React.FC<Props> = () => {
                         label={t('signup.form.repeatPassword.label')}
                         placeholder={t('signup.form.repeatPassword.placeholder')}
                         autoComplete="new-password"
-                        maxLength={300}
+                        maxLength={50}
                       />
                     </Box>
                   </Box>
