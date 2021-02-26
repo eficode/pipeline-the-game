@@ -1,5 +1,7 @@
 import CONFIG from '@pipeline/app-config';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 
 export async function initializeRTDB(rtdbInstance: string, gameId: string) {
   const app = firebase.initializeApp(

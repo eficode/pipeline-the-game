@@ -31,30 +31,30 @@ const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigat
 function renderAuthRoutes(user: AuthUser | null) {
   if (!user) {
     return [
-      <Route path={RoutingPath.Login} component={Login} />,
-      <Route path={RoutingPath.Signup} component={Signup} />,
-      <Route path={RoutingPath.EmailRouter} component={EmailRouter} />,
-      <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
-      <Route path={RoutingPath.ForgotPassword} component={ForgotPassword} />,
-      <Route path={RoutingPath.ResetPassword} component={ResetPassword} />,
-      <Route path="*">
+      <Route key={RoutingPath.Login} path={RoutingPath.Login} component={Login} />,
+      <Route key={RoutingPath.Signup} path={RoutingPath.Signup} component={Signup} />,
+      <Route key={RoutingPath.EmailRouter} path={RoutingPath.EmailRouter} component={EmailRouter} />,
+      <Route key={RoutingPath.VerifyEmail} path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
+      <Route key={RoutingPath.ForgotPassword} path={RoutingPath.ForgotPassword} component={ForgotPassword} />,
+      <Route key={RoutingPath.ResetPassword} path={RoutingPath.ResetPassword} component={ResetPassword} />,
+      <Route key="*" path="*">
         <Redirect to={RoutingPath.Login} />
       </Route>,
     ];
   }
   if (user && !user.emailVerified) {
     return [
-      <Route path={RoutingPath.Signup} component={Signup} />,
-      <Route path={RoutingPath.EmailRouter} component={EmailRouter} />,
-      <Route path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
-      <Route path="*">
+      <Route key={RoutingPath.Signup} path={RoutingPath.Signup} component={Signup} />,
+      <Route key={RoutingPath.EmailRouter} path={RoutingPath.EmailRouter} component={EmailRouter} />,
+      <Route key={RoutingPath.VerifyEmail} path={RoutingPath.VerifyEmail} component={VerifyEmail} />,
+      <Route key="*" path="*">
         <Redirect to={RoutingPath.Signup} />
       </Route>,
     ];
   }
   if (user && user.emailVerified) {
     return (
-      <Route path="*">
+      <Route key="*" path="*">
         <Redirect to={RoutingPath.Dashboard} />
       </Route>
     );
