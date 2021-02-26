@@ -1,12 +1,12 @@
 {
   "name": "game-app",
-  "version": "0.4.0",
+  "version": "1.0.0-beta.0",
   "private": true,
   "dependencies": {
     "@dnd-kit/core": "^1.0.1",
     "@dnd-kit/modifiers": "^1.0.1",
     "@hookform/resolvers": "^1.2.0",
-    "@pipeline/common": "^0.4.0",
+    "@pipeline/common": "^1.0.0-beta.0",
     "@reduxjs/toolkit": "^1.5.0",
     "firebase": "^8.2.5",
     "i18n-js": "^3.8.0",

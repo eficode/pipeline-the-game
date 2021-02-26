@@ -3,6 +3,51 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.0](https://github.com/eficode/pipeline-the-game/compare/v0.4.0...v1.0.0-beta.0) (2021-02-26)
+
+
+### Bug Fixes
+
+* **app-board:** update game rules overlay ([8278262](https://github.com/eficode/pipeline-the-game/commit/827826277dce9a105baa293997b23e09b02c565b))
+* **app-board:** update review icon ([0a6212d](https://github.com/eficode/pipeline-the-game/commit/0a6212dabe253ee08b741a83cdda305097e4468e))
+* **app-create-game:** fix cypress tests ([dc77da5](https://github.com/eficode/pipeline-the-game/commit/dc77da5ab925f08188895dd358c0a5a3cb1120fb))
+* **app-create-game:** improve create game layout ([310671c](https://github.com/eficode/pipeline-the-game/commit/310671c12c21a32b9177918b0e7aa63741b55881))
+* **app-dashboard:** add link to game info ([d51bd24](https://github.com/eficode/pipeline-the-game/commit/d51bd24f0462ff5169f1262efaf1c5b9aaddfd13))
+* **app-general:** add board hover detection ([598dbc9](https://github.com/eficode/pipeline-the-game/commit/598dbc90066b17988310c7c0f34b914fc367c474))
+* **app-general:** add card movement restriction to board and to window ([9c7c51b](https://github.com/eficode/pipeline-the-game/commit/9c7c51b08ffbb4e57b96d415debaf95478f2c9b0))
+* **app-general:** edit sensibility for moving into panel ([6f64222](https://github.com/eficode/pipeline-the-game/commit/6f64222d56abe9bd6d03177f03b9d343d3d81d2f))
+* **app-general:** fix build issues ([4a6febf](https://github.com/eficode/pipeline-the-game/commit/4a6febfb6796124d5f3448cbeeefd3f8446419f3))
+* **app-general:** fix text logo click behaviour ([583de1a](https://github.com/eficode/pipeline-the-game/commit/583de1adcf34971abc2728cfa6e2749330da6e75))
+* **app-general:** update autocomplete case ([a553929](https://github.com/eficode/pipeline-the-game/commit/a553929d5308b1d3368d1d0b9e74efbc3d5a8171))
+* **app-general:** update crm props passing ([e663dca](https://github.com/eficode/pipeline-the-game/commit/e663dca7ef6f7f066fc1287daf853a4aca1f1d15))
+* **app-general:** update labels to match crm ([538272f](https://github.com/eficode/pipeline-the-game/commit/538272fba743b2055c90c2065d4ef65dcf1b7746))
+* **app-general:** update maxLength using the same as you validation ([0c276a3](https://github.com/eficode/pipeline-the-game/commit/0c276a33fc99832e4810a50e20ba9140450c072f))
+* **app-signup:** update maxLength of names ([9621185](https://github.com/eficode/pipeline-the-game/commit/962118535c242799423e6230d36ab209c52804b3))
+
+
+### Features
+
+* **app-board:** add estimation hover effect to see entire text ([8e43904](https://github.com/eficode/pipeline-the-game/commit/8e4390462359735934fd4a07c249d19bcc27ab5c))
+* **app-board:** switch zoom dial and logo in review mode ([09e14f2](https://github.com/eficode/pipeline-the-game/commit/09e14f2633fa025a2c9bdbcc26bc6320dde2839c))
+* **app-create-game:** improve create game ui ([68b0984](https://github.com/eficode/pipeline-the-game/commit/68b098443c83d1d69bf573141530f1cfda397c26))
+* **app-general:** add autocomplete to input ([f47c06a](https://github.com/eficode/pipeline-the-game/commit/f47c06ac6c790806faf5764b6c27f142c0827c4b))
+* **app-general:** add blocking dialog for small screens ([2e41fef](https://github.com/eficode/pipeline-the-game/commit/2e41fef3c7542c765195d3b1555b6267599c3258))
+* **app-general:** add contact us link ([6e2c22b](https://github.com/eficode/pipeline-the-game/commit/6e2c22b5d034a61d0acebbe6becdf2079baa7939))
+* **app-general:** add hubspot user identification ([a90aaa6](https://github.com/eficode/pipeline-the-game/commit/a90aaa6686338f5b149744777129c7a6fc480196))
+* **app-general:** add link to text logo ([52b63c7](https://github.com/eficode/pipeline-the-game/commit/52b63c7ddffb74e7b09d74caf13d54eb30d06b07))
+* **app-general:** add margin to dialog ([1f6e0cc](https://github.com/eficode/pipeline-the-game/commit/1f6e0ccf5fa782974a22b084ec932174ab25eefd))
+* **app-general:** add max length error ([c06ebf3](https://github.com/eficode/pipeline-the-game/commit/c06ebf35213c7886545b41063a69213965252736))
+* **app-general:** add maxLength field to inputs ([cf0b3ba](https://github.com/eficode/pipeline-the-game/commit/cf0b3bac86533ea4331c2a91e2f35d6fe72407b8))
+* **app-general:** add new password suggestion ([96f8e61](https://github.com/eficode/pipeline-the-game/commit/96f8e618a5874a8b9671e426b06ef27be011c9b3))
+* **app-general:** add tab index support ([63c3875](https://github.com/eficode/pipeline-the-game/commit/63c38750ae7b03e38aecd336ebce9d1d0ddd1308))
+* **app-general:** add version text style and powered by ([85ed8bf](https://github.com/eficode/pipeline-the-game/commit/85ed8bf05bc475b881e06d1c0f588d853d7b83ac))
+* **app-general:** attach analytics saga ([1d00310](https://github.com/eficode/pipeline-the-game/commit/1d00310bf155a2ca93dffbf2581fbf17d9524190))
+* **app-general:** improve small screen dialog component ([e0a544f](https://github.com/eficode/pipeline-the-game/commit/e0a544fa99452578587e211ca9fbc8aff0f15221))
+
+
+
+
+
 # [0.4.0](https://github.com/eficode/pipeline-the-game/compare/v0.3.3...v0.4.0) (2021-02-18)
 
 
