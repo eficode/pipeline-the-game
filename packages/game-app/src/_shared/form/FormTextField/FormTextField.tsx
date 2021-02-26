@@ -27,6 +27,7 @@ type Props = {
   disabled?: boolean;
   tabIndex?: React.ComponentProps<typeof TextInput>['tabIndex'];
   autoComplete?: React.ComponentProps<typeof TextInput>['autoComplete'];
+  maxLength?: React.ComponentProps<typeof TextInput>['maxLength'];
 };
 
 /**

@@ -58,6 +58,7 @@ const Login: React.FC<Props> = () => {
                   label={t('login.form.email.label')}
                   placeholder={t('login.form.email.placeholder')}
                   autoComplete="email"
+                  maxLength={200}
                 />
                 <Box mt={3}>
                   <FormTextField
@@ -66,6 +67,7 @@ const Login: React.FC<Props> = () => {
                     label={t('login.form.password.label')}
                     placeholder={t('login.form.password.placeholder')}
                     autoComplete="current-password"
+                    maxLength={300}
                     {...passwordProps}
                   />
                 </Box>

@@ -22,6 +22,7 @@ const Input: React.FC<Props> = React.forwardRef<HTMLInputElement, Props>(
           className={className}
           withIcon={!!iconLeft}
           variant={variant}
+          maxLength={100}
           {...rest}
         />
         {iconLeft ? <LeftInputIcon>{iconLeft}</LeftInputIcon> : null}
