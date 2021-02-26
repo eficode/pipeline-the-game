@@ -43,8 +43,8 @@ service cloud.firestore {
           scenarioCard.content == gameData.scenarioContent)
         ||
         (gameData.scenarioCardId == null &&
-        isStringShorterThan(gameData.scenarioTitle, 100) &&
-        isStringShorterThan(gameData.scenarioContent, 3000))
+        isStringShorterThanOrEqual(gameData.scenarioTitle, 100) &&
+        isStringShorterThanOrEqual(gameData.scenarioContent, 3000))
       ) &&
       existsDocumentData(/decks/$(gameData.deckId)) &&
       isMapBigAs(gameData.facilitator, 1) &&
@@ -56,7 +56,7 @@ service cloud.firestore {
       gameData.review == false &&
       gameData.boardDimensions.x == 3840 &&
       gameData.boardDimensions.y == 2160 &&
-      isStringShorterThan(gameData.name, 100);
+      isStringShorterThanOrEqual(gameData.name, 100);
     }
 
     function isValidUserCreate() {
@@ -66,8 +66,8 @@ service cloud.firestore {
 
       return userData.keys().hasOnly(['role', 'devOpsMaturity', 'email', 'firstName', 'lastName', 'createdAt'])
         && userData.email == request.auth.token.email
-        && isStringShorterThan(userData.firstName, 100)
-        && isStringShorterThan(userData.lastName, 100)
+        && isStringShorterThanOrEqual(userData.firstName, 100)
+        && isStringShorterThanOrEqual(userData.lastName, 100)
         && allowedRoles.hasAny([userData.role])
         && allowedMaturities.hasAny([userData.devOpsMaturity])
         && isServerCreationTime(userData.createdAt);
@@ -77,8 +77,8 @@ service cloud.firestore {
       return val is map && val.size() == size;
     }
 
-    function isStringShorterThan(val, len) {
-      return val is string && val.size() < len;
+    function isStringShorterThanOrEqual(val, len) {
+      return val is string && val.size() <= len;
     }
 
     function isServerCreationTime(val) {

@@ -154,7 +154,7 @@ describe("Game create", () => {
     const gameRef = db.collection(FirebaseCollection.Games).doc('game1');
     await firebase.assertFails(gameRef.set({
       name: 'testName',
-      scenarioTitle: 'x'.repeat(100),
+      scenarioTitle: 'x'.repeat(101),
       scenarioContent: 'Content',
       scenarioCardId: null,
       facilitator: {
@@ -177,7 +177,7 @@ describe("Game create", () => {
     await firebase.assertFails(gameRef.set({
       name: 'testName',
       scenarioTitle: 'Title',
-      scenarioContent: 'x'.repeat(3000),
+      scenarioContent: 'x'.repeat(3001),
       scenarioCardId: null,
       facilitator: {
         id: userUID
