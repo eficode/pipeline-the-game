@@ -77,7 +77,7 @@ const Signup: React.FC<Props> = () => {
                         label={t('signup.form.firstName.label')}
                         placeholder={t('signup.form.firstName.placeholder')}
                         autoComplete="given-name"
-                        maxLength={100}
+                        maxLength={99}
                       />
                     </Box>
                     <Box flex={1} ml={3}>
@@ -86,7 +86,7 @@ const Signup: React.FC<Props> = () => {
                         label={t('signup.form.lastName.label')}
                         placeholder={t('signup.form.lastName.placeholder')}
                         autoComplete="family-name"
-                        maxLength={100}
+                        maxLength={99}
                       />
                     </Box>
                   </Box>
