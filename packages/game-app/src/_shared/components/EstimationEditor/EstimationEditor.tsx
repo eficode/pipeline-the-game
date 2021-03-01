@@ -54,8 +54,14 @@ const EstimationEditor: React.FC<Props> = ({
   );
 
   useEffect(() => {
-    inputRef?.current?.focus();
-  }, []);
+    setEstimation(initialEstimation || '');
+  }, [initialEstimation]);
+
+  useEffect(() => {
+    if (state === 'open') {
+      inputRef?.current?.focus();
+    }
+  }, [state]);
 
   return (
     <EstimationWrapper state={state} moving={moving} chars={estimation ? estimation.length : 0}>
