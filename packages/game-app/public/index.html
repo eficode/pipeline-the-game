@@ -5,36 +5,38 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Pipeline, the game that delivers!" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;1,700&family=Montserrat:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <script>
-      console.info("%cPipeline the Game version %REACT_APP_VERSION%" ,"color:#0b0500; font-size:40px; background: #ffd700; font-weight:600;");
-      console.info("%cPowered by eficode https://www.eficode.com/" ,"font-size:25px; font-weight:600;");
+      console.info(
+        '%cPipeline the Game version %REACT_APP_VERSION%',
+        'color:#0b0500; font-size:40px; background: #ffd700; font-weight:600;',
+      );
+      console.info('%cPowered by eficode https://www.eficode.com/', 'font-size:25px; font-weight:600;');
     </script>
     <% if (process.env.REACT_APP_ENV === "prod") { %>
-      <!-- production -->
-      <!-- Start of HubSpot Embed Code -->
-      <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2714969.js"></script>
-      <!-- End of HubSpot Embed Code -->
+    <!-- production -->
+    <!-- Start of HubSpot Embed Code -->
+    <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2714969.js"></script>
+    <!-- End of HubSpot Embed Code -->
 
     <script>
       // remove logs in production
-      var emptyFunction = function() {};
+      var emptyFunction = function () {};
       console.debug = emptyFunction;
       console.error = emptyFunction;
       console.log = emptyFunction;
       console.warn = emptyFunction;
-
     </script>
     <% } %>
 
@@ -53,56 +55,56 @@
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <style>
       #initial-loading-overlay {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          width: 100vw;
-          height: 100vh;
-          min-width: 100vw;
-          max-height: 100vh;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+        min-width: 100vw;
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
 
       @-webkit-keyframes rotate {
-          0% {
-              -webkit-transform: rotateY(0deg);
-          }
-          50% {
-              -webkit-transform: rotateY(180deg);
-          }
-          100% {
-              -webkit-transform: rotateY(0deg);
-          }
+        0% {
+          -webkit-transform: rotateY(0deg);
+        }
+        50% {
+          -webkit-transform: rotateY(180deg);
+        }
+        100% {
+          -webkit-transform: rotateY(0deg);
+        }
       }
 
       @keyframes rotate {
-          0% {
-              transform: rotateY(0deg);
-          }
-          50% {
-              transform: rotateY(180deg);
-          }
-          100% {
-              transform: rotateY(0deg);
-          }
+        0% {
+          transform: rotateY(0deg);
+        }
+        50% {
+          transform: rotateY(180deg);
+        }
+        100% {
+          transform: rotateY(0deg);
+        }
       }
 
-      #initial-loading-overlay img{
-          width: 20%;
-          height: 20%;
-          -webkit-animation: rotate 1s linear infinite;
-          /* Safari */
-          animation: rotate 1s linear infinite;
+      #initial-loading-overlay img {
+        width: 20%;
+        height: 20%;
+        -webkit-animation: rotate 1s linear infinite;
+        /* Safari */
+        animation: rotate 1s linear infinite;
       }
     </style>
     <div id="root"></div>
     <div id="initial-loading-overlay">
-      <img src="/eficode-logo.svg">
+      <img src="/eficode-logo.svg" />
     </div>
     <!--
       This HTML file is a template.
