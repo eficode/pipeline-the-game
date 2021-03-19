@@ -1,136 +1,284 @@
-Pipeline: the game that delivers
-===
+# Pipeline: the game that delivers
 
 ### Table of Content
+
 1. [Introduction](#pencil2-introduction)
 2. [System Requirements](#memo-system-requirements)
-3. [How to run](#scroll-how-to-run)    
-    a. [Run locally](#run-locally)    
-    b. [Run with Firebase](#run-with-firebase)    
+3. [How to run](#scroll-how-to-run)  
+   a. [Run locally](#run-locally)  
+   b. [Run with Firebase](#run-with-firebase)
 4. [How to make a production-ready build](#building_construction-how-to-make-a-production-ready-build)
 5. [How to deploy to Firebase](#rocket-how-to-deploy-to-firebase)
 6. [General project structure](#office-general-project-structure)
 
 ## :pencil2: Introduction
-*Introduction taken from [Eficode's Pipeline page](https://www.praqma.com/stories/pipeline-card-game/).*
 
-"What testing steps should you include in your **Continuous Delivery** pipeline? Don’t just string together existing manual processes - use simple, collaborative tools to design something better!
+_Introduction taken from
+[Eficode's Pipeline page](https://www.eficode.com/pipeline-game)._
 
-Creating a Continuous Delivery (**CD**) pipeline is a key development in an organization’s transformation to DevOps. A CD Pipeline covers all the activities needed to transform a code change made by a developer into updated software bringing value to users. Steps in the pipeline include building a new version of the software as well as testing and deploying it. Exactly what kinds of build, test and deployment steps will depend on many factors and there is no ‘one perfect pipeline’ which will suit all situations.
+"What testing steps should you include in your
+**Continuous Delivery** pipeline? Don’t just
+string together existing manual processes - use
+simple, collaborative tools to design something
+better!
 
-I created the card game ‘Pipeline’ as a quick and fun way to explore alternatives for a CD pipeline without actually building anything. The goal of the game is to design a pipeline for a given scenario and optimize the deployment lead time. You work in a small group and get to discuss what steps are needed and which order you want to do them in. You will run into design tradeoff decisions and may discover people have different risk tolerances. If you play the game a second time with a different scenario, or compare notes with another group, you can learn more about how different scenarios drive different decisions.
+Creating a Continuous Delivery (**CD**) pipeline
+is a key development in an organization’s
+transformation to DevOps. A CD Pipeline covers all
+the activities needed to transform a code change
+made by a developer into updated software bringing
+value to users. Steps in the pipeline include
+building a new version of the software as well as
+testing and deploying it. Exactly what kinds of
+build, test and deployment steps will depend on
+many factors and there is no ‘one perfect
+pipeline’ which will suit all situations.
 
-Playing the game should help you to build a real pipeline for the real software system you are working on. Building a CD pipeline needs specialist knowledge of particular tools and could be many weeks of work. Playing this game should help you to avoid some costly misunderstandings. It’s also a fun way to engage a small group for an hour or two while you think through the issues you’re facing."
+I created the card game ‘Pipeline’ as a quick and
+fun way to explore alternatives for a CD pipeline
+without actually building anything. The goal of
+the game is to design a pipeline for a given
+scenario and optimize the deployment lead time.
+You work in a small group and get to discuss what
+steps are needed and which order you want to do
+them in. You will run into design tradeoff
+decisions and may discover people have different
+risk tolerances. If you play the game a second
+time with a different scenario, or compare notes
+with another group, you can learn more about how
+different scenarios drive different decisions.
 
-Well, this repository is just the **digital version** of this card game!
+Playing the game should help you to build a real
+pipeline for the real software system you are
+working on. Building a CD pipeline needs
+specialist knowledge of particular tools and could
+be many weeks of work. Playing this game should
+help you to avoid some costly misunderstandings.
+It’s also a fun way to engage a small group for an
+hour or two while you think through the issues
+you’re facing."
+
+Well, this repository is just the **digital
+version** of this card game!
 
 ## :memo: System Requirements
-You need to have Node 12. This is because, at the time of writing, the highest stable Node version [supported by Cloud Functions](https://firebase.google.com/docs/functions/manage-functions) is Node 12. Please check your node version using <code>node -v</code>. If you have a different version of Node, we recommend using [nvm](https://github.com/nvm-sh/nvm) (or the corresponding [windows implementation](https://github.com/coreybutler/nvm-windows)) to manage your Node versions.
 
+You need to have Node 12. This is because, at the
+time of writing, the highest stable Node version
+[supported by Cloud Functions](https://firebase.google.com/docs/functions/manage-functions)
+is Node 12. Please check your node version using
+<code>node -v</code>. If you have a different
+version of Node, we recommend using
+[nvm](https://github.com/nvm-sh/nvm) (or the
+corresponding
+[windows implementation](https://github.com/coreybutler/nvm-windows))
+to manage your Node versions.
 
 ## :scroll: How to run
 
-After cloning this repository, move into the **root** folder and execute the following two scripts, which have been defined in the *[package.json](./package.json)*:
+After cloning this repository, move into the
+**root** folder and execute the following two
+scripts, which have been defined in the
+_[package.json](./package.json)_:
+
 ```shell
 npm run bootstrap
 npm run build
 ```
-The first command will install all the dependencies needed to run the project, while the second command builds each package contained in the lerna monorepo.   
+
+The first command will install all the
+dependencies needed to run the project, while the
+second command builds each package contained in
+the lerna monorepo.
 
 #### Firebase and Environment variables setup
-At the moment of writing, it is not possible to run the firebase emulators without configuring a whole firebase project through the firebase console. Thus, even if you want to only run the project locally, you still need to create a firebase project.    
 
-Once you have done that, please create a *.env* file and put it into the [game-app](./packages/game-app) folder. This .env file should contain and define values for the environment variables shown in [this template file](./packages/game-app/.env.template). Therefore, feel free to copy this template, rename it, and fill the values of the variables defined in it. Many of these variables can be filled with values from your firebase project console. For the remaining variables, please keep on reading the following sections.
+At the moment of writing, it is not possible to
+run the firebase emulators without configuring a
+whole firebase project through the firebase
+console. Thus, even if you want to only run the
+project locally, you still need to create a
+firebase project.
+
+Once you have done that, please create a _.env_
+file and put it into the
+[game-app](./packages/game-app) folder. This .env
+file should contain and define values for the
+environment variables shown in
+[this template file](./packages/game-app/.env.template).
+Therefore, feel free to copy this template, rename
+it, and fill the values of the variables defined
+in it. Many of these variables can be filled with
+values from your firebase project console. For the
+remaining variables, please keep on reading the
+following sections.
 
 ### Run Locally
-First of all, make sure you have followed the instructions for the [setup of Firebase and the environment variables](#firebase-and-environment-variables-setup).   
-We use [Firebase Emulators](https://firebase.google.com/docs/emulator-suite) to use the Firebase services locally.
+
+First of all, make sure you have followed the
+instructions for the
+[setup of Firebase and the environment variables](#firebase-and-environment-variables-setup).  
+We use
+[Firebase Emulators](https://firebase.google.com/docs/emulator-suite)
+to use the Firebase services locally.
+
 #### Firebase Emulators
-To start the emulators, move into the **root** folder and run
+
+To start the emulators, move into the **root**
+folder and run
+
 ```shell
 npm run start:emulators
 ```
-Again, this script is defined in the root [package.json](./package.json).   
-Make sure you have port 5000, 5001, 5555, 8080, 9000 and 9090 available. Then, go to the *.env* file created in the previous step (the one in the [game-app](./packages/game-app) folder) and fill in the following variables as follows:
+
+Again, this script is defined in the root
+[package.json](./package.json).  
+Make sure you have port 5000, 5001, 5555, 8080,
+9000 and 9090 available. Then, go to the _.env_
+file created in the previous step (the one in the
+[game-app](./packages/game-app) folder) and fill
+in the following variables as follows:
+
 ```dotenv
 REACT_APP_FIREBASE_USE_EMULATORS=true
 FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
 FIRESTORE_EMULATOR_HOST=localhost:8080
 ```
-Note: If you need these ports and cannot make them available, you can always configure the firebase emulators by modifying the [firebase.json](./firebase.json). If you do so, please remember to modify any reference to such ports in the environment variables.
 
+Note: If you need these ports and cannot make them
+available, you can always configure the firebase
+emulators by modifying the
+[firebase.json](./firebase.json). If you do so,
+please remember to modify any reference to such
+ports in the environment variables.
 
 #### Root Environment variables
-Before running the project, you will need to create a *.env* file also in the **root** folder containing the following **environment variables**:
+
+Before running the project, you will need to
+create a _.env_ file also in the **root** folder
+containing the following **environment
+variables**:
+
 ```dotenv
 FIRESTORE_EMULATOR_HOST=localhost:8080
 FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
 ```
 
-If you want to skip signup and email verification you can add 
+If you want to skip signup and email verification
+you can add
+
 ```dotenv
 CREATE_TEST_USER=true
 ```
 
-This will create a test user with email test@test.com and password Test1234
+This will create a test user with email
+test@test.com and password Test1234
+
 #### Running
-Run the following script in the **root** folder to initialize the local emulators:
+
+Run the following script in the **root** folder to
+initialize the local emulators:
+
 ```shell
 npm run scripts:load-initial-data:local
 ```
-This will fill the emulators with some initial data needed to load the application.  
 
-And now the last step: move into the [game-app](./packages/game-app) folder and run:
+This will fill the emulators with some initial
+data needed to load the application.
+
+And now the last step: move into the
+[game-app](./packages/game-app) folder and run:
+
 ```shell
 npm run start
 ```
-and your Pipeline react app will be available for you to use.
 
+and your Pipeline react app will be available for
+you to use.
 
 ### Run with Firebase
-First of all, make sure you have followed the instructions for the [setup of Firebase and the environment variables](#firebase-and-environment-variables-setup).   
-Make sure you have your firebase project up and running. Then, go to the *.env* file **you** have created (the one in the [game-app](./packages/game-app) folder) and fill in the following variables as follows:
+
+First of all, make sure you have followed the
+instructions for the
+[setup of Firebase and the environment variables](#firebase-and-environment-variables-setup).  
+Make sure you have your firebase project up and
+running. Then, go to the _.env_ file **you** have
+created (the one in the
+[game-app](./packages/game-app) folder) and fill
+in the following variables as follows:
+
 ```dotenv
 REACT_APP_FIREBASE_USE_EMULATORS=false
 ```
-The other environment variables concerning the emulators can be left undefined, since we are not using the emulators in this section. If you want to run locally using the emulators, please refer to [this section](#run-locally).       
-Finally, you just have to move into the [game-app](./packages/game-app) folder and run:
+
+The other environment variables concerning the
+emulators can be left undefined, since we are not
+using the emulators in this section. If you want
+to run locally using the emulators, please refer
+to [this section](#run-locally).  
+Finally, you just have to move into the
+[game-app](./packages/game-app) folder and run:
+
 ```shell
 npm run start
 ```
-and your Pipeline react app will be available for you to use.
+
+and your Pipeline react app will be available for
+you to use.
 
 ## :building_construction: How to make a production-ready build
-This step is also included in the [How to run](#how-to-run) section, but we rewrite it here for completeness. 
 
-Just go to the **root** folder and execute the following scripts:
+This step is also included in the
+[How to run](#how-to-run) section, but we rewrite
+it here for completeness.
+
+Just go to the **root** folder and execute the
+following scripts:
+
 ```shell
 npm run bootstrap
 npm run build
 ```
-This will create a production-ready build of the packages for which it is possible to do so.
+
+This will create a production-ready build of the
+packages for which it is possible to do so.
 
 ## :rocket: How to deploy to Firebase
-After [building the project](#building_construction-how-to-make-a-production-ready-build), you can easily deploy to your Firebase project running:
+
+After
+[building the project](#building_construction-how-to-make-a-production-ready-build),
+you can easily deploy to your Firebase project
+running:
+
 ```shell
 npx firebase deploy --project <FIREBASE_PROJECT_ID>
 ```
-This command will automatically deploy the following projects to firebase:
-* Firestore rules and indexes
-* RealTime Database rules
-* Cloud functions
-* Hosting (game-app)
 
-Please, refer to [the Firebase documentation](https://firebase.google.com/docs/cli#deployment) for details about how to use the <code>firebase deploy</code> command.
+This command will automatically deploy the
+following projects to firebase:
+
+- Firestore rules and indexes
+- RealTime Database rules
+- Cloud functions
+- Hosting (game-app)
+
+Please, refer to
+[the Firebase documentation](https://firebase.google.com/docs/cli#deployment)
+for details about how to use the <code>firebase
+deploy</code> command.
 
 ### Initialize remote database
 
-To load initial data into the firestore remote database change your root env file, removing 
-the firebase emulator variable and adding the reference to your admin credentials json file
+To load initial data into the firestore remote
+database change your root env file, removing the
+firebase emulator variable and adding the
+reference to your admin credentials json file
+
 ```dotenv
 GCLOUD_PROJECT=
 GOOGLE_APPLICATION_CREDENTIALS=
 ```
+
 and then run again
 
 ```shell
@@ -138,11 +286,14 @@ npm run scripts:load-initial-data:local
 ```
 
 ## :office: General project structure
-The project follows the [lerna monorepo structure](https://github.com/lerna/lerna).      
+
+The project follows the
+[lerna monorepo structure](https://github.com/lerna/lerna).  
 This is the general folder structure:
+
 ```
 pipeline-the-game               <- The root folder
-    ├── README.md        
+    ├── README.md
     ├── package.json            <- 'root' lerna package.json
     └── packages
        ├── common               <- code shared among packages
@@ -151,6 +302,5 @@ pipeline-the-game               <- The root folder
        ├── functions            <- firebase cloud functions
        └── game-app             <- front-end react application
 ```
-
 
 ###### tags: `Pipeline` `Documentation` `README` `Eficode` `xtream`
