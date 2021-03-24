@@ -178,8 +178,8 @@ const translations = {
         label: 'Repeat password',
         placeholder: 'Password',
       },
-      roleLabel: 'What is your role in your company?',
-      maturityLabel: 'How mature are your DevOps practices?',
+      roleLabel: 'What is your role in your company? (required)',
+      maturityLabel: 'How mature are your DevOps practices? (required)',
       buttonText: 'Sign up',
     },
     privacy: {
