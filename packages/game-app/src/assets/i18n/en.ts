@@ -97,7 +97,7 @@ const translations = {
       },
       password: {
         label: 'Password',
-        placeholder: 'Test1234',
+        placeholder: 'Password',
         forgot: 'Forgot?',
       },
       buttonText: 'Sign in',
@@ -133,11 +133,11 @@ const translations = {
     form: {
       password: {
         label: 'New password',
-        placeholder: 'Test1234',
+        placeholder: 'Password',
       },
       repeatPassword: {
         label: 'Repeat new password',
-        placeholder: 'Test1234',
+        placeholder: 'Password',
       },
       buttonText: 'Reset password',
     },
@@ -171,12 +171,12 @@ const translations = {
       },
       password: {
         label: 'Password',
-        placeholder: 'Test1234',
+        placeholder: 'Password',
         forgot: 'Forgot?',
       },
       repeatPassword: {
         label: 'Repeat password',
-        placeholder: 'Test1234',
+        placeholder: 'Password',
       },
       roleLabel: 'What is your role in your company?',
       maturityLabel: 'How mature are your DevOps practices?',
