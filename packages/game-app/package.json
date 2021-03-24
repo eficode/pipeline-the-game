@@ -85,7 +85,7 @@
     "@types/styled-components": "^5.1.7",
     "@types/styled-system": "^5.1.5",
     "chromatic": "^5.6.0",
-    "cypress": "^6.2.0",
+    "cypress": "6.8.0",
     "cypress-wait-until": "^1.7.1",
     "env-cmd": "^10.1.0",
     "firebase-admin": "^9.4.2",
