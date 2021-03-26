@@ -5,14 +5,14 @@ module.exports = function customMappingFunction(explicit, implicit, path, reflec
       return explicit;
     }
     if (implicit === 'src\\_shared') {
-      return '@shared';
+      return '@pipeline';
     }
     if (implicit === 'src') {
       return 'root';
     }
     if (implicit.startsWith('src\\_shared\\')) {
       // if its in shared return @shared/{folderName}
-      return `@shared/${implicit.replace('src\\_shared\\', '').split('\\')[0]}`;
+      return `@pipeline/${implicit.replace('src\\_shared\\', '').split('\\')[0]}`;
     } else {
       return implicit.replace('src\\', '').split('\\')[0];
     }

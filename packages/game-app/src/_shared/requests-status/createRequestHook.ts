@@ -17,7 +17,7 @@ type HookOptions = {
  * @example
  * ```typescript
  * // generate the hook
- * const useSignup = createGeneralHook('signup', actions.executeSignup, {errorMessagesScope:'signup.errors'})
+ * const useSignup = createRequestHook('signup', actions.executeSignup, {errorMessagesScope:'signup.errors'})
  *
  * // use it in your component
  *

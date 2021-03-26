@@ -1,3 +1,10 @@
+/**
+ *
+ * Initial and really simple analytics package that connects to Hubspot sending events
+ * and identifying user
+ *
+ * @packageDocumentation
+ */
 import { createAction } from '@reduxjs/toolkit';
 import { call, takeEvery } from 'redux-saga/effects';
 

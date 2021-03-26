@@ -162,6 +162,8 @@ variables**:
 ```dotenv
 FIRESTORE_EMULATOR_HOST=localhost:8080
 FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
+FIREBASE_DATABASE_EMULATOR_HOST=localhost:9000
+GCLOUD_PROJECT=pipeline-game-dev
 ```
 
 If you want to skip signup and email verification
