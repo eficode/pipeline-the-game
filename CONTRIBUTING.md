@@ -53,4 +53,12 @@ npm run version-and-release
 ```
 having set up the `GH_TOKEN` env variable to interact with github api.
 
+## :chart_with_upwards_trend: Scale up
+The application scalability is driven by real time database sharding.
+If you notice poor performances on the database you can create a new instances,
+and the system will balance the load among all the available databases.
+* create a new rtb instance
+* add the id and the region inside the firestore doc
+* redeploy the application using the github action
+
 ###### tags: `Pipeline` `Documentation` `CONTRIBUTING` `Eficode` `xtream`

@@ -2,23 +2,21 @@
 
 To set up the entire project and install dependencies please have a look at the [Readme](../../README.md).
 
-## Architectural choices
+## :factory: Architectural choices
 
-The web app is a SPA built with React and typescript.
-
-State management is handled using redux with redux-toolkit. Async work management
-is implemented using redux-saga.
-
-The ui is based on the combination styled-component and styled-system.
-The development of the component is isolated using Storybook.
-The built Storybook are also published to Chromatic.
-
-Forms are handled using react-hook-form.
-
-E2e tests are implemented using Cypress.
+* The web app is a SPA built with React and TypeScript.
+* State management is handled using redux with redux-toolkit.
+* Async work management is implemented using redux-saga.
+* The ui is based on the combination of styled-component and styled-system.
+* The development of the component is isolated using Storybook.
+* The built Storybook are also published to Chromatic.
+* Forms are handled using react-hook-form together with yup for validation.
+* E2e tests are implemented using Cypress.
+* firebase is used for auth and database/api
+* i18n-js is the choice for internationalization
 
 
-## src folder structure
+## :open_file_folder: src folder structure
 The folder structure is based on a per-feature folder and per file folder.
 The `_shared` folder on the contrary contains common code that is used 
 across the entire application
@@ -37,8 +35,13 @@ across the entire application
        └── slice.ts             <- state slice definition with actions, reducers and selectors
 ```
 
+### aliases
+The shared folder is not referenced directly. All the folder inside the _shared folder
+are aliased inside the `tsconfig.paths.json`, this allows decoupling and enable to extract
+the functionality into a standalone package (really easy with lerna). This way the package
+can be published independently and used in other projects avoiding code duplication.
 
-## typedoc
+## :books: Typedoc
 The core elements are documented using typedoc. You can generate the html documentation
 by running 
 ```shell
@@ -49,7 +52,7 @@ The doc is separated using a namespace convention implemented using
 logic that you can find in [typedoc-plugin-external-module-name](./.typedoc-plugin-external-module-name.js)
 
 
-## i18n
+## :speech_balloon: I18n
 
 The application ui is ready to be translated in different languages.
 The i18n is implemented inside the `@pipeline/i18n` package, exposing the 
@@ -65,11 +68,11 @@ return (
 
 ```
 
-## e2e tests organization
+## :test_tube: E2E tests organization
 
 All the tests are under the `cypress` folder
 
-### firebase admin communication
+### Firebase admin communication
 Using a custom cypress plugin the e2e test can interact with firebase in admin mode,
 to set up for example a new clean user, or retrieve an object or even execute a query.
 
@@ -80,7 +83,7 @@ All the admin tasks list are available in [firebaseTasks](./cypress/plugins/fire
 
 This interaction is wrapped using custom commands.
 
-### e2e and i18n
+### E2E and i18n
 Most of the time in e2e with end up with verifying that an error message appears on 
 the scree and similar assertion. Or even queying the dom by text content. 
 This is a bad approach if you have i18 configured in the application because changing
@@ -99,7 +102,7 @@ cy.containsTranslationOf('button', 'createGame.createButtonText').click();
 ```
 to query dom element based on text content.
 
-## Centralized loading
+## :hourglass_flowing_sand: Centralized loading
 
 To manage request status you should use the centralized loading exposed by 
 `@pipeline/@pipeline/requests-status`.
@@ -135,7 +138,7 @@ receiving the translated error directly
   } = useSendResetPasswordEmail();
 ```
 
-### error scope
+### Error scope
 The error scope is prepended to the error code before translating to allow
 custom error messages for the same error code in different domains. The default
 scope is `errors.code`. If the error code is not available into the general
