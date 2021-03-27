@@ -1,3 +1,23 @@
+/**
+ * Firebase functions don't support monorepo because of their build process.
+ *
+ * Without this pre-deploy script the build of the functions will fail because of the
+ * @pipeline/common package not available in the public registry.
+ *
+ * This script workarounds this problem copying the package common into the source of the function
+ * and changing the reference inside the package.json.
+ *
+ * See https://stackoverflow.com/questions/61015842/deploying-to-firebase-functions-with-a-monorepo
+ * https://github.com/firebase/firebase-tools/issues/653
+ *
+ * Another thing that firebase does not support right now is the deploy of functions with an
+ * rtdb trigger to all the rtdb instances available in the project. You must explicitly export
+ * a function for each rtdb instance you want to attach the trigger.
+ * This scripts create a list of all the available rtdb instances inside the project and injects it
+ * into the functions code, so that all he instances available can be targeted.
+ *
+ * For more info look at the functions package inside the exportFunctionsOnAllRTDBInstances function.
+ */
 const fs = require("fs-extra");
 const path = require("path");
 const firebaseTools = require('firebase-tools');
