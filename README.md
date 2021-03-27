@@ -287,22 +287,4 @@ and then run again
 npm run scripts:load-initial-data:local
 ```
 
-## :office: General project structure
-
-The project follows the
-[lerna monorepo structure](https://github.com/lerna/lerna).  
-This is the general folder structure:
-
-```
-pipeline-the-game               <- The root folder
-    ├── README.md
-    ├── package.json            <- 'root' lerna package.json
-    └── packages
-       ├── common               <- code shared among packages
-       ├── database             <- real-time firebase database rules
-       ├── firestore            <- firebase firestore rules
-       ├── functions            <- firebase cloud functions
-       └── game-app             <- front-end react application
-```
-
 ###### tags: `Pipeline` `Documentation` `README` `Eficode` `xtream`
