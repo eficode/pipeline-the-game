@@ -8,6 +8,11 @@ const logger = functions.logger;
 
 export const DAY_IN_MILLIS = 24 * 60 * 60 * 1000;
 
+/**
+ * Scheduled job to move stale games from the real time database to Firestore.
+ *
+ * A game is stale if no one connects to it for a day.
+ */
 export const moveGamesJob = async () => {
   const lastActiveGamesDate = new Date(Date.now() - DAY_IN_MILLIS);
 

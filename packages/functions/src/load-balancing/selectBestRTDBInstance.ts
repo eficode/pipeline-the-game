@@ -6,39 +6,6 @@ import {getDatabase, PROJECT_ID} from "../utils/rtdb";
 import {Game} from "../models/Game";
 const logger = functions.logger;
 
-/*const getNextRTDBInstanceNum = async (): Promise<number> => {
-  const res = await axios.get(`https://firebasedatabase.googleapis.com/v1beta/projects/${PROJECT_ID}/locations/-/instances?pageSize=100`, {
-    headers: {
-      'Authorization': `Bearer `,
-    },
-  })
-  const instances = res.data.instances as any[];
-  return instances.length;
-}
-
-const createRTDBInstance = async (databaseId: string) => {
-  await axios.get(`https://firebasedatabase.googleapis.com/v1beta/projects/${PROJECT_ID}/locations/${RTDB_LOCATION}/instances?database_id=${databaseId}`, {
-    headers: {
-      'Authorization': `Bearer `,
-    },
-  })
-}
-
-const createNewRTDBInstance = async () => {
-  const nextNum = await getNextRTDBInstanceNum();
-  const newRTDBInstanceName = getRTDBInstanceName(nextNum);
-  await createRTDBInstance(newRTDBInstanceName);
-  await db.collection(FirebaseCollection.RTDBInstances).doc(newRTDBInstanceName).set({
-    createdAt: FieldValue.serverTimestamp(),
-    connectionsCount: 0,
-  } as RTDBInstance)
-  admin.app().database(`https://secondary_db_url.firebaseio.com`)
-
-  return newRTDBInstanceName;
-}
-
- */
-
 /**
  * API to effectively balance the game load by selected the best RTDB instance, in terms of minimum number connections (tabs, browsers, devices, ...).
  * It needs a "gameId" as url parameter and can be called only by authenticated users.
