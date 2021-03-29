@@ -162,6 +162,8 @@ variables**:
 ```dotenv
 FIRESTORE_EMULATOR_HOST=localhost:8080
 FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
+FIREBASE_DATABASE_EMULATOR_HOST=localhost:9000
+GCLOUD_PROJECT=pipeline-game-dev
 ```
 
 If you want to skip signup and email verification
@@ -283,24 +285,6 @@ and then run again
 
 ```shell
 npm run scripts:load-initial-data:local
-```
-
-## :office: General project structure
-
-The project follows the
-[lerna monorepo structure](https://github.com/lerna/lerna).  
-This is the general folder structure:
-
-```
-pipeline-the-game               <- The root folder
-    ├── README.md
-    ├── package.json            <- 'root' lerna package.json
-    └── packages
-       ├── common               <- code shared among packages
-       ├── database             <- real-time firebase database rules
-       ├── firestore            <- firebase firestore rules
-       ├── functions            <- firebase cloud functions
-       └── game-app             <- front-end react application
 ```
 
 ###### tags: `Pipeline` `Documentation` `README` `Eficode` `xtream`

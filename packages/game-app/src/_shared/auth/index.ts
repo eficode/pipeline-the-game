@@ -1,3 +1,10 @@
+/**
+ *
+ * Centralized auth package exposing hooks to trigger signup, signin and other auth flows.
+ * It also exports selectors to retrieve current logged user
+ *
+ * @packageDocumentation
+ */
 import { reducer, actions, name, selectors, AuthUser } from './slice';
 import saga from './saga';
 import useLoggedUser from './useLoggedUser';

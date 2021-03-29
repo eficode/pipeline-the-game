@@ -11,7 +11,8 @@
     "test:functions": "npm run test --prefix packages/functions",
     "scripts:load-initial-data": "node scripts/load-initial-data.js",
     "scripts:deploy-database-instances-rules": "node scripts/deploy-rules-to-rtdb-instances.js",
-    "scripts:load-initial-data:local": "npx env-cmd -f .env node scripts/load-initial-data.js"
+    "scripts:load-initial-data:local": "npx env-cmd -f .env node scripts/load-initial-data.js",
+    "version-and-release": "npx lerna version --create-release github"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

@@ -1,3 +1,9 @@
+/**
+ *
+ * Routing utils
+ *
+ * @packageDocumentation
+ */
 import { RoutingPath } from './routingPath';
 import PrivateRoute from './PrivateRoute';
 import useNavigateOnCondition from './useNavigateOnCondition';

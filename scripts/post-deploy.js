@@ -1,3 +1,6 @@
+/**
+ * Reverts the copy/past of the common package code done in the pre-deploy script
+ */
 const fs = require("fs-extra");
 const path = require("path");
 

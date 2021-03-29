@@ -12,9 +12,7 @@ const logger = functions.logger;
  *
  * The proper document of Firestore, representing that RTDB instance, is updated incrementing by -1
  *
- * Next, an RTDB query is performed to look for the online users for those games.
- * If more than zero were found, it means there is still someone in the game
- * Otherwise, we can move the game from RTDB back to Firestore, for each game.
+ * Cards that are locked by the disconnected user are unlocked
  */
 
 export async function handler(snapshot: functions.database.DataSnapshot, context: functions.EventContext, rtdbId:string, rtdbUrl:string) {

@@ -87,7 +87,7 @@ After a given period od inactivity it is moved back to firestore with the update
     │       └── zIndex              <- index in the z axis of the card (to place cards one over another correclty)
     ├── createdAt                   <- Timestamp of creation
     ├── deckId                      <- The deck id associated with the game
-    ├── faclitator                  <- Facilitator information (the user that created the game)
+    ├── facilitator                 <- Facilitator information (the user that created the game)
     │   └── id                      <- Facilitator id
     ├── lastPlayerDisconnectedAt    <- Last time a player was online (null if there are players online right now)
     ├── movedAt                     <- Last time this game was copied from the real time database to firestore

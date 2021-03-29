@@ -22,7 +22,7 @@ function useGameRoles() {
 }
 
 const useRetrieveDevOpsMaturitiesInternal = createRequestHook('devOpsMaturities', actions.retrieveDevOpsMaturities, {
-  errorMessagesScope: '', //TODO
+  errorMessagesScope: '',
 });
 
 function useDevOpsMaturities() {

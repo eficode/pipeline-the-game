@@ -10,7 +10,6 @@ const logger = functions.logger;
 
 type CardStateEntity = CardState & {id: string};
 
-// TODO refactor this
 function unlockAndZIndexNormalize(cardsSnap: admin.database.DataSnapshot) {
   let newCards: {[key: string]: CardState} | null;
 
