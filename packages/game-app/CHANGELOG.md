@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/eficode/pipeline-the-game/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2021-04-09)
+
+
+### Bug Fixes
+
+* **app-signup:** make email lowercase on signup ([d3c9ed0](https://github.com/eficode/pipeline-the-game/commit/d3c9ed05a76e131f6391d06b76afef902b7f9001))
+
+
+
+
+
 # [1.0.0-beta.1](https://github.com/eficode/pipeline-the-game/compare/v1.0.0-beta.0...v1.0.0-beta.1) (2021-03-01)
 
 
