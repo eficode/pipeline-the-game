@@ -73,6 +73,40 @@ context('Signup', () => {
       });
   });
 
+  it('should signup correctly and go to email verification required if email contains capital letters', () => {
+    const { email, password } = generateRandomCredentials();
+    const emailWithCapitalLetters = email.charAt(0).toUpperCase() + email.slice(1);
+    usedEmails.push(email);
+    cy.getInputByName('firstName').fill('John');
+    cy.getInputByName('lastName').fill('Doe');
+    cy.getInputByName('email').fill(emailWithCapitalLetters);
+    cy.getInputByName('password').fill(password);
+    cy.getInputByName('repeatPassword').fill(password);
+    cy.getInputByName('role').select('endUser');
+    cy.getInputByName('devOpsMaturity').select('veryImmature');
+    cy.containsTranslationOf('button', 'signup.form.buttonText').click();
+    cy.get('body').should('contain.translationOf', 'signup.verificationRequired.title');
+
+    // check auth presence
+    cy.getFirebaseUserByEmail(email)
+      .should('deep.include', {
+        email: email,
+        emailVerified: false,
+        disabled: false,
+      })
+      .its('uid')
+      .then(uid => {
+        // check firestore data
+        cy.getFirestoreDocument(`users/${uid}`).should('contain', {
+          firstName:'John',
+          lastName:'Doe',
+          devOpsMaturity: 'veryImmature',
+          role: 'endUser',
+          email: email,
+        });
+      });
+  });
+
   it('should show email already used error', () => {
     const { email, password } = generateRandomCredentials();
     cy.initializeUser({ email });
