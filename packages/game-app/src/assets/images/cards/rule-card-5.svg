@@ -223,13 +223,14 @@
      type="text/css"
      id="style359">
 	.rule-card-5-cls-0{fill:#FFD114;}
-	.rule-card-5-cls-1{font-family:'Ubuntu-Bold';}
+	.rule-card-5-cls-1{font-family:Ubuntu-Bold, Ubuntu;font-weight:700;}
 	.rule-card-5-cls-2{font-size:23.7152px;}
 	.rule-card-5-cls-3{fill:#DAD9DF;}
 	.rule-card-5-cls-4{fill:#00030F;}
 	.rule-card-5-cls-5{clip-path:url(#SVGID_2_);fill:#E9B3D3;}
 	.rule-card-5-cls-6{fill:#FFFFFF;}
-	.rule-card-5-cls-7{font-family:'Montserrat-Black';}
+	.rule-card-5-cls-7{font-size:17.2px;fill:#fff;font-family:Montserrat-Black,
+      Montserrat;font-weight:800;}
 	.rule-card-5-cls-8{font-size:17.2265px;}
 	.rule-card-5-cls-9{clip-path:url(#SVGID_4_);fill:#853178;}
 </style>
