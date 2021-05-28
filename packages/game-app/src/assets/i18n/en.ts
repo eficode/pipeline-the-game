@@ -180,7 +180,7 @@ const translations = {
       },
       roleLabel: 'What is your role in your company? (required)',
       maturityLabel: 'How mature are your DevOps practices? (required)',
-      buttonText: 'Sign up',
+      inputText: 'Sign up',
     },
     privacy: {
       text:

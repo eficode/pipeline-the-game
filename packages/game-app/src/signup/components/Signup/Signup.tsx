@@ -138,7 +138,7 @@ const Signup: React.FC<Props> = () => {
                     <Input
                       type="submit"
                       id="signup-button"
-                      label={t('signup.form.buttonText')}
+                      label={t('signup.form.inputText')}
                       loading={signupLoading}
                       onClick={submit}
                     />
