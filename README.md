@@ -4,12 +4,13 @@
 
 1. [Introduction](#pencil2-introduction)
 2. [System Requirements](#memo-system-requirements)
-3. [How to run](#scroll-how-to-run)  
+3. [Setup Firebase project](#setup-firebase-project)
+4. [How to run](#scroll-how-to-run)  
    a. [Run locally](#run-locally)  
    b. [Run with Firebase](#run-with-firebase)
-4. [How to make a production-ready build](#building_construction-how-to-make-a-production-ready-build)
-5. [How to deploy to Firebase](#rocket-how-to-deploy-to-firebase)
-6. [General project structure](#office-general-project-structure)
+5. [How to make a production-ready build](#building_construction-how-to-make-a-production-ready-build)
+6. [How to deploy to Firebase](#rocket-how-to-deploy-to-firebase)
+7. [General project structure](#office-general-project-structure)
 
 ## :pencil2: Introduction
 
@@ -73,6 +74,18 @@ version of Node, we recommend using
 corresponding
 [windows implementation](https://github.com/coreybutler/nvm-windows))
 to manage your Node versions.
+
+## :gear: Setup Firebase project
+
+To run against your own Firebase project you have to
+
+* create a new firebase project
+* update .firebaserc file with your project id
+
+[Firebase doc](https://firebase.google.com/docs/web/setup) contains a great set-up guide to start with the web sdk from
+scratch.
+
+This project uses firestore and realtime database, so create both!
 
 ## :scroll: How to run
 
