@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
-import { Box, Button, ErrorMessage, Link, PasswordInput, TwoColumnPage, Typography } from '@pipeline/components';
+import { Box, ErrorMessage, Link, Input, PasswordInput, TwoColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { RoutingPath, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
 
@@ -135,10 +135,10 @@ const Signup: React.FC<Props> = () => {
                     />
                   </Box>
                   <Box mt={5} textAlign="center">
-                    <Button
+                    <Input
                       type="submit"
                       id="signup-button"
-                      label={t('signup.form.buttonText')}
+                      value={t('signup.form.inputText')}
                       loading={signupLoading}
                       onClick={submit}
                     />
