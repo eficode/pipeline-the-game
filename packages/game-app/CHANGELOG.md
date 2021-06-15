@@ -3,6 +3,21 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/eficode/pipeline-the-game/compare/v1.0.0-beta.2...v1.0.0-beta.3) (2021-06-15)
+
+
+### Bug Fixes
+
+* **app-board:** update svg for rule card Build Prior to Deploy ([d5c59ad](https://github.com/eficode/pipeline-the-game/commit/d5c59ade1ce636b33fe72c5d736705eca542d40c))
+* **app-config:** update tests to reflect element change ([4e6a563](https://github.com/eficode/pipeline-the-game/commit/4e6a563bb034d9d8b1301b04a78f5c828195bcd7))
+* **app-signup:** change signup input value to pass tests ([4d45611](https://github.com/eficode/pipeline-the-game/commit/4d45611d3d11ce53dc4abc5b7d557ac2d211baae))
+* **app-signup:** hubspot signup form capture ([27bae66](https://github.com/eficode/pipeline-the-game/commit/27bae667f7be209dde4dc98c06858c8c5a84b7ea))
+* **app-signup:** minor text changes related to hubspot fix ([b2911fb](https://github.com/eficode/pipeline-the-game/commit/b2911fbac78b467db66e9491d506654d0d4ff91e))
+
+
+
+
+
 # [1.0.0-beta.2](https://github.com/eficode/pipeline-the-game/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2021-04-09)
 
 
