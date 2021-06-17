@@ -1,5 +1,7 @@
 # Pipeline: the game that delivers
 
+Pipeline game app is developed by [Eficode](https://eficode.com) and [Xtreamers.io](https://xtreamers.io)
+
 ### Table of Content
 
 1. [Introduction](#pencil2-introduction)
