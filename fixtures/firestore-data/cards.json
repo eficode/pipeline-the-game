@@ -340,5 +340,14 @@
     "content": "Code is analyzed for potential errors\n both programatic and stylistic.\n Able to catch common typo errors\n in formatting, coding standard convensions\n and possible logical errors in code.",
     "number": 40,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "test": {
+    "type": "pipeline-step",
+    "tags": [],
+    "title": "Regression test",
+    "subtitle": "Test Step",
+    "content": "Re-running functional and non-functional\n tests to ensure that previously developed\n and tested software still performs after a change",
+    "number": 41,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
   }
 }
