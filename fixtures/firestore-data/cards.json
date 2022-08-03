@@ -331,5 +331,14 @@
     "content": "A group of managers, testers and\nother stakeholders meet to assess\nwhether to deploy the new version\nof the software. They base their\ndecision on test results, perceived\nrisks, market conditions and cost\nof delay.",
     "number": 39,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "lint": {
+    "type": "pipeline-step",
+    "tags": [],
+    "title": "Lint",
+    "subtitle": "Test Step",
+    "content": "Code is analyzed for potential errors\n both programatic and stylistic.\n Able to catch common typo errors\n in formatting, coding standard convensions\n and possible logical errors in code.",
+    "number": 40,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
   }
 }
