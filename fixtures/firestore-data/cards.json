@@ -349,5 +349,23 @@
     "content": "Re-running functional and non-functional\n tests to ensure that previously developed\n and tested software still performs after a change",
     "number": 41,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "dast": {
+    "type": "pipeline-step",
+    "tags": [],
+    "title": "Static Application Security Testing",
+    "subtitle": "Security Step",
+    "content": "Identifies vulnerabilites in your source code\n, third party dependencies, container images\n or infrastructure as code.",
+    "number": 42,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "sast": {
+    "type": "pipeline-step",
+    "tags": [],
+    "title": "Dynamic Application Security Testing",
+    "subtitle": "Security Step",
+    "content": "Identifies vulnerabilites in your running \nweb application. The tool can check for vulnerabilities\n like cross-site scripting, SQL injection,\n API security, etc",
+    "number": 43,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
   }
 }
