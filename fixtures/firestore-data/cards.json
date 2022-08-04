@@ -106,18 +106,18 @@
     "content": "A Release Candidate is deployed to\nproduction where there are actual\nusers and live data.\nYou cannot complete this step\nuntil you have built the Release\nCandidate.\nIf you include steps after this,\nthey do not count towards your\ndeployment lead time.",
     "number": 14,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
-  },
+    },
   "gFDFKdnMmbwL5Vt7ouDE": {
-    "type": "pipeline-step",
+      "type": "pipeline-step",
     "tags": ["package"],
     "title": "Build Release Candidate",
     "subtitle": "Build Step",
     "content": "Code is compiled and built\ninto a deployable Release\nCandidate.\nYou cannot complete this step\nbefore the Code is Merged to\nTrunk.",
     "number": 15,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
-  },
+    },
   "oMSlvF0Vn5Bt0F9YYZbQ": {
-    "type": "pipeline-step",
+      "type": "pipeline-step",
     "tags": ["deploy-step"],
     "title": "Deploy to Production-Like\nTest Environment 1",
     "subtitle": "Deployment Step",
@@ -366,6 +366,24 @@
     "subtitle": "Security Step",
     "content": "Identifies vulnerabilites in your running \nweb application. The tool can check for vulnerabilities\n like cross-site scripting, SQL injection,\n API security, etc",
     "number": 43,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "blank1": {
+    "type": "pipeline-step",
+    "tags": [],
+    "title": "blank1",
+    "subtitle": "",
+    "content": "",
+    "number": 44,
+    "deckId": "7p5qqvE8kCV9WWysVc2n"
+  },
+  "blank2": {
+    "type": "pipeline-step",
+    "tags": [],
+    "title": "blank2",
+    "subtitle": "",
+    "content": "",
+    "number": 45,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   }
 }
