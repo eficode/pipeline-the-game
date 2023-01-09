@@ -87,12 +87,4 @@ context("Password forgot and reset", () => {
       cy.get('body').should('contain.translationOf', 'auth.errors.auth/invalid-action-code');
     });
   });
-
-  it("should show a small screen error dialog", () => {
-    cy.visit('/forgot-password');
-    cy.viewport(1000, 700);
-    cy.waitUntil(() => Cypress.$("#small-screen-dialog").length === 1);
-    cy.get('body').should('contain.translationOf', 'general.responsiveness.title');
-    cy.get('body').should('contain.translationOf', 'general.responsiveness.subtitle');
-  });
 });

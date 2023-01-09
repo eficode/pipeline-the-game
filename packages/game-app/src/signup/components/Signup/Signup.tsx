@@ -139,7 +139,7 @@ const Signup: React.FC<Props> = () => {
                       type="submit"
                       id="signup-button"
                       value={t('signup.form.inputText')}
-                      loading={signupLoading}
+                      loading={signupLoading.toString()}
                       onClick={submit}
                     />
                   </Box>

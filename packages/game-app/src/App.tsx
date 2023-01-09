@@ -4,10 +4,9 @@ import { PrivateRoute, RoutingPath, useNavigateOutsideTo } from '@pipeline/routi
 import { useBootstrapIsFinished } from './_shared';
 import { AuthUser, useLoggedUser } from '@pipeline/auth';
 import PersistentBanner from './_shared/components/PersistentBanner';
-import { Box, Dialog, Link, Typography } from '@pipeline/components';
+import { Box, Link, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { ExternalUrl } from '@pipeline/models';
-import { useWindowDimensions } from './_shared/components/utils';
 
 const Signup = React.lazy(() => import('./signup/components/Signup'));
 const EmailRouter = React.lazy(() => import('./_shared/routing/EmailRouter'));
@@ -69,21 +68,6 @@ const Loader: React.FC = () => {
   return null;
 };
 
-const SmallScreenDialog: React.FC = () => {
-  const t = useTranslate();
-  const { width, height } = useWindowDimensions();
-
-  const isWindowTooSmall = width < 1100 || height < 600;
-
-  return (
-    <Dialog id="small-screen-dialog" open={isWindowTooSmall} title={t('general.responsiveness.title')}>
-      <Typography textAlign="center" mt={3}>
-        {t('general.responsiveness.subtitle')}
-      </Typography>
-    </Dialog>
-  );
-};
-
 function App() {
   const bootstrapIsFinished = useBootstrapIsFinished();
 
@@ -124,7 +108,6 @@ function App() {
           </Box>
         </PersistentBanner>
       )}
-      <SmallScreenDialog />
     </Suspense>
   ) : null;
 }
