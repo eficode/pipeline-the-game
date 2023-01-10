@@ -1,13 +1,35 @@
 import React from 'react';
-import { Column, LeftColumn, Logo, RightIllustration, TowColumnsContainer } from './TwoColumnPage.styled';
+import {
+  Column,
+  LeftColumn,
+  Logo,
+  OneColumnContainer,
+  RightIllustration,
+  TowColumnsContainer,
+} from './TwoColumnPage.styled';
 import { ReactComponent as Illustration } from '@assets/images/signin-illustration.svg';
 import { Typography, Box, TextLogo } from '@pipeline/components';
+import { useWindowDimensions } from '../utils';
 
 type Props = {
   left: React.ReactElement;
 };
 
 const TwoColumnPage: React.FC<Props> = ({ left }) => {
+  const { width } = useWindowDimensions();
+  const isWindowTooSmall = width < 800;
+
+  if (isWindowTooSmall) {
+    return (
+      <OneColumnContainer>
+        <Logo>
+          <TextLogo />
+        </Logo>
+        {left}
+      </OneColumnContainer>
+    );
+  }
+
   return (
     <TowColumnsContainer>
       <Logo>
