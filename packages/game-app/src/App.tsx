@@ -97,7 +97,7 @@ function App() {
         {renderAuthRoutes(user)}
       </Switch>
       {!isChrome && (
-        <PersistentBanner key="googleChrome">
+        <PersistentBanner browser="googleChrome">
           <Box>
             <Typography as="span" fontSize="18px">
               {t('general.chromeBanner')}
