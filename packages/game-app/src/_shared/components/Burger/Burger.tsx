@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyledBurger } from './Burger.styled';
-import { Box, TextLogo } from '@pipeline/components';
 
 type BurgerProps = {
   open: boolean;

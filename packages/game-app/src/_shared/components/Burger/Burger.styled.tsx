@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { CardType } from '@pipeline/common';
 
 interface BurgerButtonProps {
   open: boolean;
