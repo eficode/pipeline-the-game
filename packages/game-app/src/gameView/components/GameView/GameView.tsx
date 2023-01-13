@@ -17,6 +17,7 @@ import useStopListenOnRtdb from '../../hooks/useStopListenOnRtdb';
 import LoadingOverlay from '../LoadingOverlay';
 import OfflineOverlay from '../OfflineOverlay';
 import ErrorOverlay from '../ErrorOverlay';
+import { useWindowDimensions } from '../../../_shared/components/utils';
 
 type GameProps = {
   zoomIn: () => void;
@@ -39,7 +40,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
   const { onCardEvent } = useCardEventHandler();
 
   const panelModeRef = useRef<PanelMode>('stacked');
-
+  const isSmallScreen = useWindowDimensions().width < 1100;
   useStopListenOnRtdb();
 
   return (
@@ -56,7 +57,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
           </ZoomPanContainer>
           <BottomWidgetsRow />
         </div>
-        <DeckPanel panelModeRef={panelModeRef} />
+        {!isSmallScreen && <DeckPanel panelModeRef={panelModeRef} />}
       </CardsGameListeners>
       <LoadingOverlay isOpen={loading} />
       <ErrorOverlay isOpen={notFound} />
