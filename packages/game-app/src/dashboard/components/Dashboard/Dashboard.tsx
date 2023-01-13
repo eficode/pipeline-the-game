@@ -59,6 +59,7 @@ const Dashboard: React.FC<Props> = () => {
                 </Box>
                 <Box width="200px" m="0 auto">
                   <Button
+                    variant="secondary"
                     rightIcon={<RightIcon />}
                     label={t('dashboard.howToPlay')}
                     onClick={goToHowToPlay}
@@ -67,6 +68,7 @@ const Dashboard: React.FC<Props> = () => {
                 </Box>
                 <Box width="200px" m="0 auto">
                   <Button
+                    variant="secondary"
                     rightIcon={<RightIcon />}
                     label={t('auth.logout')}
                     onClick={executeLogout}

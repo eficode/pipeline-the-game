@@ -6,7 +6,7 @@ interface StyledMenuProps {
 export const StyledMenu = styled.nav<StyledMenuProps>`
   display: flex;
   flex-direction: column;
-  background: ${({ theme }) => theme.colors.primaryLight};
+  background: ${({ theme }) => theme.colors.backgroundLight};
   text-align: left;
   position: absolute;
   row-gap: 1.5rem;

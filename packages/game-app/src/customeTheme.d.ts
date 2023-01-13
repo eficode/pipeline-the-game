@@ -21,6 +21,7 @@ declare module 'styled-components' {
     colors: {
       primary: string;
       primaryLight: string;
+      backgroundLight: string;
       secondary: string;
       secondaryDark: string;
       activeAccent: string;

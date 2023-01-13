@@ -3,7 +3,7 @@ import { StyledMenu } from './Menu.styled';
 
 type MenuProps = {
   open: boolean;
-  children: React.ReactChild[];
+  children: React.ReactChild[] | React.ReactChild;
 };
 
 const Menu: React.FC<MenuProps> = ({ open, children }) => {
