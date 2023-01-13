@@ -39,7 +39,7 @@ jobs:
         run: npm --prefix packages/functions run lint
       
       - name: Start emulators
-        run: npx firebase emulators:start &
+        run: npx firebase emulators:start &&
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
