@@ -19,6 +19,7 @@ const GameView = React.lazy(() => import('./gameView/components/GameView'));
 const CreateGameView = React.lazy(() => import('./createGame/components/CreateGameView'));
 
 const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+const isBigScreen = window.innerWidth > 1100;
 
 /**
  * Returns route and default redirect according to auth condition:
@@ -96,7 +97,7 @@ function App() {
         <PrivateRoute path={RoutingPath.CreateGame} component={CreateGameView} />
         {renderAuthRoutes(user)}
       </Switch>
-      {!isChrome && (
+      {!isChrome && isBigScreen && (
         <PersistentBanner browser="googleChrome">
           <Box>
             <Typography as="span" fontSize="18px">
