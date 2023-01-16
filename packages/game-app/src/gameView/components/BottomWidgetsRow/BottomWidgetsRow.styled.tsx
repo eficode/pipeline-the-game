@@ -10,6 +10,12 @@ export const BottomWidgetsRowContainer = styled.div`
   & > *:not(:first-child) {
     margin-left: 24px;
   }
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    left: 0;
+    bottom: 0;
+    position: sticky;
+    flex-direction: column;
+  }
 `;
 
 export const PoweredByContainer = styled.div`

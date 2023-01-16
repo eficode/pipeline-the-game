@@ -28,6 +28,10 @@ const initialPan = {
   y: -700,
   x: -15,
 };
+const initialPanMobile = {
+  y: 0,
+  x: -5,
+};
 
 const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
   const state = useSelector(selectors.getCardStateForUI);
@@ -44,7 +48,7 @@ const GameView: React.FC<GameProps> = ({ zoomIn, zoomOut }) => {
   useStopListenOnRtdb();
 
   return (
-    <ZoomPanContext initialPan={initialPan}>
+    <ZoomPanContext initialPan={isSmallScreen ? initialPanMobile : initialPan} initialScale={isSmallScreen ? 0.5 : 1}>
       <CardsGameListeners panelModeRef={panelModeRef} onEvent={onCardEvent} currentGameState={state}>
         <div className="board-wrapper">
           <TopWidgetsRow />

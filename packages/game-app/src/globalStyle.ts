@@ -46,7 +46,7 @@ Temporary css waiting for the ui components
   }
   
   .transform-0 {
-    transform-origin: 0px 0px !important;
+    transform-origin: 0 0 !important;
   }
 
   .board-wrapper {
@@ -54,6 +54,9 @@ Temporary css waiting for the ui components
     height: 100vh;
     overflow: hidden;
     position: relative;
+    @media (max-width: 1100px) {
+      overflow: auto;
+    }
   }
 
 `;
