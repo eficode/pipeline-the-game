@@ -21,6 +21,7 @@ import { PanelMode } from '../DeckPanel/DeckPanel';
 import { DEFAULT_CARD_SIZE, PANEL_CARD_SIZE } from '../../../dimensions';
 import { useZoomPanRefs } from '../ZoomPanContext';
 import MovingCard from '../MovingCard';
+import { useWindowDimensions } from '../../../_shared/components/utils';
 
 const DEBUG_ENABLED = false;
 
@@ -84,7 +85,7 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
   const translationDeltaRef = useRef<TranslationDeltas>({});
   const absoluteItemPositionWithResectToWindowRef = useRef<AbsoluteWindowPositions>({});
   const { panRef: panAmountRef, scaleRef: boardScaleRef } = useZoomPanRefs();
-
+  const isSmallScreen = useWindowDimensions().width < 1100;
   useEffect(() => {
     gameStateRef.current = currentGameState;
   }, [currentGameState]);
@@ -398,6 +399,10 @@ const CardsGameListeners: React.FC<Props> = ({ onEvent, children, currentGameSta
   const mouseSensor = useSensor(MouseSensor, window.isPerfTestRunning ? perfTestConstraints : standardConstraints);
   const touchSensor = useSensor(PointerSensor, window.isPerfTestRunning ? perfTestConstraints : standardConstraints);
   const sensors = useSensors(mouseSensor, touchSensor);
+
+  if (isSmallScreen) {
+    return <DndContext sensors={sensors}>{children}</DndContext>;
+  }
 
   return (
     <DndContext
