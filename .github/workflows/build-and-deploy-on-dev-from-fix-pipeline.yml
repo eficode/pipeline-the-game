@@ -2,7 +2,7 @@ name: Build and deploy on dev
 on:
   push:
     branches:
-      - main
+      - cd-pipeline-fix
 
 jobs:
   build-and-deploy-dev:
@@ -46,4 +46,3 @@ jobs:
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-
