@@ -65,7 +65,7 @@ describe("onConnectionsDelete", () => {
       .set({
         lastPlayerDisconnectedAt: null,
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`)
       .ref(`${RTDBPaths.Cards}/${gameId}`).set({
         randomId1: {
           lockedBy: userId,
@@ -87,7 +87,7 @@ describe("onConnectionsDelete", () => {
 
     await assert.isFulfilled(wrapped(snap, {params: {gameId, userId}}));
 
-    const cardsSnap = await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`)
+    const cardsSnap = await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`)
       .ref(`${RTDBPaths.Cards}/${gameId}`).get();
 
     expect(cardsSnap.exists()).to.eq(true);
@@ -113,7 +113,7 @@ describe("onConnectionsDelete", () => {
       .set({
         lastPlayerDisconnectedAt: null,
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`)
       .ref(`${RTDBPaths.Cards}/${gameId}`).set({
         randomId1: {
           lockedBy: 'randomUserId1',
@@ -135,7 +135,7 @@ describe("onConnectionsDelete", () => {
 
     await assert.isFulfilled(wrapped(snap, {params: {gameId, userId}}));
 
-    const cardsSnap = await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`)
+    const cardsSnap = await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`)
       .ref(`${RTDBPaths.Cards}/${gameId}`).get();
 
     expect(cardsSnap.exists()).to.eq(true);
@@ -164,9 +164,9 @@ describe("onConnectionsDelete", () => {
       .set({
         lastPlayerDisconnectedAt: null,
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`)
       .ref(`${RTDBPaths.Connections}/${gameId}/${userId}`).push({updatedAt: 124342});
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`)
       .ref(`${RTDBPaths.Connections}/${gameId}/randomUserId`).push({updatedAt: 124342});
 
     const snap = test.database.makeDataSnapshot(
