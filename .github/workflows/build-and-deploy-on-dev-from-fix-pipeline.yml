@@ -9,6 +9,11 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
       - name: Checkout merged code
         uses: actions/checkout@v2
 
@@ -42,8 +47,6 @@ jobs:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
       - name: Deploy
-        with:
-          node-version: 14
         run: npx firebase deploy --project $FIREBASE_PROJECT_ID --token "$FIREBASE_TOKEN" --force
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
