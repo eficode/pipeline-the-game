@@ -1,6 +1,6 @@
 {
   "projects": {
-pro    "default": "pipeline-game-development"
+    "default": "pipeline-game-development"
   },
   "targets": {
     "pipeline-game-development": {
