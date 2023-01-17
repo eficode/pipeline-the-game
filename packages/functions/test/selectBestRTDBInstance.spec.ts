@@ -83,12 +83,13 @@ describe("SelectBestRTDBInstance", () => {
     await expect(
       wrapped({ gameId: gameDoc.id }, { auth })
     ).to.eventually.deep.eq({
-      bestRTDBInstanceName: "pipeline-game-local-default-rtdb.europe-west1",
+      bestRTDBInstanceName:
+        "pipeline-game-development-default-rtdb.europe-west1",
     });
     const snap = await admin
       .app()
       .database(
-        `https://pipeline-game-local-default-rtdb.europe-west1.firebasedatabase.app`
+        `https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`
       )
       .ref(`${RTDBPaths.Games}/${gameDoc.id}`)
       .get();
