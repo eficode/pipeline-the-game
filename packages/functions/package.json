@@ -14,7 +14,7 @@
     "update-package-lock": "npm i"
   },
   "engines": {
-    "node": "12"
+    "node": "13"
   },
   "main": "lib/index.js",
   "dependencies": {
