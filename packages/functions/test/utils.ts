@@ -73,6 +73,6 @@ export function getAdminFirestore() {
  * Creates a new admin FirebaseApp and returns a Database instance.
  */
 export function getAdminDatabase() {
-  return firebase.initializeAdminApp({ projectId: PROJECT_ID }).database('https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app');
+  return firebase.initializeAdminApp({ projectId: PROJECT_ID }).database('https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app');
 }
 
