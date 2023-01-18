@@ -5,6 +5,7 @@ import { TriggerDialogContainer } from './TriggerReviewDialog.styled';
 import { useDispatch } from 'react-redux';
 import { actions } from '../../slice';
 import ReviewPanel from '../ReviewPanel';
+import { useWindowDimensions } from '../../../_shared/components/utils';
 
 type Props = {
   isOpen: boolean;
@@ -14,6 +15,15 @@ type Props = {
 };
 
 const ReviewContainer: React.FC = () => {
+  const { width } = useWindowDimensions();
+  const isWindowTooSmall = width < 1100;
+  if (isWindowTooSmall) {
+    return (
+      <Box position="absolute" left={0} bottom={2}>
+        <ReviewPanel disabled />
+      </Box>
+    );
+  }
   return (
     <Box position="absolute" left={443} bottom={2}>
       <ReviewPanel disabled />
