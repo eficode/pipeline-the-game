@@ -33,24 +33,24 @@ describe("scheduledMoveGame", () => {
   it("should not move game with recent lastPlayerDisconnectedAt", async () => {
     await admin.firestore().doc(`${FirebaseCollection.Games}/gameId1`)
       .set({lastPlayerDisconnectedAt: admin.firestore.FieldValue.serverTimestamp()});
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
       .set({something: ''});
 
     await assert.isFulfilled(functions.scheduledMoveGame());
 
-    const rtdbGameSnap = await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`).get();
+    const rtdbGameSnap = await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`).get();
     expect(rtdbGameSnap.exists()).eq(true);
   });
 
   it("should not move game with null lastPlayerDisconnectedAt", async () => {
     await admin.firestore().doc(`${FirebaseCollection.Games}/gameId1`)
       .set({lastPlayerDisconnectedAt: null});
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
       .set({something: ''});
 
     await assert.isFulfilled(functions.scheduledMoveGame());
 
-    const rtdbGameSnap = await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`).get();
+    const rtdbGameSnap = await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`).get();
 
     expect(rtdbGameSnap.exists()).eq(true);
   });
@@ -58,23 +58,23 @@ describe("scheduledMoveGame", () => {
   it("should move game and cards if lastPlayerDisconnectedAt is < now - 24h ", async () => {
     await admin.firestore().doc(`${FirebaseCollection.Games}/gameId1`)
       .set({
-        rtdbInstance: 'pipeline-game-dev-default-rtdb.europe-west1',
+        rtdbInstance: 'pipeline-game-development-default-rtdb.europe-west1',
         lastPlayerDisconnectedAt: new admin.firestore.Timestamp(Math.floor((Date.now() - 24 * 60 * 60 * 1000) / 1000), 100),
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
       .set({
         createdAt: {
           _seconds: 14424,
           _nanoseconds: 1424,
         },
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
       .set({something: ''});
 
     await assert.isFulfilled(functions.scheduledMoveGame());
 
-    const rtdbGameSnap = await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`).get();
-    const cardsSnap = await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`).get();
+    const rtdbGameSnap = await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`).get();
+    const cardsSnap = await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`).get();
 
     expect(rtdbGameSnap.exists()).eq(false);
     expect(cardsSnap.exists()).eq(false);
@@ -83,17 +83,17 @@ describe("scheduledMoveGame", () => {
   it("should move game if lastPlayerDisconnectedAt is < now - 24h preserving createdAt", async () => {
     await admin.firestore().doc(`${FirebaseCollection.Games}/gameId1`)
       .set({
-        rtdbInstance: 'pipeline-game-dev-default-rtdb.europe-west1',
+        rtdbInstance: 'pipeline-game-development-default-rtdb.europe-west1',
         lastPlayerDisconnectedAt: new admin.firestore.Timestamp(Math.floor((Date.now() - 24 * 60 * 60 * 1000) / 1000), 100),
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
       .set({
         createdAt: {
           _seconds: 14424,
           _nanoseconds: 1424,
         },
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
       .set({something: ''});
 
     await assert.isFulfilled(functions.scheduledMoveGame());
@@ -107,20 +107,20 @@ describe("scheduledMoveGame", () => {
   it("should move game if lastPlayerDisconnectedAt is < now - 24h updating movedAt", async () => {
     await admin.firestore().doc(`${FirebaseCollection.Games}/gameId1`)
       .set({
-        rtdbInstance: 'pipeline-game-dev-default-rtdb.europe-west1',
+        rtdbInstance: 'pipeline-game-development-default-rtdb.europe-west1',
         movedAt: admin.firestore.FieldValue.serverTimestamp(),
         lastPlayerDisconnectedAt: new admin.firestore.Timestamp(Math.floor((Date.now() - 24 * 60 * 60 * 1000) / 1000), 100),
       });
     const oldMovedAt = ((await admin.firestore().doc(`${FirebaseCollection.Games}/gameId1`)
       .get()).data() as Game).movedAt as admin.firestore.Timestamp;
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
       .set({
         createdAt: {
           _seconds: 14424,
           _nanoseconds: 1424,
         },
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
       .set({something: ''});
 
     await assert.isFulfilled(functions.scheduledMoveGame());
@@ -134,17 +134,17 @@ describe("scheduledMoveGame", () => {
   it("should unlock locked cards if lastPlayerDisconnectedAt is < now - 24h", async () => {
     await admin.firestore().doc(`${FirebaseCollection.Games}/gameId1`)
       .set({
-        rtdbInstance: 'pipeline-game-dev-default-rtdb.europe-west1',
+        rtdbInstance: 'pipeline-game-development-default-rtdb.europe-west1',
         lastPlayerDisconnectedAt: new admin.firestore.Timestamp(Math.floor((Date.now() - 24 * 60 * 60 * 1000) / 1000), 100),
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
       .set({
         createdAt: {
           _seconds: 14424,
           _nanoseconds: 1424,
         },
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
       .set({
         cardId1: {
           lockedBy: 'someone',
@@ -181,17 +181,17 @@ describe("scheduledMoveGame", () => {
   it("should normalize cards zIndex if lastPlayerDisconnectedAt is < now - 24h", async () => {
     await admin.firestore().doc(`${FirebaseCollection.Games}/gameId1`)
       .set({
-        rtdbInstance: 'pipeline-game-dev-default-rtdb.europe-west1',
+        rtdbInstance: 'pipeline-game-development-default-rtdb.europe-west1',
         lastPlayerDisconnectedAt: new admin.firestore.Timestamp(Math.floor((Date.now() - 24 * 60 * 60 * 1000) / 1000), 100),
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Games}/gameId1`)
       .set({
         createdAt: {
           _seconds: 14424,
           _nanoseconds: 1424,
         },
       });
-    await admin.app().database(`https://pipeline-game-dev-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
+    await admin.app().database(`https://pipeline-game-development-default-rtdb.europe-west1.firebasedatabase.app`).ref(`${RTDBPaths.Cards}/gameId1`)
       .set({
         cardId1: {
           lockedBy: 'someone',
