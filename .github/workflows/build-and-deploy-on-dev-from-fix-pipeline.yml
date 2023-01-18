@@ -1,8 +1,9 @@
-name: Build and deploy on dev
+name: Build and deploy on dev - testing
 on:
   push:
     branches:
       - cd-pipeline-fix
+      - trigger-pipeline
 
 jobs:
   build-and-deploy-dev:
