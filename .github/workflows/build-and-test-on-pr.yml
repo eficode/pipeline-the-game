@@ -43,6 +43,10 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
 
+      - name: Sleep for 30 seconds
+        run: sleep 30s
+        shell: bash
+        
       - name: Load initial data
         run: npm run scripts:load-initial-data
         env:
