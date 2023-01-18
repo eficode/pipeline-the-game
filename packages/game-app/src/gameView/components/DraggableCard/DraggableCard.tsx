@@ -6,6 +6,7 @@ import ConnectedCard from '../ConnectedCard';
 import { CardWrapper } from './DraggableCard.styled';
 import useDoubleClick from './useDoubleClick';
 import { Estimation } from '@pipeline/components';
+import { useWindowDimensions } from '../../../_shared/components/utils';
 
 type Props = {
   id: string;
@@ -105,6 +106,20 @@ const DraggableCard: React.FC<Props> = ({ id, bigger }) => {
       </>
     );
   }, [estimation, estimationOpen, isCardMoving, saveEstimation, handler, id]);
+
+  const { width } = useWindowDimensions();
+  const isWindowTooSmall = width < 1100;
+
+  if (isWindowTooSmall) {
+    return (
+      <div style={style} data-cy={`card-${id}`}>
+        {estimations}
+        <CardWrapper {...attributes} isDragging={isCardMoving}>
+          {card}
+        </CardWrapper>
+      </div>
+    );
+  }
 
   return (
     <div style={style} data-cy={`card-${id}`} ref={setNodeRef}>
