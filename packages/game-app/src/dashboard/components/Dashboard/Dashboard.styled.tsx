@@ -6,7 +6,6 @@ export const DashboardContainer = styled.div`
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
 `;
 
 DashboardContainer.displayName = 'DashboardContainer';
@@ -56,6 +55,18 @@ export const DashboardLeftSide = styled(Box)`
 `;
 
 DashboardLeftSide.displayName = 'DashboardLeftSide';
+
+export const DashboardSmallScreenWrapper = styled(Box)`
+  max-width: 100vw;
+  padding: 0 5vw 10vh 5vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  row-gap: 2vh;
+`;
+
+DashboardSmallScreenWrapper.displayName = 'DashboardSmallScreenWrapper';
 
 export const Triangle = styled(Box)`
   width: 0;

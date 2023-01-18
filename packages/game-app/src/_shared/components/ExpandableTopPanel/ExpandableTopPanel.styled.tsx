@@ -29,6 +29,9 @@ export const PanelContentWrapper = styled.div<{ collapsed: boolean }>`
   transition: all 0.5s ease-out;
   box-sizing: border-box;
   overflow: hidden;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    padding-left: 15px;
+  }
   ${({ collapsed }) =>
     collapsed
       ? css`

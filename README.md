@@ -298,6 +298,7 @@ GOOGLE_APPLICATION_CREDENTIALS=
 
 and then run again
 
+
 ```shell
 npm run scripts:load-initial-data:local
 ```

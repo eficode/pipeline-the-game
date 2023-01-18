@@ -1,5 +1,5 @@
 import 'styled-components';
-import { Theme, StylesProps } from 'styled-system';
+import { Theme } from 'styled-system';
 
 // and extend them!
 declare module 'styled-components' {
@@ -21,6 +21,7 @@ declare module 'styled-components' {
     colors: {
       primary: string;
       primaryLight: string;
+      backgroundLight: string;
       secondary: string;
       secondaryDark: string;
       activeAccent: string;
@@ -31,5 +32,6 @@ declare module 'styled-components' {
     cardsTypes: {
       [key: string]: string;
     };
+    mobile: string;
   }
 }

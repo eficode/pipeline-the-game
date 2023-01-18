@@ -8,9 +8,17 @@ export const TopRowContainer = styled(Box)`
   z-index: 1;
   display: flex;
   flex-direction: row;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    position: sticky;
+    left: 0;
+    top: 0;
+  }
 
   & > * {
     margin-right: 24px;
+    @media (max-width: ${({ theme }) => theme.mobile}) {
+      margin-right: 0;
+    }
   }
 `;
 

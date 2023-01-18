@@ -6,6 +6,9 @@ export const RulesOverlayContent = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    overflow: visible;
+  }
 `;
 
 RulesOverlayContent.displayName = 'RulesOverlayContent';
@@ -19,6 +22,11 @@ export const RulesContainer = styled.div`
   margin-top: 100px;
   overflow-y: scroll;
   scrollbar-width: none;
+  @media (max-width: ${({ theme }) => theme.mobile}) {
+    margin-top: 20px;
+    width: 100%;
+    flex-direction: column;
+  }
 
   ::-webkit-scrollbar {
     display: none;

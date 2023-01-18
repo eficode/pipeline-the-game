@@ -16,6 +16,7 @@ import ConfirmExitDialog from '../ConfirmExitDialog';
 import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 import { ExternalUrl } from '@pipeline/models';
+import { useWindowDimensions } from '../../../_shared/components/utils';
 
 type Props = {};
 
@@ -55,13 +56,15 @@ const TopWidgetsRow: React.FC<Props> = () => {
   }, [review, isUserTheFacilitator, currentReview, openReviewDialog]);
 
   const contactUs = useNavigateOutsideTo(ExternalUrl.CONTACT_US, true);
-
+  const isSmallScreen = useWindowDimensions().width < 1100;
   return (
     <>
       <TopRowContainer>
-        <LogoContainer>
-          <Logo />
-        </LogoContainer>
+        {!isSmallScreen && (
+          <LogoContainer>
+            <Logo />
+          </LogoContainer>
+        )}
         <ButtonsBar>
           {game && (
             <GameName>
@@ -107,7 +110,7 @@ const TopWidgetsRow: React.FC<Props> = () => {
             </IconButton>
           )}
         </ButtonsBar>
-        <Button onClick={contactUs} label={t('game.contactUs')} />
+        {!isSmallScreen && <Button onClick={contactUs} label={t('game.contactUs')} />}
       </TopRowContainer>
       <ShareGameDialog isOpen={shareDialog.isOpen} close={shareDialog.close} />
       <RulesOverlay isOpen={rulesOverlay.isOpen} close={rulesOverlay.close} />

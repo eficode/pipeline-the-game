@@ -17,12 +17,18 @@ export const TriggerDialogContainer = styled(Dialog.DialogContainer)<{ showRevie
       left: 278px;
       bottom: 70px;
       transform: unset;
+      @media (max-width: ${({ theme }) => theme.mobile}) {
+        left: 0;
+      }
       :after {
          {
           content: '';
           position: absolute;
           bottom: -14px;
           left: 350px;
+          @media (max-width: ${({ theme }) => theme.mobile}) {
+            left: 170px;
+          }
           border-style: solid;
           border-width: 14px 14px 0;
           border-color: rgba(255, 255, 255, 0.6) transparent;

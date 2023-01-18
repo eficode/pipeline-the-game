@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import SelectableScenario from '../SelectableScenario';
 import { Box, IconButton } from '@pipeline/components';
 import { ReactComponent as RightArrowIcon } from '@assets/icons/arrow.svg';
+import { useWindowDimensions } from '../../../_shared/components/utils';
 
 type Props = {
   cards: CardEntity[];
@@ -14,9 +15,8 @@ type Props = {
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  padding: 5px;
   height: 400px;
-  padding-top: 20px;
+  padding: 20px 5px 5px;
   position: relative;
 `;
 
@@ -58,6 +58,7 @@ const HALF_MARGIN = 30;
 const CARD_WIDTH = 400;
 
 const ScenariosList: React.FC<Props> = ({ cards, onScenarioSelected, selectedScenario }) => {
+  const isSmallScreen = useWindowDimensions().width < 1100;
   const [scrollLeft, setScrollLeft] = useState<number>(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -91,7 +92,7 @@ const ScenariosList: React.FC<Props> = ({ cards, onScenarioSelected, selectedSce
 
   return (
     <Wrapper>
-      {scrollLeft !== 0 && (
+      {scrollLeft !== 0 && !isSmallScreen && (
         <LeftArrowBox>
           <IconButton variant="clearSmall" onClick={scrollToLeft}>
             <LeftArrowIcon />
@@ -103,7 +104,7 @@ const ScenariosList: React.FC<Props> = ({ cards, onScenarioSelected, selectedSce
         alignItems="center"
         overflowX="hidden"
         display="flex"
-        flexDirection="row"
+        flexDirection={isSmallScreen ? 'column' : 'row'}
         ref={scrollRef}
         flex={1}
         mr={30}
@@ -119,7 +120,7 @@ const ScenariosList: React.FC<Props> = ({ cards, onScenarioSelected, selectedSce
           />
         ))}
       </Box>
-      {scrollLeft < maxScroll && (
+      {scrollLeft < maxScroll && !isSmallScreen && (
         <RightArrowBox>
           <IconButton variant="clearSmall" onClick={scrollToRight}>
             <RightArrowIcon />
