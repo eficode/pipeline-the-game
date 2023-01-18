@@ -5,16 +5,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { FormSelect, FormTextField } from '@pipeline/form';
 import { useDevOpsMaturities, useGameRoles } from '@pipeline/dynamicData';
-import { Box, ErrorMessage, Link, Input, PasswordInput, TwoColumnPage, Typography } from '@pipeline/components';
+import { Box, ErrorMessage, Link, Input, TwoColumnPage, Typography } from '@pipeline/components';
 import { useTranslate } from '@pipeline/i18n';
 import { RoutingPath, useNavigateTo, useNavigateOutsideTo } from '@pipeline/routing';
-
 import { SignupInfo } from '../../types/signupInfo';
 import useSignup from '../../hooks/useSignup';
 import { signupValidationSchema } from '../../utils/validation';
 import { SignupContent } from './Signup.styled';
 import EmailVerificationRequiredDialog from '../EmailVerificationRequiredDialog';
 import { ExternalUrl } from '@pipeline/models';
+import PasswordBox from '../../../_shared/components/PasswordBox/PasswordBox';
 
 type Props = {};
 
@@ -100,30 +100,7 @@ const Signup: React.FC<Props> = () => {
                       maxLength={250}
                     />
                   </Box>
-                  <Box mt={3} display="flex" flexDirection="row">
-                    <Box flex={1}>
-                      <FormTextField
-                        CustomInput={PasswordInput}
-                        name="password"
-                        label={t('signup.form.password.label')}
-                        labelDetails={t('auth.errors.passwordRequirements')}
-                        placeholder={t('signup.form.password.placeholder')}
-                        autoComplete="new-password"
-                        maxLength={50}
-                      />
-                    </Box>
-                    <Box flex={1} ml={3}>
-                      <FormTextField
-                        CustomInput={PasswordInput}
-                        name="repeatPassword"
-                        label={t('signup.form.repeatPassword.label')}
-                        placeholder={t('signup.form.repeatPassword.placeholder')}
-                        autoComplete="new-password"
-                        maxLength={50}
-                      />
-                    </Box>
-                  </Box>
-
+                  <PasswordBox />
                   <Box mt={3}>
                     <FormSelect name="role" label={t('signup.form.roleLabel')} options={gameRoles} />
                   </Box>
@@ -139,7 +116,7 @@ const Signup: React.FC<Props> = () => {
                       type="submit"
                       id="signup-button"
                       value={t('signup.form.inputText')}
-                      loading={signupLoading}
+                      loading={signupLoading.toString()}
                       onClick={submit}
                     />
                   </Box>

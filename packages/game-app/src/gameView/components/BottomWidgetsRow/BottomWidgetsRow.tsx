@@ -13,6 +13,7 @@ import { useSelector } from 'react-redux';
 import { selectors } from '../../slice';
 import ReviewPanel from '../ReviewPanel';
 import { useTranslate } from '@pipeline/i18n';
+import { useWindowDimensions } from '../../../_shared/components/utils';
 
 type Props = {};
 
@@ -84,8 +85,17 @@ const BottomWidgetsRowStyled: React.FC<Props> = () => {
   );
 
   const zoomDial = <FabDial icon={<LensIcon />} buttons={buttons} id="zoom-dial" />;
-
+  const isSmallScreen = useWindowDimensions().width < 1100;
   // switch zoom dial ad powered by when on review
+
+  if (isSmallScreen) {
+    return (
+      <BottomWidgetsRowContainer>
+        <ScenarioPanel />
+        {review && <ReviewPanel />}
+      </BottomWidgetsRowContainer>
+    );
+  }
   return (
     <BottomWidgetsRowContainer>
       <ScenarioPanel />

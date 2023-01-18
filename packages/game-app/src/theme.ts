@@ -24,6 +24,7 @@ const theme: DefaultTheme = {
   colors: {
     primary: '#2C3644',
     primaryLight: '#465060',
+    backgroundLight: '#ffffff',
     secondary: '#ffd700',
     secondaryDark: '#FDC300',
     activeAccent: '#00867c',
@@ -38,5 +39,6 @@ const theme: DefaultTheme = {
     review: 'linear-gradient(90deg, #fd9468 0%, #f34600 100%)',
     scenario: 'linear-gradient(90deg, #6ed6ea 0%, #00bddd 100%)',
   },
+  mobile: '1100px',
 };
 export default theme;

@@ -121,11 +121,4 @@ context('Signup', () => {
     cy.containsTranslationOf('input', 'signup.form.inputText').click();
     cy.get('body').should('contain.translationOf', 'auth.errors.auth/email-already-in-use');
   });
-
-  it("should show a small screen error dialog", () => {
-    cy.viewport(1000, 700);
-    cy.waitUntil(() => Cypress.$("#small-screen-dialog").length === 1);
-    cy.get('body').should('contain.translationOf', 'general.responsiveness.title');
-    cy.get('body').should('contain.translationOf', 'general.responsiveness.subtitle');
-  });
 });

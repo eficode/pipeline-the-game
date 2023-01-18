@@ -5,18 +5,18 @@ import { ReactComponent as ClearIcon } from '../../../assets/icons/clear-search.
 import IconButton from '../IconButton';
 
 type Props = {
-  key: string;
+  browser: string;
 };
 
 // todo do we have to persist the closed banner?
-const PersistentBanner: React.FC<Props> = ({ key, children }) => {
+const PersistentBanner: React.FC<Props> = ({ browser, children }) => {
   const [visible, setVisible] = useState<boolean | null>(true);
 
   const close = useCallback(() => {
     setVisible(false);
-    // localStorage.setItem(`bannerClosed:${key}`, 'true');
-    //}, [key])
-  }, []);
+    localStorage.setItem(`bannerClosed:${browser}`, 'true');
+  }, [browser]);
+  // }, []);
 
   /* for persistence
   useEffect(() => {

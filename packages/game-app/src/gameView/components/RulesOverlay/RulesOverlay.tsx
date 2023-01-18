@@ -12,6 +12,7 @@ import { ReactComponent as Rule5Image } from '@assets/images/cards/rule-card-5.s
 import ExpandableRule from '../ExpandableRule';
 import useCards from '../../hooks/useCards';
 import { CardType } from '@pipeline/common';
+import { useWindowDimensions } from '../../../_shared/components/utils';
 
 type Props = {
   isOpen: boolean;
@@ -32,10 +33,28 @@ const images = {
 
 const RulesOverlay: React.FC<Props> = ({ isOpen, close }) => {
   const t = useTranslate();
-
+  const { width } = useWindowDimensions();
+  const isWindowTooSmall = width < 1100;
   const { cards: ruleCards } = useCards(CardType.GameRule);
   const firstGroup = ruleCards.slice(0, Math.ceil(ruleCards.length / 2));
   const secondGroup = ruleCards.slice(Math.ceil(ruleCards.length / 2));
+
+  const rulesTitle = () => {
+    if (isWindowTooSmall) {
+      return (
+        <Typography m="auto" as="h1" color="white" variant="title">
+          {' '}
+          {t('game.rules')}
+        </Typography>
+      );
+    }
+    return (
+      <Typography as="h1" color="white" variant="bigTitle">
+        {' '}
+        {t('game.rules')}
+      </Typography>
+    );
+  };
 
   return (
     <GlassOverlay open={isOpen}>
@@ -49,10 +68,7 @@ const RulesOverlay: React.FC<Props> = ({ isOpen, close }) => {
             label={t('game.backToGame')}
           />
         </Box>
-        <Typography as="h1" color="white" variant="bigTitle">
-          {' '}
-          {t('game.rules')}
-        </Typography>
+        {rulesTitle()}
         <RulesContainer>
           <Box flex={0.5} marginRight={3}>
             {firstGroup.map(card => (

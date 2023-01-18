@@ -371,19 +371,10 @@
   "blank1": {
     "type": "pipeline-step",
     "tags": [],
-    "title": "blank1",
+    "title": "blank",
     "subtitle": "",
     "content": "",
     "number": 44,
-    "deckId": "7p5qqvE8kCV9WWysVc2n"
-  },
-  "blank2": {
-    "type": "pipeline-step",
-    "tags": [],
-    "title": "blank2",
-    "subtitle": "",
-    "content": "",
-    "number": 45,
     "deckId": "7p5qqvE8kCV9WWysVc2n"
   }
 }

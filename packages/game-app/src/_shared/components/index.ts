@@ -27,6 +27,8 @@ import DialogForEmailContainer from './DialogForEmailContainer';
 import { getFromTheme } from './utils';
 import EmptyCard from './Card/EmptyCard';
 import Estimation from './Estimation';
+import Burger from './Burger';
+import Menu from './Menu';
 
 export {
   TextInput,
@@ -58,4 +60,6 @@ export {
   DialogForEmailContainer,
   EmptyCard,
   Estimation,
+  Burger,
+  Menu,
 };

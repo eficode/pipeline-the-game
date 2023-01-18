@@ -11,6 +11,20 @@ export const TowColumnsContainer = styled.div`
 
 TowColumnsContainer.displayName = 'TwoColumnsContainer';
 
+export const OneColumnContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+  padding: 55px 6%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #eeeeee;
+  box-sizing: border-box;
+  max-width: 100%;
+`;
+
+OneColumnContainer.displayName = 'OneColumnContainer';
+
 export const Column = styled.div<FlexProps & FlexboxProps & LayoutProps>`
   ${flex} ${flexbox} ${layout}
 `;
@@ -35,6 +49,7 @@ export const Logo = styled.div`
   position: absolute;
   top: 8px;
   left: 6%;
+
   svg {
     max-width: 100%;
   }
