@@ -66,10 +66,9 @@ version** of this card game!
 
 ## :memo: System Requirements
 
-You need to have Node 12. This is because, at the
-time of writing, the highest stable Node version
-[supported by Cloud Functions](https://firebase.google.com/docs/functions/manage-functions)
-is Node 12. Please check your node version using
+Node version 14 is recommended, but
+on Node 16 project should also work.
+Please check your node version using
 <code>node -v</code>. If you have a different
 version of Node, we recommend using
 [nvm](https://github.com/nvm-sh/nvm) (or the
@@ -82,7 +81,7 @@ to manage your Node versions.
 To run against your own Firebase project you have to
 
 * create a new firebase project
-* update .firebaserc file with your project id
+* update .firebaserc file with your project id on lines 3 and 6 (default id is pipeline-game-development)
 
 [Firebase doc](https://firebase.google.com/docs/web/setup) contains a great set-up guide to start with the web sdk from
 scratch.
