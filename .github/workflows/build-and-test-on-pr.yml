@@ -9,15 +9,15 @@ jobs:
     environment: dev
     steps:
       - name: Install Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
 
       - name: Checkout merged code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Retrieve npm cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.npm
