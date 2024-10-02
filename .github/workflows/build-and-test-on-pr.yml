@@ -100,6 +100,7 @@ jobs:
         run: npm run bom
 
       - name: Upload BOM to Dependency-Track
+        uses: DependencyTrack/gh-upload-sbom@v3
         with:
           serverHostname: 'https://dtrack.dev.eficode.io/'
           apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
