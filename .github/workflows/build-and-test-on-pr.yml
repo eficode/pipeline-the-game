@@ -48,7 +48,7 @@ jobs:
       - name: Upload BOM to Dependency-Track
         uses: DependencyTrack/gh-upload-sbom@v3.0.0
         with:
-          serverHostname: 'dtrack.dev.eficode.io'
+          serverHostname: 'https://dtrack.dev.eficode.io'
           apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
           projectName: 'Pipeline_game'
           projectVersion: 'main'
