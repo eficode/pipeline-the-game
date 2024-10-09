@@ -100,7 +100,3 @@ jobs:
         with:
           name: cypress-videos
           path: packages/game-app/cypress/videos
-
-
-
-
