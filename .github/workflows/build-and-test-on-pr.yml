@@ -45,16 +45,6 @@ jobs:
       - name: Create BOM
         run: npm run bom
 
-      - name: Upload BOM to Dependency-Track
-        uses: DependencyTrack/gh-upload-sbom@v3.0.0
-        with:
-          serverHostname: 'https://dtrack.dev.eficode.io'
-          apiKey: ${{ secrets.DEPENDENCYTRACK_APIKEY }}
-          projectName: 'Pipeline_game'
-          projectVersion: 'main'
-          bomFilename: "bom.xml"
-          autoCreate: true
-
       - name: Lint functions
         run: npm --prefix packages/functions run lint
 
