@@ -1,5 +1,5 @@
 name: Build and run tests on PR
-on: 
+on:
   pull_request:
   workflow_dispatch:
 
@@ -9,15 +9,15 @@ jobs:
     environment: dev
     steps:
       - name: Install Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '16'
 
       - name: Checkout merged code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Retrieve npm cache
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: |
             ~/.npm
@@ -41,6 +41,9 @@ jobs:
           REACT_APP_FIREBASE_CONFIG_APP_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_APP_ID }}
           REACT_APP_FIREBASE_USE_EMULATORS: true
           REACT_APP_ENV: dev
+
+      - name: Create BOM
+        run: npm run bom
 
       - name: Lint functions
         run: npm --prefix packages/functions run lint
@@ -92,7 +95,7 @@ jobs:
           REACT_APP_FIREBASE_CONFIG_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_CONFIG_PROJECT_ID }}
 
       - name: Upload test videos on fail
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         if: failure()
         with:
           name: cypress-videos

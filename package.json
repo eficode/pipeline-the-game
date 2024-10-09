@@ -12,11 +12,13 @@
     "scripts:load-initial-data": "node scripts/load-initial-data.js",
     "scripts:deploy-database-instances-rules": "node scripts/deploy-rules-to-rtdb-instances.js",
     "scripts:load-initial-data:local": "npx env-cmd -f .env node scripts/load-initial-data.js",
-    "version-and-release": "npx lerna version --create-release github"
+    "version-and-release": "npx lerna version --create-release github",
+    "bom": "cyclonedx-npm --output-format XML --output-file bom.xml"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
+    "@cyclonedx/cyclonedx-npm": "^1.19.3",
     "firebase-admin": "^9.4.2",
     "firebase-tools": "^9.2.2",
     "fs-extra": "^8.1.0",
